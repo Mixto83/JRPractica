@@ -1,0 +1,11 @@
+Propuesta powerup "Ciervo"
+
+Este powerup se basa en los cuatro ciervos (Dáinn, Dvalinn, Duneyrr, Duraþrór) mencionados en la Edda poética que pastaban bajo las ramas de Yggdrasil. 
+De manera aleatoria le podrá tocar al jugador uno de los ciervos con habilidades distintas.
+
+Dáinn: impulsará al jugador a una altura que por sí mismo no podria (*)
+Dvalinn: impulsará a los dos jugadores a una gran altura (*)
+Duneyrr: impulsará al adversario hacia la izquierda (*)
+Duraþrór: impulsará al adversario hacia la derecha (*)
+
+(*) = posible animación siendo impulsado por un ciervo
