@@ -1,4 +1,4 @@
-Idea para el lore: tener como narradora de la historia a Volva (vidente) que cuenta la historia a Odín de 
+﻿Idea para el lore: tener como narradora de la historia a Volva (vidente) que cuenta la historia a Odín de 
 cómo Ratatosk (ardilla) malmete entre el águila sin nombre/Veofolnir (halcón) y Nidhogg (dragón), como 
 intro. Luego la parte jugable del juego representa el conflicto entre Nidhogg y el águila, que pueden 
 partir de la zona central de Yggdrasil (el árbol), donde Nidhogg intentará llegar a las raices de 
@@ -21,3 +21,22 @@ http://artenordico.blogspot.com/2013/05/el-dragon-en-la-mitologia-nordica.html
 http://aesirtales.blogspot.com/2010/10/yggdrasil.html
 https://es.wikipedia.org/wiki/N%C3%AD%C3%B0h%C3%B6ggr
 https://es.wikipedia.org/wiki/V%C3%B6lusp%C3%A1
+
+------------------------------------------------------------------------------------------------------------
+Idea para el lore 2: Protagonistas anónimos, no grandes nombres de la mitología nórdica: Un elfo oscuro de
+Svartalfheim y un elfo de luz de Alfheim que caen a las profundidades del Yggdrasil (es decir, a Helheim), donde
+encuentran a la diosa Hela/Hel y descubren sus planes para desatar el Ragnarok con la ayuda del dragón Nidhogg. De
+esta manera, comenzaría el juego con el objetivo de ir subiendo a lo más alto, hacia Asgard, para informar a Odín a tiempo y
+poder evitar la tragedia, pasando por los diferentes reinos del Yggdrasil y por el Bifröst que comunica Midgard con Asgard.
+
+Para justificar el carácter competitivo Player vs Player del juego, se puede desarrollar una rivalidad entre los dos elfos
+basada en la codicia y el ansia de poder, haciendo que no solo busquen evitar el Ragnarok sino también obtener el prestigio
+y la gloria de ser el que ha logrado tal hazaña. De esta manera se estarían presentando dos figuras antiheróicas que no rompen
+con el lore establecido por la propia mitología nóridca, al ser personajes que actúan bajo su propia cuenta y no representando
+a ninguno de los reinos. Además, serían personajes muy similares físicamente en cuanto a complexión, peso y altura, por lo que se
+estaría justificando que jugablemente sean iguales y no suponga una ventaja escoger uno sobre el otro al comenzar la partida.
+
+Estas ideas no son excluyentes con la propuesta inicial del lore, por lo que se puede complementar esa primera propuesta
+con elementos proporcionados en este texto. De la misma forma, esta propuesta también puede verse expandida con la narración
+contada por una völva, la guerra Aesir-Vanir, las nornas o Freyja y las valquirias, todas pertenecientes a la Mitología
+Nórdica y que permitirían enriquecer tanto la historia como la jugabilidad.
