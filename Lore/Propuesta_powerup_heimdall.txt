@@ -1,0 +1,20 @@
+Propuesta powerup "heimdall"
+
+Esta propuesta consiste en dar la posibilidad a un jugador de invadir el mundo del contrario, para ello se puede hacer uso del papel de Heimdall en la mitología nórdica.
+Por lo que se podría representar un personaje con una estética similar al Heimdal de las películas Marvel, pero con un cuerno (Gjallarhorn) en vez de espada que hará
+sonar para activar el Bifrost(algún tipo de luz que recoja los colores del arcoiris) teletransportando al jugador invasor en la pantalla del invadido. Pudiendo perder 
+el invadido la mecánica de los "dashes" (habilidad que se usa con el espacio) y colocando al invasor a una distancia proporcional a la ventaja que saque al otro jugador. 
+Cuando el invasor consiga alcanzar o situarse al lado del invadido, este quedará inmóvil durante cierto proporcionando una ventaja al invasor (volverá junto Heimdall y tendrá 
+tiempo de adelantar o aumentar su ventaja con el otro jugador), pero si se le agota el tiempo de invasión y no ha conseguido dar caza al invadido, una vez más volverá
+con Heimdal sin haber avanzado nada.
+
+Links de referencia:
+https://es.wikipedia.org/wiki/Heimdal
+https://www.vix.com/es/btg/comics/59953/quien-era-heimdall-de-asgard-en-la-verdadera-mitologia-nordica
+https://www.mitologia.info/heimdall/
+https://sobreleyendas.com/2009/06/24/heimdall-el-vigia-del-fin-del-mundo/
+
+Links de referencias estéticas:
+https://pm1.narvii.com/6284/cb6bbaeda8599fb19f8c126d98519f5a643b2f1a_hq.jpg
+https://sobreleyendas.com/wp-content/uploads/2009/06/heimdall2.jpg
+https://vignette.wikia.nocookie.net/marvel-movies/images/2/21/Thor_UMO-Heimdall.jpg/revision/latest?cb=20131231120023&path-prefix=es
