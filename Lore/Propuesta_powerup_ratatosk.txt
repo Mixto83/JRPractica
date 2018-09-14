@@ -1,0 +1,14 @@
+Habría un powerup que, al ser obtenido por uno de los jugadores, el otro tendría sus controles invertidos durante un
+tiempo. Se cambiarían el movimiento a la izquierda por derecha y arriba por abajo y viceversa, siendo 
+abajo la dirección utilizado para saltar en estas circunstancias.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Actualización Javier.
+
+Propuesta de mejora: pudiendo integrar este powerup con la mitología nordica con la ayuda de Ratatosk, el cual se 
+dedica a malmeter entre el águila y Nidhogg. Por lo que este powerup tiene forma de ardilla y recibe el nombre de
+Ratatosk.
+Como funcionalidad extra, si un jugador coge una ardilla se intercambiarían sólo las teclas "a" y "d" del contrario.
+Y el jugador que consiga primero su segunda ardilla, intercambiará la "a" y "d" además de la "w" y "s", evitando
+también que el contrario coja la segunda ardilla pues desaparecerá al instante o al poco tiempo (2 segundos por 
+ejemplo). 
