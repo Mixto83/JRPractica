@@ -9,3 +9,20 @@ Duneyrr: impulsará al adversario hacia la izquierda (*)
 Duraþrór: impulsará al adversario hacia la derecha (*)
 
 (*) = posible animación siendo impulsado por un ciervo
+
+--------------------------------------------------------------------
+Actualización por César:
+
+A la hora de implementar los ciervos sería importante que fueran fácilmente diferenciables visualmente
+por los jugadores. Ya que los cuatro son prácticamente idénticos en su representación en la mitología,
+sería necesario tomar ciertas libertades con las fuentes. Se me ocurren dos opciones:
+
+1. Que el diseño de sus cuernos sea distinto para cada uno. Esta funcionaría más orgánicamente con sus diseños originales, pero sería más difícil de diferenciar
+para los jugadores.
+
+2. Que cada ciervo tenga un color distinto. Esto rompería un poco la inmersión y la fidelidad con el material fuente, pero serían fácilmente identificables durante
+una partida intensa dónde no tienes mucho tiempo para dudar sobre qué es qué. 
+En este caso una propuesta de los colores de cada ciervo sería:
+	- Verde para representar beneficio al jugador (Dáinn).
+	- Azul para representar una recompensa neutral, beneficio a ambos jugadores (Dvalinn).
+	- Rojo y Naranja para desventaja al contrincante (Duneyrr y Duraþrór).
