@@ -35,7 +35,7 @@ Finalmente, las plataformas no serán todas iguales ni en forma, ni en tamaño n
 
 En resumen, las mecánicas del juego buscan que los jugadores tengan varias formas de afrontar los niveles y que todas ellas den lugar a una jugabilidad balanceada donde se recompense jugar de manera ágil pero cautelosa, así como también se recompensa al jugador experimentado que pueda conocer los mejores caminos y estrategias a realizar en el desarrollo de un nivel.
 
-# DESARROLLO DE UNA PARTIDA
+## DESARROLLO DE UNA PARTIDA
 
 Al comenzar la partida, a cada jugador se le asignará uno de los dos personajes controlables: el dragón Nidhogg o el halcón Veofolnir. Las diferencias entre ambos serán meramente estéticas y se controlarán de igual forma, siendo el objetivo de ambos llegar al final del nivel antes que el otro. Ambos jugadores comienzan en el punto medio del árbol Yggdrasil y cada uno de los 3 niveles inicialmente propuestos, cuya dificultad irá aumentando gradualmente, serán simétricos en cuanto a la distribución de las plataformas para ambos jugadores, solamente diferenciándose en la ambientación y la estética, ya que a nivel de historia se encuentran en lugares diferentes (uno de los personajes está subiendo por el árbol y el otro descendiendo).
 
@@ -47,7 +47,7 @@ El tercer y último nivel aumentará la complejidad de las plataformas y present
 
 Al finalizar un nivel, el jugador que ha salido victorioso tendrá una recompensa en forma de power-up para poder utilizar en el siguiente. El jugador que llegue antes a la meta en el último nivel será el que gane de forma definitiva la partida y se reproducirá el final correspondiente a su personaje, independientemente del resultado de los dos niveles anteriores.
 
-# POSIBILIDADES FUTURAS
+## POSIBILIDADES FUTURAS
 
 Gracias a lo inmenso que es el universo desarrollado en la Mitología Nórdica y a la propia naturaleza del videojuego como plataformas, este puede verse ampliado de muchas formas diferentes.
 
