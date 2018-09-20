@@ -9,6 +9,8 @@
 **PC**
 ### VERSION DEL DOCUMENTO
 **1.2**
+### ENLACES DE INTERES
+[Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 ### GENERO
 Plataformas de scroll vertical.
 ### SINOPSIS DE JUGABILIDAD Y CONTENIDO
