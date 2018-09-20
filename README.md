@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**1.1**
+**1.2**
 ### GENERO
 Plataformas de scroll vertical.
 ### SINOPSIS DE JUGABILIDAD Y CONTENIDO
@@ -40,6 +40,8 @@ El juego está dirigido a jugadores competitivos que disfruten de plataformas qu
 v1.0 - Publicación del documento con ideas iniciales
 
 v1.1 - Extensión del documento de acuerdo con el esquema previamente acordado y establecido
+
+v1.2 - Enlace al Trello de proyecto y modificación del apartado _miembros_
 
 ## MECANICA DEL JUEGO
 
@@ -147,13 +149,13 @@ También existe la posibilidad de aumentar el número de personajes jugables y d
 Finalmente, y como idea prioritaria a implementar, de cara a mejorar la rejugabilidad del título los niveles podrían no estar dispuestos siempre de la misma forma, sino diviéndolos en tramos y que algunos de estos tramos presenten una disposición de plataformas y power-ups diferente en cada iteración del juego. No se trata de aleatorizar los elementos del escenario, sino de tener varios módulos distintos para un mismo tramo del nivel y que en cada iteración de un nivel se escoja uno aleatoriamente, haciendo que no todas las partidas sean iguales y alargando la vida útil del juego para el usuario.
 
 ## MIEMBROS DEL EQUIPO
-Mario Aceituno Cordero - Arte
+Mario Aceituno Cordero - Arte - m.aceituno.2016@alumnos.urjc.es
 
-Javier Albaráñez Martínez - Diseño, Arte, Programación
+Javier Albaráñez Martínez - Diseño, Arte, Programación - j.albaranez@alumnos.urjc.es
 
-César Carbajo García - Diseño
+César Carbajo García - Diseño - c.carbajo.2016@alumnos.urjc.es
 
-Juan Antonio Martín García - Diseño, Documentación
+Juan Antonio Martín García - Diseño, Documentación - ja.martin.2016@alumnos.urjc.es
 
 Los roles están abiertos.
 
