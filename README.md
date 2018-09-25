@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**1.2**
+**1.3**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 ### GENERO
@@ -44,6 +44,8 @@ v1.0 - Publicación del documento con ideas iniciales
 v1.1 - Extensión del documento de acuerdo con el esquema previamente acordado y establecido
 
 v1.2 - Enlace al Trello de proyecto y modificación del apartado _miembros_
+
+v1.3 - Especificación de las características online
 
 ## MECANICA DEL JUEGO
 
@@ -119,7 +121,18 @@ Contará con tramos más complicados, una distribución de plataformas que premi
 Aumentará la complejidad de las plataformas y presentará bifurcaciones donde pueda no haber salida, obligando a retroceder lo más rápido posible y premiando tanto al jugador experimentado que conoce los caminos como al jugador habilidoso que domine los controles lo suficiente como para recortar tiempo en estos retrocesos. Estéticamente se continuará lo presentado en el nivel anterior, encontrándose el jugador 1 con colores propios de la naturaleza y la vida, mientras que el jugador 2 estará en una zona oscura, con predominancia del negro y el rojo, la presencia de raíces muertas y mucha suciedad. Al finalizar el nivel, el jugador que haya llegado antes será el ganador definitivo de la partida y se reproducirá el final correspondiente a su personaje, independientemente del resultado de los dos niveles anteriores.
 
 ## GUION
-El guion contará con la introducción del juego donde la völva narra a Odín los acontecimientos, así como con las secuencias entre niveles.
+El guion contará con la introducción del juego donde la völva narra a Odín los acontecimientos que dan lugar al conflicto.
+
+## CARACTERISTICAS ONLINE
+### COMUNICACION ENTRE JUGADORES
+Al ser un juego dinámico, en el que no hay un instante en el que distraerse, se ha optado por no implementar un chat, sino de utilizar un sistema de expresiones. Este sistema sería similar al visto en juegos como Super Smash Bros, donde un jugador pulsa una tecla específica y su personaje ejecuta una animación en la que se burla del otro, pero en este caso, además de burlas, habría otras expresiones como saludar o intimidar. De esta forma, los jugadores pueden comunicarse de forma muy breve, pero sin perder tiempo ni distraerse de la jugabilidad.
+
+### MATCHMAKING
+El juego se encargará de encontrar oponentes con un nivel de habilidad similar. Para ello, se llevará el registro del tiempo que tarda cada jugador en terminar un nivel, y se calculará un tiempo medio en base a las últimas diez partidas. Se emparejará a jugadores con un tiempo medio similar, con un margen de 10 segundos de diferencia, permitiendo así que los jugadores menos habilidosos o poco experimentados tengan una curva de aprendizaje placentera y sin enormes frustraciones, además de tener satisfechos a los jugadores veteranos o que dominen los controles, ya que tendrán que esforzarse para vencer al rival.
+
+Además, para que dos jugadores no se encuentren en partidas consecutivas, se guardará un historial en forma de lista de los últimos 10 usuarios con los que ha jugado cada jugador, no pudiendo ser emparejado con ninguno de ellos hasta que se hayan jugado como mínimo 10 partidas.
+
+En adición a estas restricciones, los jugadores nuevos que aún no tengan registros serán emparejados con los que peor tiempo medio tengan. Cualquier jugador cuyo tiempo se salga del margen de 10 segundos será emparejado en función del tiempo de los jugadores inmediatamente inferiores (por ejemplo, el mejor jugador de un nivel tiene un tiempo medio de 45 segundos, mientras que el segundo mejor lo tiene de 1 minuto y 10 segundos. Como el primero no encontraría rival con el criterio especificado anteriormente, se realiza una excepción y será emparejado con jugadores que entren en el rango de tiempo del segundo mejor) hasta que otros jugadores se acerquen a su récord.
 
 ## LOGROS
 Los logros que se obtienen son las recompensas de final de nivel, es decir, una runa para el jugador que sale vencedor de cada nivel.
@@ -151,15 +164,15 @@ También existe la posibilidad de aumentar el número de personajes jugables y d
 Finalmente, y como idea prioritaria a implementar, de cara a mejorar la rejugabilidad del título los niveles podrían no estar dispuestos siempre de la misma forma, sino diviéndolos en tramos y que algunos de estos tramos presenten una disposición de plataformas y power-ups diferente en cada iteración del juego. No se trata de aleatorizar los elementos del escenario, sino de tener varios módulos distintos para un mismo tramo del nivel y que en cada iteración de un nivel se escoja uno aleatoriamente, haciendo que no todas las partidas sean iguales y alargando la vida útil del juego para el usuario.
 
 ## MIEMBROS DEL EQUIPO
-Mario Aceituno Cordero - Arte - m.aceituno.2016@alumnos.urjc.es
+Mario Aceituno Cordero - Diseño, Arte - m.aceituno.2016@alumnos.urjc.es
 
 Javier Albaráñez Martínez - Diseño, Arte, Programación - j.albaranez@alumnos.urjc.es
 
-César Carbajo García - Diseño - c.carbajo.2016@alumnos.urjc.es
+César Carbajo García - Diseño, Arte - c.carbajo.2016@alumnos.urjc.es
 
-Juan Antonio Martín García - Diseño, Documentación - ja.martin.2016@alumnos.urjc.es
+Juan Antonio Martín García - Diseño, Documentación, Arte - ja.martin.2016@alumnos.urjc.es
 
-Los roles están abiertos.
+Los roles están abiertos y se actualizarán en función de las tareas que desempeñe cada miembro del grupo.
 
 ## DETALLES DE PRODUCCIÓN
 **Fecha de inicio**: 11/09/2018
