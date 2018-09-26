@@ -60,9 +60,11 @@ No se establecerá un sistema de puntuación. Solo existen los estados en el que
 El juego no cuenta con ningún sistema de guardado, ya que está pensado para partidas rápidas entre dos jugadores, que puedan resolverse entre 8 y 12 minutos, dependiendo de la habilidad de estos.
 
 ## ESTADOS DEL JUEGO Y PANTALLAS
-La secuencia de pantallas del juego es sencilla. De la pantalla de título inicial se pasa a la introducción de la historia mediante imágenes estáticas (secuencia omisible mediante la pulsación de un botón) y tras ello inicia la partida para los dos jugadores en dos pantallas divididas. Al finalizar cada nivel se muestra una pequeña secuencia de historia y se notifica la recompensa al ganador. Al terminar el último nivel se reproducirá el final de juego.
+La secuencia de pantallas del juego es sencilla. De la pantalla de título inicial se pasa a la introducción de la historia mediante imágenes estáticas (secuencia omisible mediante la pulsación de un botón) y tras ello inicia la partida para los dos jugadores en dos pantallas divididas. Al finalizar cada nivel se muestra una pequeña secuencia de historia y se notifica la recompensa al ganador. Al terminar el último nivel se reproducirá el final de juego, que será diferente en función del ganador.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_diagrama_pantallas.PNG "Diagrama de Pantallas")
+
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_diagrama_escenas.jpg "Diagrama de escenas. Extendido")
 
 ## PERSONAJES
 ### PERSONAJES CONTROLABLES
