@@ -20,14 +20,16 @@ El videojuego está ambientado en la mitología nórdica, por lo que se busca re
 ### HISTORIA
 La historia, narrada por una völva a Odín, cuenta cómo la ardilla **Ratatösk** está desatando un conflicto entre el **águila sin nombre** y el dragón **Nidhögg**, provocando una disputa entre ellos que da lugar a una competición en la que ambos parten de la zona intermedia del árbol **Yggdrasil**: Nidhögg intenta llegar a las raíces de para roerlas y con ello producir el Ragnarök, mientras que el águila busca llegar a la copa del árbol para comunicar a Freyja las intenciones de Nidhögg, la cual intervendrá explicando al dragón que todo es un engaño orquestado por Ratatösk. De esta manera, la conclusión de la historia será diferente en función de qué jugador se haga con la victoria: la victoria de Nidhögg desatará el Ragnarök, mientras que la del aguila solucionará el malentendido y pondrá fin al conflicto.
 ### MECANICAS
-La mecánica principal de la que se valdrán los jugadores es, como en todos los videojuegos del género, del salto. Cada personaje podrá realizar hasta tres saltos seguidos antes de aterrizar en el suelo, consiguiendo así impulsarse hacia plataformas más elevadas y acercarse a la meta. Además de saltar, los personajes se podrán mover lateralmente por el escenario, así como hacer uso de la habilidad del _dash_: esta servirá para dar un mayor impulso y velocidad a las acciones, permitiendo llegar a sitios que de otra manera serían imposibles de alcanzar.
+La mecánica principal de la que se valdrán los jugadores es, como en todos los videojuegos del género, el salto. Cada personaje podrá realizar hasta tres saltos seguidos antes de aterrizar en el suelo, consiguiendo así impulsarse hacia plataformas más elevadas y acercarse a la meta. Además de saltar, los personajes se podrán mover lateralmente por el escenario, así como hacer uso de la habilidad del _dash_: esta servirá para dar un mayor impulso y velocidad a las acciones, permitiendo llegar a sitios que de otra manera serían imposibles de alcanzar.
 
 Para que no se abuse de ellos, tanto el _dash_ como la posibilidad de hacer dobles y triples saltos no se pueden utilizar de manera gratuita, sino que consumen una determinada cantidad de estamina, la cual se recargará de manera progresiva cuando el personaje se encuentre en reposo. De esta manera se establece un **sistema de riesgo-recompensa-castigo**, incentivando a los jugadores a aprovechar estas habilidades para ganar la carrera, pero obligándolos a ser cautos y gestionar sus recursos de forma moderada para obtener ventaja. Un ejemplo de cómo puede impactar el sistema de estamina: en un tramo donde todas las plataformas pueden ser superadas mediante el uso del salto simple, un jugador puede verse tentado a pasar rápido por ahí haciendo uso del triple salto y el dash, obteniendo ventaja sobre el jugador que decida no gastar parte de su estamina tan rápido. Pero tras este tramo, puede presentarse otro donde haya una plataforma que solo pueda ser alcanzada mediante un triple salto: el jugador que ha gastado parte de su estamina se ve obligado a esperar a que esta se recargue, mientras que el otro podrá seguir su recorrido en cuanto llegue a esa zona, equilibrando así la partida.
+
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_mecanicas_movimiento_basicas.jpg "Mecánicas principales")
 
 Además de los saltos aéreos y el _dash_, los personajes podrán hacer uso de un salto de pared, mediante el cual chocarán con una pared (los escenarios siempre contarán con paredes a ambos lados de la pantalla) y se podrán impulsar más que como lo harían con un salto normal o cambiar la dirección a la que impulsarse (por ejemplo, un personaje puede saltar contra la pared e impulsarse lateralmente o en diagonal). Este salto de pared consume uno de los 3 saltos consecutivos que puede utilizar el personaje. Esta mecánica permite al jugador interactuar con el entorno donde se encuentra, probar diferentes formas de alcanzar determinadas plataformas y enriquece el diseño de niveles.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_mecanica_pared_1.jpg "Mecánicas: Salto en pared")
+
 Las plataformas no serán todas iguales ni en forma, ni en tamaño ni en funcionalidad. Habrá plataformas que se rompan a los pocos segundos de posarse sobre ellas, otras con movimientos verticales u horizontales, otras con trampas y otras permitirán dar un salto más alto. Habrá tramos con plataformas más pequeñas y otros donde tengan mayor longitud o sean lo suficientemente anchas como para realizar en ellas un salto de pared. Algunas plataformas, también, serán rectangulares, mientras otras pueden tener forma de T, estar escalonadas…
 
 En resumen, las mecánicas del juego buscan que los jugadores tengan varias formas de afrontar los niveles y que todas ellas den lugar a una jugabilidad balanceada donde se recompense jugar de manera ágil pero cautelosa, así como también se recompensa al jugador experimentado que pueda conocer los mejores caminos y estrategias a realizar en el desarrollo de un nivel.
@@ -59,6 +61,7 @@ El juego no cuenta con ningún sistema de guardado, ya que está pensado para pa
 
 ## ESTADOS DEL JUEGO Y PANTALLAS
 La secuencia de pantallas del juego es sencilla. De la pantalla de título inicial se pasa a la introducción de la historia mediante imágenes estáticas (secuencia omisible mediante la pulsación de un botón) y tras ello inicia la partida para los dos jugadores en dos pantallas divididas. Al finalizar cada nivel se muestra una pequeña secuencia de historia y se notifica la recompensa al ganador. Al terminar el último nivel se reproducirá el final de juego.
+
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_diagrama_pantallas.PNG "Diagrama de Pantallas")
 
 ## PERSONAJES
@@ -93,6 +96,7 @@ Rocas místicas repartidas por el escenario. Se distinguen por símbolos, que re
 Ejemplo de estética de una runa, concretamente la de Bragi:
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Runa_Bragi_stamine.jpg "Runa de Bragi")
+
 ### AYUDANTES
 Manifestación de ciertos personajes de la mitología nórdica que aplicarán un efecto más poderoso que el de las runas.
 
@@ -111,9 +115,11 @@ Además de ayudas, a lo largo de los niveles también habrá esparcidos campamen
 Al comenzar la partida, a cada jugador se le asignará uno de los dos personajes controlables: el dragón Nidhogg o el águila sin nombre. El objetivo de ambos es llegar al final nivel antes que el otro. Ambos jugadores comienzan en el punto medio del árbol Yggdrasil y cada uno de los 3 niveles inicialmente propuestos, cuya dificultad aumentará gradualmente, serán simétricos en cuanto a la distribución de las plataformas para ambos jugadores, solamente diferenciándose en ambientación y estética. Esta diferencia se justifica a nivel de historia: uno de los personajes está ascendiendo hasta la copa de Yggdrasil, mientras que el otro está descendiendo a las raíces, por lo que acaban en dos lugares diferentes.
 
 En esta primera imagen se muestra el primer tramo del nivel 1 con la división de pantallas entre los dos jugadores. Esta imagen es solo una muestra conceptual de cómo sería un tramo completo.
+
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/Concepto_Nivel1_Tramo1_Completo.jpg "Concepto de Juego. Tramo completo")
 
 En esta otra imagen se puede apreciar cómo quedaría el desarrollo de la partida, ya con la cámara siguiendo a los personajes.
+
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/ImagenConceptual.jpg "Concepto de Juego. Visión de la cámara")
 ### NIVEL 1
 Servirá a modo de introducción para que los jugadores se familiaricen poco a poco con las mecánicas. Ambas pantallas comenzarán con una estética similar que se irá diferenciando conforme se alcance mayor altura. La dificultad no será muy exigente, para poder desarrollar una correcta curva de aprendizaje. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
@@ -131,6 +137,7 @@ El guion será redactado contando la introducción del juego donde la völva nar
 
 ## INTERFAZ
 Se implementará una interfaz diegética, donde los elementos relevantes para el desarrollo de la partida, como la estamina restante de un jugador, se reflejarán en el propio mundo del juego en lugar de simplemente mostrarse por pantalla.
+
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/interfaz_diegetica_concepto.png "Interfaz diegética")
 
 ## CARACTERISTICAS ONLINE
@@ -161,6 +168,7 @@ Estéticamente, por tanto, se seguirá el estilo de Puppet Animation con flash, 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_1_perspectivas.png "Spritesheet E1") ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_2_perspectivas.png "Spritesheet E2")
 
 En cuanto a los escenarios, estos se representarán de manera que sean fieles con la ambientación escogida. El árbol de Yggdrasil es de gran longitud y se rodea de diferentes reinos, por lo que en el escenario predominarán diferentes colores y detalles en función de en qué lugar se encuentren los personajes. Para muestra, se adjunta la imagen del árbol Yggdrasil, que se utilizará como _background_ del escenario. Se verá una parte u otra del árbol en diferentes niveles y tramos, dando así la sensación de progreso.
+
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/arbol_calidad_baja.jpg "Background: Yggdrasil")
 
 ## POSIBLES AMPLIACIONES
