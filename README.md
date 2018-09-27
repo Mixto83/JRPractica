@@ -186,6 +186,10 @@ También existe la posibilidad de aumentar el número de personajes jugables y d
 
 Otra opción interesante es aumentar el número de jugadores en una misma partida. Se deberían regular elementos, como las invasiones a través de los portales o el control de actividad, así como rediseñar ligeramente ciertos tramos de los niveles. Pero la jugabilidad se podría enriquecer y dar lugar a partidas más caóticas, dando mucho valor a la rejugabilidad.
 
+Idea añadidas para la jugabilidad: el uso del _dash_ hará que se recargue la estamina del rival más rápido, de manera que cuantos más _dashes_ use un jugador, más podrá usar el otro. Las ventajas de esta mecánica serían reforzar el sistema de riesgo-recompensa-castigo y aumentar la interacción multijugador, aunque supondría un problema de cara a reflejarlo mediante la interfaz diegética.
+
+Alternativa para la interfaz diegética: se puede reflejar la estamina restante en el propio personaje, dejando un pequeño rastro tras finalizar un salto u otro tipo de acción en caso de que conserve poca estamina, señalando al jugador que debería parar pronto para recargar.
+
 Finalmente, y como idea prioritaria a implementar, de cara a mejorar la rejugabilidad del título los niveles podrían no estar dispuestos siempre de la misma forma, sino diviéndolos en tramos y que algunos de estos tramos presenten una disposición de plataformas y power-ups diferente en cada iteración del juego. No se trata de aleatorizar los elementos del escenario, sino de tener varios módulos distintos para un mismo tramo del nivel y que en cada iteración de un nivel se escoja uno aleatoriamente, haciendo que no todas las partidas sean iguales y alargando la vida útil del juego para el usuario.
 
 ## MIEMBROS DEL EQUIPO
