@@ -1,0 +1,116 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+    <title>Escenario phaser 3</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+
+    var config = {
+        type: Phaser.AUTO,
+        width: 1920,
+        height: 1080,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 300 },
+                debug: false
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+var game = new Phaser.Game(config);
+var map;
+var layer;
+var cursors;
+var camera1, camera2;
+
+function preload() {
+
+    this.load.tilemapCSV('map', 'assets/Nivel1.csv');
+    this.load.image('tiles', 'assets/Tiles.png');
+
+}
+
+function create() {
+    map = this.make.tilemap({ key: "map", tileWidth: 48, tileHeight: 48});
+    var tileset = map.addTilesetImage('tiles');
+    
+    layer = map.createStaticLayer(0, tileset, 0,0);
+
+	this.cameras.main.setSize(960,1080);
+	camera1 = this.cameras.main;
+	camera2 = this.cameras.add(960, 0, 960, 1080);
+
+    
+	this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+	this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+	this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+	this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+	this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+	var cursors = this.input.keyboard.createCursorKeys();
+
+	var controlConfig = {
+        camera: this.cameras.main,
+        left: cursors.left,
+        right: cursors.right,
+        up: cursors.up,
+        down: cursors.down,
+        speed: 0.5
+    };
+
+	controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
+
+    var help = this.add.text(16, 16, 'Arrows to scroll.', {
+        fontSize: '18px',
+        padding: { x: 10, y: 5 },
+        backgroundColor: '#000000',
+        fill: '#ffffff'
+    });
+    help.setScrollFactor(0);
+
+}
+
+function update(time,delta) {
+
+	controls.update(delta);
+	
+	if (this.keyA.isDown)
+    {
+		camera2.scrollX -= 8;
+    }
+    
+	if (this.keyD.isDown)
+    {
+		camera2.scrollX += 8;
+    }
+    
+	if (this.keyS.isDown)
+    {
+		camera2.scrollY += 8;
+    }
+    
+	if (this.keyW.isDown)
+    {
+		camera2.scrollY -= 8;
+    }
+}
+
+</script>
+
+</body>
+</html>
