@@ -1,18 +1,10 @@
-VolvaChronicle.ending1 = function(game) {
+var ending1Scene = new Phaser.Scene('ending1');
 
+ending1Scene.active = true;
+
+ending1Scene.preload = function (){
+    
 }
 
-VolvaChronicle.ending1.prototype = {
-
-    preload: function() {
-        
-    },
-
-    create: function() {
-
-    },
-
-    update: function() {
-
-    }
+ending1Scene.create = function (){
 }

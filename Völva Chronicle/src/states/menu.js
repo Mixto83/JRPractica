@@ -1,24 +1,11 @@
-VolvaChronicle.menuState = function(game) {
+var menuScene = new Phaser.Scene('menu');
 
+menuScene.active = true;
+
+menuScene.preload = function (){
+    
 }
 
-VolvaChronicle.menuState.prototype = {
-
-    /*preload: function() {
-        
-    },*/
-
-    create: function() {
-    
-
-    },
-
-    update: function() {
-
-    },
-
-    //carga el estado level
-    start: function() {
-        game.state.start('intro');
-    },
-};
+menuScene.create = function (){
+    this.scene.start('intro');
+}

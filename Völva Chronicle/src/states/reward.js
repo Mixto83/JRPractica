@@ -1,18 +1,10 @@
-VolvaChronicle.rewardState = function(game) {
+var rewardScene = new Phaser.Scene('reward');
 
+rewardScene.active = true;
+
+rewardScene.preload = function (){
+    
 }
 
-VolvaChronicle.rewardState.prototype = {
-
-    preload: function() {
-        
-    },
-
-    create: function() {
-
-    },
-
-    update: function() {
-
-    }
+rewardScene.create = function (){
 }

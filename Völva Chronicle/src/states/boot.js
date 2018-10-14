@@ -1,24 +1,13 @@
-var VolvaChronicle = {};
+var bootScene = new Phaser.Scene('boot');
 
-VolvaChronicle.bootState = function(game) {
+bootScene.active = true;
 
+bootScene.preload = function (){
+    var loadingText = this.add.text(80, 150, 'boot...');
+    //podemos usar boot para cargar imagenes como un fondo y barra para
+    //la pantalla de carga (preload)
 }
 
-VolvaChronicle.bootState.prototype = {
-
-    /*preload: function() {
-        
-    },*/
-
-    create: function() {
-    	//inicia fisicas arcade
-    	game.physics.startSystem(Phaser.Physics.ARCADE);
-
-    	//carga estado de carga (preload)
-    	game.state.start('preload');
-    },
-
-    /*update: function() {
-
-    }*/
+bootScene.create = function (){
+    this.scene.start('preload');
 }

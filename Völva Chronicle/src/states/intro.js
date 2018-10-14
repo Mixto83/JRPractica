@@ -1,18 +1,11 @@
-VolvaChronicle.introState = function(game) {
+var introScene = new Phaser.Scene('intro');
 
+introScene.active = true;
+
+introScene.preload = function (){
+    
 }
 
-VolvaChronicle.introState.prototype = {
-
-    preload: function() {
-        
-    },
-
-    create: function() {
-    	var text = game.add.text(0,0,'intro', {font: '50px Arial', fill: '#ffffff'});
-    },
-
-    update: function() {
-
-    }
+introScene.create = function (){
+    this.scene.start('level1');
 }

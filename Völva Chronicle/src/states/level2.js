@@ -1,14 +1,18 @@
-var level2State = {
+var level2Scene = new Phaser.Scene('level2');
 
-    preload: function() {
-        
-    },
+level2Scene.active = true;
 
-    create: function() {
+level2Scene.preload = function (){
+    
+}
 
-    },
+level2Scene.create = function (){
+    createLevel(level2Scene, 2);
+    createPlayer(level2Scene);
+    createStars(level2Scene, 2);
+    createExtras(level2Scene);
+}
 
-    update: function() {
-
-    }
+level2Scene.update = function (){
+    updateControls(level2Scene);
 }
