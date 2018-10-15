@@ -43,10 +43,12 @@ function preload() {
 
     this.load.tilemapCSV('map', 'assets/Nivel1.csv');
     this.load.image('tiles', 'assets/Tiles.png');
+    this.load.image('sky', 'assets/sky.png');
 
 }
 
 function create() {
+    this.add.image(0,0,'sky');
     map = this.make.tilemap({ key: "map", tileWidth: 48, tileHeight: 48});
     var tileset = map.addTilesetImage('tiles');
     

@@ -23,45 +23,67 @@ var noPressB = true;
 var contStamine = 100;
 var gameOver = false;
 var loadingText2;
+var layer;
+var map;
 
 
 createLevel = function (scene, nLevel) {
     //  A simple background for our game
-    scene.add.image(400, 300, 'sky' + nLevel);
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    platforms = scene.physics.add.staticGroup();
-    //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-    //  Now let's create some ledges
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
-    platforms.create(750, 220, 'ground');
+    scene.add.image(0, 1224, 'background1Nivel1');
+    scene.add.image(0, 3672, 'background2Nivel1');
+    scene.add.image(0, 6120, 'background3Nivel1');
+    scene.add.image(0, 8568, 'background4Nivel1');
+    scene.add.image(0, 11016, 'background5Nivel1');
+    scene.add.image(0, 13464, 'background6Nivel1');
+    scene.add.image(0, 15912, 'background7Nivel1');
+    scene.add.image(0, 18360, 'background8Nivel1');
+    
+    map = scene.make.tilemap({ key: 'map1', tileWidth: 48, tileHeight: 48});
+    var tileset = map.addTilesetImage('tiles');
+    layer = map.createStaticLayer(0, tileset, -3501,0);
+    
+    map.setCollisionBetween(0,100);
+    
+    scene.cameras.main.setBounds(-3501, 0, 7008, 19578);
+    scene.physics.world.setBounds(-3501, 0, 7008, 19578);
+
 }
 
 createPlayer = function (scene) {
-    player = scene.physics.add.sprite(100, 450, 'dude');
+    player = scene.physics.add.sprite(-600, 0, 'dude');
     //  Player physics properties. Give the little guy a slight bounce.
     player.setBounce(0.1);
-    player.setCollideWorldBounds(true);
+    player.setCollideWorldBounds(true); 
+    player.contSalto = 0;
     //  Our player animations, turning, walking left and walking right.
     scene.anims.create({
         key: 'left',
-        frames: scene.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frames: scene.anims.generateFrameNumbers('dude', {
+            start: 0,
+            end: 3
+        }),
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'turn',
-        frames: [{ key: 'dude', frame: 4 }],
+        frames: [{
+            key: 'dude',
+            frame: 4
+        }],
         frameRate: 20
     });
     scene.anims.create({
         key: 'right',
-        frames: scene.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frames: scene.anims.generateFrameNumbers('dude', {
+            start: 5,
+            end: 8
+        }),
         frameRate: 10,
         repeat: -1
     });
+
+    scene.cameras.main.startFollow(player, true, 0.08, 0.08);
 }
 
 createStars = function (scene, nLevel) {
@@ -69,7 +91,11 @@ createStars = function (scene, nLevel) {
     stars = scene.physics.add.group({
         key: 'star',
         repeat: 11,
-        setXY: { x: 12, y: 0, stepX: 70 }
+        setXY: {
+            x: 12,
+            y: 0,
+            stepX: 70
+        }
     });
     stars.children.iterate(function (child) {
         //  Give each star a slightly different bounce
@@ -82,13 +108,28 @@ createExtras = function (scene) {
     //  Input Events
     cursors = scene.input.keyboard.createCursorKeys();
     //  The score
-    scoreText = scene.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-    contSaltoText = scene.add.text(150, 16, 'contSalto: 0', { fontSize: '32px', fill: '#000' });
-    contStamineText = scene.add.text(350, 16, 'contStamine: 100', { fontSize: '16px', fill: '#000' });
-    wPulsadaText = scene.add.text(16, 40, 'wPulsada: false', { fontSize: '32px', fill: '#000' });
-    bPulsadaText = scene.add.text(250, 40, 'bPulsada: false', { fontSize: '32px', fill: '#000' });
+    scoreText = scene.add.text(16, 16, 'score: 0', {
+        fontSize: '32px',
+        fill: '#000'
+    });
+    contSaltoText = scene.add.text(150, 16, 'contSalto: 0', {
+        fontSize: '32px',
+        fill: '#000'
+    });
+    contStamineText = scene.add.text(350, 16, 'contStamine: 100', {
+        fontSize: '16px',
+        fill: '#000'
+    });
+    wPulsadaText = scene.add.text(16, 40, 'wPulsada: false', {
+        fontSize: '32px',
+        fill: '#000'
+    });
+    bPulsadaText = scene.add.text(250, 40, 'bPulsada: false', {
+        fontSize: '32px',
+        fill: '#000'
+    });
     //  Collide the player and the stars with the platforms
-    scene.physics.add.collider(player, platforms);
+    scene.physics.add.collider(player, layer);
     scene.physics.add.collider(stars, platforms);
     scene.physics.add.collider(bombs, platforms);
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
@@ -119,6 +160,7 @@ function collectStar(player, star) {
         bomb.allowGravity = false;
     }
 }
+
 function hitBomb(player, bomb) {
     scene.physics.pause();
     player.setTint(0xff0000);
@@ -155,42 +197,35 @@ updateControls = function (scene) {
             wPulsada = false;
             contStamine--;
             wPulsadaText.setText('wPulsada: false');
-        }
-        else if (aPulsada && sPulsada) {
+        } else if (aPulsada && sPulsada) {
             player.setVelocityX(-350);
             player.setVelocityY(350);
             contStamine--;
-        }
-        else if (dPulsada && wPulsada) {
+        } else if (dPulsada && wPulsada) {
             player.setVelocityX(350);
             player.setVelocityY(-350);
             wPulsada = false;
             contStamine--;
             wPulsadaText.setText('wPulsada: false');
-        }
-        else if (dPulsada && sPulsada) {
+        } else if (dPulsada && sPulsada) {
             player.setVelocityX(350);
             player.setVelocityY(350);
             contStamine--;
-        }
-        else if (aPulsada) {
+        } else if (aPulsada) {
             player.setVelocityX(-350);
             player.anims.play('left', true);
             contStamine--;
             aPulsada = false;
-        }
-        else if (dPulsada) {
+        } else if (dPulsada) {
             player.setVelocityX(350);
             player.anims.play('right', true);
             contStamine--;
-        }
-        else if (wPulsada && player.contSalto < 3) {
+        } else if (wPulsada && player.contSalto < 3) {
             player.setVelocityY(-350);
             wPulsada = false;
             contStamine--;
             wPulsadaText.setText('wPulsada: false');
-        }
-        else if (sPulsada && player.contSalto < 3) {
+        } else if (sPulsada && player.contSalto < 3) {
             player.setVelocityY(350);
             sPulsada = false;
             contStamine--;
@@ -201,58 +236,47 @@ updateControls = function (scene) {
                 player.setVelocityY(0);
             }
         }
-    }
-    else {
+    } else {
         if (aPulsada && wPulsada) {
             player.setVelocityX(-250);
             player.setVelocityY(-250);
             wPulsada = false;
             wPulsadaText.setText('wPulsada: false');
-        }
-        else if (aPulsada && sPulsada) {
+        } else if (aPulsada && sPulsada) {
             player.setVelocityX(-250);
             player.setVelocityY(250);
-        }
-        else if (dPulsada && wPulsada) {
+        } else if (dPulsada && wPulsada) {
             player.setVelocityX(250);
             player.setVelocityY(-250);
             wPulsada = false;
             wPulsadaText.setText('wPulsada: false');
-        }
-        else if (dPulsada && sPulsada) {
+        } else if (dPulsada && sPulsada) {
             player.setVelocityX(250);
             player.setVelocityY(250);
-        }
-        else if (aPulsada) {
+        } else if (aPulsada) {
             if (!player.body.touching.down) {
                 player.setVelocityX(-150);
                 player.anims.play('left', true);
-            }
-            else {
+            } else {
                 player.setVelocityX(-250);
                 player.anims.play('left', true);
             }
-        }
-        else if (dPulsada) {
+        } else if (dPulsada) {
             if (!player.body.touching.down) {
                 player.setVelocityX(150);
                 player.anims.play('right', true);
-            }
-            else {
+            } else {
                 player.setVelocityX(250);
                 player.anims.play('right', true);
             }
-        }
-        else if (wPulsada && player.contSalto < 3) {
+        } else if (wPulsada && player.contSalto < 3) {
             player.setVelocityY(-250);
             wPulsada = false;
             wPulsadaText.setText('wPulsada: false');
-        }
-        else if (sPulsada && player.contSalto < 3) {
+        } else if (sPulsada && player.contSalto < 3) {
             player.setVelocityY(250);
             sPulsada = false;
-        }
-        else {
+        } else {
             player.anims.play('turn', true);
             player.setVelocityX(0);
         }
@@ -276,7 +300,7 @@ updateControls = function (scene) {
     if (!scene.keyB.isDown && contStamine < 100) {
         contStamine++;
     }
-    if (player.body.touching.down) {
+    if (player.body.blocked.down) {
         player.contSalto = 0;
         contSaltoText.setText('contSalto: ' + player.contSalto);
     }
