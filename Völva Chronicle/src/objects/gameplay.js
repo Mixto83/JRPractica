@@ -1,53 +1,24 @@
 //variables
 var player;
-var platforms;
-var cursors;
-var stars;
-var score = 0;
-var scoreText;
-var contSaltoText;
-var contStamineText;
 var sPulsada = false;
 var sToque = false;
 var wPulsada = false;
 var wToque = false;
 var aPulsada = false;
-var aToque = false;
 var dPulsada = false;
-var dToque = false;
-var wPulsadaText;
-var bPulsadaText;
 var bPulsada = false;
-var noPressW = true;
-var noPressB = true;
 var contStamine = 100;
-var gameOver = false;
-var loadingText2;
-var layer;
-var map;
 
+var player2;
+var downPulsada = false;
+var downToque = false;
+var upPulsada = false;
+var upToque = false;
+var leftPulsada = false;
+var rightPulsada = false;
+var zeroPulsada = false;
+var contStamine2 = 100;
 
-createLevel = function (scene, nLevel) {
-    //  A simple background for our game
-    scene.add.image(0, 1224, 'background1Nivel1');
-    scene.add.image(0, 3672, 'background2Nivel1');
-    scene.add.image(0, 6120, 'background3Nivel1');
-    scene.add.image(0, 8568, 'background4Nivel1');
-    scene.add.image(0, 11016, 'background5Nivel1');
-    scene.add.image(0, 13464, 'background6Nivel1');
-    scene.add.image(0, 15912, 'background7Nivel1');
-    scene.add.image(0, 18360, 'background8Nivel1');
-    
-    map = scene.make.tilemap({ key: 'map1', tileWidth: 48, tileHeight: 48});
-    var tileset = map.addTilesetImage('tiles');
-    layer = map.createStaticLayer(0, tileset, -3501,0);
-    
-    map.setCollisionBetween(0,100);
-    
-    scene.cameras.main.setBounds(-3501, 0, 7008, 19578);
-    scene.physics.world.setBounds(-3501, 0, 7008, 19578);
-
-}
 
 createPlayer = function (scene) {
     player = scene.physics.add.sprite(-600, 0, 'dude');
@@ -55,6 +26,13 @@ createPlayer = function (scene) {
     player.setBounce(0.1);
     player.setCollideWorldBounds(true); 
     player.contSalto = 0;
+    
+    player2 = scene.physics.add.sprite(600, 0, 'dude');
+    //  Player physics properties. Give the little guy a slight bounce.
+    player2.setBounce(0.1);
+    player2.setCollideWorldBounds(true); 
+    player2.contSalto = 0;
+    
     //  Our player animations, turning, walking left and walking right.
     scene.anims.create({
         key: 'left',
@@ -83,90 +61,27 @@ createPlayer = function (scene) {
         repeat: -1
     });
 
-    scene.cameras.main.startFollow(player, true, 0.08, 0.08);
-}
-
-createStars = function (scene, nLevel) {
-    //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
-    stars = scene.physics.add.group({
-        key: 'star',
-        repeat: 11,
-        setXY: {
-            x: 12,
-            y: 0,
-            stepX: 70
-        }
-    });
-    stars.children.iterate(function (child) {
-        //  Give each star a slightly different bounce
-        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    });
-    bombs = scene.physics.add.group();
 }
 
 createExtras = function (scene) {
     //  Input Events
     cursors = scene.input.keyboard.createCursorKeys();
-    //  The score
-    scoreText = scene.add.text(16, 16, 'score: 0', {
-        fontSize: '32px',
-        fill: '#000'
-    });
-    contSaltoText = scene.add.text(150, 16, 'contSalto: 0', {
-        fontSize: '32px',
-        fill: '#000'
-    });
-    contStamineText = scene.add.text(350, 16, 'contStamine: 100', {
-        fontSize: '16px',
-        fill: '#000'
-    });
-    wPulsadaText = scene.add.text(16, 40, 'wPulsada: false', {
-        fontSize: '32px',
-        fill: '#000'
-    });
-    bPulsadaText = scene.add.text(250, 40, 'bPulsada: false', {
-        fontSize: '32px',
-        fill: '#000'
-    });
     //  Collide the player and the stars with the platforms
     scene.physics.add.collider(player, layer);
-    scene.physics.add.collider(stars, platforms);
-    scene.physics.add.collider(bombs, platforms);
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    scene.physics.add.overlap(player, stars, collectStar, null, this);
-    scene.physics.add.collider(player, bombs, hitBomb, null, this);
+    scene.physics.add.collider(player2, layer);
+    
     scene.keyA = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     scene.keyD = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     scene.keyW = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     scene.keyS = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     scene.keyB = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+    scene.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    scene.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    scene.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    scene.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    scene.keyZero = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 }
 
-function collectStar(player, star) {
-    star.disableBody(true, true);
-    //  Add and update the score
-    score += 10;
-    scoreText.setText('Score: ' + score);
-    if (stars.countActive(true) === 0) {
-        //  A new batch of stars to collect
-        stars.children.iterate(function (child) {
-            child.enableBody(true, child.x, 0, true, true);
-        });
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-    }
-}
-
-function hitBomb(player, bomb) {
-    scene.physics.pause();
-    player.setTint(0xff0000);
-    player.anims.play('turn');
-    gameOver = true;
-}
 updateControls = function (scene) {
     if (scene.keyA.isDown) {
         aPulsada = true;
@@ -175,7 +90,6 @@ updateControls = function (scene) {
         sPulsada = true;
         sToque = true;
         player.contSalto++;
-        contSaltoText.setText('contSalto: ' + player.contSalto);
     }
     if (scene.keyD.isDown) {
         dPulsada = true;
@@ -184,8 +98,6 @@ updateControls = function (scene) {
         wPulsada = true;
         wToque = true;
         player.contSalto++;
-        wPulsadaText.setText('wPulsada: true');
-        contSaltoText.setText('contSalto: ' + player.contSalto);
     }
     if (scene.keyB.isDown) {
         bPulsada = true;
@@ -196,7 +108,6 @@ updateControls = function (scene) {
             player.setVelocityY(-350);
             wPulsada = false;
             contStamine--;
-            wPulsadaText.setText('wPulsada: false');
         } else if (aPulsada && sPulsada) {
             player.setVelocityX(-350);
             player.setVelocityY(350);
@@ -206,7 +117,6 @@ updateControls = function (scene) {
             player.setVelocityY(-350);
             wPulsada = false;
             contStamine--;
-            wPulsadaText.setText('wPulsada: false');
         } else if (dPulsada && sPulsada) {
             player.setVelocityX(350);
             player.setVelocityY(350);
@@ -224,7 +134,6 @@ updateControls = function (scene) {
             player.setVelocityY(-350);
             wPulsada = false;
             contStamine--;
-            wPulsadaText.setText('wPulsada: false');
         } else if (sPulsada && player.contSalto < 3) {
             player.setVelocityY(350);
             sPulsada = false;
@@ -241,7 +150,6 @@ updateControls = function (scene) {
             player.setVelocityX(-250);
             player.setVelocityY(-250);
             wPulsada = false;
-            wPulsadaText.setText('wPulsada: false');
         } else if (aPulsada && sPulsada) {
             player.setVelocityX(-250);
             player.setVelocityY(250);
@@ -249,7 +157,6 @@ updateControls = function (scene) {
             player.setVelocityX(250);
             player.setVelocityY(-250);
             wPulsada = false;
-            wPulsadaText.setText('wPulsada: false');
         } else if (dPulsada && sPulsada) {
             player.setVelocityX(250);
             player.setVelocityY(250);
@@ -272,7 +179,6 @@ updateControls = function (scene) {
         } else if (wPulsada && player.contSalto < 3) {
             player.setVelocityY(-250);
             wPulsada = false;
-            wPulsadaText.setText('wPulsada: false');
         } else if (sPulsada && player.contSalto < 3) {
             player.setVelocityY(250);
             sPulsada = false;
@@ -288,12 +194,7 @@ updateControls = function (scene) {
         wToque = false;
     }
 
-    if (!scene.keyA.isDown) {
-        aToque = false;
-    }
-    if (!scene.keyD.isDown) {
-        dToque = false;
-    }
+
     if (!scene.keyS.isDown) {
         sToque = false;
     }
@@ -302,7 +203,128 @@ updateControls = function (scene) {
     }
     if (player.body.blocked.down) {
         player.contSalto = 0;
-        contSaltoText.setText('contSalto: ' + player.contSalto);
     }
-    contStamineText.setText('contStamine: ' + contStamine);
+    
+    //Player2
+    if (scene.keyLeft.isDown) {
+        leftPulsada = true;
+    }
+    if (scene.keyDown.isDown && !downToque && player2.contSalto < 2) {
+        downPulsada = true;
+        downToque = true;
+        player2.contSalto++;
+    }
+    if (scene.keyRight.isDown) {
+        rightPulsada = true;
+    }
+    if (scene.keyUp.isDown && !upToque && player2.contSalto < 2) {
+        upPulsada = true;
+        upToque = true;
+        player2.contSalto++;
+    }
+    if (scene.keyZero.isDown) {
+        zeroPulsada = true;
+    }
+    if (zeroPulsada && contStamine2 > 0) {
+        if (leftPulsada && upPulsada) {
+            player2.setVelocityX(-350);
+            player2.setVelocityY(-350);
+            upPulsada = false;
+            contStamine2--;
+        } else if (leftPulsada && downPulsada) {
+            player2.setVelocityX(-350);
+            player2.setVelocityY(350);
+            contStamine2--;
+        } else if (rightPulsada && upPulsada) {
+            player2.setVelocityX(350);
+            player2.setVelocityY(-350);
+            upPulsada = false;
+            contStamine2--;
+        } else if (rightPulsada && downPulsada) {
+            player2.setVelocityX(350);
+            player2.setVelocityY(350);
+            contStamine2--;
+        } else if (leftPulsada) {
+            player2.setVelocityX(-350);
+            player2.anims.play('left', true);
+            contStamine2--;
+            leftPulsada = false;
+        } else if (rightPulsada) {
+            player2.setVelocityX(350);
+            player2.anims.play('right', true);
+            contStamine2--;
+        } else if (upPulsada && player2.contSalto < 3) {
+            player2.setVelocityY(-350);
+            upPulsada = false;
+            contStamine2--;
+        } else if (downPulsada && player2.contSalto < 3) {
+            player2.setVelocityY(350);
+            downPulsada = false;
+            contStamine2--;
+        } else {
+            player2.anims.play('turn', true);
+            player2.setVelocityX(0);
+            if (player2.getVelocitY < 0 && upPulsada) {
+                player2.setVelocityY(0);
+            }
+        }
+    } else {
+        if (leftPulsada && upPulsada) {
+            player2.setVelocityX(-250);
+            player2.setVelocityY(-250);
+            upPulsada = false;
+        } else if (leftPulsada && downPulsada) {
+            player2.setVelocityX(-250);
+            player2.setVelocityY(250);
+        } else if (rightPulsada && upPulsada) {
+            player2.setVelocityX(250);
+            player2.setVelocityY(-250);
+            upPulsada = false;
+        } else if (rightPulsada && downPulsada) {
+            player2.setVelocityX(250);
+            player2.setVelocityY(250);
+        } else if (leftPulsada) {
+            if (!player2.body.touching.down) {
+                player2.setVelocityX(-150);
+                player2.anims.play('left', true);
+            } else {
+                player2.setVelocityX(-250);
+                player2.anims.play('left', true);
+            }
+        } else if (rightPulsada) {
+            if (!player2.body.touching.down) {
+                player2.setVelocityX(150);
+                player2.anims.play('right', true);
+            } else {
+                player2.setVelocityX(250);
+                player2.anims.play('right', true);
+            }
+        } else if (upPulsada && player2.contSalto < 3) {
+            player2.setVelocityY(-250);
+            upPulsada = false;
+        } else if (downPulsada && player2.contSalto < 3) {
+            player2.setVelocityY(250);
+            downPulsada = false;
+        } else {
+            player2.anims.play('turn', true);
+            player2.setVelocityX(0);
+        }
+    }
+    leftPulsada = false;
+    rightPulsada = false;
+    zeroPulsada = false;
+    if (!scene.keyUp.isDown) {
+        upToque = false;
+    }
+
+
+    if (!scene.keyDown.isDown) {
+        downToque = false;
+    }
+    if (!scene.keyZero.isDown && contStamine2 < 100) {
+        contStamine2++;
+    }
+    if (player2.body.blocked.down) {
+        player2.contSalto = 0;
+    }
 }

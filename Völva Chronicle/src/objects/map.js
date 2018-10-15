@@ -1,17 +1,23 @@
 var map;
 var layer;
-var cursors;
-var camera1, camera2;
 
-createTileMap = function(scene, nLevel){
-    map = scene.make.tilemap({ key: "map"+nLevel, tileWidth: 48, tileHeight: 48});
-    var tileset = map.addTilesetImage('tiles');
+createLevel = function (scene, nLevel) {
+    //  A simple background for our game
+    scene.add.image(0, 1224, 'background1Nivel1');
+    scene.add.image(0, 3672, 'background2Nivel1');
+    scene.add.image(0, 6120, 'background3Nivel1');
+    scene.add.image(0, 8568, 'background4Nivel1');
+    scene.add.image(0, 11016, 'background5Nivel1');
+    scene.add.image(0, 13464, 'background6Nivel1');
+    scene.add.image(0, 15912, 'background7Nivel1');
+    scene.add.image(0, 18360, 'background8Nivel1');
     
-    layer = map.createStaticLayer(0, tileset, 0,0);
-}
+    map = scene.make.tilemap({ key: 'map1', tileWidth: 48, tileHeight: 48});
+    var tileset = map.addTilesetImage('tiles');
+    layer = map.createStaticLayer(0, tileset, -3501,0);
+    
+    map.setCollisionBetween(0,100);
+    
+    scene.physics.world.setBounds(-3501, 0, 7008, 19578);
 
-createCameras = function(scene){
-    scene.cameras.main.setSize(960,1080);
-	camera1 = scene.cameras.main;
-	camera2 = scene.cameras.add(960, 0, 960, 1080);
 }
