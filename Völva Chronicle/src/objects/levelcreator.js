@@ -19,5 +19,29 @@ createLevel = function (scene, nLevel) {
     map.setCollisionBetween(0,100);
     
     scene.physics.world.setBounds(-3501, 0, 7008, 19578);
+}
 
+function eventHermodrSkadi(scene, player, playerVelocity) {
+    scene.time.delayedCall(5000, onHermodrSkadi, [player, playerVelocity], scene);
+}
+
+function onHermodrSkadi (player, playerVelocity) {
+    player.velocidadX = playerVelocity;
+}
+
+function eventNjord(scene, player, playerVelocity) {
+    scene.time.addEvent({delay: 5000, callback: onNjord(player), callbackScope: scene, repeat: 0});
+}
+
+function onNjord (player, playerVelocity) {
+    player.velocidadY = playerVelocity;
+    
+}
+
+function eventBragi(scene, player) {
+    scene.time.addEvent({delay: 5000, callback: onNjord(player), callbackScope: scene, repeat: 0});
+}
+
+function onBragi (player) {
+    player.contStamine = 100;
 }

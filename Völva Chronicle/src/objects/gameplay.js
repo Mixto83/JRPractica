@@ -1,5 +1,6 @@
-//variables
+//variables para el jugador 1
 var player;
+var playerVelocity = 250;
 var sPulsada = false;
 var sToque = false;
 var wPulsada = false;
@@ -7,7 +8,16 @@ var wToque = false;
 var aPulsada = false;
 var dPulsada = false;
 var bPulsada = false;
-var contStamine = 100;
+
+//variables para los powerups del jugador 1
+var hermodr = false;
+var njord = false;
+var skadi = false;
+var tir = false;
+var bragi = false;
+var ratatosk = 0; //poner a cero al terminar el nivel
+var ciervos = 0;//poner a cero al terminar el nivel
+var heimdall = false;
 
 var player2;
 var downPulsada = false;
@@ -21,13 +31,17 @@ var contStamine2 = 100;
 
 
 createPlayer = function (scene) {
-    player = scene.physics.add.sprite(-600, 0, 'dude');
+    player = scene.physics.add.sprite(-1750, 19584, 'dude');
     //  Player physics properties. Give the little guy a slight bounce.
     player.setBounce(0.1);
     player.setCollideWorldBounds(true); 
     player.contSalto = 0;
+    player.velocidadX = 250;
+    player.velocidadY = 250;
+    player.contStamine = 100;
+    player.invulnerable = false;
     
-    player2 = scene.physics.add.sprite(600, 0, 'dude');
+    player2 = scene.physics.add.sprite(1800, 19584, 'dude');
     //  Player physics properties. Give the little guy a slight bounce.
     player2.setBounce(0.1);
     player2.setCollideWorldBounds(true); 
@@ -83,6 +97,37 @@ createExtras = function (scene) {
 }
 
 updateControls = function (scene) {
+    
+    if (hermodr) {
+        player.velocidadX += 100;
+        hermodr = false;
+        eventHermodrSkadi(scene, player, playerVelocity);
+    }
+    
+    if (njord) {
+        player.velocidadY += 100;
+        njord = false;
+        eventNjord(scene,player, playerVelocity)
+    }
+    
+    if (skadi) {
+        player2.velocidadX -= 50;
+        skadi = false;
+        eventHermodrSkadi(scene,player2, playerVelocity);
+    }
+    
+    if (tir) {
+        tir = false;
+        player.invulnerable = true;
+    }
+    
+    if (bragi) {
+        bragi = false;
+        player.contStamine += 100;
+        eventBragi(scene,player);
+    }
+    
+    
     if (scene.keyA.isDown) {
         aPulsada = true;
     }
@@ -102,42 +147,42 @@ updateControls = function (scene) {
     if (scene.keyB.isDown) {
         bPulsada = true;
     }
-    if (bPulsada && contStamine > 0) {
+    if (bPulsada && player.contStamine > 0) {
         if (aPulsada && wPulsada) {
-            player.setVelocityX(-350);
-            player.setVelocityY(-350);
+            player.setVelocityX(-player.velocidadX-100);
+            player.setVelocityY(-player.velocidadY-100);
             wPulsada = false;
-            contStamine--;
+            player.contStamine--;
         } else if (aPulsada && sPulsada) {
-            player.setVelocityX(-350);
-            player.setVelocityY(350);
-            contStamine--;
+            player.setVelocityX(-player.velocidadX-100);
+            player.setVelocityY(player.velocidadY+100);
+            player.contStamine--;
         } else if (dPulsada && wPulsada) {
-            player.setVelocityX(350);
-            player.setVelocityY(-350);
+            player.setVelocityX(player.velocidadX+100);
+            player.setVelocityY(-player.velocidadY-100);
             wPulsada = false;
-            contStamine--;
+            player.contStamine--;
         } else if (dPulsada && sPulsada) {
-            player.setVelocityX(350);
-            player.setVelocityY(350);
-            contStamine--;
+            player.setVelocityX(player.velocidadX+100);
+            player.setVelocityY(player.velocidadY+100);
+            player.contStamine--;
         } else if (aPulsada) {
-            player.setVelocityX(-350);
+            player.setVelocityX(-player.velocidadX-100);
             player.anims.play('left', true);
-            contStamine--;
+            player.contStamine--;
             aPulsada = false;
         } else if (dPulsada) {
             player.setVelocityX(350);
             player.anims.play('right', true);
-            contStamine--;
+            player.contStamine--;
         } else if (wPulsada && player.contSalto < 3) {
-            player.setVelocityY(-350);
+            player.setVelocityY(-player.velocidad-100);
             wPulsada = false;
-            contStamine--;
+            player.contStamine--;
         } else if (sPulsada && player.contSalto < 3) {
-            player.setVelocityY(350);
+            player.setVelocityY(player.velocidad+100);
             sPulsada = false;
-            contStamine--;
+            player.contStamine--;
         } else {
             player.anims.play('turn', true);
             player.setVelocityX(0);
@@ -147,40 +192,40 @@ updateControls = function (scene) {
         }
     } else {
         if (aPulsada && wPulsada) {
-            player.setVelocityX(-250);
-            player.setVelocityY(-250);
+            player.setVelocityX(-player.velocidadX);
+            player.setVelocityY(-player.velocidadY);
             wPulsada = false;
         } else if (aPulsada && sPulsada) {
-            player.setVelocityX(-250);
-            player.setVelocityY(250);
+            player.setVelocityX(-player.velocidadX);
+            player.setVelocityY(player.velocidadY);
         } else if (dPulsada && wPulsada) {
-            player.setVelocityX(250);
-            player.setVelocityY(-250);
+            player.setVelocityX(player.velocidadX);
+            player.setVelocityY(-player.velocidadY);
             wPulsada = false;
         } else if (dPulsada && sPulsada) {
-            player.setVelocityX(250);
-            player.setVelocityY(250);
+            player.setVelocityX(player.velocidadX);
+            player.setVelocityY(player.velocidadX);
         } else if (aPulsada) {
             if (!player.body.touching.down) {
-                player.setVelocityX(-150);
+                player.setVelocityX(-player.velocidadX+100);
                 player.anims.play('left', true);
             } else {
-                player.setVelocityX(-250);
+                player.setVelocityX(-player.velocidadX);
                 player.anims.play('left', true);
             }
         } else if (dPulsada) {
             if (!player.body.touching.down) {
-                player.setVelocityX(150);
+                player.setVelocityX(player.velocidadX-100);
                 player.anims.play('right', true);
             } else {
-                player.setVelocityX(250);
+                player.setVelocityX(player.velocidadX);
                 player.anims.play('right', true);
             }
         } else if (wPulsada && player.contSalto < 3) {
-            player.setVelocityY(-250);
+            player.setVelocityY(-player.velocidadY);
             wPulsada = false;
         } else if (sPulsada && player.contSalto < 3) {
-            player.setVelocityY(250);
+            player.setVelocityY(player.velocidadY);
             sPulsada = false;
         } else {
             player.anims.play('turn', true);
@@ -198,8 +243,8 @@ updateControls = function (scene) {
     if (!scene.keyS.isDown) {
         sToque = false;
     }
-    if (!scene.keyB.isDown && contStamine < 100) {
-        contStamine++;
+    if (!scene.keyB.isDown && player.contStamine < 100) {
+        player.contStamine++;
     }
     if (player.body.blocked.down) {
         player.contSalto = 0;
