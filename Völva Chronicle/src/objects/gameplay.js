@@ -8,6 +8,7 @@ var wToque = false;
 var aPulsada = false;
 var dPulsada = false;
 var bPulsada = false;
+var facingRight1 = true;
 
 //variables para los powerups del jugador 1
 var hermodr = false;
@@ -28,6 +29,7 @@ var leftPulsada = false;
 var rightPulsada = false;
 var zeroPulsada = false;
 var contStamine2 = 100;
+var facingRight2 = true;
 
 
 createPlayer = function (scene) {
@@ -49,29 +51,15 @@ createPlayer = function (scene) {
     
     //  Our player animations, turning, walking left and walking right.
     scene.anims.create({
-        key: 'left',
-        frames: scene.anims.generateFrameNumbers('dude', {
-            start: 0,
-            end: 3
-        }),
-        frameRate: 10,
+        key: 'run',
+        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 27, end: 45, zeroPad: 4 }),
+        frameRate: 24,
         repeat: -1
     });
     scene.anims.create({
-        key: 'turn',
-        frames: [{
-            key: 'dude',
-            frame: 4
-        }],
-        frameRate: 20
-    });
-    scene.anims.create({
-        key: 'right',
-        frames: scene.anims.generateFrameNumbers('dude', {
-            start: 5,
-            end: 8
-        }),
-        frameRate: 10,
+        key: 'idle',
+        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 137, end: 151, zeroPad: 4 }),
+        frameRate: 12,
         repeat: -1
     });
 
@@ -130,6 +118,7 @@ updateControls = function (scene) {
     
     if (scene.keyA.isDown) {
         aPulsada = true;
+        facingRight1 = false;
     }
     if (scene.keyS.isDown && !sToque && player.contSalto < 2) {
         sPulsada = true;
@@ -138,6 +127,7 @@ updateControls = function (scene) {
     }
     if (scene.keyD.isDown) {
         dPulsada = true;
+        facingRight1 = true;
     }
     if (scene.keyW.isDown && !wToque && player.contSalto < 2) {
         wPulsada = true;
@@ -168,12 +158,12 @@ updateControls = function (scene) {
             player.contStamine--;
         } else if (aPulsada) {
             player.setVelocityX(-player.velocidadX-100);
-            player.anims.play('left', true);
+            player.anims.play('run', true);
             player.contStamine--;
             aPulsada = false;
         } else if (dPulsada) {
             player.setVelocityX(350);
-            player.anims.play('right', true);
+            player.anims.play('run', true);
             player.contStamine--;
         } else if (wPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidad-100);
@@ -184,7 +174,7 @@ updateControls = function (scene) {
             sPulsada = false;
             player.contStamine--;
         } else {
-            player.anims.play('turn', true);
+            player.anims.play('idle', true);
             player.setVelocityX(0);
             if (player.getVelocitY < 0 && wPulsada) {
                 player.setVelocityY(0);
@@ -208,18 +198,18 @@ updateControls = function (scene) {
         } else if (aPulsada) {
             if (!player.body.touching.down) {
                 player.setVelocityX(-player.velocidadX+100);
-                player.anims.play('left', true);
+                player.anims.play('run', true);
             } else {
                 player.setVelocityX(-player.velocidadX);
-                player.anims.play('left', true);
+                player.anims.play('run', true);
             }
         } else if (dPulsada) {
             if (!player.body.touching.down) {
                 player.setVelocityX(player.velocidadX-100);
-                player.anims.play('right', true);
+                player.anims.play('run', true);
             } else {
                 player.setVelocityX(player.velocidadX);
-                player.anims.play('right', true);
+                player.anims.play('run', true);
             }
         } else if (wPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidadY);
@@ -228,7 +218,7 @@ updateControls = function (scene) {
             player.setVelocityY(player.velocidadY);
             sPulsada = false;
         } else {
-            player.anims.play('turn', true);
+            player.anims.play('idle', true);
             player.setVelocityX(0);
         }
     }
@@ -249,10 +239,18 @@ updateControls = function (scene) {
     if (player.body.blocked.down) {
         player.contSalto = 0;
     }
+
+    //Gira el sprite del personaje en la dirección a la que está mirando
+    if (facingRight1) {
+        player.flipX = false;
+    } else {
+        player.flipX = true;
+    }
     
     //Player2
     if (scene.keyLeft.isDown) {
         leftPulsada = true;
+        facingRight2 = false;
     }
     if (scene.keyDown.isDown && !downToque && player2.contSalto < 2) {
         downPulsada = true;
@@ -261,6 +259,7 @@ updateControls = function (scene) {
     }
     if (scene.keyRight.isDown) {
         rightPulsada = true;
+        facingRight2 = true;
     }
     if (scene.keyUp.isDown && !upToque && player2.contSalto < 2) {
         upPulsada = true;
@@ -291,12 +290,12 @@ updateControls = function (scene) {
             contStamine2--;
         } else if (leftPulsada) {
             player2.setVelocityX(-350);
-            player2.anims.play('left', true);
+            player2.anims.play('run', true);
             contStamine2--;
             leftPulsada = false;
         } else if (rightPulsada) {
             player2.setVelocityX(350);
-            player2.anims.play('right', true);
+            player2.anims.play('run', true);
             contStamine2--;
         } else if (upPulsada && player2.contSalto < 3) {
             player2.setVelocityY(-350);
@@ -307,7 +306,7 @@ updateControls = function (scene) {
             downPulsada = false;
             contStamine2--;
         } else {
-            player2.anims.play('turn', true);
+            player2.anims.play('idle', true);
             player2.setVelocityX(0);
             if (player2.getVelocitY < 0 && upPulsada) {
                 player2.setVelocityY(0);
@@ -331,18 +330,18 @@ updateControls = function (scene) {
         } else if (leftPulsada) {
             if (!player2.body.touching.down) {
                 player2.setVelocityX(-150);
-                player2.anims.play('left', true);
+                player2.anims.play('run', true);
             } else {
                 player2.setVelocityX(-250);
-                player2.anims.play('left', true);
+                player2.anims.play('run', true);
             }
         } else if (rightPulsada) {
             if (!player2.body.touching.down) {
                 player2.setVelocityX(150);
-                player2.anims.play('right', true);
+                player2.anims.play('run', true);
             } else {
                 player2.setVelocityX(250);
-                player2.anims.play('right', true);
+                player2.anims.play('run', true);
             }
         } else if (upPulsada && player2.contSalto < 3) {
             player2.setVelocityY(-250);
@@ -351,7 +350,7 @@ updateControls = function (scene) {
             player2.setVelocityY(250);
             downPulsada = false;
         } else {
-            player2.anims.play('turn', true);
+            player2.anims.play('idle', true);
             player2.setVelocityX(0);
         }
     }
@@ -371,5 +370,11 @@ updateControls = function (scene) {
     }
     if (player2.body.blocked.down) {
         player2.contSalto = 0;
+    }
+    //Gira el sprite del personaje en la dirección a la que está mirando
+    if (facingRight2) {
+        player2.flipX = false;
+    } else {
+        player2.flipX = true;
     }
 }

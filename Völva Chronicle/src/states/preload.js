@@ -40,6 +40,7 @@ preloadScene.preload = function () {
         frameHeight: 225
     });
 
+
     //Musica y sonido
     //Rynos Theme Kevin MacLeod (incompetech.com)
     //Black Vortex Kevin MacLeod (incompetech.com) 
@@ -51,6 +52,9 @@ preloadScene.preload = function () {
     this.load.audio('introMusic', 'assets/music/introMusic.mp3');
     this.load.audio('ending1Music', 'assets/music/ending1Music.mp3');
     this.load.audio('ending2Music', 'assets/music/ending2Music.mp3');
+    
+    //spritesheet personajes
+    this.load.atlas('aguila','assets/spritesheets/spritesheet_aguila.png','assets/spritesheets/spritesheet_aguila.json');
 }
 
 preloadScene.create = function () {
