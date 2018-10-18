@@ -16,6 +16,7 @@ preloadScene.preload = function () {
     });
     //tiles
     this.load.tilemapCSV('map1', 'assets/platforms/Nivel1.csv');
+    this.load.tilemapCSV('map2', 'assets/platforms/Nivel2.csv');
     this.load.image('tiles', 'assets/platforms/tiles/Tiles.png');
     this.load.image('background1Nivel1', 'assets/Backgrounds/Background_1_Nivel1.jpg');
     this.load.image('background2Nivel1', 'assets/Backgrounds/Background_2_Nivel1.jpg');
