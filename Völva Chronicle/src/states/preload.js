@@ -26,6 +26,31 @@ preloadScene.preload = function () {
     this.load.image('background6Nivel1', 'assets/Backgrounds/Background_6_Nivel1.jpg');
     this.load.image('background7Nivel1', 'assets/Backgrounds/Background_7_Nivel1.jpg');
     this.load.image('background8Nivel1', 'assets/Backgrounds/Background_8_Nivel1.jpg');
+    //Elementos de las cinemáticas y del menu
+    this.load.image('fondoIntro', 'assets/cutscenes/fondo_intro.png');
+    this.load.image('fondoEnding1', 'assets/cutscenes/cinematica_aguila.png');
+    this.load.image('fondoEnding2', 'assets/cutscenes/cinematica_nidhogg.png');
+    this.load.image('particulasIntro', 'assets/cutscenes/particulas.png');
+    this.load.image('fondoMenu', 'assets/cutscenes/fondo_menu.png');
+    this.load.image('logoStudio', 'assets/cutscenes/logo_Edda_games.png');
+    this.load.image('logoGame', 'assets/cutscenes/logo_Volva.png');
+
+    this.load.spritesheet('cajaTextoIntro', 'assets/cutscenes/cajaIntro.png', {
+        frameWidth: 1213,
+        frameHeight: 225
+    });
+
+    //Musica y sonido
+    //Rynos Theme Kevin MacLeod (incompetech.com)
+    //Black Vortex Kevin MacLeod (incompetech.com) 
+    //Americana Kevin MacLeod (incompetech.com)
+    //Killers Kevin MacLeod (incompetech.com)
+    //Licensed under Creative Commons: By Attribution 3.0
+    //http://creativecommons.org/licenses/by/3.0/
+    this.load.audio('menuMusic', 'assets/music/menuMusic.mp3');
+    this.load.audio('introMusic', 'assets/music/introMusic.mp3');
+    this.load.audio('ending1Music', 'assets/music/ending1Music.mp3');
+    this.load.audio('ending2Music', 'assets/music/ending2Music.mp3');
 }
 
 preloadScene.create = function () {

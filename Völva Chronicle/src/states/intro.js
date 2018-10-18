@@ -6,6 +6,26 @@ introScene.preload = function (){
     
 }
 
+introScene.nextScene = function(){
+    music.stop();
+    background.setVelocityX(0);
+    particles.setGravityY(-500);
+    introScene.scene.start('level1');
+}
+
 introScene.create = function (){
-    this.scene.start('level1');
+    createBackground(introScene,1045,540,3,'Intro');
+    createParticles(introScene,1090,3500,8,'Intro');//Placeholder: Modificar sprite de particulas y velocidad
+    createMusic(introScene,'intro');
+    createTextBox(introScene,960,1000.5,10,0.17,'Intro');
+    //Teclado
+    this.input.keyboard.on('keyup', function(event){
+        introScene.nextScene();
+    });
+}
+
+introScene.update = function (){
+    if (background.x <= 855){
+        introScene.nextScene();
+    }
 }
