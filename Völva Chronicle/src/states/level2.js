@@ -8,11 +8,12 @@ level2Scene.preload = function (){
 
 level2Scene.create = function (){
     createLevel(level2Scene, 2);
-    createPlayer(level2Scene);
-    createExtras(level2Scene);
+    createPlayers(level2Scene);
+    createInputs(level2Scene);
     createCameras(level2Scene);
 }
 
 level2Scene.update = function (){
-    updateControls(level2Scene);
+    updateControls(level2Scene,player1,player2);
+    updateControls(level2Scene,player2,player1);
 }

@@ -1,55 +1,17 @@
-//variables para el jugador 1
-var player;
-var playerVelocity = 250;
-var sPulsada = false;
-var sToque = false;
-var wPulsada = false;
-var wToque = false;
-var aPulsada = false;
-var dPulsada = false;
-var bPulsada = false;
-var facingRight1 = true;
-
-//variables para los powerups del jugador 1
-var hermodr = false;
-var njord = false;
-var skadi = false;
-var tir = false;
-var bragi = false;
-var ratatosk = 0; //poner a cero al terminar el nivel
-var ciervos = 0;//poner a cero al terminar el nivel
-var heimdall = false;
-
+//jugadores
+var player1;
 var player2;
-var downPulsada = false;
-var downToque = false;
-var upPulsada = false;
-var upToque = false;
-var leftPulsada = false;
-var rightPulsada = false;
-var zeroPulsada = false;
-var contStamine2 = 100;
-var facingRight2 = true;
+
+//constante global
+var playerVelocity = 250;
 
 
-createPlayer = function (scene) {
-    player = scene.physics.add.sprite(-1750, 19584, 'aguila');
-    //  Player physics properties. Give the little guy a slight bounce.
-    player.setBounce(0.1);
-    player.setCollideWorldBounds(true); 
-    player.contSalto = 0;
-    player.velocidadX = 250;
-    player.velocidadY = 250;
-    player.contStamine = 100;
-    player.invulnerable = false;
-    
-    player2 = scene.physics.add.sprite(1800, 19584, 'dude');
-    //  Player physics properties. Give the little guy a slight bounce.
-    player2.setBounce(0.1);
-    player2.setCollideWorldBounds(true); 
-    player2.contSalto = 0;
-    
-    //  Our player animations, turning, walking left and walking right.
+createPlayers = function (scene) {
+    player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
+    player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
+    addPlayer(scene, player1);
+    addPlayer(scene, player2);
+    //animaciones (se pasaran a addPlayer cuando se implementen las del dragon)
     scene.anims.create({
         key: 'run',
         frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 27, end: 45, zeroPad: 4 }),
@@ -62,178 +24,205 @@ createPlayer = function (scene) {
         frameRate: 12,
         repeat: -1
     });
-
 }
 
-createExtras = function (scene) {
+addPlayer = function (scene,player) {
+    player.setBounce(0.1);
+    player.setCollideWorldBounds(true);
+    player.contSalto = 0;
+    player.velocidadX = 250;
+    player.velocidadY = 250;
+    player.contStamine = 100;
+    player.invulnerable = false;
+    player.facingRight = true;
+    //colisiones
+    scene.physics.add.collider(player, layer);
+    //atributos referentes a controles
+    player.downPulsada = false;
+    player.downToque = false;
+    player.upPulsada = false;
+    player.upToque = false;
+    player.leftPulsada = false;
+    player.rightPulsada = false;
+    player.zeroPulsada = false;
+
+    player.hermodr = false;
+    player.njord = false;
+    player.skadi = false;
+    player.tir = false;
+    player.bragi = false;
+    player.ratatosk = 0;
+    player.ciervos = 0;
+    player.heimdall = false;
+}
+
+createInputs = function (scene) {
     //  Input Events
     cursors = scene.input.keyboard.createCursorKeys();
-    //  Collide the player and the stars with the platforms
-    scene.physics.add.collider(player, layer);
-    scene.physics.add.collider(player2, layer);
-    
-    scene.keyA = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    scene.keyD = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    scene.keyW = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    scene.keyS = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    scene.keyB = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-    scene.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-    scene.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-    scene.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-    scene.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-    scene.keyZero = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+    //inputs player 1 (WASD+B)
+    player1.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    player1.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    player1.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    player1.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    player1.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+    //inputs player 2 (flechas + numpad0)
+    player2.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    player2.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 }
 
-updateControls = function (scene) {
-    
-    if (hermodr) {
+updateControls = function (scene,player,adversary) {
+
+    if (player.hermodr) {
         player.velocidadX += 100;
-        hermodr = false;
+        player.hermodr = false;
         eventHermodrSkadi(scene, player, playerVelocity);
     }
-    
-    if (njord) {
+
+    if (player.njord) {
         player.velocidadY += 100;
-        njord = false;
-        eventNjord(scene,player, playerVelocity)
+        player.njord = false;
+        eventNjord(scene, player, playerVelocity)
     }
-    
-    if (skadi) {
-        player2.velocidadX -= 50;
-        skadi = false;
-        eventHermodrSkadi(scene,player2, playerVelocity);
+
+    if (player.skadi) {
+        adversary.velocidadX -= 50;
+        player.skadi = false;
+        eventHermodrSkadi(scene, adversary, playerVelocity);
     }
-    
-    if (tir) {
-        tir = false;
+
+    if (player.tir) {
+        player.tir = false;
         player.invulnerable = true;
     }
-    
-    if (bragi) {
-        bragi = false;
+
+    if (player.bragi) {
+        player.bragi = false;
         player.contStamine += 100;
-        eventBragi(scene,player);
+        eventBragi(scene, player);
     }
-    
-    
-    if (scene.keyA.isDown) {
-        aPulsada = true;
-        facingRight1 = false;
+
+
+    if (player.keyLeft.isDown) {
+        player.leftPulsada = true;
+        player.facingRight = false;
     }
-    if (scene.keyS.isDown && !sToque && player.contSalto < 2) {
-        sPulsada = true;
-        sToque = true;
+    if (player.keyDown.isDown && !player.downToque && player.contSalto < 2) {
+        player.downPulsada = true;
+        player.downToque = true;
         player.contSalto++;
     }
-    if (scene.keyD.isDown) {
-        dPulsada = true;
-        facingRight1 = true;
+    if (player.keyRight.isDown) {
+        player.rightPulsada = true;
+        player.facingRight = true;
     }
-    if (scene.keyW.isDown && !wToque && player.contSalto < 2) {
-        wPulsada = true;
-        wToque = true;
+    if (player.keyUp.isDown && !player.upToque && player.contSalto < 2) {
+        player.upPulsada = true;
+        player.upToque = true;
         player.contSalto++;
     }
-    if (scene.keyB.isDown) {
-        bPulsada = true;
+    if (player.keyDash.isDown) {
+        player.dashPulsada = true;
     }
-    if (bPulsada && player.contStamine > 0) {
-        if (aPulsada && wPulsada) {
-            player.setVelocityX(-player.velocidadX-100);
-            player.setVelocityY(-player.velocidadY-100);
-            wPulsada = false;
+    if (player.dashPulsada && player.contStamine > 0) {
+        if (player.leftPulsada && player.upPulsada) {
+            player.setVelocityX(-player.velocidadX - 100);
+            player.setVelocityY(-player.velocidadY - 100);
+            player.upPulsada = false;
             player.contStamine--;
-        } else if (aPulsada && sPulsada) {
-            player.setVelocityX(-player.velocidadX-100);
-            player.setVelocityY(player.velocidadY+100);
+        } else if (player.leftPulsada && player.downPulsada) {
+            player.setVelocityX(-player.velocidadX - 100);
+            player.setVelocityY(player.velocidadY + 100);
             player.contStamine--;
-        } else if (dPulsada && wPulsada) {
-            player.setVelocityX(player.velocidadX+100);
-            player.setVelocityY(-player.velocidadY-100);
-            wPulsada = false;
+        } else if (player.rightPulsada && player.upPulsada) {
+            player.setVelocityX(player.velocidadX + 100);
+            player.setVelocityY(-player.velocidadY - 100);
+            player.upPulsada = false;
             player.contStamine--;
-        } else if (dPulsada && sPulsada) {
-            player.setVelocityX(player.velocidadX+100);
-            player.setVelocityY(player.velocidadY+100);
+        } else if (player.rightPulsada && player.downPulsada) {
+            player.setVelocityX(player.velocidadX + 100);
+            player.setVelocityY(player.velocidadY + 100);
             player.contStamine--;
-        } else if (aPulsada) {
-            player.setVelocityX(-player.velocidadX-100);
+        } else if (player.leftPulsada) {
+            player.setVelocityX(-player.velocidadX - 100);
             player.anims.play('run', true);
             player.contStamine--;
-            aPulsada = false;
-        } else if (dPulsada) {
+            player.leftPulsada = false;
+        } else if (player.rightPulsada) {
             player.setVelocityX(350);
             player.anims.play('run', true);
             player.contStamine--;
-        } else if (wPulsada && player.contSalto < 3) {
-            player.setVelocityY(-player.velocidadY-100);
-            wPulsada = false;
+        } else if (player.upPulsada && player.contSalto < 3) {
+            player.setVelocityY(-player.velocidadY - 100);
+            player.upPulsada = false;
             player.contStamine--;
-        } else if (sPulsada && player.contSalto < 3) {
-            player.setVelocityY(player.velocidadY+100);
-            sPulsada = false;
+        } else if (player.downPulsada && player.contSalto < 3) {
+            player.setVelocityY(player.velocidadY + 100);
+            player.downPulsada = false;
             player.contStamine--;
         } else {
             player.anims.play('idle', true);
             player.setVelocityX(0);
-            if (player.getVelocityY < 0 && wPulsada) {
+            if (player.getVelocityY < 0 && player.upPulsada) {
                 player.setVelocityY(0);
             }
         }
     } else {
-        if (aPulsada && wPulsada) {
+        if (player.leftPulsada && player.upPulsada) {
             player.setVelocityX(-player.velocidadX);
             player.setVelocityY(-player.velocidadY);
-            wPulsada = false;
-        } else if (aPulsada && sPulsada) {
+            player.upPulsada = false;
+        } else if (player.leftPulsada && player.downPulsada) {
             player.setVelocityX(-player.velocidadX);
             player.setVelocityY(player.velocidadY);
-        } else if (dPulsada && wPulsada) {
+        } else if (player.rightPulsada && player.upPulsada) {
             player.setVelocityX(player.velocidadX);
             player.setVelocityY(-player.velocidadY);
-            wPulsada = false;
-        } else if (dPulsada && sPulsada) {
+            player.upPulsada = false;
+        } else if (player.rightPulsada && player.downPulsada) {
             player.setVelocityX(player.velocidadX);
             player.setVelocityY(player.velocidadX);
-        } else if (aPulsada) {
+        } else if (player.leftPulsada) {
             if (!player.body.touching.down) {
-                player.setVelocityX(-player.velocidadX+100);
+                player.setVelocityX(-player.velocidadX + 100);
                 player.anims.play('run', true);
             } else {
                 player.setVelocityX(-player.velocidadX);
                 player.anims.play('run', true);
             }
-        } else if (dPulsada) {
+        } else if (player.rightPulsada) {
             if (!player.body.touching.down) {
-                player.setVelocityX(player.velocidadX-100);
+                player.setVelocityX(player.velocidadX - 100);
                 player.anims.play('run', true);
             } else {
                 player.setVelocityX(player.velocidadX);
                 player.anims.play('run', true);
             }
-        } else if (wPulsada && player.contSalto < 3) {
+        } else if (player.upPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidadY);
-            wPulsada = false;
-        } else if (sPulsada && player.contSalto < 3) {
+            player.upPulsada = false;
+        } else if (player.downPulsada && player.contSalto < 3) {
             player.setVelocityY(player.velocidadY);
-            sPulsada = false;
+            player.downPulsada = false;
         } else {
             player.anims.play('idle', true);
             player.setVelocityX(0);
         }
     }
-    aPulsada = false;
-    dPulsada = false;
-    bPulsada = false;
-    if (!scene.keyW.isDown) {
-        wToque = false;
+    player.leftPulsada = false;
+    player.rightPulsada = false;
+    player.dashPulsada = false;
+    if (!player.keyUp.isDown) {
+        player.upToque = false;
     }
 
 
-    if (!scene.keyS.isDown) {
-        sToque = false;
+    if (!player.keyDown.isDown) {
+        player.downToque = false;
     }
-    if (!scene.keyB.isDown && player.contStamine < 100) {
+    if (!player.keyDash.isDown && player.contStamine < 100) {
         player.contStamine++;
     }
     if (player.body.blocked.down) {
@@ -241,140 +230,9 @@ updateControls = function (scene) {
     }
 
     //Gira el sprite del personaje en la dirección a la que está mirando
-    if (facingRight1) {
+    if (player.facingRight) {
         player.flipX = false;
     } else {
         player.flipX = true;
-    }
-    
-    //Player2
-    if (scene.keyLeft.isDown) {
-        leftPulsada = true;
-        facingRight2 = false;
-    }
-    if (scene.keyDown.isDown && !downToque && player2.contSalto < 2) {
-        downPulsada = true;
-        downToque = true;
-        player2.contSalto++;
-    }
-    if (scene.keyRight.isDown) {
-        rightPulsada = true;
-        facingRight2 = true;
-    }
-    if (scene.keyUp.isDown && !upToque && player2.contSalto < 2) {
-        upPulsada = true;
-        upToque = true;
-        player2.contSalto++;
-    }
-    if (scene.keyZero.isDown) {
-        zeroPulsada = true;
-    }
-    if (zeroPulsada && contStamine2 > 0) {
-        if (leftPulsada && upPulsada) {
-            player2.setVelocityX(-350);
-            player2.setVelocityY(-350);
-            upPulsada = false;
-            contStamine2--;
-        } else if (leftPulsada && downPulsada) {
-            player2.setVelocityX(-350);
-            player2.setVelocityY(350);
-            contStamine2--;
-        } else if (rightPulsada && upPulsada) {
-            player2.setVelocityX(350);
-            player2.setVelocityY(-350);
-            upPulsada = false;
-            contStamine2--;
-        } else if (rightPulsada && downPulsada) {
-            player2.setVelocityX(350);
-            player2.setVelocityY(350);
-            contStamine2--;
-        } else if (leftPulsada) {
-            player2.setVelocityX(-350);
-            player2.anims.play('run', true);
-            contStamine2--;
-            leftPulsada = false;
-        } else if (rightPulsada) {
-            player2.setVelocityX(350);
-            player2.anims.play('run', true);
-            contStamine2--;
-        } else if (upPulsada && player2.contSalto < 3) {
-            player2.setVelocityY(-350);
-            upPulsada = false;
-            contStamine2--;
-        } else if (downPulsada && player2.contSalto < 3) {
-            player2.setVelocityY(350);
-            downPulsada = false;
-            contStamine2--;
-        } else {
-            player2.anims.play('idle', true);
-            player2.setVelocityX(0);
-            if (player2.getVelocitY < 0 && upPulsada) {
-                player2.setVelocityY(0);
-            }
-        }
-    } else {
-        if (leftPulsada && upPulsada) {
-            player2.setVelocityX(-250);
-            player2.setVelocityY(-250);
-            upPulsada = false;
-        } else if (leftPulsada && downPulsada) {
-            player2.setVelocityX(-250);
-            player2.setVelocityY(250);
-        } else if (rightPulsada && upPulsada) {
-            player2.setVelocityX(250);
-            player2.setVelocityY(-250);
-            upPulsada = false;
-        } else if (rightPulsada && downPulsada) {
-            player2.setVelocityX(250);
-            player2.setVelocityY(250);
-        } else if (leftPulsada) {
-            if (!player2.body.touching.down) {
-                player2.setVelocityX(-150);
-                player2.anims.play('run', true);
-            } else {
-                player2.setVelocityX(-250);
-                player2.anims.play('run', true);
-            }
-        } else if (rightPulsada) {
-            if (!player2.body.touching.down) {
-                player2.setVelocityX(150);
-                player2.anims.play('run', true);
-            } else {
-                player2.setVelocityX(250);
-                player2.anims.play('run', true);
-            }
-        } else if (upPulsada && player2.contSalto < 3) {
-            player2.setVelocityY(-250);
-            upPulsada = false;
-        } else if (downPulsada && player2.contSalto < 3) {
-            player2.setVelocityY(250);
-            downPulsada = false;
-        } else {
-            player2.anims.play('idle', true);
-            player2.setVelocityX(0);
-        }
-    }
-    leftPulsada = false;
-    rightPulsada = false;
-    zeroPulsada = false;
-    if (!scene.keyUp.isDown) {
-        upToque = false;
-    }
-
-
-    if (!scene.keyDown.isDown) {
-        downToque = false;
-    }
-    if (!scene.keyZero.isDown && contStamine2 < 100) {
-        contStamine2++;
-    }
-    if (player2.body.blocked.down) {
-        player2.contSalto = 0;
-    }
-    //Gira el sprite del personaje en la dirección a la que está mirando
-    if (facingRight2) {
-        player2.flipX = false;
-    } else {
-        player2.flipX = true;
     }
 }
