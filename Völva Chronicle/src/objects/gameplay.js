@@ -33,7 +33,7 @@ var facingRight2 = true;
 
 
 createPlayer = function (scene) {
-    player = scene.physics.add.sprite(-1750, 19584, 'dude');
+    player = scene.physics.add.sprite(-1750, 19584, 'aguila');
     //  Player physics properties. Give the little guy a slight bounce.
     player.setBounce(0.1);
     player.setCollideWorldBounds(true); 
@@ -166,17 +166,17 @@ updateControls = function (scene) {
             player.anims.play('run', true);
             player.contStamine--;
         } else if (wPulsada && player.contSalto < 3) {
-            player.setVelocityY(-player.velocidad-100);
+            player.setVelocityY(-player.velocidadY-100);
             wPulsada = false;
             player.contStamine--;
         } else if (sPulsada && player.contSalto < 3) {
-            player.setVelocityY(player.velocidad+100);
+            player.setVelocityY(player.velocidadY+100);
             sPulsada = false;
             player.contStamine--;
         } else {
             player.anims.play('idle', true);
             player.setVelocityX(0);
-            if (player.getVelocitY < 0 && wPulsada) {
+            if (player.getVelocityY < 0 && wPulsada) {
                 player.setVelocityY(0);
             }
         }
