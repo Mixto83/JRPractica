@@ -5,7 +5,6 @@ var player2;
 //constante global
 var playerVelocity = 250;
 
-
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
@@ -27,7 +26,6 @@ createPlayers = function (scene) {
 }
 
 addPlayer = function (scene,player) {
-    player.setBounce(0.1);
     player.setCollideWorldBounds(true);
     player.contSalto = 0;
     player.velocidadX = 250;
@@ -36,6 +34,8 @@ addPlayer = function (scene,player) {
     player.invulnerable = false;
     player.facingRight = true;
     //colisiones
+    //redimensiona bounding box y le aplica un offset para ajustar su centro
+    player.setSize(70, 121).setOffset(25,0);
     scene.physics.add.collider(player, layer);
     //atributos referentes a controles
     player.downPulsada = false;
@@ -44,7 +44,7 @@ addPlayer = function (scene,player) {
     player.upToque = false;
     player.leftPulsada = false;
     player.rightPulsada = false;
-    player.zeroPulsada = false;
+    player.dashPulsada = false;
 
     player.hermodr = false;
     player.njord = false;
