@@ -33,9 +33,9 @@ addPlayer = function (scene,player) {
     player.contStamine = 100;
     player.invulnerable = false;
     player.facingRight = true;
-    //colisiones
     //redimensiona bounding box y le aplica un offset para ajustar su centro
     player.setSize(70, 121).setOffset(25,0);
+    //colisiones
     scene.physics.add.collider(player, layer);
     //atributos referentes a controles
     player.downPulsada = false;
@@ -74,7 +74,7 @@ createInputs = function (scene) {
 }
 
 updateControls = function (scene,player,adversary) {
-
+    
     if (player.hermodr) {
         player.velocidadX += 100;
         player.hermodr = false;
@@ -103,7 +103,6 @@ updateControls = function (scene,player,adversary) {
         player.contStamine += 100;
         eventBragi(scene, player);
     }
-
 
     if (player.keyLeft.isDown) {
         player.leftPulsada = true;

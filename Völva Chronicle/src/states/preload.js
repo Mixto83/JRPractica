@@ -30,8 +30,13 @@ preloadScene.preload = function () {
     this.load.image('fondoIntro', 'assets/cutscenes/fondo_intro.png');
     this.load.image('fondoEnding1', 'assets/cutscenes/cinematica_aguila.png');
     this.load.image('fondoEnding2', 'assets/cutscenes/cinematica_nidhogg.png');
-    this.load.image('particulasIntro', 'assets/cutscenes/particulas.png');
+    this.load.image('particulasIntro', 'assets/cutscenes/particulasIntro.png');
+    this.load.image('particulasEnding1', 'assets/cutscenes/particulasEnding1.png');
+    this.load.image('particulasEnding2', 'assets/cutscenes/particulasEnding2.png');
     this.load.image('fondoMenu', 'assets/cutscenes/fondo_menu.png');
+    this.load.image('fondoMenu2', 'assets/cutscenes/fondo_menu_sombra.png');
+    this.load.image('botonLocal', 'assets/cutscenes/boton_local.png');
+    this.load.image('botonOnline', 'assets/cutscenes/boton_online.png');
     this.load.image('logoStudio', 'assets/cutscenes/logo_Edda_games.png');
     this.load.image('logoGame', 'assets/cutscenes/logo_Volva.png');
 
