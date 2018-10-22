@@ -2,8 +2,7 @@
 var player1;
 var player2;
 
-//constante global
-var playerVelocity = 250;
+//constantes globales
 
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
@@ -28,13 +27,13 @@ createPlayers = function (scene) {
 addPlayer = function (scene,player) {
     player.setCollideWorldBounds(true);
     player.contSalto = 0;
-    player.velocidadX = 250;
-    player.velocidadY = 250;
+    player.velocidadX = 320;
+    player.velocidadY = 710;
     player.contStamine = 100;
     player.invulnerable = false;
     player.facingRight = true;
     //redimensiona bounding box y le aplica un offset para ajustar su centro
-    player.setSize(70, 121).setOffset(25,0);
+    player.setSize(60, 121).setOffset(27,0);
     //colisiones
     scene.physics.add.collider(player, layer);
     //atributos referentes a controles
@@ -135,6 +134,7 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityX(-player.velocidadX - 100);
             player.setVelocityY(player.velocidadY + 100);
             player.contStamine--;
+            player.downPulsada = false;
         } else if (player.rightPulsada && player.upPulsada) {
             player.setVelocityX(player.velocidadX + 100);
             player.setVelocityY(-player.velocidadY - 100);
@@ -144,11 +144,11 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityX(player.velocidadX + 100);
             player.setVelocityY(player.velocidadY + 100);
             player.contStamine--;
+            player.downPulsada = false;
         } else if (player.leftPulsada) {
             player.setVelocityX(-player.velocidadX - 100);
             player.anims.play('run', true);
             player.contStamine--;
-            player.leftPulsada = false;
         } else if (player.rightPulsada) {
             player.setVelocityX(350);
             player.anims.play('run', true);
@@ -176,13 +176,15 @@ updateControls = function (scene,player,adversary) {
         } else if (player.leftPulsada && player.downPulsada) {
             player.setVelocityX(-player.velocidadX);
             player.setVelocityY(player.velocidadY);
+            player.downPulsada = false;
         } else if (player.rightPulsada && player.upPulsada) {
             player.setVelocityX(player.velocidadX);
             player.setVelocityY(-player.velocidadY);
             player.upPulsada = false;
         } else if (player.rightPulsada && player.downPulsada) {
             player.setVelocityX(player.velocidadX);
-            player.setVelocityY(player.velocidadX);
+            player.setVelocityY(player.velocidadY);
+            player.downPulsada = false;
         } else if (player.leftPulsada) {
             if (!player.body.touching.down) {
                 player.setVelocityX(-player.velocidadX + 100);
@@ -202,7 +204,7 @@ updateControls = function (scene,player,adversary) {
         } else if (player.upPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidadY);
             player.upPulsada = false;
-        } else if (player.downPulsada && player.contSalto < 3) {
+        } else if (player.downPulsada) {
             player.setVelocityY(player.velocidadY);
             player.downPulsada = false;
         } else {
