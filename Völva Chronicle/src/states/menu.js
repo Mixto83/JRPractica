@@ -3,13 +3,18 @@ var menuScene = new Phaser.Scene('menu');
 var fondoMenu;
 var logoStudio;
 var logoGame;
+var fondoMenuSombra;
+var botonLocal;
+var botonOnline;
 
 menuScene.active = true;
 
-menuScene.preload = function (){
+menuScene.preload = function () {
+
 }
 
-menuScene.create = function (){
+menuScene.create = function () {
+
         //Imagen de fondo
         fondoMenu = this.add.image(960,540, 'fondoMenu');
 
@@ -19,10 +24,25 @@ menuScene.create = function (){
 
         //Musica
         createMusic(menuScene,'menu');
-        //Teclado
+
+        //Tras pulsar cualquier tecla 
         this.input.keyboard.on('keyup', function(event){
-            //TODO: Se implementaran botones
-            music.stop();
-            menuScene.scene.start('intro');
+
+            //Nueva imagen de fondo
+            fondoMenuSombra = menuScene.add.image(960, 540, 'fondoMenu2');
+
+            //Boton "Local"
+            botonLocal = menuScene.add.sprite(960, 650, 'botonLocal').setInteractive();
+            botonLocal.on('pointerdown', function (pointer) {
+                music.stop();
+                menuScene.scene.start('intro');
+            });
+
+            //Botón "Online"
+            botonOnline = menuScene.add.sprite(960, 800, 'botonOnline').setInteractive();
+            botonLocal.on('pointerdown', function (pointer) {
+                //Se implementará más tarde
+            });
+
         });
 }
