@@ -4,6 +4,10 @@ var player2;
 
 //constantes globales
 
+//Variables globales de control
+var ciervosBool = false;
+var heimdall = false;
+
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
@@ -52,7 +56,11 @@ addPlayer = function (scene,player) {
     player.bragi = false;
     player.ratatosk = 0;
     player.ciervos = 0;
-    player.heimdall = false;
+
+    player.throwRight = false;
+    player.throwLeft = false;
+
+    player.ratatoskBool = false;//Esta variable es solo de debug
 }
 
 createInputs = function (scene) {
@@ -64,16 +72,154 @@ createInputs = function (scene) {
     player1.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     player1.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     player1.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+    //Controles Debug P1
+    player1.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    player1.keyTest2 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+    player1.keyTest3 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.T);
+    player1.keyTest4 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
     //inputs player 2 (flechas + numpad0)
     player2.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
     player2.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+    //Controles Debug P2
+    player2.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    player2.keyTest2 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+    player2.keyTest3 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
+    player2.keyTest4 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
 }
 
+//Funciones del PowerUp de Ratatosk
+reverseRatatosk = function (scene,player,adversary){
+    //Funcion completa. No requiere de ninguna modificacion
+    if (player === player1){
+            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+            adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    } else if (player === player2){
+            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+            adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    }   
+}
+
+ratatoskFunc = function(scene, player, adversary){
+    //Funcion completa. No requiere de ninguna modificacion, salvo que se quiera cambiar el tiempo que tarda en llamar a la otra funcion para revertir el efecto
+    if (player === player1){
+        if (player.ratatosk === 0){
+            player.ratatoskBool = true;
+            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        } else {
+            adversary.keyDown= scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        }
+        player.ratatosk++;
+    } else if (player === player2){
+        if (player.ratatosk === 0){
+            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        } else {
+            adversary.keyDown= scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        }
+        player.ratatosk++;
+    }
+    scene.time.delayedCall(10000, reverseRatatosk, [scene, player, adversary], scene);
+}
+
+//TODA ESTA PARTE SE MOVERA A UN NUEVO OBJETO
+//Funciones del Power Up de Heimdall
+throwFunc = function (scene, player, adversary){
+    //Funcion Incompleta. Esta funcion debe cambiar a true el boolean correspondiente a la direccion en la que se quiera lanzar.
+    //Hay que hacer tambien que se llame a stopThrowing cuando choque con el layer.
+    adversary.throwRight = true;
+    //adversary.setVelocityX(1000);
+    //console.log('throwFunc');
+    //scene.time.delayedCall(4000, stopThrowing, [adversary], null, this);
+}
+
+stopThrowing = function(adversary){
+    adversary.throwRight = false;
+    adversary.throwLeft = false;
+    //console.log('throw cambiada');
+}
+
+heimdallReturn = function (player){
+    //Funciona, aunque habria que modificar donde acaba posicionandose
+    heimdall = false;
+    player.x = -player.x;
+    if (player === player2)
+        camera2.setBounds(0,0,7008,19578);
+    else if (player === player1)
+        camera1.setBounds(-3501, 0, 3501, 19578);
+}
+
+heimdallFunc = function (scene, player, adversary){
+    //Funciona, aunque el jugador deberia posicionarse en otra X e Y. Ajustar en funcion de la jugabilidad
+    //Falta gestionar la colision entre los dos jugadores y que esta llame a throwFunc
+    heimdall = true;
+    player.x = -player.x;
+    if (player === player1){
+        camera1.setBounds(0,0,7008,19578);
+    } else if (player === player2){
+        camera2.setBounds(-3501, 0, 3501, 19578);
+    }
+    //scene.physics.add.overlap(player, adversary, throwFunc, null, this);
+    scene.time.delayedCall(10000, heimdallReturn, [player], scene);
+}
+
+//Funciones del powerup de los ciervos
+//Funcion completa. Solamente requiere de modificar parametros de velocidad.
+ciervosFunc = function(scene, player, adversary){
+    ciervosBool = true;//Variable de debug
+    var nCiervo = Math.floor(Math.random()*4);
+    nCiervo=3;
+    //console.log('Valor de nCiervo: ' +  nCiervo);
+    switch (nCiervo){
+        case 0:
+            //Dainn
+            player.setVelocityY(-500);
+            break;
+        case 1:
+            //Dvalinn
+            player.setVelocityY(-500);
+            adversary.setVelocityY(-500);
+            break;
+        case 2:
+            //Duneyrr
+            adversary.throwLeft = true;
+            break;
+        case 3:
+            //Duraþror
+            adversary.throwRight = true;
+            break;
+    }
+}
+//HASTA AQUI
+
 updateControls = function (scene,player,adversary) {
-    
+    //CONTROLES DE DEBUG
+    if(player.keyTest.isDown && !player.ratatoskBool){
+        ratatoskFunc(scene, player, adversary);
+    }
+
+    if(player.keyTest2.isDown && !heimdall){
+        heimdallFunc(scene,player,adversary);
+    }
+
+    if(player.keyTest3.isDown && !ciervosBool){
+        ciervosFunc(scene,player,adversary);
+    }
+
+    if(player.keyTest4.isDown){
+        stopThrowing(adversary);
+    }
+    //HASTA AQUI
+
     if (player.hermodr) {
         player.velocidadX += 100;
         player.hermodr = false;
@@ -124,7 +270,13 @@ updateControls = function (scene,player,adversary) {
     if (player.keyDash.isDown) {
         player.dashPulsada = true;
     }
-    if (player.dashPulsada && player.contStamine > 0) {
+
+    //Primero comprueba si el jugador esta siendo lanzado hacia alguno de los lados. De no ser asi, comprueba pulsaciones de botones.
+    if (player.throwRight){
+        player.setVelocityX(500);
+    }else if(player.throwLeft){
+        player.setVelocityX(-500);
+    }else if (player.dashPulsada && player.contStamine > 0) {
         if (player.leftPulsada && player.upPulsada) {
             player.setVelocityX(-player.velocidadX - 100);
             player.setVelocityY(-player.velocidadY - 100);

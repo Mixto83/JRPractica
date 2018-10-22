@@ -7,13 +7,13 @@ var textBox;
 createBackground = function(scene, x, y, velocity, idCutscene){
      //Imagen de fondo desplazandose a la derecha
     background = scene.physics.add.image(x,y,'fondo'+idCutscene);
-    background.setGravityY(-500);
+    background.setGravityY(-800);
     background.setVelocityX(-velocity);
 }
 
 createParticles = function(scene, x, y, velocity, idCutscene){
     particles = scene.physics.add.sprite(x,y,'particulas'+idCutscene);
-    particles.setGravityY(-500);
+    particles.setGravityY(-800);
     particles.setVelocityY(-velocity);
 }
 
