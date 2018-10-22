@@ -3,21 +3,15 @@ var preloadScene = new Phaser.Scene('preload');
 preloadScene.active = true;
 
 preloadScene.preload = function () {
+    
     var loadingText = this.add.text(80, 150, 'loading...');
-    //assets tutorial
-    this.load.image('sky1', 'assets/tutorial sprites/sky.png');
-    this.load.image('sky2', 'assets/tutorial sprites/sky2.png');
-    this.load.image('ground', 'assets/tutorial sprites/platform.png');
-    this.load.image('star', 'assets/tutorial sprites/star.png');
-    this.load.image('bomb', 'assets/tutorial sprites/bomb.png');
-    this.load.spritesheet('dude', 'assets/tutorial sprites/dude.png', {
-        frameWidth: 32,
-        frameHeight: 48
-    });
-    //tiles
+
+    //assets plataforms
     this.load.tilemapCSV('map1', 'assets/platforms/Nivel1.csv');
     this.load.tilemapCSV('map2', 'assets/platforms/Nivel2.csv');
     this.load.image('tiles', 'assets/platforms/tiles/Tiles.png');
+    
+    //Backgrounds
     this.load.image('background1Nivel1', 'assets/Backgrounds/Background_1_Nivel1.jpg');
     this.load.image('background2Nivel1', 'assets/Backgrounds/Background_2_Nivel1.jpg');
     this.load.image('background3Nivel1', 'assets/Backgrounds/Background_3_Nivel1.jpg');
@@ -26,6 +20,7 @@ preloadScene.preload = function () {
     this.load.image('background6Nivel1', 'assets/Backgrounds/Background_6_Nivel1.jpg');
     this.load.image('background7Nivel1', 'assets/Backgrounds/Background_7_Nivel1.jpg');
     this.load.image('background8Nivel1', 'assets/Backgrounds/Background_8_Nivel1.jpg');
+    
     //Elementos de las cinemáticas y del menu
     this.load.image('fondoIntro', 'assets/cutscenes/fondo_intro.png');
     this.load.image('fondoEnding1', 'assets/cutscenes/cinematica_aguila.png');
@@ -39,12 +34,23 @@ preloadScene.preload = function () {
     this.load.image('botonOnline', 'assets/cutscenes/boton_online.png');
     this.load.image('logoStudio', 'assets/cutscenes/logo_Edda_games.png');
     this.load.image('logoGame', 'assets/cutscenes/logo_Volva.png');
-
     this.load.spritesheet('cajaTextoIntro', 'assets/cutscenes/cajaIntro.png', {
         frameWidth: 1213,
         frameHeight: 225
     });
+    
+    //spritesheets
+    this.load.atlas('aguila','assets/spritesheets/spritesheet_aguila.png','assets/spritesheets/spritesheet_aguila.json');
 
+    //sprites powerups
+    this.load.image('ciervo', 'assets/sprites/Ciervos.png');
+    this.load.image('heimdall', 'assets/sprites/Heimdall.png');
+    this.load.image('ratatosk', 'assets/sprites/Ratatosk.png');
+    this.load.image('bragi', 'assets/sprites/Runa_Bragi.png');
+    this.load.image('hemodr', 'assets/sprites/Runa_Hemodr.png');
+    this.load.image('njord', 'assets/sprites/Runa_Njord.png');
+    this.load.image('skadi', 'assets/sprites/Runa_Skadi.png');
+    this.load.image('tir', 'assets/sprites/Runa_Tir.png');
 
     //Musica y sonido
     //Rynos Theme Kevin MacLeod (incompetech.com)
@@ -58,8 +64,7 @@ preloadScene.preload = function () {
     this.load.audio('ending1Music', 'assets/music/ending1Music.mp3');
     this.load.audio('ending2Music', 'assets/music/ending2Music.mp3');
     
-    //spritesheet personajes
-    this.load.atlas('aguila','assets/spritesheets/spritesheet_aguila.png','assets/spritesheets/spritesheet_aguila.json');
+
 }
 
 preloadScene.create = function () {

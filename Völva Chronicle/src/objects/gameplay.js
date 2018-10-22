@@ -11,8 +11,8 @@ var heimdall = false;
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
-    addPlayer(scene, player1);
-    addPlayer(scene, player2);
+    addPlayer(scene, player1, powerups);
+    addPlayer(scene, player2, powerups);
     //animaciones (se pasaran a addPlayer cuando se implementen las del dragon)
     scene.anims.create({
         key: 'run',
@@ -28,7 +28,7 @@ createPlayers = function (scene) {
     });
 }
 
-addPlayer = function (scene,player) {
+addPlayer = function (scene,player, powerups) {
     player.setCollideWorldBounds(true);
     player.contSalto = 0;
     player.velocidadX = 320;
@@ -61,6 +61,13 @@ addPlayer = function (scene,player) {
     player.throwLeft = false;
 
     player.ratatoskBool = false;//Esta variable es solo de debug
+    
+    //crea las colisiones entre os powerups y s j
+    scene.physics.add.overlap(player, powerups, powerupsFunc, null, this);
+}
+
+function powerupsFunc(player, powerups) {
+    powerups.disableBody(true, true);
 }
 
 createInputs = function (scene) {
