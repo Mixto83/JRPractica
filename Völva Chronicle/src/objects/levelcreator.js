@@ -1,6 +1,5 @@
 var map;
 var layer;
-var powerups;
 
 createLevel = function (scene, nLevel) {
     
@@ -18,34 +17,7 @@ createLevel = function (scene, nLevel) {
         //tilemap
         map = scene.make.tilemap({ key: 'map1', tileWidth: 48, tileHeight: 48});
         
-        //powerups
-        powerups = scene.physics.add.group();
-        pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
-        powerups.add(pCiervo, true);
-        pHeimdall = scene.physics.add.sprite(-1152, 2352, 'heimdall');
-        powerups.add(pHeimdall, true);
-        pBragi = scene.physics.add.sprite(-3120, 10752, 'bragi');
-        powerups.add(pBragi, true);
-        pNjord = scene.physics.add.sprite(-768, 8256, 'njord');
-        powerups.add(pNjord, true);
-        pSkadi = scene.physics.add.sprite(-3168, 5760, 'skadi');
-        powerups.add(pSkadi, true);
-        pSkadi2 = scene.physics.add.sprite(-2592, 1152, 'skadi');
-        powerups.add(pSkadi2, true);
-        
-        //240
-        Ciervop = scene.physics.add.sprite(1584, 2208, 'ciervo');
-        powerups.add(Ciervop, true);
-        Heimdallp = scene.physics.add.sprite(2400, 2352, 'heimdall');
-        powerups.add(Heimdallp, true);
-        Bragip = scene.physics.add.sprite(432, 10752, 'bragi');
-        powerups.add(Bragip, true);
-        Njordp = scene.physics.add.sprite(2784, 8256, 'njord');
-        powerups.add(Njordp, true);
-        Skadip = scene.physics.add.sprite(384, 5760, 'skadi');
-        powerups.add(Skadip, true);
-        Skadi2p = scene.physics.add.sprite(960, 1152, 'skadi');
-        powerups.add(Skadi2p, true);
+        createPowerups(scene,nLevel);
     }
     else if (nLevel === 2) {
         map = scene.make.tilemap({ key: 'map2', tileWidth: 48, tileHeight: 48});
