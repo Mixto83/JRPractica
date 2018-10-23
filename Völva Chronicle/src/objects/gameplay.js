@@ -2,7 +2,7 @@
 var player1;
 var player2;
 var playerVelocityY = 900;
-var playerVelocityX = 400;
+var playerVelocityX = 500;
 
 //constantes globales
 
@@ -139,7 +139,7 @@ updateControls = function (scene,player,adversary) {
             player.anims.play('run', true);
             player.contStamine--;
         } else if (player.rightPulsada) {
-            player.setVelocityX(player.velocidadY + 100);
+            player.setVelocityX(player.velocidadX + 100);
             player.anims.play('run', true);
             player.contStamine--;
         } else if (player.upPulsada && player.contSalto < 3) {

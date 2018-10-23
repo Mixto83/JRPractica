@@ -1,6 +1,4 @@
 var powerups;
-
-var ciervosBool = false;
 var heimdall = false;
 
 function createPowerups(scene, nLevel) {
@@ -122,6 +120,9 @@ function ratatoskFunc(scene, player, adversary) {
     scene.time.delayedCall(10000, reverseRatatosk, [scene, player, adversary], scene);
 }
 
+function defaultMaxVelocity(player) {
+    player.setMaxVelocity(1100,1100);
+}
 //Funciones del Power Up de Heimdall
 function throwFunc(scene, player1, player2) {
     if (player1.heimdall === true) {
@@ -161,7 +162,7 @@ function heimdallFunc(scene, player, adversary) {
         player.heimdall = true;
         player.lastY = player.y;
         player.lastX = player.x;
-        player.y = adversary.y + 100;
+        player.y = adversary.y + 500;
         player.x = adversary.x;
         if (player === player1) {
             camera1.setBounds(0, 0, 7008, 19578);
@@ -177,29 +178,31 @@ function heimdallFunc(scene, player, adversary) {
 }
 
 //Funciones del powerup de los ciervos
-//Funcion completa. Solamente requiere de modificar parametros de velocidad.
 function ciervosFunc(scene, player, adversary) {
-    ciervosBool = true; //Variable de debug
     var nCiervo = Math.floor(Math.random() * 4);
-    nCiervo = 3;
-    //console.log('Valor de nCiervo: ' +  nCiervo);
     switch (nCiervo) {
         case 0:
             //Dainn
-            player.setVelocityY(-500);
+            player.setMaxVelocity(1100, 5000);
+            player.setVelocityY(-4000);
+            scene.time.delayedCall(1000, defaultMaxVelocity, [player], null, this);
             break;
         case 1:
             //Dvalinn
-            player.setVelocityY(-500);
-            adversary.setVelocityY(-500);
+            player.setMaxVelocity(1100, 5000);
+            player.setVelocityY(-4000);
+            adversary.setVelocityY(-4000);
+            scene.time.delayedCall(1000, defaultMaxVelocity, [player], null, this);
             break;
         case 2:
             //Duneyrr
             adversary.throwLeft = true;
+            scene.time.delayedCall(2000, stopThrowing, [adversary], null, this);
             break;
         case 3:
             //Duraþror
             adversary.throwRight = true;
+            scene.time.delayedCall(2000, stopThrowing, [adversary], null, this);
             break;
     }
 }
@@ -211,7 +214,7 @@ function eventHermodr(scene, player) {
 }
 
 function eventSkadi(scene, adversary) {
-    adversary.velocidadX -= 50;
+    adversary.velocidadX -= 100;
     scene.time.delayedCall(5000, onHermodrSkadi, [adversary], scene);
 }
 

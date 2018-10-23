@@ -27,6 +27,3 @@ createLevel = function (scene, nLevel) {
     map.setCollisionBetween(0,115);
     scene.physics.world.setBounds(-3501, 0, 7008, 19578);    
 }
-
-
-
