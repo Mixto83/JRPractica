@@ -9,6 +9,7 @@ level1Scene.preload = function (){
 level1Scene.create = function (){
     createLevel(level1Scene, 1);
     createPlayers(level1Scene);
+    createPowerups(level1Scene, 1);
     createInputs(level1Scene);
     createCameras(level1Scene);
 }

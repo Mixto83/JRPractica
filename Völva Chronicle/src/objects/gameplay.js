@@ -10,8 +10,8 @@ var player2;
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
-    addPlayer(scene, player1, powerups);
-    addPlayer(scene, player2, powerups);
+    addPlayer(scene, player1);
+    addPlayer(scene, player2);
     //animaciones (se pasaran a addPlayer cuando se implementen las del dragon)
     scene.anims.create({
         key: 'run',
@@ -27,7 +27,7 @@ createPlayers = function (scene) {
     });
 }
 
-addPlayer = function (scene,player, powerups) {
+addPlayer = function (scene,player) {
     player.setCollideWorldBounds(true);
     player.contSalto = 0;
     player.velocidadX = 500;
@@ -48,21 +48,14 @@ addPlayer = function (scene,player, powerups) {
     player.rightPulsada = false;
     player.dashPulsada = false;
 
-    player.hermodr = false;
-    player.njord = false;
-    player.skadi = false;
-    player.tir = false;
-    player.bragi = false;
     player.ratatosk = 0;
-    player.ciervos = 0;
+    player.tir = false;
 
     player.throwRight = false;
     player.throwLeft = false;
 
     player.ratatoskBool = false;//Esta variable es solo de debug
-    
-    //crea las colisiones entre os powerups y s j
-    scene.physics.add.overlap(player, powerups, powerupsFunc, null, this);
+        
 }
 
 createInputs = function (scene) {
@@ -74,71 +67,15 @@ createInputs = function (scene) {
     player1.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     player1.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     player1.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-    //Controles Debug P1
-    player1.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-    player1.keyTest2 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-    player1.keyTest3 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.T);
-    player1.keyTest4 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
     //inputs player 2 (flechas + numpad0)
     player2.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
     player2.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
-    //Controles Debug P2
-    player2.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
-    player2.keyTest2 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
-    player2.keyTest3 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-    player2.keyTest4 = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
 }
 
 updateControls = function (scene,player,adversary) {
-    //CONTROLES DE DEBUG
-    if(player.keyTest.isDown && !player.ratatoskBool){
-        ratatoskFunc(scene, player, adversary);
-    }
-
-    if(player.keyTest2.isDown && !heimdall){
-        heimdallFunc(scene,player,adversary);
-    }
-
-    if(player.keyTest3.isDown && !ciervosBool){
-        ciervosFunc(scene,player,adversary);
-    }
-
-    if(player.keyTest4.isDown){
-        stopThrowing(adversary);
-    }
-    //HASTA AQUI
-
-    if (player.hermodr) {
-        player.velocidadX += 100;
-        player.hermodr = false;
-        eventHermodrSkadi(scene, player, playerVelocity);
-    }
-
-    if (player.njord) {
-        player.velocidadY += 100;
-        player.njord = false;
-        eventNjord(scene, player, playerVelocity)
-    }
-
-    if (player.skadi) {
-        adversary.velocidadX -= 50;
-        player.skadi = false;
-        eventHermodrSkadi(scene, adversary, playerVelocity);
-    }
-
-    if (player.tir) {
-        player.tir = false;
-        player.invulnerable = true;
-    }
-
-    if (player.bragi) {
-        player.bragi = false;
-        player.contStamine += 100;
-        eventBragi(scene, player);
-    }
 
     if (player.keyLeft.isDown) {
         player.leftPulsada = true;

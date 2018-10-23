@@ -8,36 +8,60 @@ function createPowerups (scene, nLevel) {
     if (nLevel === 1) {
         //powerups
         powerups = scene.physics.add.group();
-        pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
+        var pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
+        pCiervo.id = 0;
         powerups.add(pCiervo, true);
-        pHeimdall = scene.physics.add.sprite(-1152, 2352, 'heimdall');
+        var pHeimdall = scene.physics.add.sprite(-1152, 2352, 'heimdall');
+        pHeimdall.id = 1;
         powerups.add(pHeimdall, true);
-        pBragi = scene.physics.add.sprite(-3120, 10752, 'bragi');
+        var pBragi = scene.physics.add.sprite(-3120, 10752, 'bragi');
+        pBragi.id = 2;
         powerups.add(pBragi, true);
-        pNjord = scene.physics.add.sprite(-768, 8256, 'njord');
+        var pNjord = scene.physics.add.sprite(-768, 8256, 'njord');
+        pNjord.id = 3;
         powerups.add(pNjord, true);
-        pSkadi = scene.physics.add.sprite(-3168, 5760, 'skadi');
+        var pSkadi = scene.physics.add.sprite(-3168, 5760, 'skadi');
+        pSkadi.id = 4;
         powerups.add(pSkadi, true);
-        pSkadi2 = scene.physics.add.sprite(-2592, 1152, 'skadi');
+        var pSkadi2 = scene.physics.add.sprite(-2592, 1152, 'skadi');
+        pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
         
-        Ciervop = scene.physics.add.sprite(1584, 2208, 'ciervo');
+        var Ciervop = scene.physics.add.sprite(1584, 2208, 'ciervo');
+        Ciervop.id = 0;
         powerups.add(Ciervop, true);
-        Heimdallp = scene.physics.add.sprite(2400, 2352, 'heimdall');
+        var Heimdallp = scene.physics.add.sprite(2400, 2352, 'heimdall');
+        Heimdallp.id = 1;
         powerups.add(Heimdallp, true);
-        Bragip = scene.physics.add.sprite(432, 10752, 'bragi');
+        var Bragip = scene.physics.add.sprite(432, 10752, 'bragi');
+        Bragip.id = 2;
         powerups.add(Bragip, true);
-        Njordp = scene.physics.add.sprite(2784, 8256, 'njord');
+        var Njordp = scene.physics.add.sprite(2784, 8256, 'njord');
+        Njordp.id = 3;
         powerups.add(Njordp, true);
-        Skadip = scene.physics.add.sprite(384, 5760, 'skadi');
+        var Skadip = scene.physics.add.sprite(384, 5760, 'skadi');
+        Skadip.id = 4;
         powerups.add(Skadip, true);
-        Skadi2p = scene.physics.add.sprite(960, 1152, 'skadi');
-        powerups.add(Skadi2p, true);
+        var Skadi2p = scene.physics.add.sprite(960, 1152, 'skadi');
+        Skadi2p.id = 4;
+        powerups.add(Skadi2p,true);
     }
+
+    scene.physics.add.collider(powerups, layer);
+    scene.physics.add.overlap(player1, powerups, function(player1,powerups){powerupsFunc(player1,powerups,scene);}, null, this);
+    scene.physics.add.overlap(player2, powerups, function(player2,powerups){powerupsFunc(player2,powerups,scene);}, null, this);
 }
 
-function powerupsFunc(player, powerups) {
+function powerupsFunc(player,powerups,scene) {
     powerups.disableBody(true, true);
+    if (player === player1){
+        adversary = player2;
+    } else{
+        adversary = player1;
+    }
+    if(powerups.id === 0)   {
+        ciervosFunc(scene,player,adversary);
+    }
 }
 
 //Funciones del PowerUp de Ratatosk
@@ -81,7 +105,6 @@ var ratatoskFunc = function(scene, player, adversary){
     scene.time.delayedCall(10000, reverseRatatosk, [scene, player, adversary], scene);
 }
 
-//TODA ESTA PARTE SE MOVERA A UN NUEVO OBJETO
 //Funciones del Power Up de Heimdall
 var throwFunc = function (scene, player, adversary){
     //Funcion Incompleta. Esta funcion debe cambiar a true el boolean correspondiente a la direccion en la que se quiera lanzar.
@@ -149,4 +172,37 @@ var ciervosFunc = function(scene, player, adversary){
             break;
     }
 }
-//HASTA AQUI
+
+//Runas
+function eventHermodrSkadi(scene, player, playerVelocity) {
+    player.velocidadX += 100;
+    scene.time.delayedCall(5000, onHermodrSkadi, [player, playerVelocity], scene);
+}
+
+function eventSkadi(scene, player, playerVelocity){
+    adversary.velocidadX -= 50;
+    scene.time.delayedCall(5000, onHermodrSkadi, [player, playerVelocity], scene);    
+}
+
+function onHermodrSkadi (player, playerVelocity) {
+    player.velocidadX = playerVelocity;
+}
+
+function eventNjord(scene, player, playerVelocity) {
+    player.velocidadY += 100;
+    scene.time.addEvent({delay: 5000, callback: onNjord(player), callbackScope: scene, repeat: 0});
+}
+
+function onNjord (player, playerVelocity) {
+    player.velocidadY = playerVelocity;
+    
+}
+
+function eventBragi(scene, player) {
+    player.contStamine += 100;
+    scene.time.addEvent({delay: 5000, callback: onBragi(player), callbackScope: scene, repeat: 0});
+}
+
+function onBragi (player) {
+    player.contStamine = 100;
+}
