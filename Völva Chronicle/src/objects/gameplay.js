@@ -31,8 +31,8 @@ createPlayers = function (scene) {
 addPlayer = function (scene,player, powerups) {
     player.setCollideWorldBounds(true);
     player.contSalto = 0;
-    player.velocidadX = 320;
-    player.velocidadY = 710;
+    player.velocidadX = 500;
+    player.velocidadY = 900;
     player.contStamine = 100;
     player.invulnerable = false;
     player.facingRight = true;
@@ -289,9 +289,9 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityY(-player.velocidadY - 100);
             player.upPulsada = false;
             player.contStamine--;
-        } else if (player.leftPulsada && player.downPulsada) {
+        } else if (player.leftPulsada && player.downPulsada && !player.body.blocked.down) {
             player.setVelocityX(-player.velocidadX - 100);
-            player.setVelocityY(player.velocidadY + 100);
+            player.setVelocityY(500);
             player.contStamine--;
             player.downPulsada = false;
         } else if (player.rightPulsada && player.upPulsada) {
@@ -299,9 +299,9 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityY(-player.velocidadY - 100);
             player.upPulsada = false;
             player.contStamine--;
-        } else if (player.rightPulsada && player.downPulsada) {
+        } else if (player.rightPulsada && player.downPulsada && !player.body.blocked.down) {
             player.setVelocityX(player.velocidadX + 100);
-            player.setVelocityY(player.velocidadY + 100);
+            player.setVelocityY(500);
             player.contStamine--;
             player.downPulsada = false;
         } else if (player.leftPulsada) {
@@ -316,8 +316,8 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityY(-player.velocidadY - 100);
             player.upPulsada = false;
             player.contStamine--;
-        } else if (player.downPulsada && player.contSalto < 3) {
-            player.setVelocityY(player.velocidadY + 100);
+        } else if (player.downPulsada && player.contSalto < 3 && !player.body.blocked.down) {
+            player.setVelocityY(500);
             player.downPulsada = false;
             player.contStamine--;
         } else {
@@ -332,17 +332,17 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityX(-player.velocidadX);
             player.setVelocityY(-player.velocidadY);
             player.upPulsada = false;
-        } else if (player.leftPulsada && player.downPulsada) {
+        } else if (player.leftPulsada && player.downPulsada && !player.body.blocked.down) {
             player.setVelocityX(-player.velocidadX);
-            player.setVelocityY(player.velocidadY);
+            player.setVelocityY(500);
             player.downPulsada = false;
         } else if (player.rightPulsada && player.upPulsada) {
             player.setVelocityX(player.velocidadX);
             player.setVelocityY(-player.velocidadY);
             player.upPulsada = false;
-        } else if (player.rightPulsada && player.downPulsada) {
+        } else if (player.rightPulsada && player.downPulsada && !player.body.blocked.down) {
             player.setVelocityX(player.velocidadX);
-            player.setVelocityY(player.velocidadY);
+            player.setVelocityY(500);
             player.downPulsada = false;
         } else if (player.leftPulsada) {
             if (!player.body.touching.down) {
@@ -363,8 +363,8 @@ updateControls = function (scene,player,adversary) {
         } else if (player.upPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidadY);
             player.upPulsada = false;
-        } else if (player.downPulsada) {
-            player.setVelocityY(player.velocidadY);
+        } else if (player.downPulsada && !player.body.blocked.down) {
+            player.setVelocityY(500);
             player.downPulsada = false;
         } else {
             player.anims.play('idle', true);
