@@ -1,6 +1,8 @@
 //jugadores
 var player1;
 var player2;
+var playerVelocityY = 900;
+var playerVelocityX = 400;
 
 //constantes globales
 
@@ -8,7 +10,8 @@ var player2;
 
 
 createPlayers = function (scene) {
-    player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
+    //player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
+    player1 = scene.physics.add.sprite(-1300, 2352, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
     addPlayer(scene, player1);
     addPlayer(scene, player2);
@@ -30,9 +33,12 @@ createPlayers = function (scene) {
 addPlayer = function (scene,player) {
     player.setCollideWorldBounds(true);
     player.contSalto = 0;
-    player.velocidadX = 500;
-    player.velocidadY = 900;
+    player.velocidadX = playerVelocityX;
+    player.velocidadY = playerVelocityY;
+    player.setMaxVelocity(1100,1100);
     player.contStamine = 100;
+    player.lastX = 0;
+    player.lastY = 0;
     player.invulnerable = false;
     player.facingRight = true;
     //redimensiona bounding box y le aplica un offset para ajustar su centro
@@ -50,6 +56,7 @@ addPlayer = function (scene,player) {
 
     player.ratatosk = 0;
     player.tir = false;
+    player.heimdall = false;
 
     player.throwRight = false;
     player.throwLeft = false;
@@ -76,7 +83,8 @@ createInputs = function (scene) {
 }
 
 updateControls = function (scene,player,adversary) {
-
+    
+    //Control teclas pulsadas
     if (player.keyLeft.isDown) {
         player.leftPulsada = true;
         player.facingRight = false;
@@ -104,7 +112,8 @@ updateControls = function (scene,player,adversary) {
         player.setVelocityX(500);
     }else if(player.throwLeft){
         player.setVelocityX(-500);
-    }else if (player.dashPulsada && player.contStamine > 0) {
+    }
+    else if (player.dashPulsada && player.contStamine > 0) {
         if (player.leftPulsada && player.upPulsada) {
             player.setVelocityX(-player.velocidadX - 100);
             player.setVelocityY(-player.velocidadY - 100);
@@ -130,7 +139,7 @@ updateControls = function (scene,player,adversary) {
             player.anims.play('run', true);
             player.contStamine--;
         } else if (player.rightPulsada) {
-            player.setVelocityX(350);
+            player.setVelocityX(player.velocidadY + 100);
             player.anims.play('run', true);
             player.contStamine--;
         } else if (player.upPulsada && player.contSalto < 3) {
@@ -192,14 +201,14 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityX(0);
         }
     }
+    
+    //control de las teclas
     player.leftPulsada = false;
     player.rightPulsada = false;
     player.dashPulsada = false;
     if (!player.keyUp.isDown) {
         player.upToque = false;
     }
-
-
     if (!player.keyDown.isDown) {
         player.downToque = false;
     }
