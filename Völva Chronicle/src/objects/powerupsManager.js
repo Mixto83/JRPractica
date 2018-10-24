@@ -121,7 +121,7 @@ function ratatoskFunc(scene, player, adversary) {
 }
 
 function defaultMaxVelocity(player) {
-    player.setMaxVelocity(1100,1100);
+    player.setMaxVelocity(1100, 1100);
 }
 //Funciones del Power Up de Heimdall
 function throwFunc(scene, player1, player2) {
@@ -133,7 +133,14 @@ function throwFunc(scene, player1, player2) {
         player = player2;
     }
     heimdallReturn(player);
-    adversary.throwRight = true;
+    
+    //dependiendo de por donde viniera el golpe se desplaza hacia un lado u otro
+    if (player.x > adversary.x) {
+        adversary.throwLeft = true;
+    } else {
+        adversary.throwRight = true;
+    }
+
     scene.time.delayedCall(5000, stopThrowing, [adversary], null, this);
 }
 
@@ -168,7 +175,6 @@ function heimdallFunc(scene, player, adversary) {
         } else if (player === player2) {
             camera2.setBounds(-3501, 0, 3501, 19578);
         }
-        //scene.physics.add.overlap(player, adversary, throwFunc, null, this);
         scene.time.delayedCall(10000, heimdallReturn, [player], scene);
     } else {
         adversary.tir = false;

@@ -20,4 +20,5 @@ level1Scene.update = function (){
     updateControls(level1Scene,player2,player1);
     updateAnimation(player1);
     updateAnimation(player2);
+    moveLanzas();
 }
