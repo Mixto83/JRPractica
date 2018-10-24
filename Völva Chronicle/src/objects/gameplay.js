@@ -22,6 +22,17 @@ createPlayers = function (scene) {
         frameRate: 12,
         repeat: -1
     });
+    scene.anims.create({
+        key: 'idleAir',
+        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 290, end: 297, zeroPad: 4 }),
+        frameRate: 12,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'jump',
+        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 0, end: 23, zeroPad: 4 }),
+        frameRate: 24
+    });
 }
 
 addPlayer = function (scene,player) {
@@ -30,13 +41,15 @@ addPlayer = function (scene,player) {
     player.velocidadX = playerVelocityX;
     player.velocidadY = playerVelocityY;
     player.setMaxVelocity(1100,1100);
+    player.velocidadX = 500;
+    player.velocidadY = 900;
     player.contStamine = 100;
     player.lastX = 0;
     player.lastY = 0;
     player.invulnerable = false;
     player.facingRight = true;
     //redimensiona bounding box y le aplica un offset para ajustar su centro
-    player.setSize(60, 121).setOffset(27,0);
+    player.setSize(66, 121).setOffset(29, 0);
     //colisiones
     scene.physics.add.collider(player, layer);
     //atributos referentes a controles
@@ -76,9 +89,21 @@ createInputs = function (scene) {
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 }
 
-updateControls = function (scene,player,adversary) {
+updateAnimation = function (player) {
+    if (player.body.velocity.y === -player.velocidadY) {
+        player.anims.play('jump', false);
+    } else if (player.body.velocity.x === 0 && player.body.blocked.down) {
+        player.anims.play('idle', true);
+    } else if (!player.body.blocked.down && !player.anims.isPlaying) {
+        player.anims.play('idleAir', true);
+    } else if (player.body.velocity.x != 0 && player.body.blocked.down) {
+        player.anims.play('run', true);
+    }
     
-    //Control teclas pulsadas
+
+}
+updateControls = function (scene, player, adversary) {
+
     if (player.keyLeft.isDown) {
         player.leftPulsada = true;
         player.facingRight = false;
@@ -130,11 +155,9 @@ updateControls = function (scene,player,adversary) {
             player.downPulsada = false;
         } else if (player.leftPulsada) {
             player.setVelocityX(-player.velocidadX - 100);
-            player.anims.play('run', true);
             player.contStamine--;
         } else if (player.rightPulsada) {
             player.setVelocityX(player.velocidadX + 100);
-            player.anims.play('run', true);
             player.contStamine--;
         } else if (player.upPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidadY - 100);
@@ -145,7 +168,6 @@ updateControls = function (scene,player,adversary) {
             player.downPulsada = false;
             player.contStamine--;
         } else {
-            player.anims.play('idle', true);
             player.setVelocityX(0);
             if (player.getVelocityY < 0 && player.upPulsada) {
                 player.setVelocityY(0);
@@ -171,18 +193,14 @@ updateControls = function (scene,player,adversary) {
         } else if (player.leftPulsada) {
             if (!player.body.blocked.down) {
                 player.setVelocityX(-player.velocidadX + 100);
-                player.anims.play('run', true);
             } else {
                 player.setVelocityX(-player.velocidadX);
-                player.anims.play('run', true);
             }
         } else if (player.rightPulsada) {
             if (!player.body.blocked.down) {
                 player.setVelocityX(player.velocidadX - 100);
-                player.anims.play('run', true);
             } else {
                 player.setVelocityX(player.velocidadX);
-                player.anims.play('run', true);
             }
         } else if (player.upPulsada && player.contSalto < 3) {
             player.setVelocityY(-player.velocidadY);
@@ -191,7 +209,6 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityY(500);
             player.downPulsada = false;
         } else {
-            player.anims.play('idle', true);
             player.setVelocityX(0);
         }
     }
