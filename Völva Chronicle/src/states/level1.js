@@ -12,6 +12,7 @@ level1Scene.create = function (){
     createPowerups(level1Scene, 1);
     createInputs(level1Scene);
     createCameras(level1Scene);
+    createEnemy(level1Scene, 1);
 }
 
 level1Scene.update = function (){

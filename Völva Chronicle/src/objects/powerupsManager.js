@@ -9,7 +9,7 @@ function createPowerups(scene, nLevel) {
         var pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
-        var pHeimdall = scene.physics.add.sprite(-1152, 2500, 'heimdall');
+        var pHeimdall = scene.physics.add.sprite(-1200, 2500, 'heimdall');
         pHeimdall.id = 1;
         powerups.add(pHeimdall, true);
         var pBragi = scene.physics.add.sprite(-3120, 10752, 'bragi');
@@ -28,7 +28,7 @@ function createPowerups(scene, nLevel) {
         var Ciervop = scene.physics.add.sprite(1584, 2208, 'ciervo');
         Ciervop.id = 0;
         powerups.add(Ciervop, true);
-        var Heimdallp = scene.physics.add.sprite(2400, 2500, 'heimdall');
+        var Heimdallp = scene.physics.add.sprite(2352, 2500, 'heimdall');
         Heimdallp.id = 1;
         powerups.add(Heimdallp, true);
         var Bragip = scene.physics.add.sprite(432, 10752, 'bragi');
@@ -146,7 +146,6 @@ function heimdallReturn(player) {
     if (player.heimdall === true) { //para que el evento no se active al terminar el tiempo
         player.x = player.lastX;
         player.y = player.lastY;
-        heimdall = false;
         player.heimdall = false;
         if (player === player2) {
             camera2.setBounds(0, 0, 7008, 19578);

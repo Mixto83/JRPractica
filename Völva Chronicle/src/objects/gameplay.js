@@ -4,14 +4,8 @@ var player2;
 var playerVelocityY = 900;
 var playerVelocityX = 500;
 
-//constantes globales
-
-//Variables globales de control
-
-
 createPlayers = function (scene) {
-    //player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
-    player1 = scene.physics.add.sprite(-1300, 2352, 'aguila');
+    player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');//3552
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
     addPlayer(scene, player1);
     addPlayer(scene, player2);
@@ -175,7 +169,7 @@ updateControls = function (scene,player,adversary) {
             player.setVelocityY(500);
             player.downPulsada = false;
         } else if (player.leftPulsada) {
-            if (!player.body.touching.down) {
+            if (!player.body.blocked.down) {
                 player.setVelocityX(-player.velocidadX + 100);
                 player.anims.play('run', true);
             } else {
@@ -183,7 +177,7 @@ updateControls = function (scene,player,adversary) {
                 player.anims.play('run', true);
             }
         } else if (player.rightPulsada) {
-            if (!player.body.touching.down) {
+            if (!player.body.blocked.down) {
                 player.setVelocityX(player.velocidadX - 100);
                 player.anims.play('run', true);
             } else {
