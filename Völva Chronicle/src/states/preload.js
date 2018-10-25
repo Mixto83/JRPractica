@@ -36,7 +36,15 @@ preloadScene.preload = function () {
     this.load.image('logoStudio', 'assets/cutscenes/logo_Edda_games.png');
     this.load.image('logoGame', 'assets/cutscenes/logo_Volva.png');
     this.load.spritesheet('cajaTextoIntro', 'assets/cutscenes/cajaIntro.png', {
-        frameWidth: 1213,
+        frameWidth: 1212,
+        frameHeight: 225
+    });
+    this.load.spritesheet('cajaTextoEnding1', 'assets/cutscenes/cajaEnding1.png',{
+        frameWidth: 1212,
+        frameHeight: 225
+    });
+    this.load.spritesheet('cajaTextoEnding2', 'assets/cutscenes/cajaEnding2.png',{
+        frameWidth: 1212,
         frameHeight: 225
     });
     
