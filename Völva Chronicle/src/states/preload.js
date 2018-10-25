@@ -54,8 +54,7 @@ preloadScene.preload = function () {
     this.load.image('tir', 'assets/sprites/Runa_Tir.png');
     
     //sprite arma
-    this.load.image('lanzaL', 'assets/sprites/lanza_horizontal_L.png');
-    this.load.image('lanzaR', 'assets/sprites/lanza_horizontal_R.png');
+    this.load.image('lanza', 'assets/sprites/lanza_horizontal_R.png');
 
     //Musica y sonido
     //Rynos Theme Kevin MacLeod (incompetech.com)

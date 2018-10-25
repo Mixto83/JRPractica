@@ -6,7 +6,7 @@ var playerVelocityX = 500;
 
 createPlayers = function (scene) {
     //player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');//3552
-    player1 = scene.physics.add.sprite(-2320, 5760, 'aguila');
+    player1 = scene.physics.add.sprite(-2300, 2208, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
     addPlayer(scene, player1);
     addPlayer(scene, player2);
