@@ -21,6 +21,9 @@ createLevel = function (scene, nLevel) {
     else if (nLevel === 2) {
         map = scene.make.tilemap({ key: 'map2', tileWidth: 48, tileHeight: 48});
     }
+    else if (nLevel === 3) {
+        map = scene.make.tilemap({ key: 'map3', tileWidth: 48, tileHeight: 48});
+    }
 
     var tileset = map.addTilesetImage('tiles');
     layer = map.createStaticLayer(0, tileset, -3501,0);

@@ -2,10 +2,10 @@ var powerups;
 var heimdall = false;
 
 function createPowerups(scene, nLevel) {
+    powerups = scene.physics.add.group();
 
     if (nLevel === 1) {
         //powerups
-        powerups = scene.physics.add.group();
         var pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
@@ -43,6 +43,159 @@ function createPowerups(scene, nLevel) {
         var Skadi2p = scene.physics.add.sprite(960, 1152, 'skadi');
         Skadi2p.id = 4;
         powerups.add(Skadi2p, true);
+    }
+    else if (nLevel === 2) {
+        
+        var pHemodr = scene.physics.add.sprite(-1632, 16704, 'hemodr');
+        pHemodr.id = 5;
+        powerups.add(pHemodr, true);
+        var pSkadi = scene.physics.add.sprite(-2880, 16032, 'skadi');
+        pSkadi.id = 4;
+        powerups.add(pSkadi, true);
+        var pNjord = scene.physics.add.sprite(-768, 14400, 'njord');
+        pNjord.id = 3;
+        powerups.add(pNjord, true);
+        var pBragi = scene.physics.add.sprite(-3072, 12864, 'bragi');
+        pBragi.id = 2;
+        powerups.add(pBragi, true);
+        var pRatatosk = scene.physics.add.sprite(-1824, 10944, 'ratatosk');
+        pRatatosk.id = 6;
+        powerups.add(pRatatosk, true);
+        var pHeimdall = scene.physics.add.sprite(-480, 6624, 'heimdall');
+        pHeimdall.id = 1;
+        powerups.add(pHeimdall, true);
+        var pTir = scene.physics.add.sprite(-3072, 6240, 'tir');
+        pTir.id = 7;
+        powerups.add(pTir, true);
+        var pTir2 = scene.physics.add.sprite(-1824, 2784, 'tir');
+        pTir2.id = 7;
+        powerups.add(pTir2, true);
+        var pRatatosk2 = scene.physics.add.sprite(-1824, 2304, 'ratatosk');
+        pRatatosk2.id = 6;
+        powerups.add(pRatatosk2, true);
+        
+        var Hemodrp = scene.physics.add.sprite(1920, 16704, 'hemodr');
+        Hemodrp.id = 5;
+        powerups.add(Hemodrp, true);
+        var Skadip = scene.physics.add.sprite(672, 16032, 'skadi');
+        Skadip.id = 4;
+        powerups.add(Skadip, true);
+        var Njordp = scene.physics.add.sprite(2784, 14400, 'njord');
+        Njordp.id = 3;
+        powerups.add(Njordp, true);
+        var Bragip = scene.physics.add.sprite(480, 12864, 'bragi');
+        Bragip.id = 2;
+        powerups.add(Bragip, true);
+        var Ratatoskp = scene.physics.add.sprite(1728, 10944, 'ratatosk');
+        Ratatoskp.id = 6;
+        powerups.add(Ratatoskp, true);
+        var Heimdallp = scene.physics.add.sprite(3072, 6624, 'heimdall');
+        Heimdallp.id = 1;
+        powerups.add(Heimdallp, true);
+        var Tirp = scene.physics.add.sprite(480, 6240, 'tir');
+        Tirp.id = 7;
+        powerups.add(Tirp, true);
+        var Tir2p = scene.physics.add.sprite(1728, 2784, 'tir');
+        Tir2p.id = 7;
+        powerups.add(Tir2p, true);
+        var Ratatosk2p = scene.physics.add.sprite(1728, 2304, 'ratatosk');
+        Ratatosk2p.id = 6;
+        powerups.add(Ratatosk2p, true);
+        
+    }
+    else if (nLevel === 3) {
+        
+        var pCiervo = scene.physics.add.sprite(-2208, 16992, 'ciervo');
+        pCiervo.id = 0;
+        powerups.add(pCiervo, true);
+        var pHemodr = scene.physics.add.sprite(-384, 16608, 'hemodr');
+        pHemodr.id = 5;
+        powerups.add(pHemodr, true);
+        var pSkadi = scene.physics.add.sprite(-3072, 16320, 'skadi');
+        pSkadi.id = 4;
+        powerups.add(pSkadi, true);
+        var pRatatosk = scene.physics.add.sprite(-1536, 15360, 'ratatosk');
+        pRatatosk.id = 6;
+        powerups.add(pRatatosk, true);
+        var pHeimdall = scene.physics.add.sprite(-480, 12864, 'heimdall');
+        pHeimdall.id = 1;
+        powerups.add(pHeimdall, true);
+        var pTir = scene.physics.add.sprite(-3072, 12576, 'tir');
+        pTir.id = 7;
+        powerups.add(pTir, true);
+        var pNjord = scene.physics.add.sprite(-480, 12384, 'njord');
+        pNjord.id = 3;
+        powerups.add(pNjord, true);
+        var pBragi = scene.physics.add.sprite(-1536, 10560, 'bragi');
+        pBragi.id = 2;
+        powerups.add(pBragi, true);
+        var pHemodr2 = scene.physics.add.sprite(-2976, 8160, 'hemodr');
+        pHemodr2.id = 5;
+        powerups.add(pHemodr2, true);
+        var pRatatosk2 = scene.physics.add.sprite(-3072, 7008, 'ratatosk');
+        pRatatosk2.id = 6;
+        powerups.add(pRatatosk2, true);
+        var pNjord2 = scene.physics.add.sprite(-480, 6432, 'njord');
+        pNjord2.id = 3;
+        powerups.add(pNjord2, true);
+        var pSkadi2 = scene.physics.add.sprite(-1344, 5664, 'skadi');
+        pSkadi2.id = 4;
+        powerups.add(pSkadi2, true);
+        var pBragi2 = scene.physics.add.sprite(-1152, 3360, 'bragi');
+        pBragi2.id = 2;
+        powerups.add(pBragi2, true);
+        var pCiervo2 = scene.physics.add.sprite(-2880, 2688, 'ciervo');
+        pCiervo2.id = 0;
+        powerups.add(pCiervo2, true);
+        var pHemodr3 = scene.physics.add.sprite(-1632, 2112, 'hemodr');
+        pHemodr3.id = 5;
+        powerups.add(pHemodr3, true);
+        
+        var Ciervop = scene.physics.add.sprite(1344, 16992, 'ciervo');
+        Ciervop.id = 0;
+        powerups.add(Ciervop, true);
+        var Hemodrp = scene.physics.add.sprite(3168, 16608, 'hemodr');
+        Hemodrp.id = 5;
+        powerups.add(Hemodrp, true);
+        var Skadip = scene.physics.add.sprite(480, 16320, 'skadi');
+        Skadip.id = 4;
+        powerups.add(Skadip, true);
+        var Ratatoskp = scene.physics.add.sprite(2016, 15360, 'ratatosk');
+        Ratatoskp.id = 6;
+        powerups.add(Ratatoskp, true);
+        var Heimdallp = scene.physics.add.sprite(3072, 12864, 'heimdall');
+        Heimdallp.id = 1;
+        powerups.add(Heimdallp, true);
+        var Tirp = scene.physics.add.sprite(480, 12576, 'tir');
+        Tirp.id = 7;
+        powerups.add(Tirp, true);
+        var Njordp = scene.physics.add.sprite(3072, 12384, 'njord');
+        Njordp.id = 3;
+        powerups.add(Njordp, true);
+        var Bragip = scene.physics.add.sprite(2016, 10560, 'bragi');
+        Bragip.id = 2;
+        powerups.add(Bragip, true);
+        var Hemodr2p = scene.physics.add.sprite(576, 8160, 'hemodr');
+        Hemodr2p.id = 5;
+        powerups.add(Hemodr2p, true);
+        var Ratatosk2p = scene.physics.add.sprite(480, 7008, 'ratatosk');
+        Ratatosk2p.id = 6;
+        powerups.add(Ratatosk2p, true);
+        var Njord2p = scene.physics.add.sprite(3072, 6432, 'njord');
+        Njord2p.id = 3;
+        powerups.add(Njord2p, true);
+        var Skadi2p = scene.physics.add.sprite(2208, 5664, 'skadi');
+        Skadi2p.id = 4;
+        powerups.add(Skadi2p, true);
+        var Bragi2p = scene.physics.add.sprite(2400, 3360, 'bragi');
+        Bragi2p.id = 2;
+        powerups.add(Bragi2p, true);
+        var Ciervo2p = scene.physics.add.sprite(672, 2688, 'ciervo');
+        Ciervo2p.id = 0;
+        powerups.add(Ciervo2p, true);
+        var Hemodr3p = scene.physics.add.sprite(1920, 2112, 'hemodr');
+        Hemodr3p.id = 5;
+        powerups.add(Hemodr3p, true);
     }
 
     scene.physics.add.collider(powerups, layer);

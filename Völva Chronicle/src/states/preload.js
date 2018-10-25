@@ -9,6 +9,7 @@ preloadScene.preload = function () {
     //assets plataforms
     this.load.tilemapCSV('map1', 'assets/platforms/Nivel1.csv');
     this.load.tilemapCSV('map2', 'assets/platforms/Nivel2.csv');
+    this.load.tilemapCSV('map3', 'assets/platforms/Nivel3.csv');
     this.load.image('tiles', 'assets/platforms/tiles/Tiles.png');
     
     //Backgrounds
