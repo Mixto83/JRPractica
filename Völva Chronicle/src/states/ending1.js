@@ -14,9 +14,9 @@ ending1Scene.nextScene = function(){
 }
 ending1Scene.create = function (){
     createBackground(ending1Scene,1045,540,3,'Ending1');
-    createParticles(ending1Scene,1090,3500,8,'Intro');//Placeholder: Modificar sprite de particulas y velocidad
+    createParticles(ending1Scene,1090,3500,8,'Ending1');//Placeholder: Modificar sprite de particulas y velocidad
     createMusic(ending1Scene,'ending1');
-    createTextBox(ending1Scene,960,1000.5,10,0.17,'Intro');//Placeholder: Escribir guion y generar sprite
+    createTextBox(ending1Scene,960,1000.5,10,0.17,'Ending1');
     //Teclado
     this.input.keyboard.on('keyup', function(event){
         ending1Scene.nextScene();

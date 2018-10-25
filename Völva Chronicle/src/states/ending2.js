@@ -21,9 +21,9 @@ ending2Scene.nextScene = function(){
 
 ending2Scene.create = function (){
     createBackground(ending2Scene,1045,540,3,'Ending2');
-    createParticles(ending2Scene,1090,3500,8,'Intro');//Placeholder: Modificar sprite de particulas y velocidad
+    createParticles(ending2Scene,1090,3500,8,'Ending2');
     createMusic(ending2Scene,'ending2');
-    createTextBox(ending2Scene,960,1000.5,10,0.17,'Intro');//Placeholder: Escribir guion y generar sprite
+    createTextBox(ending2Scene,960,1000.5,10,0.17,'Ending2');
 
     //Teclado
     this.input.keyboard.on('keyup', function(event){
