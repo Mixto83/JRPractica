@@ -1,7 +1,7 @@
 salto: 1-24 (pico: 15)
 startup pasos: 25-27
 pasos: 28-46
-knockback: 47-69 (stun: 61)
+knockback: 47-69 (stun: 61) (aire:53)
 agache: inicio:70, mantener: 73, fin:76
 salto pared desde salto: 77-83
 salto en pared desde aire: 84-90
