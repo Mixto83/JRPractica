@@ -1,20 +1,19 @@
-salto: 1-24 (pico: 15)
-startup pasos: 25-27
-pasos: 28-46
-knockback: 47-69 (stun: 61) (aire:53)
-agache: inicio:70, mantener: 73, fin:76
-salto pared desde salto: 77-83
-salto en pared desde aire: 84-90
-dash lateral: 91-118 (mantener 104-106)
-dash lateral aire:119-137 (mantener 127)
-idle:138-152
-dash abajo: 153-169 (mantener 161-165)
-caida dash:182-190
-dash diagonal arriba: 191-213 (mantener 203)
-dash diagonal abajo: 214-229 (mantener 222)
-caida dash diagonal abajo: 240-247
-dash arriba: 248-267 (mantener 257-261)
-dash agachado: 268-290 (mantener 276)
-idle aereo: 291-298
-
-(1 menos en todos los frames porque empieza en 0)
+salto: 0-18 (pico: 9-10-11, son clonicos)
+startup pasos: 19-21
+pasos: 22-40
+knockback: 41-63 
+agache: inicio:64, mantener: 67, fin:70
+salto pared desde salto: 71-77
+salto en pared desde aire: 78-84
+dash lateral: 85-114 (mantener 98-102)
+dash lateral aire:115-133 (mantener 123)
+idle:134-148
+dash abajo: 149-164 (mantener 157-161)
+caida dash:177-186
+dash diagonal arriba: 187-209 (mantener 199)
+dash diagonal abajo: 210-225
+caida dash diagonal abajo: 235-243
+dash arriba: 244-260
+dash agachado: 261-283 (mantener 269)
+idle aereo: 284-291
+Combate: 292-468
