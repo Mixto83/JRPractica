@@ -10,7 +10,6 @@ var levelTime = 0;
 //nivel actual
 var currentLevel = 0;
 var levelEnded = false;
-
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');//3552
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
@@ -199,6 +198,9 @@ createInputs = function (scene) {
     player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+    //Debug
+    player1.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
+    player2.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
 }
 
 updateTimer = function() {
@@ -219,7 +221,14 @@ endLevel = function(scene, player) {
     console.log(levelTime + 'META');
     player.win = true;
     levelEnded = true;
-    scene.scene.start('reward');
+    if (currentLevel === 1 || currentLevel === 2){
+        scene.scene.start('reward');
+    } else if (currentLevel === 3 && player === player1){
+        scene.scene.start('ending1');
+    } else if (currentLevel === 3 && player === player2){
+        scene.scene.start('ending2');
+    }
+    
 }
 
 createAnimationEvents = function (player) {
@@ -349,6 +358,9 @@ updateAnimation = function (player) {
     }
 }
 updateControls = function (scene, player, adversary) {
+    if(player.keyTest.isDown && !levelEnded){
+        endLevel(scene,player);
+    }
 
     if (currentLevel === 1) {
         if ((player1.x >= -550) && (player1.y <= 300)) {

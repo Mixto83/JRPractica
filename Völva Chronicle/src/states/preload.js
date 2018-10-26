@@ -36,11 +36,6 @@ preloadScene.preload = function () {
     this.load.image('logoStudio', 'assets/cutscenes/logo_Edda_games.png');
     this.load.image('logoGame', 'assets/cutscenes/logo_Volva.png');
     this.load.image('fondoRecompensa', 'assets/cutscenes/pantalla_recompensa.png');
-    this.load.image('runaSkadi', 'assets/sprites/Runa_Skadi.png');
-    this.load.image('runaTir', 'assets/sprites/Runa_Tir.png');
-    this.load.image('runaBragi', 'assets/sprites/Runa_Bragi.png');
-    this.load.image('runaHemodr', 'assets/sprites/Runa_Hemodr.png');
-    this.load.image('runaNjord', 'assets/sprites/Runa_Njord.png');
 
     this.load.spritesheet('cajaTextoIntro', 'assets/cutscenes/cajaIntro.png', {
         frameWidth: 1212,

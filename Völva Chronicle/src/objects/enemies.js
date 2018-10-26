@@ -168,7 +168,7 @@ var createEnemy = function (scene, nLevel) {
 
         var enemiesp4 = scene.physics.add.sprite(2976, 5952, enemyType[2]);
         enemiesp.add(enemiesp4, true);
-        enemiesp4.planza = scene.physics.add.sprite(2976, 5952, 'lanza');
+        enemiesp4.lanza = scene.physics.add.sprite(2976, 5952, 'lanza');
         enemiesp4.lanza.angle = 135;
         lanzasDL.add(enemiesp4.lanza, true);
         enemiesp4.lanza.posX = 2976;
@@ -287,7 +287,7 @@ var createEnemy = function (scene, nLevel) {
 
         var enemiesp4 = scene.physics.add.sprite(864, 3840, enemyType[2]);
         enemiesp.add(enemiesp4, true);
-        enemiesp4.planza = scene.physics.add.sprite(864, 59384052, 'lanza');
+        enemiesp4.lanza = scene.physics.add.sprite(864, 59384052, 'lanza');
         lanzasR.add(enemiesp4.lanza, true);
         enemiesp4.lanza.posX = 864;
         enemiesp4.lanza.posY = 3840;
