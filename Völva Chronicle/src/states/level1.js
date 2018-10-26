@@ -7,12 +7,14 @@ level1Scene.preload = function (){
 }
 
 level1Scene.create = function (){
+    currentLevel = 1;
     createLevel(level1Scene, 1);
     createPlayers(level1Scene);
     createPowerups(level1Scene, 1);
     createInputs(level1Scene);
     createCameras(level1Scene);
     createEnemy(level1Scene, 1);
+    createTimer(level1Scene);
 }
 
 level1Scene.update = function (){

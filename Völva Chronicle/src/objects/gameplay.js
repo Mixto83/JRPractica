@@ -4,6 +4,13 @@ var player2;
 var playerVelocityY = 900;
 var playerVelocityX = 500;
 
+//cronometro
+var levelTime = 0;
+
+//nivel actual
+var currentLevel = 0;
+var levelEnded = false;
+
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');//3552
     player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
@@ -151,6 +158,7 @@ addPlayer = function (scene, player) {
     //0:sin dash, 1:dash arriba, , 3:de frente
     //4: diagonal abajo, 5:abajo
     player.falling = false;
+    player.win = false;
     //redimensiona bounding box y le aplica un offset para ajustar su centro
     player.setSize(66, 121).setOffset(29, 0);
     //colisiones
@@ -191,6 +199,27 @@ createInputs = function (scene) {
     player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+}
+
+updateTimer = function() {
+    if (!levelEnded) {
+        levelTime++;
+        console.log(levelTime);
+    }
+}
+
+createTimer = function (scene) {
+    levelTime = 0;
+    levelEnded = false;
+    scene.time.addEvent({delay: 1000, callback: updateTimer, callbackScope: scene, loop: true});
+}
+
+//Funcion para terminar el nivel al llegar a la meta
+endLevel = function(scene, player) {
+    console.log(levelTime + 'META');
+    player.win = true;
+    levelEnded = true;
+    scene.scene.start('reward');
 }
 
 createAnimationEvents = function (player) {
@@ -321,6 +350,25 @@ updateAnimation = function (player) {
 }
 updateControls = function (scene, player, adversary) {
 
+    if (currentLevel === 1) {
+        if ((player1.x >= -550) && (player1.y <= 300)) {
+            endLevel(scene, player1);
+            console.log('METAaguila');
+        } else if ((player2.x >= 3000) && (player2.y <= 300)) {
+            endLevel(scene, player2);
+            console.log('METAnidhogg');
+        }
+    }
+    if (currentLevel === 2) {
+        if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400)) {
+            endLevel(scene, player1);
+            console.log('METAaguila');
+        } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400)) {
+            endLevel(scene, player2);
+            console.log('METAnidhogg');
+        }
+    }
+    
     if (player.keyLeft.isDown) {
         player.leftPulsada = true;
         player.facingRight = false;
