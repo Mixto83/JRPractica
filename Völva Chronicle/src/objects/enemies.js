@@ -34,6 +34,7 @@ var createEnemy = function (scene, nLevel) {
         lanzasR.add(penemies0.lanza, true);
         penemies0.lanza.posX = -3020;
         penemies0.lanza.posY = 5760;
+        penemies0.setSize(66, 121).setOffset(72, 57);
 
         var penemies1 = scene.physics.add.sprite(-2168, 2208, enemyType[1]);
         penemies.add(penemies1, true);
@@ -74,8 +75,8 @@ var createEnemy = function (scene, nLevel) {
         lanzasDR.add(enemiesp2.lanza, true);
         enemiesp2.lanza.posX = 2452;
         enemiesp2.lanza.posY = 2500;
-        
-    } 
+
+    }
     else if (nLevel === 2) {
         var numberEnemies = 14;
         enemyType = randomTypeEnemies(numberEnemies);
@@ -329,7 +330,14 @@ var createEnemy = function (scene, nLevel) {
 
     //solo puede luchar cada uno con sus propios enemigos
     scene.physics.add.overlap(player1, penemies, function (player1, penemies) {
-        fightEnemies(scene, player1, penemies);
+        player1.combat = true;
+        player1.anims.play('combat', true);
+        player1.anims.stopOnRepeat();
+        player1.on('animationcomplete', function () {
+            fightEnemies(scene, player1, penemies);
+            player1.combat = false;
+        });
+        //fightEnemies(scene, player1, penemies);
     }, null, this);
     scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp) {
         fightEnemies(scene, player2, enemiesp);
@@ -421,8 +429,8 @@ function moveLanzas() {
     lanzasL.setVelocityX(-400);
     lanzasR.setVelocityY(0);
     lanzasL.setVelocityY(0);
-    lanzasDR.setVelocity(400,400);
-    lanzasDL.setVelocity(-400,400);
-    lanzasUR.setVelocity(400,-400);
-    lanzasUL.setVelocity(-400,-400);
+    lanzasDR.setVelocity(400, 400);
+    lanzasDL.setVelocity(-400, 400);
+    lanzasUR.setVelocity(400, -400);
+    lanzasUL.setVelocity(-400, -400);
 }
