@@ -226,10 +226,12 @@ createTimer = function (scene) {
 
 //Funcion para terminar el nivel al llegar a la meta
 endLevel = function (scene, player) {
+    levelEnded = true;
+    scene.sound.play('victorySound');
     console.log(levelTime + 'META');
     music.stop();
     player.win = true;
-    levelEnded = true;
+    
     
     if (currentLevel === 1 || currentLevel === 2) {
         scene.scene.start('reward');
@@ -387,28 +389,28 @@ updateControls = function (scene, player, adversary) {
         }
     
         if (currentLevel === 1) {
-            if ((player1.x >= -550) && (player1.y <= 300)) {
+            if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
                 endLevel(scene, player1);
                 console.log('METAaguila');
-            } else if ((player2.x >= 3000) && (player2.y <= 300)) {
+            } else if ((player2.x >= 3000) && (player2.y <= 300) && !levelEnded) {
                 endLevel(scene, player2);
                 console.log('METAnidhogg');
             }
         }
         if (currentLevel === 2) {
-            if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400)) {
+            if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400) && !levelEnded) {
                 endLevel(scene, player1);
                 console.log('METAaguila');
-            } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400)) {
+            } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400) && !levelEnded) {
                 endLevel(scene, player2);
                 console.log('METAnidhogg');
             }
         }
         if (currentLevel === 3) {
-            if ((player1.x <= -2750) && (player1.y <= 600)) {
+            if ((player1.x <= -2750) && (player1.y <= 600) && !levelEnded) {
                 endLevel(scene, player1);
                 console.log('METAaguila');
-            } else if ((player2.x <= 800) && (player2.y <= 600)) {
+            } else if ((player2.x <= 800) && (player2.y <= 600) && !levelEnded) {
                 endLevel(scene, player2);
                 console.log('METAnidhogg');
             }

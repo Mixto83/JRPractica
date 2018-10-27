@@ -389,6 +389,7 @@ function remplaceLanza(lanza) {
 
 //colision lanza con jugador
 function hitLanza(scene, player, lanza) {
+    scene.sound.play('spearSound');
     if (lanza.x > player.x) {
         player.throwLeft = true;
     } else {

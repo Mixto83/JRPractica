@@ -15,6 +15,9 @@ rewardScene.preload = function (){
 }
 
 rewardScene.create = function () {
+    music = this.sound.add('rewardMusic');
+    music.setLoop(true);
+    music.play();
 
     //Input para saltar la pantalla de Reward
     keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
@@ -52,10 +55,13 @@ rewardScene.create = function () {
 
 rewardScene.update = function(){
     if(keyZ.isDown){
+        
         if (currentLevel === 1){
+            music.stop();
             keyZ.isDown = false;
             rewardScene.scene.start('level2');
-        } else if (currentLevel === 2){
+        } else if (currentLevel === 2){     
+            music.stop();      
             keyZ.isDown = false;
             rewardScene.scene.start('level3');
         }

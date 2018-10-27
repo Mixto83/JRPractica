@@ -86,15 +86,23 @@ preloadScene.preload = function () {
     //Licensed under Creative Commons: By Attribution 3.0
     //http://creativecommons.org/licenses/by/3.0/
     this.load.audio('menuMusic', 'assets/music/menuMusic.mp3');
+    this.load.audio('rewardMusic', 'assets/music/rewardMusic.mp3');
     this.load.audio('introMusic', 'assets/music/introMusic.mp3');
     this.load.audio('ending1Music', 'assets/music/ending1Music.mp3');
     this.load.audio('ending2Music', 'assets/music/ending2Music.mp3');
     this.load.audio('musicLevel1', 'assets/music/level1Music.mp3');
     this.load.audio('musicLevel2', 'assets/music/level2Music.mp3');
     this.load.audio('musicLevel3', 'assets/music/level3Music.mp3');
-    //Sonido
+    //Sonidos
     this.load.audio('menuConfirm', 'assets/sounds/menuConfirm.mp3');
     this.load.audio('runeObtained', 'assets/sounds/runeObtained.wav');
+    this.load.audio('impactSound', 'assets/sounds/punchPlayers.wav');
+    this.load.audio('spearSound', 'assets/sounds/spearImpact.wav');
+    this.load.audio('shieldSound','assets/sounds/shieldTir.wav');
+    this.load.audio('ratatoskSound','assets/sounds/ratatoskSound.wav');
+    this.load.audio('deerSound', 'assets/sounds/deerSound.mp3');
+    this.load.audio('portalSound', 'assets/sounds/portalHeimdall.mp3');
+    this.load.audio('victorySound', 'assets/sounds/victorySound.wav');
 }
 
 preloadScene.create = function () {

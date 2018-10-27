@@ -256,6 +256,8 @@ function reverseRatatosk(scene, player, adversary) {
 
 function ratatoskFunc(scene, player, adversary) {
     //Funcion completa. No requiere de ninguna modificacion, salvo que se quiera cambiar el tiempo que tarda en llamar a la otra funcion para revertir el efecto
+    scene.sound.play('ratatoskSound');
+
     if (player === player1) {
         if (player.ratatosk === 0) {
             player.ratatoskBool = true;
@@ -294,6 +296,7 @@ function throwFunc(scene, player1, player2) {
     heimdallReturn(player);
     
     //dependiendo de por donde viniera el golpe se desplaza hacia un lado u otro
+    scene.sound.play('impactSound');
     if (player.x > adversary.x) {
         adversary.throwLeft = true;
     } else {
@@ -323,6 +326,7 @@ function heimdallReturn(player) {
 
 function heimdallFunc(scene, player, adversary) {
     if (adversary.tir === false) {
+        scene.sound.play('portalSound');
         heimdall = true;
         player.heimdall = true;
         player.lastY = player.y;
@@ -336,6 +340,7 @@ function heimdallFunc(scene, player, adversary) {
         }
         scene.time.delayedCall(10000, heimdallReturn, [player], scene);
     } else {
+        scene.sound.play('shieldSound');
         adversary.tir = false;
     }
 
@@ -344,6 +349,7 @@ function heimdallFunc(scene, player, adversary) {
 //Funciones del powerup de los ciervos
 function ciervosFunc(scene, player, adversary) {
     var nCiervo = Math.floor(Math.random() * 4);
+    scene.sound.play('deerSound');
     switch (nCiervo) {
         case 0:
             //Dainn

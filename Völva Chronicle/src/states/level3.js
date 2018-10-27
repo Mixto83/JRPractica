@@ -48,4 +48,5 @@ level3Scene.update = function () {
     updateAnimation(player1);
     updateAnimation(player2);
     moveLanzas();
+    updateCameras(player1,player2);
 }
