@@ -229,6 +229,12 @@ function powerupsFunc(player, powerups, scene) {
         eventNjord(scene, player);
     } else if (powerups.id === 4) {
         eventSkadi(scene, adversary);
+    } else if (powerups.id === 5) {
+        eventHermodr(scene,player);
+    } else if (powerups.id === 6){
+        ratatoskFunc(scene,player,adversary);
+    } else if (powerups.id === 7){
+        eventTir(scene,player);
     }
 }
 
@@ -367,11 +373,13 @@ function ciervosFunc(scene, player, adversary) {
 
 //Runas
 function eventHermodr(scene, player) {
+    scene.sound.play('runeObtained');
     player.velocidadX += 100;
     scene.time.delayedCall(5000, onHermodrSkadi, [player], scene);
 }
 
 function eventSkadi(scene, adversary) {
+    scene.sound.play('runeObtained');
     adversary.velocidadX -= 100;
     scene.time.delayedCall(5000, onHermodrSkadi, [adversary], scene);
 }
@@ -381,6 +389,7 @@ function onHermodrSkadi(adversary) {
 }
 
 function eventNjord(scene, player) {
+    scene.sound.play('runeObtained');
     player.velocidadY += 100;
     scene.time.addEvent({
         delay: 5000,
@@ -396,6 +405,7 @@ function onNjord(player) {
 }
 
 function eventBragi(scene, player) {
+    scene.sound.play('runeObtained');
     player.contStamine += 100;
     scene.time.addEvent({
         delay: 5000,
@@ -407,4 +417,9 @@ function eventBragi(scene, player) {
 
 function onBragi(player) {
     player.contStamine = 100;
+}
+
+function eventTir(scene,player){
+    scene.sound.play('runeObtained');
+    player.tir = true;
 }

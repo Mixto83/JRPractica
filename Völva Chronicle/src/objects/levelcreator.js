@@ -14,7 +14,7 @@ createLevel = function (scene, nLevel) {
    
 
     //Creacion del mapa dependiendo del nivel
-    if (nLevel === 1) {
+   /* if (nLevel === 1) {
         //tilemap
         map = scene.make.tilemap({ key: 'map1', tileWidth: 48, tileHeight: 48});
     }
@@ -23,8 +23,14 @@ createLevel = function (scene, nLevel) {
     }
     else if (nLevel === 3) {
         map = scene.make.tilemap({ key: 'map3', tileWidth: 48, tileHeight: 48});
-    }
+    }*/
 
+    map = scene.make.tilemap({ key:'map'+nLevel, tileWidth: 48, tileHeight: 48});
+    music = scene.sound.add('musicLevel'+nLevel);
+    music.setLoop(true);
+    music.setVolume(0.4);
+    scene.time.delayedCall(300, function(){music.play();},[], scene);
+    
     var tileset = map.addTilesetImage('tiles');
     layer = map.createStaticLayer(0, tileset, -3501,0);
     map.setCollisionBetween(0,115);

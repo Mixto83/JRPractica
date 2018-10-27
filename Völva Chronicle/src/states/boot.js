@@ -3,9 +3,8 @@ var bootScene = new Phaser.Scene('boot');
 bootScene.active = true;
 
 bootScene.preload = function (){
-    var loadingText = this.add.text(80, 150, 'boot...');
-    //podemos usar boot para cargar imagenes como un fondo y barra para
-    //la pantalla de carga (preload)
+    this.load.image('fondoRecompensa', 'assets/cutscenes/pantalla_recompensa.png');
+    this.load.atlas('loadingIcon','assets/cutscenes/loading_image.png','assets/cutscenes/loading_image.json');
 }
 
 bootScene.create = function (){

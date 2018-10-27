@@ -7,16 +7,14 @@ ending1Scene.preload = function (){
 }
 
 ending1Scene.nextScene = function(){
-    music.stop();
-    background.setVelocityX(0);
-    particles.setGravityY(-500);
+    stopCinematics();
     ending1Scene.scene.start('menu');
 }
 ending1Scene.create = function (){
     createBackground(ending1Scene,1045,540,3,'Ending1');
     createParticles(ending1Scene,1090,3500,8,'Ending1');//Placeholder: Modificar sprite de particulas y velocidad
     createMusic(ending1Scene,'ending1');
-    createTextBox(ending1Scene,960,1000.5,10,0.17,'Ending1');
+    createTextBox(ending1Scene,960,990.5,10,0.17,'Ending1');
     //Teclado
     keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }

@@ -35,13 +35,14 @@ menuScene.create = function () {
             botonLocal = menuScene.add.sprite(960, 650, 'botonLocal').setInteractive();
             botonLocal.on('pointerdown', function (pointer) {
                 music.stop();
-                menuScene.scene.start('intro');
+                menuScene.sound.play('menuConfirm');
+                menuScene.time.delayedCall(2000, function(){menuScene.scene.start('intro');}, [], menuScene);
             });
 
-            //Botón "Online"
+            //Boton "Online"
             botonOnline = menuScene.add.sprite(960, 800, 'botonOnline').setInteractive();
             botonLocal.on('pointerdown', function (pointer) {
-                //Se implementará más tarde
+                //Se implementara mas tarde
             });
 
         });

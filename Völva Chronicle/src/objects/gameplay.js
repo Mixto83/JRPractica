@@ -227,8 +227,10 @@ createTimer = function (scene) {
 //Funcion para terminar el nivel al llegar a la meta
 endLevel = function (scene, player) {
     console.log(levelTime + 'META');
+    music.stop();
     player.win = true;
     levelEnded = true;
+    
     if (currentLevel === 1 || currentLevel === 2) {
         scene.scene.start('reward');
     } else if (currentLevel === 3 && player === player1) {
@@ -374,7 +376,6 @@ updateAnimation = function (player) {
         
     }
 
-    console.log(player1.combat);
 }
 
 

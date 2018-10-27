@@ -1,11 +1,5 @@
 var ending2Scene = new Phaser.Scene('ending2');
 
-//Variables globales para el ending de Nidhögg
-var cajaTexto3;
-var particulas3;
-var fondoNidhogg;
-var music3;
-
 ending2Scene.active = true;
 
 ending2Scene.preload = function (){
@@ -13,9 +7,7 @@ ending2Scene.preload = function (){
 }
 
 ending2Scene.nextScene = function(){
-    music.stop();
-    background.setVelocityX(0);
-    particles.setGravityY(-500);
+    stopCinematics();
     ending2Scene.scene.start('menu');
 }
 

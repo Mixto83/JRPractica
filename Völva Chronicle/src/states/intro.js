@@ -7,9 +7,7 @@ introScene.preload = function (){
 }
 
 introScene.nextScene = function(){
-    music.stop();
-    background.setVelocityX(0);
-    particles.setGravityY(-500);
+    stopCinematics();
     introScene.scene.start('level1');
 }
 
@@ -25,6 +23,7 @@ introScene.create = function (){
 }
 
 introScene.update = function (){
+    console.log(particles[0].y);
     if (background.x <= 855){
         introScene.nextScene();
     }
