@@ -18,13 +18,15 @@ ending1Scene.create = function (){
     createMusic(ending1Scene,'ending1');
     createTextBox(ending1Scene,960,1000.5,10,0.17,'Ending1');
     //Teclado
-    this.input.keyboard.on('keyup', function(event){
-        ending1Scene.nextScene();
-    });
+    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
 ending1Scene.update = function(){
     if (background.x <= 855){
         ending1Scene.nextScene();
     }
+    if( keyZ.isDown) {
+        keyZ.isDown = false;
+        ending1Scene.nextScene();
+    };
 }

@@ -26,13 +26,15 @@ ending2Scene.create = function (){
     createTextBox(ending2Scene,960,1000.5,10,0.17,'Ending2');
 
     //Teclado
-    this.input.keyboard.on('keyup', function(event){
-        ending2Scene.nextScene();
-    });
+    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
 ending2Scene.update = function (){
     if (background.x <= 855){
         ending2Scene.nextScene();
     }
+    if( keyZ.isDown) {
+        keyZ.isDown = false;
+        ending2Scene.nextScene();
+    };
 }

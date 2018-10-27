@@ -381,10 +381,10 @@ updateAnimation = function (player) {
 
 updateControls = function (scene, player, adversary) {
     if (!player.combat) {
-        if (player.keyTest.isDown && !levelEnded) {
-            endLevel(scene, player);
+        if(player.keyTest.isDown && !levelEnded){
+            endLevel(scene,player);
         }
-
+    
         if (currentLevel === 1) {
             if ((player1.x >= -550) && (player1.y <= 300)) {
                 endLevel(scene, player1);
@@ -399,6 +399,15 @@ updateControls = function (scene, player, adversary) {
                 endLevel(scene, player1);
                 console.log('METAaguila');
             } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400)) {
+                endLevel(scene, player2);
+                console.log('METAnidhogg');
+            }
+        }
+        if (currentLevel === 3) {
+            if ((player1.x <= -2750) && (player1.y <= 600)) {
+                endLevel(scene, player1);
+                console.log('METAaguila');
+            } else if ((player2.x <= 800) && (player2.y <= 600)) {
                 endLevel(scene, player2);
                 console.log('METAnidhogg');
             }

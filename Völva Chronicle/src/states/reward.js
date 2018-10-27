@@ -6,6 +6,7 @@ var runeName;
 var obtainedRune;
 var text;
 var keyZ;
+var text2;
 
 rewardScene.active = true;
 
@@ -26,33 +27,36 @@ rewardScene.create = function () {
     fondoRecompensa = this.add.image(960, 540, 'fondoRecompensa');
 
     //Texto
-    var style = {font: "Matura MT Script Capitals", fontSize: '50px', fill: "#CC993"}; 
-    text = this.add.text(960, 480, '', style);
+    var style1 = {font: "50px Fantasy", fill: "#000"}; 
+    var style2 = {font: "30px Fantasy", fill: "#000"};
+    text = this.add.text(700, 400, '', style1);
+    text2 = this.add.text(800, 800, 'Pulse Z para continuar', style2);
     //Recompensa
     if (player1.win) {
         console.log('Gana aguila');
         text.setText([
-            'Ganador: ¡Águila!',
+            'Ganador: ¡Águila!',           
+            'El Águila consigue: ' + runeName,
             'Tiempo: ' + levelTime,
-            'El Águila consigue: ' + runeName
         ]);
     } else { 
         console.log('Gana Nidhogg');
         text.setText([
             'Ganador: ¡Nidhogg!',
-            'Tiempo: ' + levelTime,
-            'Nidhogg consigue: ' + runeName
+            'Nidhogg consigue: ' + runeName,
+            'Tiempo: ' + levelTime
         ]);
     }
-    obtainedRune = rewardScene.add.image(960, 750, runeName);
+    obtainedRune = rewardScene.add.image(960, 700, runeName);
 }
 
 rewardScene.update = function(){
-    //Salta bien al nivel 2, pero salta automaticamente al 3 porque considera que Z está pulsada.
     if(keyZ.isDown){
         if (currentLevel === 1){
+            keyZ.isDown = false;
             rewardScene.scene.start('level2');
         } else if (currentLevel === 2){
+            keyZ.isDown = false;
             rewardScene.scene.start('level3');
         }
     }
