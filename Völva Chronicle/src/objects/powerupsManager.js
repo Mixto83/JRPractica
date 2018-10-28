@@ -129,13 +129,13 @@ function createPowerups(scene, nLevel) {
         var pBragi = scene.physics.add.sprite(-1549, 10483, 'bragi');
         pBragi.id = 2;
         powerups.add(pBragi, true);
-        var pHemodr2 = scene.physics.add.sprite(-1365, 8083, 'hemodr');
+        var pHemodr2 = scene.physics.add.sprite(-3068, 8083, 'hemodr');
         pHemodr2.id = 5;
         powerups.add(pHemodr2, true);
         var pRatatosk2 = scene.physics.add.sprite(-3169, 6931, 'ratatosk');
         pRatatosk2.id = 6;
         powerups.add(pRatatosk2, true);
-        var pNjord2 = scene.physics.add.sprite(-3068, 8083, 'njord');
+        var pNjord2 = scene.physics.add.sprite(-480, 6259, 'njord');
         pNjord2.id = 3;
         powerups.add(pNjord2, true);
         var pSkadi2 = scene.physics.add.sprite(-2669, 5587, 'skadi');
@@ -175,13 +175,13 @@ function createPowerups(scene, nLevel) {
         var Bragip = scene.physics.add.sprite(2001, 10483, 'bragi');
         Bragip.id = 2;
         powerups.add(Bragip, true);
-        var Hemodr2p = scene.physics.add.sprite(2185, 8083, 'hemodr');
+        var Hemodr2p = scene.physics.add.sprite(484, 8083, 'hemodr');
         Hemodr2p.id = 5;
         powerups.add(Hemodr2p, true);
         var Ratatosk2p = scene.physics.add.sprite(381, 6931, 'ratatosk');
         Ratatosk2p.id = 6;
         powerups.add(Ratatosk2p, true);
-        var Njord2p = scene.physics.add.sprite(881, 8083, 'njord');
+        var Njord2p = scene.physics.add.sprite(3072, 6259, 'njord');
         Njord2p.id = 3;
         powerups.add(Njord2p, true);
         var Skadi2p = scene.physics.add.sprite(881, 5587, 'skadi');
@@ -397,12 +397,7 @@ function onHermodrSkadi(adversary) {
 function eventNjord(scene, player) {
     scene.sound.play('runeObtained');
     player.velocidadY += 100;
-    scene.time.addEvent({
-        delay: 5000,
-        callback: onNjord(player),
-        callbackScope: scene,
-        repeat: 0
-    });
+    scene.time.delayedCall(5000,onNjord, [player],scene);
 }
 
 function onNjord(player) {
@@ -413,12 +408,7 @@ function onNjord(player) {
 function eventBragi(scene, player) {
     scene.sound.play('runeObtained');
     player.contStamine += 100;
-    scene.time.addEvent({
-        delay: 5000,
-        callback: onBragi(player),
-        callbackScope: scene,
-        repeat: 0
-    });
+    scene.time.delayedCall(5000,onBragi, [player], scene);
 }
 
 function onBragi(player) {

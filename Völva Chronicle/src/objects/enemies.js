@@ -32,19 +32,19 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(penemies0, penemies, lanzasR, -3020, 5875, 0, enemyType[0], scene, true);
 
         var penemies1;
-        addEnemy(penemies1, penemies, lanzasDL, -2168, 2208, 135, enemyType[1],scene, false);//
+        addEnemy(penemies1, penemies, lanzasDL, -2260, 2208, 135, enemyType[1],scene, false);//
 
         var penemies2;
-        addEnemy(penemies2, penemies, lanzasDR, -953, 2995, 45, enemyType[2],scene, true);
+        addEnemy(penemies2, penemies, lanzasDR, -905, 2995, 45, enemyType[2],scene, true);
 
         var enemiesp0;
         addEnemy(enemiesp0, enemiesp, lanzasR, 532, 5875, 0, enemyType[3],scene, true);
 
         var enemiesp1;
-        addEnemy(enemiesp1, enemiesp, lanzasDL, 1384, 2208, 135, enemyType[4],scene, false);
+        addEnemy(enemiesp1, enemiesp, lanzasDL, 1292, 2208, 135, enemyType[4],scene, false);
 
         var enemiesp2;
-        addEnemy(enemiesp2, enemiesp, lanzasDR, 2597, 2995, 45, enemyType[5],scene, true);
+        addEnemy(enemiesp2, enemiesp, lanzasDR, 2645, 2995, 45, enemyType[5],scene, true);
     }
     else if (nLevel === 2) {
         var numberEnemies = 14;
@@ -52,32 +52,32 @@ var createEnemy = function (scene, nLevel) {
 
 
         var penemies0;
-        addEnemy(penemies0, penemies, lanzasDL, -2112, 17472, 180, enemyType[0],scene,false);
+        addEnemy(penemies0, penemies, lanzasDL, -2256, 17472, 135, enemyType[0],scene,false);
 
         var penemies1;
-        addEnemy(penemies1, penemies, lanzasDR, -2977, 16819, 45, enemyType[1],scene,true);//
+        addEnemy(penemies1, penemies, lanzasDR, -2929, 16819, 45, enemyType[1],scene,true);//
 
         var penemies2;
         addEnemy(penemies2, penemies, lanzasR, -1809, 11155, 0, enemyType[2],scene,true);//
 
         var penemies3;
-        addEnemy(penemies3, penemies, lanzasL, -1165, 6835, 0, enemyType[3],scene,false);//
+        addEnemy(penemies3, penemies, lanzasL, -1165, 6835, 180, enemyType[3],scene,false);//
 
         var penemies4;
         addEnemy(penemies4, penemies, lanzasDL, -681, 5875, 135, enemyType[4],scene,false);//
 
         var penemies5;
-        addEnemy(penemies5, penemies, lanzasL, -1581, 2227, 0, enemyType[5],scene,false);//
+        addEnemy(penemies5, penemies, lanzasR, -1581, 2227, 0, enemyType[5],scene,false);//
 
         var penemies6;
-        addEnemy(penemies0, penemies, lanzasR, -2143, 2227, 180, enemyType[6],scene,true);//
+        addEnemy(penemies0, penemies, lanzasL, -2143, 2227, 180, enemyType[6],scene,true);//
 
 
         var enemiesp0;
-        addEnemy(enemiesp0, enemiesp, lanzasDL, 1438, 17472, 180, enemyType[7],scene,false);
+        addEnemy(enemiesp0, enemiesp, lanzasDL, 1296, 17472, 135, enemyType[7],scene,false);
 
         var enemiesp1;
-        addEnemy(enemiesp1, enemiesp, lanzasDR, 573, 16819, 180, enemyType[8],scene,true);
+        addEnemy(enemiesp1, enemiesp, lanzasDR, 623, 16819, 45, enemyType[8],scene,true);
 
         var enemiesp2;
         addEnemy(enemiesp2, enemiesp, lanzasR, 1741, 11155, 0, enemyType[9],scene,true);
@@ -89,10 +89,10 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(enemiesp4, enemiesp, lanzasDL, 2869, 5875, 135, enemyType[11],scene,false);
 
         var enemiesp5;
-        addEnemy(enemiesp5, enemiesp, lanzasR, 1756, 2227, 0, enemyType[12],scene,true);
+        addEnemy(enemiesp5, enemiesp, lanzasR, 1971, 2227, 0, enemyType[12],scene,true);
 
         var enemiesp6;
-        addEnemy(enemiesp6, enemiesp, lanzasL, 1632, 2227, 180, enemyType[13],scene,false);
+        addEnemy(enemiesp6, enemiesp, lanzasL, 1409, 2227, 180, enemyType[13],scene,false);
 
     } else if (nLevel === 3) {
         var numberEnemies = 16;
@@ -105,7 +105,7 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(penemies1, penemies, lanzasR, -1540, 15667, 0, enemyType[1],scene,true);
 
         var penemies2;
-        addEnemy(penemies2, penemies, lanzasUL, -505, 12307, 225, enemyType[2],scene,false);
+        addEnemy(penemies2, penemies, lanzasUL, -987, 12307, 225, enemyType[2],scene,false);
 
         var penemies3;
         addEnemy(penemies3, penemies, lanzasR, -2777, 6931, 0, enemyType[3],scene,true);
@@ -120,7 +120,7 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(penemies6, penemies, lanzasL, -1809, 2707, 180, enemyType[6],scene,false);
 
         var penemies7;
-        addEnemy(penemies7, penemies, lanzasDR, -2789, 979, 45, enemyType[7],scene,true);
+        addEnemy(penemies7, penemies, lanzasDR, -2769, 979, 45, enemyType[7],scene,true);
 
 
 
@@ -131,7 +131,7 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(enemiesp1, enemiesp, lanzasR, 2010, 15667, 0, enemyType[9],scene,true);
 
         var enemiesp2;
-        addEnemy(enemiesp2, enemiesp, lanzasUL, 3045, 12307, 225, enemyType[10],scene,false);
+        addEnemy(enemiesp2, enemiesp, lanzasUL, 2565, 12307, 225, enemyType[10],scene,false);
 
         var enemiesp3;
         addEnemy(enemiesp3, enemiesp, lanzasR, 773, 6931, 0, enemyType[11],scene,true);
@@ -146,7 +146,7 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(enemiesp6, enemiesp, lanzasL, 1741, 2707, 180, enemyType[14],scene,false);
 
         var enemiesp7;
-        addEnemy(enemiesp7, enemiesp, lanzasDR, 761, 979, 45, enemyType[15],scene,true);
+        addEnemy(enemiesp7, enemiesp, lanzasDR, 783, 979, 45, enemyType[15],scene,true);
     }
 
     //fisicas para los enemigos
