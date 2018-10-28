@@ -23,7 +23,6 @@ introScene.create = function (){
 }
 
 introScene.update = function (){
-    console.log(particles[0].y);
     if (background.x <= 855){
         introScene.nextScene();
     }

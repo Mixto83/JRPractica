@@ -36,14 +36,12 @@ rewardScene.create = function () {
     text2 = this.add.text(800, 800, 'Pulse Z para continuar', style2);
     //Recompensa
     if (player1.win) {
-        console.log('Gana aguila');
         text.setText([
             'Ganador: ¡Águila!',           
             'El Águila consigue: ' + runeName,
             'Tiempo: ' + levelTime,
         ]);
-    } else { 
-        console.log('Gana Nidhogg');
+    } else {
         text.setText([
             'Ganador: ¡Nidhogg!',
             'Nidhogg consigue: ' + runeName,

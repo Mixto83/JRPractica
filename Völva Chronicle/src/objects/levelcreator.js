@@ -2,7 +2,8 @@ var map;
 var layer;
 
 createLevel = function (scene, nLevel) {
-    
+    levelEnded = false;
+
     scene.add.image(0, 1224, 'background1Nivel1');
     scene.add.image(0, 3672, 'background2Nivel1');
     scene.add.image(0, 6120, 'background3Nivel1');
@@ -14,17 +15,6 @@ createLevel = function (scene, nLevel) {
    
 
     //Creacion del mapa dependiendo del nivel
-   /* if (nLevel === 1) {
-        //tilemap
-        map = scene.make.tilemap({ key: 'map1', tileWidth: 48, tileHeight: 48});
-    }
-    else if (nLevel === 2) {
-        map = scene.make.tilemap({ key: 'map2', tileWidth: 48, tileHeight: 48});
-    }
-    else if (nLevel === 3) {
-        map = scene.make.tilemap({ key: 'map3', tileWidth: 48, tileHeight: 48});
-    }*/
-
     map = scene.make.tilemap({ key:'map'+nLevel, tileWidth: 48, tileHeight: 48});
     music = scene.sound.add('musicLevel'+nLevel);
     music.setLoop(true);
@@ -36,6 +26,5 @@ createLevel = function (scene, nLevel) {
     map.setCollisionBetween(0,115);
     scene.physics.world.setBounds(-3501, 0, 7008, 19578);    
 }
-
 
 

@@ -14,7 +14,6 @@ createCameras = function(scene){
 }
 
 updateCameras = function(player1,player2){
-    console.log('Estamina P1: ' + player1.contStamine);
 
     if (player1.contStamine < 35 && !boolCam1){
         boolCam1 = true;

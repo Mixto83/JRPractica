@@ -7,8 +7,8 @@ var lanzasDR; //lanzas abajo derecha
 var lanzasDL; //lanzas abajo izquierda
 var lanzasUR; //lanzas arriba derecha
 var lanzasUL; //lanzas arriba izquierda
-var enemyType1 = 'aguila';
-var enemyType2 = 'aguila';
+var enemyType1 = 'enemigo1';
+var enemyType2 = 'enemigo2';
 
 var createEnemy = function (scene, nLevel) {
     var ranEnemy; //variable para el numero random
@@ -24,378 +24,293 @@ var createEnemy = function (scene, nLevel) {
 
 
     if (nLevel === 1) {
-        var numberEnemies = 6; //numero de enemigos en este nive
+        var numberEnemies = 6; //numero de enemigos en este nivel
 
         enemyType = randomTypeEnemies(numberEnemies); //se ponen tipos de enemigos al azar
 
-        var penemies0 = scene.physics.add.sprite(-3020, 5760, enemyType[0]);
-        penemies.add(penemies0, true);
-        penemies0.lanza = scene.physics.add.sprite(-3020, 5760, 'lanza');
-        lanzasR.add(penemies0.lanza, true);
-        penemies0.lanza.posX = -3020;
-        penemies0.lanza.posY = 5760;
-        penemies0.setSize(66, 121).setOffset(72, 57);
+        var penemies0;
+        addEnemy(penemies0, penemies, lanzasR, -3020, 5875, 0, enemyType[0], scene, true);
 
-        var penemies1 = scene.physics.add.sprite(-2168, 2208, enemyType[1]);
-        penemies.add(penemies1, true);
-        penemies1.lanza = scene.physics.add.sprite(-2168, 2208, 'lanza');
-        penemies1.lanza.angle = 135;
-        lanzasDL.add(penemies1.lanza, true);
-        penemies1.lanza.posX = -2168;
-        penemies1.lanza.posY = 2208;
+        var penemies1;
+        addEnemy(penemies1, penemies, lanzasDL, -2168, 2208, 135, enemyType[1],scene, false);//
 
-        var penemies2 = scene.physics.add.sprite(-1100, 2500, enemyType[2]);
-        penemies.add(penemies2, true);
-        penemies2.lanza = scene.physics.add.sprite(-1100, 2500, 'lanza');
-        penemies2.lanza.angle = 45;
-        lanzasDR.add(penemies2.lanza, true);
-        penemies2.lanza.posX = -1100;
-        penemies2.lanza.posY = 2500;
+        var penemies2;
+        addEnemy(penemies2, penemies, lanzasDR, -953, 2995, 45, enemyType[2],scene, true);
 
+        var enemiesp0;
+        addEnemy(enemiesp0, enemiesp, lanzasR, 532, 5875, 0, enemyType[3],scene, true);
 
-        var enemiesp0 = scene.physics.add.sprite(532, 5760, enemyType[3]);
-        enemiesp.add(enemiesp0, true);
-        enemiesp0.lanza = scene.physics.add.sprite(532, 5760, 'lanza');
-        lanzasR.add(enemiesp0.lanza, true);
-        enemiesp0.lanza.posX = 532;
-        enemiesp0.lanza.posY = 5760;
+        var enemiesp1;
+        addEnemy(enemiesp1, enemiesp, lanzasDL, 1384, 2208, 135, enemyType[4],scene, false);
 
-        var enemiesp1 = scene.physics.add.sprite(1384, 2208, enemyType[4]);
-        enemiesp.add(enemiesp1, true);
-        enemiesp1.lanza = scene.physics.add.sprite(1384, 2208, 'lanza');
-        enemiesp1.lanza.angle = 135;
-        lanzasDL.add(enemiesp1.lanza, true);
-        enemiesp1.lanza.posX = 1384;
-        enemiesp1.lanza.posY = 2208;
-
-        var enemiesp2 = scene.physics.add.sprite(2452, 2500, enemyType[5]);
-        enemiesp.add(enemiesp2, true);
-        enemiesp2.lanza = scene.physics.add.sprite(2452, 2500, 'lanza');
-        enemiesp2.lanza.angle = 45;
-        lanzasDR.add(enemiesp2.lanza, true);
-        enemiesp2.lanza.posX = 2452;
-        enemiesp2.lanza.posY = 2500;
-
+        var enemiesp2;
+        addEnemy(enemiesp2, enemiesp, lanzasDR, 2597, 2995, 45, enemyType[5],scene, true);
     }
     else if (nLevel === 2) {
         var numberEnemies = 14;
         enemyType = randomTypeEnemies(numberEnemies);
 
 
-        var penemies0 = scene.physics.add.sprite(-2112, 17472, enemyType[0]);
-        penemies.add(penemies0, true);
-        penemies0.lanza = scene.physics.add.sprite(-2112, 17472, 'lanza');
-        penemies0.lanza.angle = 180;
-        lanzasDL.add(penemies0.lanza, true);
-        penemies0.lanza.posX = -2112;
-        penemies0.lanza.posY = 17472;
+        var penemies0;
+        addEnemy(penemies0, penemies, lanzasDL, -2112, 17472, 180, enemyType[0],scene,false);
 
-        var penemies1 = scene.physics.add.sprite(-3072, 16896, enemyType[1]);
-        penemies.add(penemies1, true);
-        penemies1.lanza = scene.physics.add.sprite(-3072, 16896, 'lanza');
-        penemies1.lanza.angle = 45;
-        lanzasDR.add(penemies1.lanza, true);
-        penemies1.lanza.posX = -3072;
-        penemies1.lanza.posY = 16896;
+        var penemies1;
+        addEnemy(penemies1, penemies, lanzasDR, -2977, 16819, 45, enemyType[1],scene,true);//
 
-        var penemies2 = scene.physics.add.sprite(-1824, 11232, enemyType[2]);
-        penemies.add(penemies2, true);
-        penemies2.lanza = scene.physics.add.sprite(-1824, 11232, 'lanza');
-        lanzasR.add(penemies2.lanza, true);
-        penemies2.lanza.posX = -1824;
-        penemies2.lanza.posY = 11232;
+        var penemies2;
+        addEnemy(penemies2, penemies, lanzasR, -1809, 11155, 0, enemyType[2],scene,true);//
 
-        var penemies3 = scene.physics.add.sprite(-1248, 6912, enemyType[2]);
-        penemies.add(penemies3, true);
-        penemies3.lanza = scene.physics.add.sprite(-1248, 6912, 'lanza');
-        lanzasL.add(penemies3.lanza, true);
-        penemies3.lanza.posX = -1248;
-        penemies3.lanza.posY = 6912;
+        var penemies3;
+        addEnemy(penemies3, penemies, lanzasL, -1165, 6835, 0, enemyType[3],scene,false);//
 
-        var penemies4 = scene.physics.add.sprite(-576, 5952, enemyType[2]);
-        penemies.add(penemies4, true);
-        penemies4.lanza = scene.physics.add.sprite(-576, 5952, 'lanza');
-        penemies4.lanza.angle = 135;
-        lanzasDL.add(penemies4.lanza, true);
-        penemies4.lanza.posX = -576;
-        penemies4.lanza.posY = 5952;
+        var penemies4;
+        addEnemy(penemies4, penemies, lanzasDL, -681, 5875, 135, enemyType[4],scene,false);//
 
-        var penemies5 = scene.physics.add.sprite(-1536, 2304, enemyType[2]);
-        penemies.add(penemies5, true);
-        penemies5.lanza = scene.physics.add.sprite(-1536, 2304, 'lanza');
-        lanzasR.add(penemies5.lanza, true);
-        penemies5.lanza.posX = -1536;
-        penemies5.lanza.posY = 2304;
+        var penemies5;
+        addEnemy(penemies5, penemies, lanzasL, -1581, 2227, 0, enemyType[5],scene,false);//
 
-        var penemies6 = scene.physics.add.sprite(-2112, 2304, enemyType[2]);
-        penemies.add(penemies6, true);
-        penemies6.lanza = scene.physics.add.sprite(-2112, 2304, 'lanza');
-        penemies6.lanza.angle = 180;
-        lanzasL.add(penemies6.lanza, true);
-        penemies6.lanza.posX = -2112;
-        penemies6.lanza.posY = 2304;
+        var penemies6;
+        addEnemy(penemies0, penemies, lanzasR, -2143, 2227, 180, enemyType[6],scene,true);//
 
 
-        var enemiesp0 = scene.physics.add.sprite(1440, 17472, enemyType[0]);
-        enemiesp.add(enemiesp0, true);
-        enemiesp0.lanza = scene.physics.add.sprite(1440, 17472, 'lanza');
-        enemiesp0.lanza.angle = 135;
-        lanzasDL.add(enemiesp0.lanza, true);
-        enemiesp0.lanza.posX = 1440;
-        enemiesp0.lanza.posY = 17472;
+        var enemiesp0;
+        addEnemy(enemiesp0, enemiesp, lanzasDL, 1438, 17472, 180, enemyType[7],scene,false);
 
-        var enemiesp1 = scene.physics.add.sprite(480, 16896, enemyType[1]);
-        enemiesp.add(enemiesp1, true);
-        enemiesp1.lanza = scene.physics.add.sprite(480, 16896, 'lanza');
-        enemiesp1.lanza.angle = 45;
-        lanzasDR.add(enemiesp1.lanza, true);
-        enemiesp1.lanza.posX = 480;
-        enemiesp1.lanza.posY = 16896;
+        var enemiesp1;
+        addEnemy(enemiesp1, enemiesp, lanzasDR, 573, 16819, 180, enemyType[8],scene,true);
 
-        var enemiesp2 = scene.physics.add.sprite(1728, 11232, enemyType[2]);
-        enemiesp.add(enemiesp2, true);
-        enemiesp2.lanza = scene.physics.add.sprite(1728, 11232, 'lanza');
-        lanzasR.add(enemiesp2.lanza, true);
-        enemiesp2.lanza.posX = 1728;
-        enemiesp2.lanza.posY = 11232;
+        var enemiesp2;
+        addEnemy(enemiesp2, enemiesp, lanzasR, 1741, 11155, 0, enemyType[9],scene,true);
 
-        var enemiesp3 = scene.physics.add.sprite(2304, 6912, enemyType[2]);
-        enemiesp.add(enemiesp3, true);
-        enemiesp3.lanza = scene.physics.add.sprite(2304, 6912, 'lanza');
-        enemiesp3.lanza.angle = 180;
-        lanzasL.add(enemiesp3.lanza, true);
-        enemiesp3.lanza.posX = 2304;
-        enemiesp3.lanza.posY = 6912;
+        var enemiesp3;
+        addEnemy(enemiesp3, enemiesp, lanzasL, 2385, 6835, 180, enemyType[10],scene,false);
 
-        var enemiesp4 = scene.physics.add.sprite(2976, 5952, enemyType[2]);
-        enemiesp.add(enemiesp4, true);
-        enemiesp4.lanza = scene.physics.add.sprite(2976, 5952, 'lanza');
-        enemiesp4.lanza.angle = 135;
-        lanzasDL.add(enemiesp4.lanza, true);
-        enemiesp4.lanza.posX = 2976;
-        enemiesp4.lanza.posY = 5952;
+        var enemiesp4;
+        addEnemy(enemiesp4, enemiesp, lanzasDL, 2869, 5875, 135, enemyType[11],scene,false);
 
-        var enemiesp5 = scene.physics.add.sprite(2016, 2304, enemyType[2]);
-        enemiesp.add(enemiesp5, true);
-        enemiesp5.lanza = scene.physics.add.sprite(2016, 2304, 'lanza');
-        lanzasR.add(enemiesp5.lanza, true);
-        enemiesp5.lanza.posX = 2016;
-        enemiesp5.lanza.posY = 2304;
+        var enemiesp5;
+        addEnemy(enemiesp5, enemiesp, lanzasR, 1756, 2227, 0, enemyType[12],scene,true);
 
-        var enemiesp6 = scene.physics.add.sprite(1440, 2304, enemyType[2]);
-        enemiesp.add(enemiesp6, true);
-        enemiesp6.lanza = scene.physics.add.sprite(1440, 2304, 'lanza');
-        enemiesp6.lanza.angle = 180;
-        lanzasL.add(enemiesp6.lanza, true);
-        enemiesp6.lanza.posX = 1440;
-        enemiesp6.lanza.posY = 2304;
+        var enemiesp6;
+        addEnemy(enemiesp6, enemiesp, lanzasL, 1632, 2227, 180, enemyType[13],scene,false);
+
     } else if (nLevel === 3) {
         var numberEnemies = 16;
         enemyType = randomTypeEnemies(numberEnemies);
 
-        var penemies0 = scene.physics.add.sprite(-2592, 17952, enemyType[0]);
-        penemies.add(penemies0, true);
-        penemies0.lanza = scene.physics.add.sprite(-2592, 17952, 'lanza');
-        penemies0.lanza.angle = 315;
-        lanzasUR.add(penemies0.lanza, true);
-        penemies0.lanza.posX = -2592;
-        penemies0.lanza.posY = 17952;
+        var penemies0;
+        addEnemy(penemies0, penemies, lanzasUR, -2755, 17971, 315, enemyType[0],scene,true);
 
-        var penemies1 = scene.physics.add.sprite(-1536, 15744, enemyType[0]);
-        penemies.add(penemies1, true);
-        penemies1.lanza = scene.physics.add.sprite(-1536, 15744, 'lanza');
-        lanzasR.add(penemies1.lanza, true);
-        penemies1.lanza.posX = -1536;
-        penemies1.lanza.posY = 15744;
+        var penemies1;
+        addEnemy(penemies1, penemies, lanzasR, -1540, 15667, 0, enemyType[1],scene,true);
 
-        var penemies2 = scene.physics.add.sprite(-672, 12384, enemyType[2]);
-        penemies.add(penemies2, true);
-        penemies2.lanza = scene.physics.add.sprite(-672, 12384, 'lanza');
-        penemies2.lanza.angle = 225;
-        lanzasUL.add(penemies2.lanza, true);
-        penemies2.lanza.posX = -672;
-        penemies2.lanza.posY = 12384;
+        var penemies2;
+        addEnemy(penemies2, penemies, lanzasUL, -505, 12307, 225, enemyType[2],scene,false);
 
-        var penemies3 = scene.physics.add.sprite(-2784, 7008, enemyType[2]);
-        penemies.add(penemies3, true);
-        penemies3.lanza = scene.physics.add.sprite(-2784, 7008, 'lanza');
-        lanzasR.add(penemies3.lanza, true);
-        penemies3.lanza.posX = -2784;
-        penemies3.lanza.posY = 7008;
+        var penemies3;
+        addEnemy(penemies3, penemies, lanzasR, -2777, 6931, 0, enemyType[3],scene,true);
 
-        var penemies4 = scene.physics.add.sprite(-2688, 3840, enemyType[2]);
-        penemies.add(penemies4, true);
-        penemies4.lanza = scene.physics.add.sprite(-2688, 3840, 'lanza');
-        lanzasR.add(penemies4.lanza, true);
-        penemies4.lanza.posX = -2688;
-        penemies4.lanza.posY = 3840;
+        var penemies4;
+        addEnemy(penemies4, penemies, lanzasR, -2704, 3763, 0, enemyType[4],scene,true);
 
-        var penemies5 = scene.physics.add.sprite(-2112, 3264, enemyType[2]);
-        penemies.add(penemies5, true);
-        penemies5.lanza = scene.physics.add.sprite(-2112, 3264, 'lanza');
-        penemies5.lanza.angle = 135;
-        lanzasDL.add(penemies5.lanza, true);
-        penemies5.lanza.posX = -2112;
-        penemies5.lanza.posY = 3264;
+        var penemies5;
+        addEnemy(penemies0, penemies, lanzasDL, -2206, 3187, 135, enemyType[5],scene,false);
 
-        var penemies6 = scene.physics.add.sprite(-1824, 2784, enemyType[2]);
-        penemies.add(penemies6, true);
-        penemies6.lanza = scene.physics.add.sprite(-1824, 2784, 'lanza');
-        penemies6.lanza.angle = 180;
-        lanzasL.add(penemies6.lanza, true);
-        penemies6.lanza.posX = -1824;
-        penemies6.lanza.posY = 2784;
+        var penemies6;
+        addEnemy(penemies6, penemies, lanzasL, -1809, 2707, 180, enemyType[6],scene,false);
 
-        var penemies7 = scene.physics.add.sprite(-2400, 1056, enemyType[2]);
-        penemies.add(penemies7, true);
-        penemies7.lanza = scene.physics.add.sprite(-2400, 1056, 'lanza');
-        penemies7.lanza.angle = 45;
-        lanzasDR.add(penemies7.lanza, true);
-        penemies7.lanza.posX = -2400;
-        penemies7.lanza.posY = 1056;
+        var penemies7;
+        addEnemy(penemies7, penemies, lanzasDR, -2789, 979, 45, enemyType[7],scene,true);
 
 
 
-        var enemiesp0 = scene.physics.add.sprite(960, 17952, enemyType[0]);
-        enemiesp.add(enemiesp0, true);
-        enemiesp0.lanza = scene.physics.add.sprite(960, 17952, 'lanza');
-        enemiesp0.lanza.angle = 315;
-        lanzasUR.add(enemiesp0.lanza, true);
-        enemiesp0.lanza.posX = 960;
-        enemiesp0.lanza.posY = 17952;
+        var enemiesp0;
+        addEnemy(enemiesp0, enemiesp, lanzasUR, 795, 17971, 315, enemyType[8],scene,true);
 
-        var enemiesp1 = scene.physics.add.sprite(2016, 15744, enemyType[1]);
-        enemiesp.add(enemiesp1, true);
-        enemiesp1.lanza = scene.physics.add.sprite(2016, 15744, 'lanza');
-        lanzasR.add(enemiesp1.lanza, true);
-        enemiesp1.lanza.posX = 2016;
-        enemiesp1.lanza.posY = 15744;
+        var enemiesp1;
+        addEnemy(enemiesp1, enemiesp, lanzasR, 2010, 15667, 0, enemyType[9],scene,true);
 
-        var enemiesp2 = scene.physics.add.sprite(2880, 12384, enemyType[2]);
-        enemiesp.add(enemiesp2, true);
-        enemiesp2.lanza = scene.physics.add.sprite(2880, 12384, 'lanza');
-        enemiesp2.lanza.angle = 225;
-        lanzasUL.add(enemiesp2.lanza, true);
-        enemiesp2.lanza.posX = 2880;
-        enemiesp2.lanza.posY = 12384;
+        var enemiesp2;
+        addEnemy(enemiesp2, enemiesp, lanzasUL, 3045, 12307, 225, enemyType[10],scene,false);
 
-        var enemiesp3 = scene.physics.add.sprite(768, 7008, enemyType[2]);
-        enemiesp.add(enemiesp3, true);
-        enemiesp3.lanza = scene.physics.add.sprite(768, 7008, 'lanza');
-        lanzasR.add(enemiesp3.lanza, true);
-        enemiesp3.lanza.posX = 768;
-        enemiesp3.lanza.posY = 7008;
+        var enemiesp3;
+        addEnemy(enemiesp3, enemiesp, lanzasR, 773, 6931, 0, enemyType[11],scene,true);
 
-        var enemiesp4 = scene.physics.add.sprite(864, 3840, enemyType[2]);
-        enemiesp.add(enemiesp4, true);
-        enemiesp4.lanza = scene.physics.add.sprite(864, 59384052, 'lanza');
-        lanzasR.add(enemiesp4.lanza, true);
-        enemiesp4.lanza.posX = 864;
-        enemiesp4.lanza.posY = 3840;
+        var enemiesp4;
+        addEnemy(enemiesp4, enemiesp, lanzasR, 846, 3763, 0, enemyType[12],scene,true);
 
-        var enemiesp5 = scene.physics.add.sprite(1440, 3264, enemyType[2]);
-        enemiesp.add(enemiesp5, true);
-        enemiesp5.lanza = scene.physics.add.sprite(1440, 3264, 'lanza');
-        enemiesp5.lanza.angle = 135;
-        lanzasDL.add(enemiesp5.lanza, true);
-        enemiesp5.lanza.posX = 1440;
-        enemiesp5.lanza.posY = 3264;
+        var enemiesp5;
+        addEnemy(enemiesp0, enemiesp, lanzasDL, 1344, 3187, 135, enemyType[13],scene,false);
 
-        var enemiesp6 = scene.physics.add.sprite(1728, 2784, enemyType[2]);
-        enemiesp.add(enemiesp6, true);
-        enemiesp6.lanza = scene.physics.add.sprite(1728, 2784, 'lanza');
-        enemiesp6.lanza.angle = 180;
-        lanzasL.add(enemiesp6.lanza, true);
-        enemiesp6.lanza.posX = 1728;
-        enemiesp6.lanza.posY = 2784;
+        var enemiesp6;
+        addEnemy(enemiesp6, enemiesp, lanzasL, 1741, 2707, 180, enemyType[14],scene,false);
 
-        var enemiesp7 = scene.physics.add.sprite(1152, 1056, enemyType[2]);
-        enemiesp.add(enemiesp7, true);
-        enemiesp7.lanza = scene.physics.add.sprite(1152, 1056, 'lanza');
-        enemiesp7.lanza.angle = 45;
-        lanzasDR.add(enemiesp7.lanza, true);
-        enemiesp7.lanza.posX = 1152;
-        enemiesp7.lanza.posY = 1056;
+        var enemiesp7;
+        addEnemy(enemiesp7, enemiesp, lanzasDR, 761, 979, 45, enemyType[15],scene,true);
     }
 
     //fisicas para los enemigos
     scene.physics.add.collider(penemies, layer);
     scene.physics.add.collider(enemiesp, layer);
-    scene.physics.add.collider(lanzasL, layer, remplaceLanza);
-    scene.physics.add.collider(lanzasR, layer, remplaceLanza);
-    scene.physics.add.collider(lanzasDL, layer, remplaceLanza);
-    scene.physics.add.collider(lanzasDR, layer, remplaceLanza);
-    scene.physics.add.collider(lanzasUL, layer, remplaceLanza);
-    scene.physics.add.collider(lanzasUR, layer, remplaceLanza);
+    scene.physics.add.collider(lanzasL, layer, function (lanzasL,layer){
+        replaceLanza(lanzasL,scene);
+    });
+    scene.physics.add.collider(lanzasR, layer, function (lanzasR,layer){
+        replaceLanza(lanzasR,scene);
+    });
+    scene.physics.add.collider(lanzasDL, layer, function (lanzasDL,layer){
+        replaceLanza(lanzasDL,scene);
+    });
+    scene.physics.add.collider(lanzasDR, layer, function (lanzasDR,layer){
+        replaceLanza(lanzasDR,scene);
+    });
+    scene.physics.add.collider(lanzasUL, layer, function (lanzasUL,layer){
+        replaceLanza(lanzasUL,scene);
+    });
+    scene.physics.add.collider(lanzasUR, layer, function (lanzasUR,layer){
+        replaceLanza(lanzasUR,scene);
+    });
 
     //solo puede luchar cada uno con sus propios enemigos
     scene.physics.add.overlap(player1, penemies, function (player1, penemies) {
-        player1.combat = true;
-        player1.anims.play('combat', true);
-        player1.anims.stopOnRepeat();
-        player1.on('animationcomplete', function () {
-            fightEnemies(scene, player1, penemies);
-            player1.combat = false;
-        });
-        //fightEnemies(scene, player1, penemies);
+        startCombat(player1,penemies);
     }, null, this);
     scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp) {
-        fightEnemies(scene, player2, enemiesp);
+        startCombat(player2,enemiesp);
     }, null, this);
     scene.physics.add.overlap(player1, lanzasR, function (player1, lanzasR) {
-        hitLanza(scene, player1, lanzasR);
+        hitLanza(player1, lanzasR,scene);
     }, null, this);
     scene.physics.add.overlap(player2, lanzasR, function (player2, lanzasR) {
-        hitLanza(scene, player2, lanzasR);
+        hitLanza(player2, lanzasR,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasDR, function (player1, lanzasR) {
-        hitLanza(scene, player1, lanzasR);
+    scene.physics.add.overlap(player1, lanzasDR, function (player1, lanzasDR) {
+        hitLanza(player1, lanzasDR,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasDR, function (player2, lanzasR) {
-        hitLanza(scene, player2, lanzasR);
+    scene.physics.add.overlap(player2, lanzasDR, function (player2, lanzasDR) {
+        hitLanza(player2, lanzasDR,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasDL, function (player1, lanzasR) {
-        hitLanza(scene, player1, lanzasR);
+    scene.physics.add.overlap(player1, lanzasDL, function (player1, lanzasDL) {
+        hitLanza(player1, lanzasDL,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasDL, function (player2, lanzasR) {
-        hitLanza(scene, player2, lanzasR);
+    scene.physics.add.overlap(player2, lanzasDL, function (player2, lanzasDL) {
+        hitLanza(player2, lanzasDL,scene);
     }, null, this);
     scene.physics.add.overlap(player1, lanzasL, function (player1, lanzasL) {
-        hitLanza(scene, player1, lanzasR);
+        hitLanza(player1, lanzasL,scene);
     }, null, this);
     scene.physics.add.overlap(player2, lanzasL, function (player2, lanzasL) {
-        hitLanza(scene, player2, lanzasL);
+        hitLanza(player2, lanzasL,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasUL, function (player1, lanzasL) {
-        hitLanza(scene, player1, lanzasR);
+    scene.physics.add.overlap(player1, lanzasUL, function (player1, lanzasUL) {
+        hitLanza(player1, lanzasUL,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasUL, function (player2, lanzasL) {
-        hitLanza(scene, player2, lanzasL);
+    scene.physics.add.overlap(player2, lanzasUL, function (player2, lanzasUL) {
+        hitLanza(player2, lanzasUL,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasUR, function (player1, lanzasL) {
-        hitLanza(scene, player1, lanzasR);
+    scene.physics.add.overlap(player1, lanzasUR, function (player1, lanzasUR) {
+        hitLanza(player1, lanzasUR,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasUR, function (player2, lanzasL) {
-        hitLanza(scene, player2, lanzasL);
+    scene.physics.add.overlap(player2, lanzasUR, function (player2, lanzasUR) {
+        hitLanza(player2, lanzasUR,scene);
     }, null, this);
 
+    //eventos de animaciones
+}
+
+
+function createAnimationEnemy(key, scene){
+    scene.anims.create({
+        key: 'idle'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 0, end: 0, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'throw'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 0, end: 15, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'throwEnd'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 16, end: 23, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'combat'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 24, end: 49, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+}
+
+
+
+function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene, facingRight){
+    enemy = scene.physics.add.sprite(posX, posY, type);
+    enemygroup.add(enemy, true);
+    enemy.flipX = !facingRight;
+    enemy.lanza = scene.physics.add.sprite(posX, posY + 5, 'lanza');
+    enemy.lanza.angle = angle;
+    enemy.lanza.onHand = true;
+    lanzagroup.add(enemy.lanza, true);
+    enemy.lanza.posX = posX;
+    enemy.lanza.posY = posY + 5;
+    enemy.lanza.combat = false;
+    enemy.setSize(66, 121).setOffset(110, 35);
+    enemy.type = type;
+    enemy.anims.play('throw'+type,true);
+    enemy.on('animationcomplete', function () {
+        if (enemy.anims.currentAnim.key === 'throw'+type && !enemy.combat) {
+            enemy.play('throwEnd'+type,true);
+            enemy.anims.stopOnRepeat();
+            enemy.lanza.onHand = false;
+        } else if (enemy.anims.currentAnim.key === 'throwEnd'+type && !enemy.combat){
+            enemy.play('idle'+enemy.type,true);
+        }
+    });
+}
+
+function startCombat(player,enemygroup){
+    player.combat = true;
+    enemygroup.lanza.combat = true;
+    player.anims.play('combat'+player.type, true);
+    player.anims.stopOnRepeat();
+    enemygroup.anims.play('combat'+enemygroup.type,true);
+    player.on('animationcomplete', function () {
+        if(player.anims.currentAnim.key === 'combat'+player.type){
+            enemygroup.disableBody(true, true);
+            enemygroup.lanza.disableBody(true, true);
+            player.combat = false;
+            enemygroup.lanza.combat = false;
+        }    
+    });
 }
 
 //reemplaza la lanza
-function remplaceLanza(lanza) {
-    lanza.x = lanza.posX;
-    lanza.y = lanza.posY;
+function replaceLanza(lanza,scene) {
+    if(!lanza.combat){
+        lanza.onHand = true;
+        scene.time.delayedCall(666, function (lanza) {
+            lanza.x = lanza.posX;
+            lanza.y = lanza.posY;
+        },[lanza], null, this);
+    }
 }
 
+
+
 //colision lanza con jugador
-function hitLanza(scene, player, lanza) {
+function hitLanza(player, lanza,scene) {
     scene.sound.play('spearSound');
     if (lanza.x > player.x) {
         player.throwLeft = true;
     } else {
         player.throwRight = true;
     }
-    remplaceLanza(lanza);
+    replaceLanza(lanza, scene);
     scene.time.delayedCall(1000, stopThrowing, [player], null, this); //emplea el metodo de powerupsManager
 }
 
@@ -416,14 +331,6 @@ function randomTypeEnemies(numberEnemies) {
     return enemyType;
 }
 
-//funcion que se ejecuta en la lucha
-function fightEnemies(scene, player, enemies) {
-    //se ejecuta la animacion de lucha
-    //depende de como se controle la animacion
-    enemies.disableBody(true, true);
-    enemies.lanza.disableBody(true, true);
-}
-
 //movimiento lanzas
 function moveLanzas() {
     lanzasR.setVelocityX(400);
@@ -435,3 +342,18 @@ function moveLanzas() {
     lanzasUR.setVelocity(400, -400);
     lanzasUL.setVelocity(-400, -400);
 }
+
+function updateAnimationEnemy (enemy){
+    if(enemy.lanza.onHand && !enemy.lanza.combat){
+        enemy.anims.play('throw'+enemy.type,true);
+        enemy.anims.stopOnRepeat();
+    }
+}
+
+function updateEnemies(enemies){
+    var enemyArray=enemies.getChildren();
+    for(var i=0; i < enemies.getLength();i++){
+        updateAnimationEnemy(enemyArray[i]);
+    }
+}
+

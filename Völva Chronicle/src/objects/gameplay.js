@@ -12,139 +12,14 @@ var currentLevel = 0;
 var levelEnded = false;
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');//3552
-    player2 = scene.physics.add.sprite(1800, 19584, 'aguila');
-    addPlayer(scene, player1);
-    addPlayer(scene, player2);
-    //animaciones (se pasaran a addPlayer cuando se implementen las del dragon)
-    scene.anims.create({
-        key: 'run',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 22, end: 40, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: -1
-    });
-    scene.anims.create({
-        key: 'idle',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 134, end: 148, zeroPad: 4 }),
-        frameRate: 12,
-        repeat: -1
-    });
-    scene.anims.create({
-        key: 'idleAir',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 284, end: 291, zeroPad: 4 }),
-        frameRate: 12,
-        repeat: -1
-    });
-    scene.anims.create({
-        key: 'jump',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 0, end: 18, zeroPad: 4 }),
-        frameRate: 24
-    });
-    scene.anims.create({
-        key: 'dashDown',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 149, end: 164, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashDownFall',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 177, end: 186, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashDownDiagonal',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 210, end: 225, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashDownDiagonalFall',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 235, end: 243, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashUp',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 244, end: 259, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashForward',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 85, end: 97, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashForwardHold',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 98, end: 102, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: -1
-    });
-    scene.anims.create({
-        key: 'dashForwardEnd',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 103, end: 114, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashForwardAir',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 115, end: 122, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'dashForwardAirHold',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 123, end: 123, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: -1
-    });
-    scene.anims.create({
-        key: 'dashForwardAirEnd',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 124, end: 133, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'knockback',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 41, end: 47, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'knockbackHold',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 47, end: 47, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'crouch',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 64, end: 66, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'crouchHold',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 67, end: 67, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: -1
-    });
-    scene.anims.create({
-        key: 'crouchEnd',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 68, end: 70, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
-    scene.anims.create({
-        key: 'combat',
-        frames: scene.anims.generateFrameNames('aguila', { prefix: 'Aguila instancia 1', start: 292, end: 468, zeroPad: 4 }),
-        frameRate: 24,
-        repeat: 0
-    });
+    player2 = scene.physics.add.sprite(1800, 19584, 'nidhogg');
+    addPlayer(scene, player1, 'aguila');
+    addPlayer(scene, player2, 'nidhogg');
 }
 
-addPlayer = function (scene, player) {
+addPlayer = function (scene, player, type) {
     player.setCollideWorldBounds(true);
+    player.type = type;
     player.contSalto = 0;
     player.velocidadX = playerVelocityX;
     player.velocidadY = playerVelocityY;
@@ -191,6 +66,134 @@ addPlayer = function (scene, player) {
     createAnimationEvents(player,scene);
 }
 
+createAnimationPlayer = function (key, scene){
+    //animaciones (se pasaran a addPlayer cuando se implementen las del dragon)
+    scene.anims.create({
+        key: 'run'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 22, end: 40, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'idle'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 134, end: 148, zeroPad: 4 }),
+        frameRate: 12,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'idleAir'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 284, end: 291, zeroPad: 4 }),
+        frameRate: 12,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'jump'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 0, end: 18, zeroPad: 4 }),
+        frameRate: 24
+    });
+    scene.anims.create({
+        key: 'dashDown'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 149, end: 164, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashDownFall'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 177, end: 186, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashDownDiagonal'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 210, end: 225, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashDownDiagonalFall'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 235, end: 243, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashUp'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 244, end: 259, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashForward'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 85, end: 97, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashForwardHold'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 98, end: 102, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'dashForwardEnd'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 103, end: 114, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashForwardAir'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 115, end: 122, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'dashForwardAirHold'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 123, end: 123, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'dashForwardAirEnd'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 124, end: 133, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'knockback'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 41, end: 47, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'knockbackHold'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 47, end: 47, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'crouch'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 64, end: 66, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'crouchHold'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 67, end: 67, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+    scene.anims.create({
+        key: 'crouchEnd'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 68, end: 70, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'combat'+key,
+        frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 292, end: 468, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: 0
+    });
+}
 createInputs = function (scene) {
     //  Input Events
     cursors = scene.input.keyboard.createCursorKeys();
@@ -214,7 +217,7 @@ createInputs = function (scene) {
 updateTimer = function () {
     if (!levelEnded) {
         levelTime++;
-        console.log(levelTime);
+        console.log('x:'+player1.x+' y:'+player1.y);
     }
 }
 
@@ -228,7 +231,6 @@ createTimer = function (scene) {
 endLevel = function (scene, player) {
     levelEnded = true;
     scene.sound.play('victorySound');
-    console.log(levelTime + 'META');
     music.stop();
     player.win = true;
     
@@ -245,54 +247,51 @@ endLevel = function (scene, player) {
 
 createAnimationEvents = function (player,scene) {
     player.on('animationcomplete', function () {
-        if (player.anims.currentAnim.key === 'dashDown') {
+        if (player.anims.currentAnim.key === 'dashDown'+player.type) {
             player.dashId = 0;
         }
-        if (player.anims.currentAnim.key === 'dashDownDiagonal') {
+        if (player.anims.currentAnim.key === 'dashDownDiagonal'+player.type) {
             player.dashId = 0;
         }
-        if (player.anims.currentAnim.key === 'dashDownFall') {
+        if (player.anims.currentAnim.key === 'dashDownFall'+player.type) {
             player.animEnd = false;
         }
-        if (player.anims.currentAnim.key === 'dashDownDiagonalFall') {
+        if (player.anims.currentAnim.key === 'dashDownDiagonalFall'+player.type) {
             player.animEnd = false;
         }
-        if (player.anims.currentAnim.key === 'dashUp') {
+        if (player.anims.currentAnim.key === 'dashUp'+player.type) {
             player.dashId = 0;
         }
-        if (player.anims.currentAnim.key === 'dashForward') {
-            player.anims.play('dashForwardHold', true);
+        if (player.anims.currentAnim.key === 'dashForward'+player.type) {
+            player.anims.play('dashForwardHold'+player.type, true);
         }
-        if (player.anims.currentAnim.key === 'dashForwardHold') {
+        if (player.anims.currentAnim.key === 'dashForwardHold'+player.type) {
             player.dashId = 0;
         }
-        if (player.anims.currentAnim.key === 'dashForwardEnd') {
+        if (player.anims.currentAnim.key === 'dashForwardEnd'+player.type) {
             player.animEnd = false;
         }
-        if (player.anims.currentAnim.key === 'dashForwardAir') {
-            player.anims.play('dashForwardAirHold', true);
+        if (player.anims.currentAnim.key === 'dashForwardAir'+player.type) {
+            player.anims.play('dashForwardAirHold'+player.type, true);
         }
-        if (player.anims.currentAnim.key === 'dashForwardAirHold') {
+        if (player.anims.currentAnim.key === 'dashForwardAirHold'+player.type) {
             player.dashId = 0;
         }
-        if (player.anims.currentAnim.key === 'dashForwardAirEnd') {
+        if (player.anims.currentAnim.key === 'dashForwardAirEnd'+player.type) {
             player.animEnd = false;
         }
-        if (player.anims.currentAnim.key === 'knockback') {
-            player.anims.play('knockbackHold', true);
+        if (player.anims.currentAnim.key === 'knockback'+player.type) {
+            player.anims.play('knockbackHold'+player.type, true);
         }
-        if (player.anims.currentAnim.key === 'crouch') {
-            player.anims.play('crouchHold', true);
+        if (player.anims.currentAnim.key === 'crouch'+player.type) {
+            player.anims.play('crouchHold'+player.type, true);
         }
-        if (player.anims.currentAnim.key === 'crouchHold') {
+        if (player.anims.currentAnim.key === 'crouchHold'+player.type) {
             player.crouch = false;
         }
-        if (player.anims.currentAnim.key === 'crouchEnd') {
+        if (player.anims.currentAnim.key === 'crouchEnd'+player.type) {
             player.animEnd = false;
         }
-        /*if(player.anims.currentAnim.key === 'combat'){
-            player.combat = false;
-        }*/
     });
 }
 updateAnimation = function (player) {
@@ -300,72 +299,72 @@ updateAnimation = function (player) {
         if (!player.throwRight && !player.throwLeft) {
             if (player.dashId === 0) {
                 if (player.anims.isPlaying) {
-                    if (!player.keyDown.isDown && player.anims.currentAnim.key === 'crouchHold') {
+                    if (!player.keyDown.isDown && player.anims.currentAnim.key === 'crouchHold'+player.type) {
                         player.anims.stop();
-                        player.anims.play('crouchEnd', true);
+                        player.anims.play('crouchEnd'+player.type, true);
                         player.animEnd = true;
                     }
                 }
                 if (player.body.velocity.y === -player.velocidadY) {
-                    player.anims.play('jump', false);
-                } else if (player.crouch && player.anims.currentAnim.key !== 'crouchHold') {
-                    player.anims.play('crouch', true);
+                    player.anims.play('jump'+player.type, false);
+                } else if (player.crouch && player.anims.currentAnim.key !== 'crouchHold'+player.type) {
+                    player.anims.play('crouch'+player.type, true);
                     player.anims.stopOnRepeat();
                 } else if (player.body.velocity.x === 0 && player.body.blocked.down && !player.animEnd && !player.crouch) {
-                    player.anims.play('idle', true);
+                    player.anims.play('idle'+player.type, true);
                 } else if (!player.body.blocked.down && !player.anims.isPlaying) {
-                    player.anims.play('idleAir', true);
+                    player.anims.play('idleAir'+player.type, true);
                 } else if (player.body.velocity.x !== 0 && player.body.blocked.down && !player.animEnd) {
-                    player.anims.play('run', true);
+                    player.anims.play('run'+player.type, true);
                 }
             } else {
                 if (player.dashId === 5 && !player.body.blocked.down) {
-                    player.anims.play('dashDown', true);
+                    player.anims.play('dashDown'+player.type, true);
                     player.anims.stopOnRepeat();
                 } else if (player.dashId === 1) {
-                    player.anims.play('dashUp', true);
+                    player.anims.play('dashUp'+player.type, true);
                     player.anims.stopOnRepeat();
                 } else if (player.dashId === 3) {
                     if (player.body.blocked.down) {
-                        if (player.anims.currentAnim.key !== 'dashForwardHold') {
-                            player.anims.play('dashForward', true);
+                        if (player.anims.currentAnim.key !== 'dashForwardHold'+player.type) {
+                            player.anims.play('dashForward'+player.type, true);
                             player.anims.stopOnRepeat();
                         }
                     } else {
-                        if (player.anims.currentAnim.key !== 'dashForwardAirHold') {
-                            player.anims.play('dashForwardAir', true);
+                        if (player.anims.currentAnim.key !== 'dashForwardAirHold'+player.type) {
+                            player.anims.play('dashForwardAir'+player.type, true);
                             player.anims.stopOnRepeat();
                         }
                     }
 
                 } else if (player.dashId === 4 && !player.body.blocked.down) {
-                    player.anims.play('dashDownDiagonal', true);
+                    player.anims.play('dashDownDiagonal'+player.type, true);
                     player.anims.stopOnRepeat();
                 }
-                if (player.anims.currentAnim.key === 'dashDown' && player.body.blocked.down) {
+                if (player.anims.currentAnim.key === 'dashDown'+player.type && player.body.blocked.down) {
                     player.anims.stop();
-                    player.anims.play('dashDownFall', true);
+                    player.anims.play('dashDownFall'+player.type, true);
                     player.animEnd = true;
                 }
-                if (player.anims.currentAnim.key === 'dashDownDiagonal' && player.body.blocked.down) {
+                if (player.anims.currentAnim.key === 'dashDownDiagonal'+player.type && player.body.blocked.down) {
                     player.anims.stop();
-                    player.anims.play('dashDownDiagonalFall', true);
+                    player.anims.play('dashDownDiagonalFall'+player.type, true);
                     player.animEnd = true;
                 }
-                if (player.anims.currentAnim.key === 'dashForwardHold' && !player.dashBool) {
+                if (player.anims.currentAnim.key === 'dashForwardHold'+player.type && !player.dashBool) {
                     player.anims.stop();
-                    player.anims.play('dashForwardEnd', true);
+                    player.anims.play('dashForwardEnd'+player.type, true);
                     player.animEnd = true;
                 }
-                if (player.anims.currentAnim.key === 'dashForwardAirHold' && !player.dashBool) {
+                if (player.anims.currentAnim.key === 'dashForwardAirHold'+player.type && !player.dashBool) {
                     player.anims.stop();
-                    player.anims.play('dashForwardAirEnd', true);
+                    player.anims.play('dashForwardAirEnd'+player.type, true);
                     player.animEnd = true;
                 }
             }
         } else {
-            if (player.anims.currentAnim.key !== 'knockbackHold') {
-                player.anims.play('knockback', true);
+            if (player.anims.currentAnim.key !== 'knockbackHold'+player.type) {
+                player.anims.play('knockback'+player.type, true);
                 player.anims.stopOnRepeat();
             }
             if (player.throwLeft) {
@@ -377,9 +376,7 @@ updateAnimation = function (player) {
     }else{
         
     }
-
 }
-
 
 
 updateControls = function (scene, player, adversary) {
@@ -391,28 +388,22 @@ updateControls = function (scene, player, adversary) {
         if (currentLevel === 1) {
             if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
                 endLevel(scene, player1);
-                console.log('METAaguila');
             } else if ((player2.x >= 3000) && (player2.y <= 300) && !levelEnded) {
                 endLevel(scene, player2);
-                console.log('METAnidhogg');
             }
         }
         if (currentLevel === 2) {
             if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400) && !levelEnded) {
                 endLevel(scene, player1);
-                console.log('METAaguila');
             } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400) && !levelEnded) {
                 endLevel(scene, player2);
-                console.log('METAnidhogg');
             }
         }
         if (currentLevel === 3) {
             if ((player1.x <= -2750) && (player1.y <= 600) && !levelEnded) {
                 endLevel(scene, player1);
-                console.log('METAaguila');
             } else if ((player2.x <= 800) && (player2.y <= 600) && !levelEnded) {
                 endLevel(scene, player2);
-                console.log('METAnidhogg');
             }
         }
 

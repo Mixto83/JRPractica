@@ -1,411 +1,411 @@
 ﻿{"frames": {
 
-"enemigo 2 instancia 10000":
+"enemigo2 instancia 10000":
 {
-	"frame": {"x":0,"y":0,"w":255,"h":166},
+	"frame": {"x":0,"y":0,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10001":
+"enemigo2 instancia 10001":
 {
-	"frame": {"x":255,"y":0,"w":255,"h":166},
+	"frame": {"x":275,"y":0,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10002":
+"enemigo2 instancia 10002":
 {
-	"frame": {"x":510,"y":0,"w":255,"h":166},
+	"frame": {"x":550,"y":0,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10003":
+"enemigo2 instancia 10003":
 {
-	"frame": {"x":765,"y":0,"w":255,"h":166},
+	"frame": {"x":825,"y":0,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10004":
+"enemigo2 instancia 10004":
 {
-	"frame": {"x":0,"y":166,"w":255,"h":166},
+	"frame": {"x":0,"y":200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10005":
+"enemigo2 instancia 10005":
 {
-	"frame": {"x":255,"y":166,"w":255,"h":166},
+	"frame": {"x":275,"y":200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10006":
+"enemigo2 instancia 10006":
 {
-	"frame": {"x":510,"y":166,"w":255,"h":166},
+	"frame": {"x":550,"y":200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10007":
+"enemigo2 instancia 10007":
 {
-	"frame": {"x":765,"y":166,"w":255,"h":166},
+	"frame": {"x":825,"y":200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10008":
+"enemigo2 instancia 10008":
 {
-	"frame": {"x":0,"y":332,"w":255,"h":166},
+	"frame": {"x":0,"y":400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10009":
+"enemigo2 instancia 10009":
 {
-	"frame": {"x":255,"y":332,"w":255,"h":166},
+	"frame": {"x":275,"y":400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10010":
+"enemigo2 instancia 10010":
 {
-	"frame": {"x":510,"y":332,"w":255,"h":166},
+	"frame": {"x":550,"y":400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10011":
+"enemigo2 instancia 10011":
 {
-	"frame": {"x":765,"y":332,"w":255,"h":166},
+	"frame": {"x":825,"y":400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10012":
+"enemigo2 instancia 10012":
 {
-	"frame": {"x":0,"y":498,"w":255,"h":166},
+	"frame": {"x":0,"y":600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10013":
+"enemigo2 instancia 10013":
 {
-	"frame": {"x":255,"y":498,"w":255,"h":166},
+	"frame": {"x":275,"y":600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10014":
+"enemigo2 instancia 10014":
 {
-	"frame": {"x":510,"y":498,"w":255,"h":166},
+	"frame": {"x":550,"y":600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10015":
+"enemigo2 instancia 10015":
 {
-	"frame": {"x":765,"y":498,"w":255,"h":166},
+	"frame": {"x":825,"y":600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10016":
+"enemigo2 instancia 10016":
 {
-	"frame": {"x":0,"y":664,"w":255,"h":166},
+	"frame": {"x":0,"y":800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10017":
+"enemigo2 instancia 10017":
 {
-	"frame": {"x":255,"y":664,"w":255,"h":166},
+	"frame": {"x":275,"y":800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10018":
+"enemigo2 instancia 10018":
 {
-	"frame": {"x":510,"y":664,"w":255,"h":166},
+	"frame": {"x":550,"y":800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10019":
+"enemigo2 instancia 10019":
 {
-	"frame": {"x":765,"y":664,"w":255,"h":166},
+	"frame": {"x":825,"y":800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10020":
+"enemigo2 instancia 10020":
 {
-	"frame": {"x":0,"y":830,"w":255,"h":166},
+	"frame": {"x":0,"y":1000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10021":
+"enemigo2 instancia 10021":
 {
-	"frame": {"x":255,"y":830,"w":255,"h":166},
+	"frame": {"x":275,"y":1000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10022":
+"enemigo2 instancia 10022":
 {
-	"frame": {"x":510,"y":830,"w":255,"h":166},
+	"frame": {"x":550,"y":1000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10023":
+"enemigo2 instancia 10023":
 {
-	"frame": {"x":765,"y":830,"w":255,"h":166},
+	"frame": {"x":825,"y":1000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10024":
+"enemigo2 instancia 10024":
 {
-	"frame": {"x":765,"y":830,"w":255,"h":166},
+	"frame": {"x":825,"y":1000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10025":
+"enemigo2 instancia 10025":
 {
-	"frame": {"x":0,"y":996,"w":255,"h":166},
+	"frame": {"x":0,"y":1200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10026":
+"enemigo2 instancia 10026":
 {
-	"frame": {"x":255,"y":996,"w":255,"h":166},
+	"frame": {"x":275,"y":1200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10027":
+"enemigo2 instancia 10027":
 {
-	"frame": {"x":510,"y":996,"w":255,"h":166},
+	"frame": {"x":550,"y":1200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10028":
+"enemigo2 instancia 10028":
 {
-	"frame": {"x":765,"y":996,"w":255,"h":166},
+	"frame": {"x":825,"y":1200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10029":
+"enemigo2 instancia 10029":
 {
-	"frame": {"x":0,"y":1162,"w":255,"h":166},
+	"frame": {"x":0,"y":1400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10030":
+"enemigo2 instancia 10030":
 {
-	"frame": {"x":255,"y":1162,"w":255,"h":166},
+	"frame": {"x":275,"y":1400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10031":
+"enemigo2 instancia 10031":
 {
-	"frame": {"x":510,"y":1162,"w":255,"h":166},
+	"frame": {"x":550,"y":1400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10032":
+"enemigo2 instancia 10032":
 {
-	"frame": {"x":765,"y":1162,"w":255,"h":166},
+	"frame": {"x":825,"y":1400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10033":
+"enemigo2 instancia 10033":
 {
-	"frame": {"x":0,"y":1328,"w":255,"h":166},
+	"frame": {"x":0,"y":1600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10034":
+"enemigo2 instancia 10034":
 {
-	"frame": {"x":255,"y":1328,"w":255,"h":166},
+	"frame": {"x":275,"y":1600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10035":
+"enemigo2 instancia 10035":
 {
-	"frame": {"x":510,"y":1328,"w":255,"h":166},
+	"frame": {"x":550,"y":1600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10036":
+"enemigo2 instancia 10036":
 {
-	"frame": {"x":765,"y":1328,"w":255,"h":166},
+	"frame": {"x":825,"y":1600,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10037":
+"enemigo2 instancia 10037":
 {
-	"frame": {"x":0,"y":1494,"w":255,"h":166},
+	"frame": {"x":0,"y":1800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10038":
+"enemigo2 instancia 10038":
 {
-	"frame": {"x":255,"y":1494,"w":255,"h":166},
+	"frame": {"x":275,"y":1800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10039":
+"enemigo2 instancia 10039":
 {
-	"frame": {"x":0,"y":1162,"w":255,"h":166},
+	"frame": {"x":0,"y":1400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10040":
+"enemigo2 instancia 10040":
 {
-	"frame": {"x":510,"y":1494,"w":255,"h":166},
+	"frame": {"x":550,"y":1800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10041":
+"enemigo2 instancia 10041":
 {
-	"frame": {"x":765,"y":1494,"w":255,"h":166},
+	"frame": {"x":825,"y":1800,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10042":
+"enemigo2 instancia 10042":
 {
-	"frame": {"x":0,"y":1660,"w":255,"h":166},
+	"frame": {"x":0,"y":2000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10043":
+"enemigo2 instancia 10043":
 {
-	"frame": {"x":255,"y":1660,"w":255,"h":166},
+	"frame": {"x":275,"y":2000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10044":
+"enemigo2 instancia 10044":
 {
-	"frame": {"x":510,"y":1660,"w":255,"h":166},
+	"frame": {"x":550,"y":2000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10045":
+"enemigo2 instancia 10045":
 {
-	"frame": {"x":765,"y":1660,"w":255,"h":166},
+	"frame": {"x":825,"y":2000,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10046":
+"enemigo2 instancia 10046":
 {
-	"frame": {"x":0,"y":1826,"w":255,"h":166},
+	"frame": {"x":0,"y":2200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10047":
+"enemigo2 instancia 10047":
 {
-	"frame": {"x":255,"y":1826,"w":255,"h":166},
+	"frame": {"x":275,"y":2200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10048":
+"enemigo2 instancia 10048":
 {
-	"frame": {"x":510,"y":1826,"w":255,"h":166},
+	"frame": {"x":550,"y":2200,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 },
-"enemigo 2 instancia 10049":
+"enemigo2 instancia 10049":
 {
-	"frame": {"x":0,"y":1162,"w":255,"h":166},
+	"frame": {"x":0,"y":1400,"w":275,"h":200},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":166},
-	"sourceSize": {"w":255,"h":166}
+	"spriteSourceSize": {"x":0,"y":0,"w":275,"h":200},
+	"sourceSize": {"w":275,"h":200}
 }},
 "meta": {
 	"app": "Adobe Animate",
 	"version": "18.0.1.115",
 	"image": "spritesheet_enemigo2.png",
 	"format": "RGBA8888",
-	"size": {"w":1024,"h":1994},
+	"size": {"w":1148,"h":2408},
 	"scale": "1"
 }
 }

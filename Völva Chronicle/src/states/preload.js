@@ -64,7 +64,9 @@ preloadScene.preload = function () {
     
     //spritesheets
     this.load.atlas('aguila','assets/spritesheets/spritesheet_aguila.png','assets/spritesheets/spritesheet_aguila.json');
-
+    this.load.atlas('nidhogg','assets/spritesheets/spritesheet_Nidhogg.png','assets/spritesheets/spritesheet_Nidhogg.json');
+    this.load.atlas('enemigo1','assets/spritesheets/spritesheet_enemigo1.png','assets/spritesheets/spritesheet_enemigo1.json');
+    this.load.atlas('enemigo2','assets/spritesheets/spritesheet_enemigo2.png','assets/spritesheets/spritesheet_enemigo2.json');
     //sprites powerups
     this.load.image('ciervo', 'assets/sprites/Ciervos.png');
     this.load.image('heimdall', 'assets/sprites/Heimdall.png');

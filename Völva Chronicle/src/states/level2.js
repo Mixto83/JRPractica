@@ -43,11 +43,13 @@ level2Scene.create = function (){
 }
 
 level2Scene.update = function () {
-    updateControls(level2Scene, player1, player2);
-    updateControls(level2Scene, player2, player1);
+    updateControls(level2Scene,player1,player2);
+    updateControls(level2Scene,player2,player1);
     updateAnimation(player1);
     updateAnimation(player2);
     moveLanzas();
     updateCameras(player1,player2);
+    updateEnemies(penemies);
+    updateEnemies(enemiesp);
 
 }
