@@ -172,10 +172,10 @@ var createEnemy = function (scene, nLevel) {
     });
 
     //solo puede luchar cada uno con sus propios enemigos
-    scene.physics.add.overlap(player1, penemies, function (player1, penemies, scene) {
+    scene.physics.add.overlap(player1, penemies, function (player1, penemies) {
         startCombat(player1,penemies, scene);
     }, null, this);
-    scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp, scene) {
+    scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp) {
         startCombat(player2,enemiesp, scene);
     }, null, this);
     scene.physics.add.collider(player1, lanzasR, function (player1, lanzasR) {
