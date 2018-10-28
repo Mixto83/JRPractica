@@ -8,9 +8,11 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**1.4**
+**2.0**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
+
+[Google Drive del proyecto](https://drive.google.com/drive/folders/1p9iw1i5qh0eXT77hDkHL0a910geTfe1M?usp=sharing)
 ### GENERO
 Plataformas de scroll vertical.
 ### SINOPSIS DE JUGABILIDAD Y CONTENIDO
@@ -22,15 +24,9 @@ La historia, narrada por una völva a Odín, cuenta cómo la ardilla **Ratatösk
 ### MECANICAS
 La mecánica principal de la que se valdrán los jugadores es, como en todos los videojuegos del género, el salto. Cada personaje podrá realizar hasta tres saltos seguidos antes de aterrizar en el suelo, consiguiendo así impulsarse hacia plataformas más elevadas y acercarse a la meta. Además de saltar, los personajes se podrán mover lateralmente por el escenario, así como hacer uso de la habilidad del _dash_: esta servirá para dar un mayor impulso y velocidad a las acciones, permitiendo llegar a sitios que de otra manera serían imposibles de alcanzar.
 
-Para que no se abuse de ellos, tanto el _dash_ como la posibilidad de hacer dobles y triples saltos no se pueden utilizar de manera gratuita, sino que consumen una determinada cantidad de estamina, la cual se recargará de manera progresiva cuando el personaje se encuentre en reposo. De esta manera se establece un **sistema de riesgo-recompensa-castigo**, incentivando a los jugadores a aprovechar estas habilidades para ganar la carrera, pero obligándolos a ser cautos y gestionar sus recursos de forma moderada para obtener ventaja. Un ejemplo de cómo puede impactar el sistema de estamina: en un tramo donde todas las plataformas pueden ser superadas mediante el uso del salto simple, un jugador puede verse tentado a pasar rápido por ahí haciendo uso del triple salto y el dash, obteniendo ventaja sobre el jugador que decida no gastar parte de su estamina tan rápido. Pero tras este tramo, puede presentarse otro donde haya una plataforma que solo pueda ser alcanzada mediante un triple salto: el jugador que ha gastado parte de su estamina se ve obligado a esperar a que esta se recargue, mientras que el otro podrá seguir su recorrido en cuanto llegue a esa zona, equilibrando así la partida.
+Para que no se abuse de ello, el _dash_ no se puede utilizar de manera gratuita, sino que consume una determinada cantidad de estamina, la cual se recargará de manera progresiva cuando el personaje se encuentre en reposo. De esta manera se establece un **sistema de riesgo-recompensa-castigo**, incentivando a los jugadores a aprovechar esta habilidad para ganar la carrera, pero obligándolos a ser cautos y gestionar sus recursos de forma moderada para obtener ventaja. Un ejemplo de cómo puede impactar el sistema de estamina: en un tramo donde todas las plataformas pueden ser superadas mediante el uso del salto simple, un jugador puede verse tentado a pasar rápido por ahí haciendo uso del triple salto y el dash, obteniendo ventaja sobre el jugador que decida no gastar parte de su estamina tan rápido. Pero tras este tramo, puede presentarse otro donde haya una plataforma que solo pueda ser alcanzada mediante un _dash_ y varios saltos: el jugador que ha gastado parte de su estamina se ve obligado a esperar a que esta se recargue, mientras que el otro podrá seguir su recorrido en cuanto llegue a esa zona, equilibrando así la partida.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_mecanicas_movimiento_basicas.jpg "Mecánicas principales")
-
-Además de los saltos aéreos y el _dash_, los personajes podrán hacer uso de un salto de pared, mediante el cual chocarán con una pared (los escenarios siempre contarán con paredes a ambos lados de la pantalla) y se podrán impulsar más que como lo harían con un salto normal o cambiar la dirección a la que impulsarse (por ejemplo, un personaje puede saltar contra la pared e impulsarse lateralmente o en diagonal). Este salto de pared consume uno de los 3 saltos consecutivos que puede utilizar el personaje. Esta mecánica permite al jugador interactuar con el entorno donde se encuentra, probar diferentes formas de alcanzar determinadas plataformas y enriquece el diseño de niveles.
-
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_mecanica_pared_1.jpg "Mecánicas: Salto en pared")
-
-Las plataformas no serán todas iguales ni en forma, ni en tamaño ni en funcionalidad. Habrá plataformas que se rompan a los pocos segundos de posarse sobre ellas, otras con movimientos verticales u horizontales, otras con trampas y otras permitirán dar un salto más alto. Habrá tramos con plataformas más pequeñas y otros donde tengan mayor longitud o sean lo suficientemente anchas como para realizar en ellas un salto de pared. Algunas plataformas, también, serán rectangulares, mientras otras pueden tener forma de T, estar escalonadas…
 
 En resumen, las mecánicas del juego buscan que los jugadores tengan varias formas de afrontar los niveles y que todas ellas den lugar a una jugabilidad balanceada donde se recompense jugar de manera ágil pero cautelosa, así como también se recompensa al jugador experimentado que pueda conocer los mejores caminos y estrategias a realizar en el desarrollo de un nivel.
 ### TECNOLOGIA
@@ -49,11 +45,15 @@ v1.3 - Especificación de las características online
 
 v1.4 - Adición de imágenes de muestra y revisión de redacción, maquetación y ortografía
 
+v2.0 – Enlace al Google Drive del proyecto, redacción del guion, reporte de bugs y créditos de assets externos.
+
 ## MECANICA DEL JUEGO
 ### CAMARA
-La cámara será de vista lateral, alejada lo suficiente de los personajes para poder ver parte del escenario y permitir a maniobrar al jugador. Aún así, esta cámara sigue al personaje que controla el jugador, desplazándose lateralmente hasta alcanzar uno de los bordes del escenario.
+La cámara es de vista lateral, alejada lo suficiente de los personajes para poder ver parte del escenario y permitir a maniobrar al jugador. Aún así, esta cámara sigue al personaje que controla el jugador, desplazándose lateralmente hasta alcanzar uno de los bordes del escenario.
 ### CONTROLES
-El jugador controlar los movimientos, así como el salto y sus direcciones, mediante las habituales teclas W, A, S y D. Además, con el botón de espacio activará la habilidad del dash.
+El jugador controlará los movimientos, así como el salto y sus direcciones, mediante las habituales teclas W, A, S y D. Además, con la tecla B activará la habilidad del dash.
+
+En la implementación en modo local, el segundo jugador usará las flechas de dirección y la tecla 0 del numpad.
 ### PUNTUACION
 No se establecerá un sistema de puntuación. Solo existen los estados en el que un jugador pierde y otro gana cada uno de los distintos niveles.
 ### SISTEMA DE GUARDADO
@@ -61,6 +61,8 @@ El juego no cuenta con ningún sistema de guardado, ya que está pensado para pa
 
 ## ESTADOS DEL JUEGO Y PANTALLAS
 La secuencia de pantallas del juego es sencilla. De la pantalla de título inicial se pasa a la introducción de la historia mediante imágenes estáticas (secuencia omisible mediante la pulsación de un botón) y tras ello inicia la partida para los dos jugadores en dos pantallas divididas. Al finalizar cada nivel se muestra una pequeña secuencia de historia y se notifica la recompensa al ganador. Al terminar el último nivel se reproducirá el final de juego, que será diferente en función del ganador.
+
+Queda pendiente la inserción del diagrama de escenas y objetos, así como la muestra de diferentes pantallazos de las escenas.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_diagrama_pantallas.PNG "Diagrama de Pantallas")
 
@@ -81,7 +83,7 @@ La secuencia de pantallas del juego es sencilla. De la pantalla de título inici
 **Völva**: La vidente que narra la historia a Odín.
 
 ## ITEMS Y HABILIDADES
-En adición a las mecánicas de los propios personajes, a lo largo de los niveles se encontrarán repartidos diferentes elementos que otorgarán pequeñas ventajas en forma de power-ups que harán ciertas modificaciones durante un periodo de tiempo. Estos power-ups pueden ser de dos tipos: runas y ayudantes.
+En adición a las mecánicas de los propios personajes, a lo largo de los niveles se encuentran repartidos diferentes elementos que otorgarán pequeñas ventajas en forma de power-ups que harán ciertas modificaciones durante un periodo de tiempo. Estos power-ups pueden ser de dos tipos: runas y ayudantes.
 ### RUNAS
 Rocas místicas repartidas por el escenario. Se distinguen por símbolos, que representan a diferentes dioses de la mitología nórdica, presentando hasta 5 tipos diferentes:
 
@@ -91,7 +93,7 @@ Rocas místicas repartidas por el escenario. Se distinguen por símbolos, que re
 
 **Runa de Skadi**: Ralentiza al oponente del jugador que la obtiene.
 
-**Runa de Tir**: Proporciona un escudo de invulnerabilidad para el próximo golpe que reciba.
+**Runa de Tir**: Proporciona un escudo de invulnerabilidad para evitar el próximo ataque del jugador oponente.
 
 **Runa de Bragi**: Incrementa la estamina del jugador que la obtiene.
 
@@ -109,12 +111,12 @@ Manifestación de ciertos personajes de la mitología nórdica que aplicarán un
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_heimdall.png "Diseño Heimdall")**Heimdall**: En un punto concreto de cada nivel, estará presente este conocido personaje de la mitología nórdica, el guardián de la entrada Asgard. Heimdall otorgará al jugador la capacidad de abrir un portal dimensional que le llevará a la pantalla del oponente, pudiendo interactuar con él. Si el jugador invasor se acerca lo bastante a su oponente, le golpeará (de manera automática y sin necesidad de pulsar ninguna tecla adicional) pudiendo impulsarlo contra las paredes o el suelo, lo cual dejará al rival noqueado unos instantes y permitirá al jugador invasor obtener gran ventaja en la carrera. El teletransporte durará unos cuantos segundos, y pasado ese tiempo (o tras noquear al rival) el jugador volverá a su pantalla. Se refuerza así el sistema de riesgo-recompensa-castigo, ya que en caso de no poder golpear al oponente, el invasor habrá perdido un tiempo considerable sin avanzar por su nivel.
 
 ## ENEMIGOS
-Además de ayudas, a lo largo de los niveles también habrá esparcidos campamentos enemigos que atacarán al jugador lanzándole objetos arrojadizos como flechas. Si uno de estos objetos impacta sobre el jugador, le hará retroceder y, por tanto, perder tiempo. Pero si el jugador consigue esquivar a estos enemigos y acercarse lo suficiente, tendrá lugar una secuencia de combate (también automática, como en la invasión), eliminando a los enemigos y obteniendo un beneficio en forma de runa o de ayudante. La dificultad para esquivar a los enemigos y alcanzarlos irá en función de lo poderosa que sea la recompensa por derrotarlos.
+Además de ayudas, a lo largo de los niveles también hay esparcidos enemigos que atacarán al jugador lanzándole objetos arrojadizos como flechas. Si uno de estos objetos impacta sobre el jugador, le hará retroceder y, por tanto, perder tiempo. Pero si el jugador consigue esquivar a estos enemigos y acercarse lo suficiente, tendrá lugar una secuencia de combate, eliminando a los enemigos y obteniendo un beneficio en forma de runa o de ayudante. La dificultad para esquivar a los enemigos y alcanzarlos irá en función de lo poderosa que sea la recompensa por derrotarlos.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_1.png "Enemigo 1")![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_2.png "Enemigo 2")
 
 ## PROGRESO DEL JUEGO
-Al comenzar la partida, a cada jugador se le asignará uno de los dos personajes controlables: el dragón Nidhogg o el águila sin nombre. El objetivo de ambos es llegar al final nivel antes que el otro. Ambos jugadores comienzan en el punto medio del árbol Yggdrasil y cada uno de los 3 niveles inicialmente propuestos, cuya dificultad aumentará gradualmente, serán simétricos en cuanto a la distribución de las plataformas para ambos jugadores, solamente diferenciándose en ambientación y estética. Esta diferencia se justifica a nivel de historia: uno de los personajes está ascendiendo hasta la copa de Yggdrasil, mientras que el otro está descendiendo a las raíces, por lo que acaban en dos lugares diferentes.
+Al comenzar la partida, a cada jugador se le asgina uno de los dos personajes controlables: el dragón Nidhogg o el águila sin nombre. El objetivo de ambos es llegar al final nivel antes que el otro. Ambos jugadores comienzan en el punto medio del árbol Yggdrasil y cada uno de los 3 niveles inicialmente propuestos, cuya dificultad aumenta gradualmente, siendo simétricos en cuanto a la distribución de las plataformas para ambos jugadores, solamente diferenciándose en ambientación y estética. Esta diferencia se justifica a nivel de historia: uno de los personajes está ascendiendo hasta la copa de Yggdrasil, mientras que el otro está descendiendo a las raíces, por lo que acaban en dos lugares diferentes.
 
 En esta primera imagen se muestra el primer tramo del nivel 1 con la división de pantallas entre los dos jugadores. Esta imagen es solo una muestra conceptual de cómo sería un tramo completo.
 
@@ -135,10 +137,64 @@ En la imagen se puede apreciar el diseño del primer tramo del nivel 1. Se puede
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Dise%C3%B1o/Nivel%201/nivel1_tramo1_v2.PNG "Diseño de niveles")
 
 ## GUION
-El guion será redactado contando la introducción del juego donde la völva narra a Odín los acontecimientos que dan lugar al conflicto, así como los dos posibles finales del juego.
+El guion se ha redactado para las escenas de introducción y de los dos finales.
+
+### GUION DE ESCENA DE INTRODUCCIÓN
+ODÍN: ¿A qué es debida vuestra presencia, Völva?
+
+VÖLVA: Gran Odín, ¿querríais vos escuchar la historia de cómo cambió para siempre el destino del árbol Yggdrasil y de todos los reinos que existen en él?
+
+ODÍN: Tienes mi atención. Es mi deber conocer todo lo que acontece en estos reinos para protegerlos.
+
+VÖLVA: Todo comenzó por obra de la ardilla Ratatösk, que con sus maquinaciones consiguió engañar al dragón Nidhögg y al águila sin nombre. Consiguió enemistarlos e involucrarlos en una competición.
+
+ODÍN: ¿En qué consistió dicha competición?
+
+VÖLVA: Con el objetivo de roer las raíces de Yggdrasil para desatar el Ragnarök y acabar con todo, Nidhögg comenzó a descender por el árbol. A su vez, el águila inició su ascenso para avisar a la diosa Freyja y que esta evitase la catástrofe.
+
+ODÍN: ¿Y quién salió victorioso en estos eventos que me estás relatando, Völva?
+
+VÖLVA: Eso, Gran Odín, es lo que os procedo a contar…
+
+### GUION DE ENDING DEL ÁGUILA
+VÖLVA: Y así concluye nuestra historia. El águila llegó a la copa de Yggdrasil con tiempo suficiente para poner al tanto a la diosa Freyja.
+
+ODÍN: ¿Cuál es el papel de Freyja en todo esto y por qué no se me ha informado a mí, dios de Asgard, de esta situación?
+
+VÖLVA: Oh, gran Odín. No solo el poder puede cambiar el destino del mundo. El águila avisó a Freyja a sabiendas de que ella es la única que puede calmar a Nidhögg.
+
+ODÍN: Puedo llegar a entenderlo… ¿Qué ocurrió después?
+
+VÖLVA: Freyja y el águila se transportaron a lo más bajo de Yggdrasil. Ahí encontraron a Nidhögg, royendo desesperadamente las raíces. Freyja le instó a parar y le explicó que no podía desatar el Ragnarök, que todo había sido una treta de Ratatösk.
+
+VÖLVA: Y gracias al ímpetu del águila, hoy puedo presentarme ante vos para contar esta historia de cómo Yggdrasil y todos sus reinos fueron salvados… sin su ayuda, gran Odín.
+
+ODÍN: Ya entiendo cuáles eran tus intenciones presentándote aquí, Völva. Debo ser un gobernante más atento y protector si quiero evitar futuras desgracias en estos reinos. Gracias por tu crónica.
+
+VÖLVA: Es un honor, gran Odín. Velo y velaré siempre por la seguridad de Yggdrasil y sus reinos. Al igual que hacéis vos.
+
+### GUION DE ENDING DE NIDHÖGG
+VÖLVA: Y así fue como Nidhögg consiguió alcanzar las raíces de Yggdrasil antes de que el águila pudiese hacer algo para impedirlo.
+
+ODÍN: Pero Völva, eso significa que…
+
+VÖLVA: Sí, gran Odín. Nidhögg ha conseguido su objetivo: ha desatado el Ragnarök. La sangre se derrama, el suelo se agrieta, los cielos se abren y toda vida existente en estos reinos tendrá fin en breves momentos.
+
+ODÍN: ¡Debo ir a luchar! Völva, tú que todo conoces, ¡dime que podemos salvar a los reinos de esta catástrofe!
+
+VÖLVA: No lo creo, gran Odín. La vida está condenada y todo va a llegar a su fin. Cualquier esfuerzo es inútil.
+
+ODÍN: ¡Mientes! ¡Tengo que salvar a todos!
+
+VÖLVA: Con toda mi sinceridad, gran Odín, no hay nada que podáis hacer. Disfrutad de vuestros últimos momentos antes de que sea demasiado tarde.
+
+ODÍN: ¡No! ¡Soy Odín, dios de Asgard! ¡Y moriré defendiéndola si es preciso!
+
+VÖLVA: Adelante, gran Odín. Luchad por la vida… aunque sea demasiado tarde.
+
 
 ## INTERFAZ
-Se implementará una interfaz diegética, donde los elementos relevantes para el desarrollo de la partida, como la estamina restante de un jugador, se reflejarán en el propio mundo del juego en lugar de simplemente mostrarse por pantalla.
+La estamina se ve reflejada oscureciéndose la pantalla (de azul en la del águila, de rojo en la de Nidhögg) cuando queda poca cantidad, restableciendo su estado normal cuando se recupera dicha estamina, presentando así una interfaz diegética para no distraer al jugador de los elementos _ingame_
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/interfaz_diegetica_concepto.png "Interfaz diegética")
 
@@ -163,13 +219,13 @@ Se utilizarán sonidos y melodías de licencia libre que sean apropiados para la
 ## ARTE
 Se ha optado por un diseño artístico con personajes de baja estatura y rasgos sin excesivo detalle. Este estilo permite realizar animaciones simples, pero fluidas y con buen acabado.
 
-Los personajes principales, Nidhogg y el águila, como se ha visto en imágenes previas, no serán jugables en su forma animal, sino en unas representaciones antropomórficas controladas por los jugadores. Son similares en cuanto a complexión y tamaño, justificando así que sean iguales jugablemente, pese a que estéticamente se diferenciarán mediante sus cabezas y sus colores. 
+Los personajes principales, Nidhogg y el águila no son jugables en su forma animal, sino en unas representaciones antropomórficas controladas por los jugadores. Son similares en cuanto a complexión y tamaño, justificando así que sean iguales jugablemente, pese a que estéticamente se diferenciarán mediante sus cabezas y sus colores. 
 
-Estéticamente, por tanto, se seguirá el estilo de Puppet Animation con flash, similar al de juegos como _Rayman Origins_ o _Dust: An Elysian Tail_. Las animaciones se harán interpolando _keyframes_ dibujados en flash. Como muestra inicial, en la siguiente imagen se pueden apreciar los _spritesheets_ de las poses estáticas de los dos tipos de enemigo.
+Estéticamente, por tanto, se sigue el estilo de Puppet Animation con flash, similar al de juegos como _Rayman Origins_ o _Dust: An Elysian Tail_. Las animaciones se han hecho interpolando _keyframes_ dibujados en flash. Como muestra inicial, en la siguiente imagen se pueden apreciar los _spritesheets_ de las poses estáticas de los dos tipos de enemigo.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_1_perspectivas.png "Spritesheet E1") ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_2_perspectivas.png "Spritesheet E2")
 
-En cuanto a los escenarios, estos se representarán de manera que sean fieles con la ambientación escogida. El árbol de Yggdrasil es de gran longitud y se rodea de diferentes reinos, por lo que en el escenario predominarán diferentes colores y detalles en función de en qué lugar se encuentren los personajes. Para muestra, se adjunta la imagen del árbol Yggdrasil, que se utilizará como _background_ del escenario. Se verá una parte u otra del árbol en diferentes niveles y tramos, dando así la sensación de progreso.
+En cuanto a los escenarios, estos se han representado buscando ejemplificar Yggdrasil. El árbol de Yggdrasil es de gran longitud y se rodea de diferentes reinos, por lo que en el escenario predominarán diferentes colores y detalles en función de en qué lugar se encuentren los personajes. Para muestra, se adjunta la imagen del árbol Yggdrasil, que se utilizará como _background_ del escenario. Se verá una parte u otra del árbol en diferentes niveles y tramos, dando así la sensación de progreso.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/arbol_calidad_baja.jpg "Background: Yggdrasil")
 
@@ -183,6 +239,7 @@ Los reinos, a su vez, pueden contar diferentes historias alternativas a la princ
 Asimismo, se podrían añadir enemigos a modo de jefes finales del nivel donde los personajes tuviesen que cooperar para derrotarlos. Estos enemigos pueden ser criaturas del folklore nórdico, como el dragón de Midgard Jörmungandr, los gigantes de Jötunheim, el no-muerto Draugr o el ciervo del Valhalla Eikþyrnir.
 
 También existe la posibilidad de aumentar el número de personajes jugables y diferenciarlos más allá de lo estético con habilidades especiales. Estos personajes podrían ser pertenecientes a diferentes razas de los reinos de Yggdrasil, como los elfos oscuros o las valquirias.
+Las plataformas no serán todas iguales ni en forma, ni en tamaño ni en funcionalidad. Habrá plataformas que se rompan a los pocos segundos de posarse sobre ellas, otras con movimientos verticales u horizontales, otras con trampas y otras permitirán dar un salto más alto. Habrá tramos con plataformas más pequeñas y otros donde tengan mayor longitud o sean lo suficientemente anchas como para realizar en ellas un salto de pared. Algunas plataformas, también, serán rectangulares, mientras otras pueden tener forma de T, estar escalonadas…
 
 Otra opción interesante es aumentar el número de jugadores en una misma partida. Se deberían regular elementos, como las invasiones a través de los portales o el control de actividad, así como rediseñar ligeramente ciertos tramos de los niveles. Pero la jugabilidad se podría enriquecer y dar lugar a partidas más caóticas, dando mucho valor a la rejugabilidad.
 
@@ -192,16 +249,56 @@ Alternativa para la interfaz diegética: se puede reflejar la estamina restante 
 
 Finalmente, y como idea prioritaria a implementar, de cara a mejorar la rejugabilidad del título los niveles podrían no estar dispuestos siempre de la misma forma, sino diviéndolos en tramos y que algunos de estos tramos presenten una disposición de plataformas y power-ups diferente en cada iteración del juego. No se trata de aleatorizar los elementos del escenario, sino de tener varios módulos distintos para un mismo tramo del nivel y que en cada iteración de un nivel se escoja uno aleatoriamente, haciendo que no todas las partidas sean iguales y alargando la vida útil del juego para el usuario.
 
+## BUGS CONOCIDOS
+A veces la interfaz de la estamina opaca toda la pantalla por una causa desconocida. La solución a esto es dejar de usar el _dash_ y a usarlo de nuevo moviéndose de lado a lado, dejando que se recargue la estamina y volviéndola a gastar.
+
+En el nivel 3 hay un foso en el que, si el personaje cae, es imposible salir. En la próxima versión del juego se solucionará el tilemap aumentando un poco la altura del fondo.
+# CREDITOS
+## MUSICA
+Rynos Theme – Kevin Macleod (Incompetech.com)
+
+Black Vortex – Kevin Macleod (Incompetech.com)
+
+Curse of the Scarab – Kevin Macleod (Incompetech.com)
+
+Undaunted – Kevin Macleod (Incompetech.com)
+ 
+Eternal Terminarl – Kevin Macleod (Incompetech.com)
+
+Americana – Kevin Macleod (Incompetech.com)
+
+Killers – Kevin Macleod (Incompetech.com)
+
+Industrious Ferret – Kevin Macleod (Incompetech.com)
+
+Licensed Under Creative Commons: By Attribution 3.0
+
+## SONIDO
+Annulet of Absorption – CosmicCD
+
+Punch_02 – TheFSoundMan
+
+Arrow Impact 4 – Ali_6868
+
+Shield Guard – nekoninja
+
+Chillido Ardilla – checholio
+
+Mystic Flutter – SoughtafterSounds (“Copyright 2011 Varazuvi www.varazuvi.com”)
+
+Wooden Horn – Vendarro
+
+Efectos de sonido obtenido de https://freesound.org/
+
+
 ## MIEMBROS DEL EQUIPO
-Mario Aceituno Cordero - Diseño, Arte - m.aceituno.2016@alumnos.urjc.es
+Mario Aceituno Cordero – Arte, Programación, Cinemáticas, Diseño de personajes - m.aceituno.2016@alumnos.urjc.es
 
-Javier Albaráñez Martínez - Diseño, Arte, Programación - j.albaranez@alumnos.urjc.es
+Javier Albaráñez Martínez – Diseño de mecánicas, Arte, Programación - j.albaranez@alumnos.urjc.es
 
-César Carbajo García - Diseño, Arte - c.carbajo.2016@alumnos.urjc.es
+César Carbajo García – Diseño de mecánicas, Animación, Programación - c.carbajo.2016@alumnos.urjc.es
 
-Juan Antonio Martín García - Diseño, Documentación, Arte - ja.martin.2016@alumnos.urjc.es
-
-Los roles están abiertos y se actualizarán en función de las tareas que desempeñe cada miembro del grupo.
+Juan Antonio Martín García – Diseño de niveles, Guion, Documentación, Programación, Animación, Cinemáticas - ja.martin.2016@alumnos.urjc.es
 
 ## DETALLES DE PRODUCCIÓN
 **Fecha de inicio**: 11/09/2018
