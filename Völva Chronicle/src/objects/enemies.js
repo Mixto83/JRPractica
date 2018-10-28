@@ -67,10 +67,10 @@ var createEnemy = function (scene, nLevel) {
         addEnemy(penemies4, penemies, lanzasDL, -681, 5875, 135, enemyType[4],scene,false);//
 
         var penemies5;
-        addEnemy(penemies5, penemies, lanzasR, -1581, 2227, 0, enemyType[5],scene,false);//
+        addEnemy(penemies5, penemies, lanzasR, -1581, 2227, 0, enemyType[5],scene,true);//
 
         var penemies6;
-        addEnemy(penemies0, penemies, lanzasL, -2143, 2227, 180, enemyType[6],scene,true);//
+        addEnemy(penemies6, penemies, lanzasL, -2143, 2227, 180, enemyType[6],scene,false);//
 
 
         var enemiesp0;
