@@ -172,46 +172,46 @@ var createEnemy = function (scene, nLevel) {
     });
 
     //solo puede luchar cada uno con sus propios enemigos
-    scene.physics.add.overlap(player1, penemies, function (player1, penemies) {
-        startCombat(player1,penemies);
+    scene.physics.add.overlap(player1, penemies, function (player1, penemies, scene) {
+        startCombat(player1,penemies, scene);
     }, null, this);
-    scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp) {
-        startCombat(player2,enemiesp);
+    scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp, scene) {
+        startCombat(player2,enemiesp, scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasR, function (player1, lanzasR) {
+    scene.physics.add.collider(player1, lanzasR, function (player1, lanzasR) {
         hitLanza(player1, lanzasR,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasR, function (player2, lanzasR) {
+    scene.physics.add.collider(player2, lanzasR, function (player2, lanzasR) {
         hitLanza(player2, lanzasR,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasDR, function (player1, lanzasDR) {
+    scene.physics.add.collider(player1, lanzasDR, function (player1, lanzasDR) {
         hitLanza(player1, lanzasDR,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasDR, function (player2, lanzasDR) {
+    scene.physics.add.collider(player2, lanzasDR, function (player2, lanzasDR) {
         hitLanza(player2, lanzasDR,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasDL, function (player1, lanzasDL) {
+    scene.physics.add.collider(player1, lanzasDL, function (player1, lanzasDL) {
         hitLanza(player1, lanzasDL,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasDL, function (player2, lanzasDL) {
+    scene.physics.add.collider(player2, lanzasDL, function (player2, lanzasDL) {
         hitLanza(player2, lanzasDL,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasL, function (player1, lanzasL) {
+    scene.physics.add.collider(player1, lanzasL, function (player1, lanzasL) {
         hitLanza(player1, lanzasL,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasL, function (player2, lanzasL) {
+    scene.physics.add.collider(player2, lanzasL, function (player2, lanzasL) {
         hitLanza(player2, lanzasL,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasUL, function (player1, lanzasUL) {
+    scene.physics.add.collider(player1, lanzasUL, function (player1, lanzasUL) {
         hitLanza(player1, lanzasUL,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasUL, function (player2, lanzasUL) {
+    scene.physics.add.collider(player2, lanzasUL, function (player2, lanzasUL) {
         hitLanza(player2, lanzasUL,scene);
     }, null, this);
-    scene.physics.add.overlap(player1, lanzasUR, function (player1, lanzasUR) {
+    scene.physics.add.collider(player1, lanzasUR, function (player1, lanzasUR) {
         hitLanza(player1, lanzasUR,scene);
     }, null, this);
-    scene.physics.add.overlap(player2, lanzasUR, function (player2, lanzasUR) {
+    scene.physics.add.collider(player2, lanzasUR, function (player2, lanzasUR) {
         hitLanza(player2, lanzasUR,scene);
     }, null, this);
 
@@ -273,7 +273,10 @@ function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene,
     });
 }
 
-function startCombat(player,enemygroup){
+function startCombat(player,enemygroup, scene){
+    if (player.combat === false) {
+        scene.sound.play('combatSound');
+    } 
     player.combat = true;
     enemygroup.lanza.combat = true;
     player.anims.play('combat'+player.type, true);

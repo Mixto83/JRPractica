@@ -210,16 +210,11 @@ createInputs = function (scene) {
     player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
-
-    player1.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
-    player2.keyTest = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
-
 }
 
 updateTimer = function () {
     if (!levelEnded) {
         levelTime++;
-        console.log('x:'+player1.x+' y:'+player1.y);
     }
 }
 
@@ -384,10 +379,6 @@ updateAnimation = function (player) {
 
 updateControls = function (scene, player, adversary) {
     if (!player.combat) {
-        if (player.keyTest.isDown&& !levelEnded){
-            player.keyTest.isDown = false;
-            endLevel(scene,player);
-        }
         if (currentLevel === 1) {
             if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
                 endLevel(scene, player1);

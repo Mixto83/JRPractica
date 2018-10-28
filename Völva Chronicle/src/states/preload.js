@@ -109,6 +109,7 @@ preloadScene.preload = function () {
     //Deer Sound: Mystic Flutter 5 Soughtaftersounds "Copyright © 2011 Varazuvi™ www.varazuvi.com"
     //Portal Sound: Wooden Horn Vendarro
     //Licensed under Creative Commons: By Attribution 3.0
+    this.load.audio('combatSound', 'assets/sounds/combatSound.wav');
     this.load.audio('menuConfirm', 'assets/sounds/menuConfirm.mp3');
     this.load.audio('runeObtained', 'assets/sounds/runeObtained.wav');
     this.load.audio('impactSound', 'assets/sounds/punchPlayers.wav');
