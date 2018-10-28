@@ -63,6 +63,7 @@ rewardScene.update = function(){
             keyZ.isDown = false;
             rewardScene.scene.start('level3');
         }
+        rewardScene.scene.stop();
     }
 }
 

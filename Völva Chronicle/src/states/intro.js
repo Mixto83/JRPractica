@@ -9,6 +9,7 @@ introScene.preload = function (){
 introScene.nextScene = function(){
     stopCinematics();
     introScene.scene.start('level1');
+    introScene.scene.stop();
 }
 
 introScene.create = function (){

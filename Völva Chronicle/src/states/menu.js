@@ -36,7 +36,9 @@ menuScene.create = function () {
             botonLocal.on('pointerdown', function (pointer) {
                 music.stop();
                 menuScene.sound.play('menuConfirm');
-                menuScene.time.delayedCall(2000, function(){menuScene.scene.start('intro');}, [], menuScene);
+                menuScene.time.delayedCall(2000, function(){
+                    menuScene.scene.start('intro');
+                    menuScene.scene.stop();}, [], menuScene);
             });
 
             //Boton "Online"

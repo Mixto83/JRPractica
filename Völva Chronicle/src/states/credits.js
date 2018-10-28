@@ -1,6 +1,6 @@
 var creditsScene = new Phaser.Scene('credits');
-var otherScene;
 var creditsImg;
+
 
 creditsScene.active = true;
 
@@ -23,9 +23,17 @@ creditsScene.create = function () {
 
 restartFunc = function(){
     music.stop();
-    menuScene.scene.restart();
     levelEnded = false;
     heimdall = false;
     levelTime = 0;
+    /*creditsScene.scene.restart('menu');
+    creditsScene.scene.restart('intro');
+    creditsScene.scene.restart('level1');
+    creditsScene.scene.restart('level1');
+    creditsScene.scene.restart('ending1');
+    creditsScene.scene.restart('ending2');
+    creditsScene.scene.restart('level2');
+    creditsScene.scene.restart('level3');*/
     creditsScene.scene.start('menu');
+    creditsScene.scene.stop();
 }
