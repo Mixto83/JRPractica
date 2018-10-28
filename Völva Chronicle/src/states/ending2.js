@@ -8,7 +8,7 @@ ending2Scene.preload = function (){
 
 ending2Scene.nextScene = function(){
     stopCinematics();
-    ending2Scene.scene.start('menu');
+    ending2Scene.scene.start('credits');
 }
 
 ending2Scene.create = function (){

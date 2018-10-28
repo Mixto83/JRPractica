@@ -61,7 +61,7 @@ preloadScene.preload = function () {
         frameWidth: 1212,
         frameHeight: 225
     });
-    
+    this.load.atlas('creditosFinales', 'assets/cutscenes/credits.png','assets/cutscenes/credits.json');
     //spritesheets
     this.load.atlas('aguila','assets/spritesheets/spritesheet_aguila.png','assets/spritesheets/spritesheet_aguila.json');
     this.load.atlas('nidhogg','assets/spritesheets/spritesheet_Nidhogg.png','assets/spritesheets/spritesheet_Nidhogg.json');
@@ -81,10 +81,14 @@ preloadScene.preload = function () {
     this.load.image('lanza', 'assets/sprites/lanza_horizontal_R.png');
 
     //Musica
-    //Rynos Theme Kevin MacLeod (incompetech.com)
-    //Black Vortex Kevin MacLeod (incompetech.com) 
-    //Americana Kevin MacLeod (incompetech.com)
-    //Killers Kevin MacLeod (incompetech.com)
+    //Menu: Rynos Theme Kevin MacLeod (incompetech.com)
+    //Reward: Industrious Ferret Kevin MacLeod (incompetech.com)
+    //Intro: Black Vortex Kevin MacLeod (incompetech.com)
+    //Ending1: Americana Kevin MacLeod (incompetech.com)
+    //Ending2: Killers Kevin MacLeod (incompetech.com)
+    //Level1: Curse of the Scarab Kevin MacLeod (incompetech.com)
+    //Level2: Undaunted Kevin MacLeod (incompetech.com)
+    //Level3: Eternal Terminarl Kevin MacLeod (incompetech.com)
     //Licensed under Creative Commons: By Attribution 3.0
     //http://creativecommons.org/licenses/by/3.0/
     this.load.audio('menuMusic', 'assets/music/menuMusic.mp3');
@@ -95,7 +99,16 @@ preloadScene.preload = function () {
     this.load.audio('musicLevel1', 'assets/music/level1Music.mp3');
     this.load.audio('musicLevel2', 'assets/music/level2Music.mp3');
     this.load.audio('musicLevel3', 'assets/music/level3Music.mp3');
-    //Sonidos
+    //Efectos de sonido
+    //Sonidos obtenidos de https://freesound.org/
+    //Rune Obtained: Annulet of absorption CosmicD
+    //Impact Sound: Punch_02 thefsoundman
+    //Spear Sound: Arrow Impact 4 Ali_6868
+    //Shield Sound: shield guard nekoninja
+    //Ratatösk Sound: Chillido Ardilla checholio
+    //Deer Sound: Mystic Flutter 5 Soughtaftersounds "Copyright © 2011 Varazuvi™ www.varazuvi.com"
+    //Portal Sound: Wooden Horn Vendarro
+    //Licensed under Creative Commons: By Attribution 3.0
     this.load.audio('menuConfirm', 'assets/sounds/menuConfirm.mp3');
     this.load.audio('runeObtained', 'assets/sounds/runeObtained.wav');
     this.load.audio('impactSound', 'assets/sounds/punchPlayers.wav');

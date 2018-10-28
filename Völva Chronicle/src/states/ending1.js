@@ -8,7 +8,7 @@ ending1Scene.preload = function (){
 
 ending1Scene.nextScene = function(){
     stopCinematics();
-    ending1Scene.scene.start('menu');
+    ending1Scene.scene.start('credits');
 }
 ending1Scene.create = function (){
     createBackground(ending1Scene,1045,540,3,'Ending1');

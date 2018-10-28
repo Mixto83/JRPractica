@@ -10,7 +10,7 @@ let config = {
         }
     },
     scene: [bootScene, preloadScene, menuScene, introScene, level1Scene,
-    level2Scene, level3Scene, rewardScene, ending1Scene, ending2Scene],
+    level2Scene, level3Scene, rewardScene, ending1Scene, ending2Scene, creditsScene],
     fps: {
         min: 10,
         target: 30,
