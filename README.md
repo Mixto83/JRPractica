@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**2.0**
+**2.1**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 
@@ -16,13 +16,13 @@
 ### GENERO
 Plataformas de scroll vertical.
 ### SINOPSIS DE JUGABILIDAD Y CONTENIDO
-Cada jugador tiene como objetivo alcanzar el final del nivel antes que su contrincante. Cada uno comenzará la partida en su pantalla y no podrá interactuar con el personaje de su oponente, sino que solo verá una silueta que indique dónde se encuentra y qué acciones está realizando.
+Cada jugador tiene como objetivo alcanzar el final del nivel antes que su contrincante. Cada uno comenzará la partida en su pantalla y no podrá interactuar con el personaje de su oponente, sino que verá la pantalla del otro, pudiendo monitorizar su posición, el camino que toma o los objetos que consigue.
 ### LICENCIA
 El videojuego está ambientado en la mitología nórdica, por lo que se busca realizar una representación de esta tanto a nivel de historia como a nivel artístico. Los acontecimientos que ocurren en el juego, así como los personajes involucrados, están extraídos de los poemas y leyendas de esta mitología, adaptándolos de la manera más fiel posible, pero con las licencias necesarias para adaptar ciertas situaciones a la jugabilidad escogida.
 ### HISTORIA
-La historia, narrada por una völva a Odín, cuenta cómo la ardilla **Ratatösk** está desatando un conflicto entre el **águila sin nombre** y el dragón **Nidhögg**, provocando una disputa entre ellos que da lugar a una competición en la que ambos parten de la zona intermedia del árbol **Yggdrasil**: Nidhögg intenta llegar a las raíces de para roerlas y con ello producir el Ragnarök, mientras que el águila busca llegar a la copa del árbol para comunicar a Freyja las intenciones de Nidhögg, la cual intervendrá explicando al dragón que todo es un engaño orquestado por Ratatösk. De esta manera, la conclusión de la historia será diferente en función de qué jugador se haga con la victoria: la victoria de Nidhögg desatará el Ragnarök, mientras que la del aguila solucionará el malentendido y pondrá fin al conflicto.
+La historia, narrada por una völva a Odín, cuenta cómo la ardilla **Ratatösk** está desatando un conflicto entre el **águila sin nombre** y el dragón **Nidhögg**, provocando una disputa entre ellos que da lugar a una competición en la que ambos parten de la zona intermedia del árbol **Yggdrasil**: Nidhögg intenta llegar a las raíces para roerlas y con ello producir el Ragnarök, mientras que el águila busca llegar a la copa del árbol para comunicar a Freyja las intenciones de Nidhögg, la cual intervendrá explicando al dragón que todo es un engaño orquestado por Ratatösk. De esta manera, la conclusión de la historia será diferente en función de qué jugador se haga con la victoria: la victoria de Nidhögg desatará el Ragnarök, mientras que la del aguila solucionará el malentendido y pondrá fin al conflicto.
 ### MECANICAS
-La mecánica principal de la que se valdrán los jugadores es, como en todos los videojuegos del género, el salto. Cada personaje podrá realizar hasta tres saltos seguidos antes de aterrizar en el suelo, consiguiendo así impulsarse hacia plataformas más elevadas y acercarse a la meta. Además de saltar, los personajes se podrán mover lateralmente por el escenario, así como hacer uso de la habilidad del _dash_: esta servirá para dar un mayor impulso y velocidad a las acciones, permitiendo llegar a sitios que de otra manera serían imposibles de alcanzar.
+La mecánica principal de la que se valdrán los jugadores es, como en todos los videojuegos del género, el salto. Cada personaje podrá realizar hasta tres saltos seguidos antes de aterrizar en el suelo, consiguiendo así impulsarse hacia plataformas más elevadas y acercarse a la meta. Además de saltar, los personajes se podrán mover lateralmente por el escenario, así como podrán hacer uso de la habilidad del dash: esta servirá para dar un mayor impulso y velocidad a las acciones, permitiendo llegar a sitios que de otra manera serían imposibles de alcanzar.
 
 Para que no se abuse de ello, el _dash_ no se puede utilizar de manera gratuita, sino que consume una determinada cantidad de estamina, la cual se recargará de manera progresiva cuando el personaje se encuentre en reposo. De esta manera se establece un **sistema de riesgo-recompensa-castigo**, incentivando a los jugadores a aprovechar esta habilidad para ganar la carrera, pero obligándolos a ser cautos y gestionar sus recursos de forma moderada para obtener ventaja. Un ejemplo de cómo puede impactar el sistema de estamina: en un tramo donde todas las plataformas pueden ser superadas mediante el uso del salto simple, un jugador puede verse tentado a pasar rápido por ahí haciendo uso del triple salto y el dash, obteniendo ventaja sobre el jugador que decida no gastar parte de su estamina tan rápido. Pero tras este tramo, puede presentarse otro donde haya una plataforma que solo pueda ser alcanzada mediante un _dash_ y varios saltos: el jugador que ha gastado parte de su estamina se ve obligado a esperar a que esta se recargue, mientras que el otro podrá seguir su recorrido en cuanto llegue a esa zona, equilibrando así la partida.
 
@@ -47,6 +47,8 @@ v1.4 - Adición de imágenes de muestra y revisión de redacción, maquetación 
 
 v2.0 – Enlace al Google Drive del proyecto, redacción del guion, reporte de bugs y créditos de assets externos.
 
+v2.1 - Diagrama de transición de escenas, inserción de imágenes _ingame_ y corrección de erratas.
+
 ## MECANICA DEL JUEGO
 ### CAMARA
 La cámara es de vista lateral, alejada lo suficiente de los personajes para poder ver parte del escenario y permitir a maniobrar al jugador. Aún así, esta cámara sigue al personaje que controla el jugador, desplazándose lateralmente hasta alcanzar uno de los bordes del escenario.
@@ -55,18 +57,15 @@ El jugador controlará los movimientos, así como el salto y sus direcciones, me
 
 En la implementación en modo local, el segundo jugador usará las flechas de dirección y la tecla 0 del numpad.
 ### PUNTUACION
-No se establecerá un sistema de puntuación. Solo existen los estados en el que un jugador pierde y otro gana cada uno de los distintos niveles.
+No se establecerá un sistema de puntuación. Solo existen los estados en el que un jugador pierde y otro gana en cada uno de los distintos niveles.
 ### SISTEMA DE GUARDADO
 El juego no cuenta con ningún sistema de guardado, ya que está pensado para partidas rápidas entre dos jugadores, que puedan resolverse entre 8 y 12 minutos, dependiendo de la habilidad de estos.
 
 ## ESTADOS DEL JUEGO Y PANTALLAS
-La secuencia de pantallas del juego es sencilla. De la pantalla de título inicial se pasa a la introducción de la historia mediante imágenes estáticas (secuencia omisible mediante la pulsación de un botón) y tras ello inicia la partida para los dos jugadores en dos pantallas divididas. Al finalizar cada nivel se muestra una pequeña secuencia de historia y se notifica la recompensa al ganador. Al terminar el último nivel se reproducirá el final de juego, que será diferente en función del ganador.
+Se adjunta el diagrama de secuencia de escenas:
 
-Queda pendiente la inserción del diagrama de escenas y objetos, así como la muestra de diferentes pantallazos de las escenas.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/DiagramaEscenas.png "Diagrama de Escenas")
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_diagrama_pantallas.PNG "Diagrama de Pantallas")
-
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Boceto_diagrama_escenas.jpg "Diagrama de escenas. Extendido")
 
 ## PERSONAJES
 ### PERSONAJES CONTROLABLES
@@ -82,24 +81,23 @@ Queda pendiente la inserción del diagrama de escenas y objetos, así como la mu
 
 **Völva**: La vidente que narra la historia a Odín.
 
+**Freyja**: Una misteriosa diosa capaz de calmar a Nidhögg y evitar la tragedia del Ragnarök.
+
 ## ITEMS Y HABILIDADES
 En adición a las mecánicas de los propios personajes, a lo largo de los niveles se encuentran repartidos diferentes elementos que otorgarán pequeñas ventajas en forma de power-ups que harán ciertas modificaciones durante un periodo de tiempo. Estos power-ups pueden ser de dos tipos: runas y ayudantes.
 ### RUNAS
 Rocas místicas repartidas por el escenario. Se distinguen por símbolos, que representan a diferentes dioses de la mitología nórdica, presentando hasta 5 tipos diferentes:
 
-**Runa de Hermodr**: Aumenta la velocidad del jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Hemodr.png "Runa de Hemodr")**Runa de Hermodr**: Aumenta la velocidad del jugador que la obtiene.
 
-**Runa de Njord**: Permite saltar más alto al jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Njord.png "Runa de Njord")**Runa de Njord**: Permite saltar más alto al jugador que la obtiene.
 
-**Runa de Skadi**: Ralentiza al oponente del jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Skadi.png "Runa de Skadi")**Runa de Skadi**: Ralentiza al oponente del jugador que la obtiene.
 
-**Runa de Tir**: Proporciona un escudo de invulnerabilidad para evitar el próximo ataque del jugador oponente.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Tir.png "Runa de Tir")**Runa de Tir**: Proporciona un escudo de invulnerabilidad para evitar el próximo ataque del jugador oponente.
 
-**Runa de Bragi**: Incrementa la estamina del jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Bragi.png "Runa de Bragi")**Runa de Bragi**: Incrementa la estamina del jugador que la obtiene.
 
-Ejemplo de estética de una runa, concretamente la de Bragi:
-
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/Runa_Bragi_stamine.jpg "Runa de Bragi")
 
 ### AYUDANTES
 Manifestación de ciertos personajes de la mitología nórdica que aplicarán un efecto más poderoso que el de las runas.
@@ -116,15 +114,15 @@ Además de ayudas, a lo largo de los niveles también hay esparcidos enemigos qu
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_1.png "Enemigo 1")![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_2.png "Enemigo 2")
 
 ## PROGRESO DEL JUEGO
-Al comenzar la partida, a cada jugador se le asgina uno de los dos personajes controlables: el dragón Nidhogg o el águila sin nombre. El objetivo de ambos es llegar al final nivel antes que el otro. Ambos jugadores comienzan en el punto medio del árbol Yggdrasil y cada uno de los 3 niveles inicialmente propuestos, cuya dificultad aumenta gradualmente, siendo simétricos en cuanto a la distribución de las plataformas para ambos jugadores, solamente diferenciándose en ambientación y estética. Esta diferencia se justifica a nivel de historia: uno de los personajes está ascendiendo hasta la copa de Yggdrasil, mientras que el otro está descendiendo a las raíces, por lo que acaban en dos lugares diferentes.
+Al comenzar la partida, a cada jugador se le asigna uno de los dos personajes controlables: el dragón Nidhogg o el águila sin nombre. El objetivo de ambos es llegar al final del nivel antes que el otro. Ambos jugadores comienzan en el punto medio del árbol Yggdrasil y cada uno de los 3 niveles inicialmente propuestos, cuya dificultad aumenta gradualmente, siendo simétricos en cuanto a la distribución de las plataformas para ambos jugadores, solamente diferenciándose en ambientación y estética. Esta diferencia se justifica a nivel de historia: uno de los personajes está ascendiendo hasta la copa de Yggdrasil, mientras que el otro está descendiendo a las raíces, por lo que acaban en dos lugares diferentes.
 
-En esta primera imagen se muestra el primer tramo del nivel 1 con la división de pantallas entre los dos jugadores. Esta imagen es solo una muestra conceptual de cómo sería un tramo completo.
+Las imágenes que se muestran a continuación son imágenes _ingame_ del desarrollo de una partida, mostrando además elementos como el _dash_ o cómo funciona el power-up de Heimdall.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/Concepto_Nivel1_Tramo1_Completo.jpg "Concepto de Juego. Tramo completo")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/dash.png)
 
-En esta otra imagen se puede apreciar cómo quedaría el desarrollo de la partida, ya con la cámara siguiendo a los personajes.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/ImagenConceptual.jpg "Concepto de Juego. Visión de la cámara")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/invasion.png )
+
 ### NIVEL 1
 Servirá a modo de introducción para que los jugadores se familiaricen poco a poco con las mecánicas. Ambas pantallas comenzarán con una estética similar que se irá diferenciando conforme se alcance mayor altura. La dificultad no será muy exigente, para poder desarrollar una correcta curva de aprendizaje. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
 ### NIVEL 2
@@ -196,7 +194,7 @@ VÖLVA: Adelante, gran Odín. Luchad por la vida… aunque sea demasiado tarde.
 ## INTERFAZ
 La estamina se ve reflejada oscureciéndose la pantalla (de azul en la del águila, de rojo en la de Nidhögg) cuando queda poca cantidad, restableciendo su estado normal cuando se recupera dicha estamina, presentando así una interfaz diegética para no distraer al jugador de los elementos _ingame_
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/interfaz_diegetica_concepto.png "Interfaz diegética")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/estamina.png "Interfaz diegética")
 
 ## CARACTERISTICAS ONLINE
 ### COMUNICACION ENTRE JUGADORES
@@ -213,8 +211,41 @@ En caso de que un jugador no haga ningún _input_ en el intervalo de un minuto, 
 ## LOGROS
 Los logros que se obtienen son las recompensas de final de nivel, es decir, una runa para el jugador que sale vencedor de cada nivel.
 
-## MUSICA Y SONIDO
-Se utilizarán sonidos y melodías de licencia libre que sean apropiados para la ambientación del juego. Aún por concretar.
+## MUSICA
+Rynos Theme – Kevin Macleod (Incompetech.com)
+
+Black Vortex – Kevin Macleod (Incompetech.com)
+
+Curse of the Scarab – Kevin Macleod (Incompetech.com)
+
+Undaunted – Kevin Macleod (Incompetech.com)
+ 
+Eternal Terminarl – Kevin Macleod (Incompetech.com)
+
+Americana – Kevin Macleod (Incompetech.com)
+
+Killers – Kevin Macleod (Incompetech.com)
+
+Industrious Ferret – Kevin Macleod (Incompetech.com)
+
+Licensed Under Creative Commons: By Attribution 3.0
+
+## SONIDO
+Annulet of Absorption – CosmicCD
+
+Punch_02 – TheFSoundMan
+
+Arrow Impact 4 – Ali_6868
+
+Shield Guard – nekoninja
+
+Chillido Ardilla – checholio
+
+Mystic Flutter – SoughtafterSounds (“Copyright 2011 Varazuvi www.varazuvi.com”)
+
+Wooden Horn – Vendarro
+
+Efectos de sonido obtenidos de https://freesound.org/
 
 ## ARTE
 Se ha optado por un diseño artístico con personajes de baja estatura y rasgos sin excesivo detalle. Este estilo permite realizar animaciones simples, pero fluidas y con buen acabado.
@@ -250,45 +281,10 @@ Alternativa para la interfaz diegética: se puede reflejar la estamina restante 
 Finalmente, y como idea prioritaria a implementar, de cara a mejorar la rejugabilidad del título los niveles podrían no estar dispuestos siempre de la misma forma, sino diviéndolos en tramos y que algunos de estos tramos presenten una disposición de plataformas y power-ups diferente en cada iteración del juego. No se trata de aleatorizar los elementos del escenario, sino de tener varios módulos distintos para un mismo tramo del nivel y que en cada iteración de un nivel se escoja uno aleatoriamente, haciendo que no todas las partidas sean iguales y alargando la vida útil del juego para el usuario.
 
 ## BUGS CONOCIDOS
-A veces la interfaz de la estamina opaca toda la pantalla por una causa desconocida. La solución a esto es dejar de usar el _dash_ y a usarlo de nuevo moviéndose de lado a lado, dejando que se recargue la estamina y volviéndola a gastar.
+A veces la interfaz de la estamina opaca toda la pantalla por una causa desconocida. La solución a esto es dejar de usar el _dash_ y usarlo de nuevo moviéndose de lado a lado, dejando que se recargue la estamina y volviéndola a gastar.
 
 En el nivel 3 hay un foso en el que, si el personaje cae, es imposible salir. En la próxima versión del juego se solucionará el tilemap aumentando un poco la altura del fondo.
-# CREDITOS
-## MUSICA
-Rynos Theme – Kevin Macleod (Incompetech.com)
 
-Black Vortex – Kevin Macleod (Incompetech.com)
-
-Curse of the Scarab – Kevin Macleod (Incompetech.com)
-
-Undaunted – Kevin Macleod (Incompetech.com)
- 
-Eternal Terminarl – Kevin Macleod (Incompetech.com)
-
-Americana – Kevin Macleod (Incompetech.com)
-
-Killers – Kevin Macleod (Incompetech.com)
-
-Industrious Ferret – Kevin Macleod (Incompetech.com)
-
-Licensed Under Creative Commons: By Attribution 3.0
-
-## SONIDO
-Annulet of Absorption – CosmicCD
-
-Punch_02 – TheFSoundMan
-
-Arrow Impact 4 – Ali_6868
-
-Shield Guard – nekoninja
-
-Chillido Ardilla – checholio
-
-Mystic Flutter – SoughtafterSounds (“Copyright 2011 Varazuvi www.varazuvi.com”)
-
-Wooden Horn – Vendarro
-
-Efectos de sonido obtenido de https://freesound.org/
 
 
 ## MIEMBROS DEL EQUIPO
