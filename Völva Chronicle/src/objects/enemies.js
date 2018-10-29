@@ -252,14 +252,16 @@ function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene,
     enemy = scene.physics.add.sprite(posX, posY, type);
     enemygroup.add(enemy, true);
     enemy.flipX = !facingRight;
-    enemy.lanza = scene.physics.add.sprite(posX, posY + 5, 'lanza');
-    enemy.lanza.angle = angle;
+    enemy.setSize(66, 121).setOffset(110, 35);
+    enemy.lanza = scene.physics.add.sprite(posX, posY + 0, 'lanza');
     enemy.lanza.onHand = true;
     lanzagroup.add(enemy.lanza, true);
     enemy.lanza.posX = posX;
-    enemy.lanza.posY = posY + 5;
+    enemy.lanza.posY = posY + 0;
     enemy.lanza.combat = false;
-    enemy.setSize(66, 121).setOffset(110, 35);
+    //meter aqui nido de ifs para controlar la posicion de las hitbox de las lanzas
+    enemy.lanza.setSize(20, 20).setOffset(159, 0);
+    enemy.lanza.angle = angle;
     enemy.type = type;
     enemy.anims.play('throw'+type,true);
     enemy.on('animationcomplete', function () {
@@ -296,9 +298,9 @@ function startCombat(player,enemygroup, scene){
 function replaceLanza(lanza,scene) {
     if(!lanza.combat){
         lanza.onHand = true;
+        lanza.disableBody(false,true);
         scene.time.delayedCall(666, function (lanza) {
-            lanza.x = lanza.posX;
-            lanza.y = lanza.posY;
+            lanza.enableBody(true,lanza.posX, lanza.posY, true, true);
         },[lanza], null, this);
     }
 }

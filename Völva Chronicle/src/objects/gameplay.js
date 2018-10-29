@@ -378,6 +378,12 @@ updateAnimation = function (player) {
 
 
 updateControls = function (scene, player, adversary) {
+    
+    if (player.body.velocity.y > 1000) {
+        player.setVelocityY(950);
+        console.log(player1.body.velocity.y);
+    }
+    
     if (!player.combat) {
         if (currentLevel === 1) {
             if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
@@ -467,7 +473,7 @@ updateControls = function (scene, player, adversary) {
                 player.contStamine--;
                 player.dashId = 3;
             } else if (player.upPulsada && player.contSalto < 3) {
-                player.setVelocityY(-player.velocidadY - 100);
+                player.setVelocityY(-player.velocidadY - 150);
                 player.upPulsada = false;
                 player.contStamine--;
                 player.dashId = 1;
@@ -478,9 +484,6 @@ updateControls = function (scene, player, adversary) {
                 player.dashId = 5;
             } else {
                 player.setVelocityX(0);
-                if (player.getVelocityY < 0 && player.upPulsada) {
-                    player.setVelocityY(0);
-                }
             }
         } else {
             if (player.leftPulsada && player.upPulsada) {

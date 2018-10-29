@@ -17,7 +17,7 @@ updateCameras = function (player1, player2) {
 
     if (player1.contStamine < 35 && !boolCam1) {
         boolCam1 = true;
-        camera1.fade(50, 0, 0, 255);
+        camera1.fade(25, 0, 0, 255);
     } else if (player1.contStamine > 35 && boolCam1) {
         boolCam1 = false;
         camera1.fadeFrom(1000, 0, 0, 255);
@@ -25,7 +25,7 @@ updateCameras = function (player1, player2) {
 
     if (player2.contStamine < 35 && !boolCam2) {
         boolCam2 = true;
-        camera2.fade(50, 255, 0, 0);
+        camera2.fade(25, 255, 0, 0);
     } else if (player2.contStamine > 35 && boolCam2) {
         boolCam2 = false;
         camera2.fadeFrom(1000, 255, 0, 0);
