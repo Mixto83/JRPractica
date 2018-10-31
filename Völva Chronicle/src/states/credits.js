@@ -26,14 +26,6 @@ restartFunc = function(){
     levelEnded = false;
     heimdall = false;
     levelTime = 0;
-    /*creditsScene.scene.restart('menu');
-    creditsScene.scene.restart('intro');
-    creditsScene.scene.restart('level1');
-    creditsScene.scene.restart('level1');
-    creditsScene.scene.restart('ending1');
-    creditsScene.scene.restart('ending2');
-    creditsScene.scene.restart('level2');
-    creditsScene.scene.restart('level3');*/
     creditsScene.scene.start('menu');
     creditsScene.scene.stop();
 }
