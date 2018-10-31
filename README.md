@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**2.1**
+**2.2**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 
@@ -49,6 +49,8 @@ v2.0 – Enlace al Google Drive del proyecto, redacción del guion, reporte de b
 
 v2.1 - Diagrama de transición de escenas, inserción de imágenes _ingame_ y corrección de erratas.
 
+v2.2 - Descripción de las escenas e inserción de varias imágenes.
+
 ## MECANICA DEL JUEGO
 ### CAMARA
 La cámara es de vista lateral, alejada lo suficiente de los personajes para poder ver parte del escenario y permitir a maniobrar al jugador. Aún así, esta cámara sigue al personaje que controla el jugador, desplazándose lateralmente hasta alcanzar uno de los bordes del escenario.
@@ -66,6 +68,27 @@ Se adjunta el diagrama de secuencia de escenas:
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/DiagramaEscenas.png "Diagrama de Escenas")
 
+**Boot y Preload**: Escenas iniciales por las que solo se pasa cuando arranca el juego. Se cargan los assets mientras se le indica al jugador que debe esperar y se le sugiere poner el juego en pantalla completa.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/LoadingScene.png "Pantalla de carga")
+
+**Menu**: Pantalla inicial, donde se muestra el logo tanto del juego como del estudio. Al pulsar cualquier botón, se hace un fundido a negro y aparecen los botones de "Local" y "Online".
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/MenuSceneButtons.png "Pantalla de menú")
+
+**Intro**: Escena introductoria que sirve para presentar la historia a los jugadores. Se puede omitir pulsando cualquier botón. Las partículas que adornan la escena se generan en posiciones aleatorias en cada pasada.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/IntroScene.png "Pantalla de Intro")
+
+**Niveles 1, 2, 3**: Las diferentes escenas donde se desarrolla el gameplay. Se va aumentando la dificultad y el número de enemigos y objetos progresivamente. En el apartado _Progreso del juego_ se explican en profundidad.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel3Scene.png "Pantalla del Nivel 3")
+
+**Reward**: Al terminar los niveles 1 y 2, el juego se dirige a la escena de recompensa, donde se anuncia el ganador, el tiempo que ha tardado en completar el nivel y el power-up que obtiene como recompensa. Se sale de esta escena pulsando la tecla Z.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/RewardScene.png "Pantalla de Reward")
+
+**Ending 1 y 2**: Cinemáticas finales del juego, en función del ganador. Se pueden omitir pulsando la tecla Z. Las partículas se generan aleatoriamente, como en la Intro.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Ending1Scene.png "Pantalla de Ending 1")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Ending2Scene.png "Pantalla de Ending 2")
+
+**Credits**: Escena de créditos. Cuando estos terminan, se reinicia el juego y se vuelve a la pantalla de menú.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/CreditsScene.png "Pantalla de Créditos")
 
 ## PERSONAJES
 ### PERSONAJES CONTROLABLES
@@ -120,19 +143,19 @@ Las imágenes que se muestran a continuación son imágenes _ingame_ del desarro
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/dash.png)
 
-
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/invasion.png )
 
 ### NIVEL 1
 Servirá a modo de introducción para que los jugadores se familiaricen poco a poco con las mecánicas. Ambas pantallas comenzarán con una estética similar que se irá diferenciando conforme se alcance mayor altura. La dificultad no será muy exigente, para poder desarrollar una correcta curva de aprendizaje. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel1Scene.png )
+
 ### NIVEL 2
 Contará con tramos más complicados, una distribución de plataformas que premie el uso y la gestión de los saltos extra y el dash, así como varias bifurcaciones con dificultad diferente y con varias runas y asistentes distribuidos en diferentes zonas. En este nivel las diferencias estéticas serán mucho más notables: el jugador 1 se está acercando a la copa, por lo que la luz, los colores cálidos y suaves y un acabado más limpio estarán presentes, mientras que el jugador 2 se encontrará con un entorno más sucio y oscuro, debido al descenso hacia las raíces del árbol. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel2Scene.png )
+
 ### NIVEL 3
-Aumentará la complejidad de las plataformas y presentará bifurcaciones donde pueda no haber salida, obligando a retroceder lo más rápido posible y premiando tanto al jugador experimentado que conoce los caminos como al jugador habilidoso que domine los controles lo suficiente como para recortar tiempo en estos retrocesos. Estéticamente se continuará lo presentado en el nivel anterior, encontrándose el jugador 1 con colores propios de la naturaleza y la vida, mientras que el jugador 2 estará en una zona oscura, con predominancia del negro y el rojo, la presencia de raíces muertas y mucha suciedad. Al finalizar el nivel, el jugador que haya llegado antes será el ganador definitivo de la partida y se reproducirá el final correspondiente a su personaje, independientemente del resultado de los dos niveles anteriores.
-
-En la imagen se puede apreciar el diseño del primer tramo del nivel 1. Se puede comprobar que las plataformas son amplias, lineales y con saltos sencillos que permitan a los nuevos jugadores aprender las mecánicas sin muchas dificultades. Conforme se avance tanto en los tramos como en los niveles. La división en tramos no se apreciará a nivel visual una vez implementado el juego, solamente se utiliza a nivel de diseño para mantener el equilibrio jugable.
-
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Dise%C3%B1o/Nivel%201/nivel1_tramo1_v2.PNG "Diseño de niveles")
+Aumentará la complejidad de las plataformas y presentará bifurcaciones donde pueda no haber salida, obligando a retroceder lo más rápido posible y premiando tanto al jugador experimentado que conoce los caminos como al jugador habilidoso que domine los controles lo suficiente como para recortar tiempo en estos retrocesos. Estéticamente se continuará lo presentado en el nivel anterior, encontrándose el jugador 1 con colores propios de la naturaleza y la vida, mientras que el jugador 2 estará en una zona oscura y en presencia de raíces muertas y mucha suciedad. Al finalizar el nivel, el jugador que haya llegado antes será el ganador definitivo de la partida y se reproducirá el final correspondiente a su personaje, independientemente del resultado de los dos niveles anteriores.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel3Scene.png )
 
 ## GUION
 El guion se ha redactado para las escenas de introducción y de los dos finales.
@@ -252,9 +275,11 @@ Se ha optado por un diseño artístico con personajes de baja estatura y rasgos 
 
 Los personajes principales, Nidhogg y el águila no son jugables en su forma animal, sino en unas representaciones antropomórficas controladas por los jugadores. Son similares en cuanto a complexión y tamaño, justificando así que sean iguales jugablemente, pese a que estéticamente se diferenciarán mediante sus cabezas y sus colores. 
 
-Estéticamente, por tanto, se sigue el estilo de Puppet Animation con flash, similar al de juegos como _Rayman Origins_ o _Dust: An Elysian Tail_. Las animaciones se han hecho interpolando _keyframes_ dibujados en flash. Como muestra inicial, en la siguiente imagen se pueden apreciar los _spritesheets_ de las poses estáticas de los dos tipos de enemigo.
+Estéticamente, por tanto, se sigue el estilo de Puppet Animation con flash, similar al de juegos como _Rayman Origins_ o _Dust: An Elysian Tail_. Las animaciones se han hecho interpolando _keyframes_ dibujados en flash. Como muestra inicial, en la siguiente imagen se pueden apreciar los _spritesheets_ de las poses estáticas de Nidhögg y de un enemigo.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_1_perspectivas.png "Spritesheet E1") ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_enemigo_2_perspectivas.png "Spritesheet E2")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/spritesheets/spritesheet_Nidhogg.png "Spritesheet Nidhögg")
+
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/spritesheets/spritesheet_enemigo2.png "Spritesheet Enemigo 2")
 
 En cuanto a los escenarios, estos se han representado buscando ejemplificar Yggdrasil. El árbol de Yggdrasil es de gran longitud y se rodea de diferentes reinos, por lo que en el escenario predominarán diferentes colores y detalles en función de en qué lugar se encuentren los personajes. Para muestra, se adjunta la imagen del árbol Yggdrasil, que se utilizará como _background_ del escenario. Se verá una parte u otra del árbol en diferentes niveles y tramos, dando así la sensación de progreso.
 
@@ -285,7 +310,7 @@ A veces la interfaz de la estamina opaca toda la pantalla por una causa desconoc
 
 En el nivel 3 hay un foso en el que, si el personaje cae, es imposible salir. En la próxima versión del juego se solucionará el tilemap aumentando un poco la altura del fondo.
 
-
+En algunas ocasiones, si un objeto coge excesiva velocidad, atraviesa alguna pared o suelo. Este efecto se ha paliado controlando la velocidad máxima, pero aún se manifiesta ocasionalmente.
 
 ## MIEMBROS DEL EQUIPO
 Mario Aceituno Cordero – Arte, Programación, Cinemáticas, Diseño de personajes - m.aceituno.2016@alumnos.urjc.es
