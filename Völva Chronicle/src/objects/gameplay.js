@@ -376,36 +376,37 @@ updateAnimation = function (player) {
     }
 }
 
+checkEndLevel = function (scene){
+    if (currentLevel === 1) {
+        if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
+            endLevel(scene, player1);
+        } else if ((player2.x >= 3000) && (player2.y <= 300) && !levelEnded) {
+            endLevel(scene, player2);
+        }
+    }
+    if (currentLevel === 2) {
+        if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400) && !levelEnded) {
+            endLevel(scene, player1);
+        } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400) && !levelEnded) {
+            endLevel(scene, player2);
+        }
+    }
+    if (currentLevel === 3) {
+        if ((player1.x <= -2750) && (player1.y <= 600) && !levelEnded) {
+            endLevel(scene, player1);
+        } else if ((player2.x <= 800) && (player2.y <= 600) && !levelEnded) {
+            endLevel(scene, player2);
+        }
+    }
+}
 
-updateControls = function (scene, player, adversary) {
+updateControls = function (player) {
     
     if (player.body.velocity.y > 1000) {
         player.setVelocityY(950);
-        console.log(player1.body.velocity.y);
     }
     
     if (!player.combat) {
-        if (currentLevel === 1) {
-            if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
-                endLevel(scene, player1);
-            } else if ((player2.x >= 3000) && (player2.y <= 300) && !levelEnded) {
-                endLevel(scene, player2);
-            }
-        }
-        if (currentLevel === 2) {
-            if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400) && !levelEnded) {
-                endLevel(scene, player1);
-            } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400) && !levelEnded) {
-                endLevel(scene, player2);
-            }
-        }
-        if (currentLevel === 3) {
-            if ((player1.x <= -2750) && (player1.y <= 600) && !levelEnded) {
-                endLevel(scene, player1);
-            } else if ((player2.x <= 800) && (player2.y <= 600) && !levelEnded) {
-                endLevel(scene, player2);
-            }
-        }
 
         if (player.keyLeft.isDown) {
             player.leftPulsada = true;

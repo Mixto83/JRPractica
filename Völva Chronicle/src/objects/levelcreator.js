@@ -1,9 +1,10 @@
 var map;
 var layer;
 
+//Carga todas las imagenes de fondo, el tileset y la música del nivel 1
 createLevel = function (scene, nLevel) {
     levelEnded = false;
-
+    //Carga los fondos
     scene.add.image(0, 1224, 'background1Nivel1');
     scene.add.image(0, 3672, 'background2Nivel1');
     scene.add.image(0, 6120, 'background3Nivel1');
@@ -13,13 +14,14 @@ createLevel = function (scene, nLevel) {
     scene.add.image(0, 15912, 'background7Nivel1');
     scene.add.image(0, 18360, 'background8Nivel1');
    
-
-    //Creacion del mapa dependiendo del nivel
-    map = scene.make.tilemap({ key:'map'+nLevel, tileWidth: 48, tileHeight: 48});
+    //Añade música
     music = scene.sound.add('musicLevel'+nLevel);
     music.setLoop(true);
     music.setVolume(0.4);
     scene.time.delayedCall(300, function(){music.play();},[], scene);
+    
+    //Creacion del mapa dependiendo del nivel
+    map = scene.make.tilemap({ key:'map'+nLevel, tileWidth: 48, tileHeight: 48});
     
     var tileset = map.addTilesetImage('tiles');
     layer = map.createStaticLayer(0, tileset, -3501,0);

@@ -43,8 +43,9 @@ level3Scene.create = function (){
 }
 
 level3Scene.update = function () {
-    updateControls(level3Scene,player1,player2);
-    updateControls(level3Scene,player2,player1);
+    updateControls(player1);
+    updateControls(player2);
+    checkEndLevel(level3Scene);
     updateAnimation(player1);
     updateAnimation(player2);
     moveLanzas();

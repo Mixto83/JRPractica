@@ -14,7 +14,7 @@ introScene.nextScene = function(){
 
 introScene.create = function (){
     createBackground(introScene,1045,540,3,'Intro');
-    createParticles(introScene,1090,3500,8,'Intro');//Placeholder: Modificar sprite de particulas y velocidad
+    createParticles(introScene,1090,3500,8,'Intro');
     createMusic(introScene,'intro');
     createTextBox(introScene,960,1000.5,10,0.17,'Intro');
     //Teclado
