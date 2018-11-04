@@ -6,6 +6,7 @@ var logoGame;
 var fondoMenuSombra;
 var botonLocal;
 var botonOnline;
+var keyZ;
 
 //crea la animación de cargando
 function loadingAnimation(scene) {
@@ -54,4 +55,41 @@ function createMenuButtons(scene) {
         botonLocal.on('pointerdown', function (pointer) {
             //Se implementara mas tarde
         });
+}
+
+//Crea el texto de enhorabuena del ganador, una imagen que representa su
+//recompensa e instrucciones para pasar al siguiente nivel
+function createRewardText(scene, type){
+    var style1 = {font: "50px Fantasy", fill: "#000"}; 
+    var style2 = {font: "30px Fantasy", fill: "#000"};
+    var text = scene.add.text(700, 400, '', style1);
+    var text2 = scene.add.text(800, 800, 'Pulse Z para continuar', style2);
+    text.setText([
+        'Ganador: ¡'+type+'!',           
+        ''+type+' consigue: ' + runeName,
+        'Tiempo: ' + levelTime,
+    ]);
+    obtainedRune = rewardScene.add.image(960, 700, runeName);
+}
+
+//Input para saltar la pantalla de Reward (Z)
+function createRewardInput(scene){
+    keyZ = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+}
+
+//Si se pulsa Z, pasa al nivel correspondiente
+function nextLevel(scene){
+    if(keyZ.isDown){
+        
+        if (currentLevel === 1){
+            music.stop();
+            keyZ.isDown = false;
+            scene.scene.start('level2');
+        } else if (currentLevel === 2){     
+            music.stop();      
+            keyZ.isDown = false;
+            scene.scene.start('level3');
+        }
+        scene.scene.stop();
+    }
 }

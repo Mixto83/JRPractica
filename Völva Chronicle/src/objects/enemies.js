@@ -10,9 +10,10 @@ var lanzasUL; //lanzas arriba izquierda
 var enemyType1 = 'enemigo1';
 var enemyType2 = 'enemigo2';
 
+//crea los enemigos y lanzas del nivel, los coloca en su sitio y les añade colisiones
 var createEnemy = function (scene, nLevel) {
-    var ranEnemy; //variable para el numero random
     var enemyType = []; //array de tipos de enemgios
+    //se crean los grupos de enemigos y lanzas
     penemies = scene.physics.add.group();
     enemiesp = scene.physics.add.group();
     lanzasR = scene.physics.add.group();
@@ -22,20 +23,24 @@ var createEnemy = function (scene, nLevel) {
     lanzasUR = scene.physics.add.group();
     lanzasUL = scene.physics.add.group();
 
-
+    //Se inician los enemigos del nivel 1
     if (nLevel === 1) {
         var numberEnemies = 6; //numero de enemigos en este nivel
 
         enemyType = randomTypeEnemies(numberEnemies); //se ponen tipos de enemigos al azar
 
+        //Enemigos de la pantalla del jugador 1
+
         var penemies0;
         addEnemy(penemies0, penemies, lanzasR, -3020, 5875, 0, enemyType[0], scene, true);
 
         var penemies1;
-        addEnemy(penemies1, penemies, lanzasDL, -2260, 2208, 135, enemyType[1],scene, false);//
+        addEnemy(penemies1, penemies, lanzasDL, -2260, 2208, 135, enemyType[1],scene, false);
 
         var penemies2;
         addEnemy(penemies2, penemies, lanzasDR, -905, 2995, 45, enemyType[2],scene, true);
+
+        //Enemigos de la pantalla del jugador 2
 
         var enemiesp0;
         addEnemy(enemiesp0, enemiesp, lanzasR, 532, 5875, 0, enemyType[3],scene, true);
@@ -45,12 +50,12 @@ var createEnemy = function (scene, nLevel) {
 
         var enemiesp2;
         addEnemy(enemiesp2, enemiesp, lanzasDR, 2645, 2995, 45, enemyType[5],scene, true);
-    }
+    }//Se inician los enemigos del nivel 2
     else if (nLevel === 2) {
         var numberEnemies = 14;
         enemyType = randomTypeEnemies(numberEnemies);
 
-
+        //Enemigos de la pantalla del jugador 1
         var penemies0;
         addEnemy(penemies0, penemies, lanzasDL, -2256, 17472, 135, enemyType[0],scene,false);
 
@@ -72,6 +77,7 @@ var createEnemy = function (scene, nLevel) {
         var penemies6;
         addEnemy(penemies6, penemies, lanzasL, -2143, 2227, 180, enemyType[6],scene,false);//
 
+        //Enemigos de la pantalla del jugador 2
 
         var enemiesp0;
         addEnemy(enemiesp0, enemiesp, lanzasDL, 1296, 17472, 135, enemyType[7],scene,false);
@@ -94,9 +100,12 @@ var createEnemy = function (scene, nLevel) {
         var enemiesp6;
         addEnemy(enemiesp6, enemiesp, lanzasL, 1409, 2227, 180, enemyType[13],scene,false);
 
+    //Se inician los enemigos del nivel 3
     } else if (nLevel === 3) {
         var numberEnemies = 16;
         enemyType = randomTypeEnemies(numberEnemies);
+
+        //Enemigos de la pantalla del jugador 1
 
         var penemies0;
         addEnemy(penemies0, penemies, lanzasUR, -2755, 17971, 315, enemyType[0],scene,true);
@@ -122,7 +131,7 @@ var createEnemy = function (scene, nLevel) {
         var penemies7;
         addEnemy(penemies7, penemies, lanzasDR, -2769, 979, 45, enemyType[7],scene,true);
 
-
+        //Enemigos de la pantalla del jugador 2
 
         var enemiesp0;
         addEnemy(enemiesp0, enemiesp, lanzasUR, 795, 17971, 315, enemyType[8],scene,true);
@@ -178,6 +187,7 @@ var createEnemy = function (scene, nLevel) {
     scene.physics.add.overlap(player2, enemiesp, function (player2, enemiesp) {
         startCombat(player2,enemiesp, scene);
     }, null, this);
+    //colisiones con las lanzas
     scene.physics.add.collider(player1, lanzasR, function (player1, lanzasR) {
         hitLanza(player1, lanzasR,scene);
     }, null, this);
@@ -214,30 +224,32 @@ var createEnemy = function (scene, nLevel) {
     scene.physics.add.collider(player2, lanzasUR, function (player2, lanzasUR) {
         hitLanza(player2, lanzasUR,scene);
     }, null, this);
-
-    //eventos de animaciones
 }
 
-
+//crea las animaciones de los 2 tipos de enemigos
 function createAnimationEnemy(key, scene){
+    //Animación cuando el enemigo está quieto
     scene.anims.create({
         key: 'idle'+key,
         frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 0, end: 0, zeroPad: 4 }),
         frameRate: 24,
         repeat: -1
     });
+    //Cuando lanza el proyectil
     scene.anims.create({
         key: 'throw'+key,
         frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 0, end: 15, zeroPad: 4 }),
         frameRate: 24,
         repeat: 0
     });
+    //Cuando termina de lanzarlo
     scene.anims.create({
         key: 'throwEnd'+key,
         frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 16, end: 23, zeroPad: 4 }),
         frameRate: 24,
         repeat: 0
     });
+    //Cuando está combatiendo contra el jugador
     scene.anims.create({
         key: 'combat'+key,
         frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 24, end: 49, zeroPad: 4 }),
@@ -247,7 +259,7 @@ function createAnimationEnemy(key, scene){
 }
 
 
-
+//Crea un enemigo en la posición indicada y la lanza que tira
 function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene, facingRight){
     enemy = scene.physics.add.sprite(posX, posY, type);
     enemygroup.add(enemy, true);
@@ -264,6 +276,7 @@ function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene,
     enemy.lanza.angle = angle;
     enemy.type = type;
     enemy.anims.play('throw'+type,true);
+    //Evento que controla que las animaciones transicionen unas a otras al acabar
     enemy.on('animationcomplete', function () {
         if (enemy.anims.currentAnim.key === 'throw'+type && !enemy.combat) {
             enemy.play('throwEnd'+type,true);
@@ -275,6 +288,8 @@ function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene,
     });
 }
 
+//Reproduce los efectos de sonido y animaciones necesarias para el combate, ademas de desactivar la lanza y
+//crear un evento para desactivar al enemigo tras acabar la animación
 function startCombat(player,enemygroup, scene){
     if (player.combat === false) {
         scene.sound.play('combatSound');
@@ -294,7 +309,7 @@ function startCombat(player,enemygroup, scene){
     });
 }
 
-//reemplaza la lanza
+//Desactiva la lanza y la spawnea en la mano del enemigo cuando termina su animacion de lanzarla
 function replaceLanza(lanza,scene) {
     if(!lanza.combat){
         lanza.onHand = true;
@@ -319,7 +334,7 @@ function hitLanza(player, lanza,scene) {
     scene.time.delayedCall(1000, stopThrowing, [player], null, this); //emplea el metodo de powerupsManager
 }
 
-//funcion enemigos al azar
+//Asigna un tipo aleatorio a cada enemigo
 function randomTypeEnemies(numberEnemies) {
     var enemyType = [];
     for (var i = 0; i < numberEnemies; i++) {
@@ -348,6 +363,7 @@ function moveLanzas() {
     lanzasUL.setVelocity(-400, -400);
 }
 
+//Actualiza la animación del enemigo cuando no está en combate
 function updateAnimationEnemy (enemy){
     if(enemy.lanza.onHand && !enemy.lanza.combat){
         enemy.anims.play('throw'+enemy.type,true);
@@ -355,6 +371,7 @@ function updateAnimationEnemy (enemy){
     }
 }
 
+//Guarda los enemigos del grupo en un array y actualiza sus animaciones
 function updateEnemies(enemies){
     var enemyArray=enemies.getChildren();
     for(var i=0; i < enemies.getLength();i++){

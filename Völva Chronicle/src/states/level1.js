@@ -13,11 +13,11 @@ level1Scene.create = function (){
     //crea las animaciones de los 2 personajes jugables
     createAnimationPlayer('aguila', level1Scene);//solo nivel 1
     createAnimationPlayer('nidhogg', level1Scene);//solo nivel 1
-    //crea los sprites de los personajes e inicializa todas sus propiedades
+    //crea los sprites de los personajes e inicializa todos sus atributos
     createPlayers(level1Scene);
     //crea y coloca todos los powerups del nivel 1 en su sitio y les añade las colisiones
     createPowerups(level1Scene, 1);
-    //Guarda los inputs de control de los jugadores en propiedades
+    //Guarda los inputs de control de los jugadores en atributos
     createInputs(level1Scene);
     //inicia las cámaras y las asocia a cada jugador
     createCameras(level1Scene);
