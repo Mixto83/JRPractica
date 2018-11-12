@@ -1,0 +1,19 @@
+salto: 0-18 (pico: 9-10-11, son clonicos)
+startup pasos: 19-21
+pasos: 22-40
+knockback: 41-63 
+agache: inicio:64, mantener: 67, fin:70
+salto pared desde salto: 71-77
+salto en pared desde aire: 78-84
+dash lateral: 85-114 (mantener 98-102)
+dash lateral aire:115-133 (mantener 123)
+idle:134-148
+dash abajo: 149-164 (mantener 157-161)
+caida dash:177-186
+dash diagonal arriba: 187-209 (mantener 199)
+dash diagonal abajo: 210-225
+caida dash diagonal abajo: 235-243
+dash arriba: 244-260
+dash agachado: 261-283 (mantener 269)
+idle aereo: 284-291
+Combate: 292-468
