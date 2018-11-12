@@ -6,26 +6,27 @@ ending1Scene.preload = function (){
     
 }
 
-ending1Scene.nextScene = function(){
-    stopCinematics();
-    ending1Scene.scene.start('credits');
-    ending1Scene.scene.stop();
-}
 ending1Scene.create = function (){
+    //Crea el fondo, que irá haciendo scroll a medida que pasa el tiempo
     createBackground(ending1Scene,1045,540,3,'Ending1');
-    createParticles(ending1Scene,1090,3500,8,'Ending1');//Placeholder: Modificar sprite de particulas y velocidad
+    //Crea las párticulas en posiciones aleatorias, que se irán desplazando
+    createParticles(ending1Scene,'Ending1');
+    //Reproduce la música
     createMusic(ending1Scene,'ending1');
+    //Crea la caja de texto con la conversación
     createTextBox(ending1Scene,960,990.5,10,0.17,'Ending1');
     //Teclado
-    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    //keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
 ending1Scene.update = function(){
+    //Cuando el fondo llega al final (se termina la secuencia) o se presiona Z,
+    //pasa a los créditos
     if (background.x <= 855){
-        ending1Scene.nextScene();
+        nextScene(ending1Scene, 'credits');
     }
     if( keyZ.isDown) {
         keyZ.isDown = false;
-        ending1Scene.nextScene();
+        nextScene(ending1Scene, 'credits');
     };
 }

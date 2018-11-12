@@ -11,13 +11,15 @@ var levelTime = 0;
 var currentLevel = 0;
 var levelEnded = false;
 
+//crea los sprites de los jugadores y los inicializa
 createPlayers = function (scene) {
-    player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');//3552
+    player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
     player2 = scene.physics.add.sprite(1800, 19584, 'nidhogg');
     addPlayer(scene, player1, 'aguila');
     addPlayer(scene, player2, 'nidhogg');
 }
 
+//Inicializa las físicas y todas los atributos de los jugadores
 addPlayer = function (scene, player, type) {
     player.setCollideWorldBounds(true);
     player.type = type;
@@ -53,6 +55,7 @@ addPlayer = function (scene, player, type) {
     player.rightPulsada = false;
     player.dashPulsada = false;
 
+    //atributos referentes a los powerups
     player.ratatosk = 0;
     player.tir = false;
     player.heimdall = false;
@@ -64,11 +67,11 @@ addPlayer = function (scene, player, type) {
 
     player.ratatoskBool = false;//Esta variable es solo de debug  
 
-    createAnimationEvents(player,scene);
+    createAnimationEvents(player);
 }
 
+//Crea las animaciones del jugador indicado
 createAnimationPlayer = function (key, scene){
-    //animaciones (se pasaran a addPlayer cuando se implementen las del dragon)
     scene.anims.create({
         key: 'run'+key,
         frames: scene.anims.generateFrameNames(key, { prefix: key+' instancia 1', start: 22, end: 40, zeroPad: 4 }),
@@ -195,8 +198,9 @@ createAnimationPlayer = function (key, scene){
         repeat: 0
     });
 }
+//Guarda los inputs de control de los jugadores en atributos
 createInputs = function (scene) {
-    //  Input Events
+    //Input Events
     cursors = scene.input.keyboard.createCursorKeys();
     //inputs player 1 (WASD+B)
     player1.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -212,12 +216,14 @@ createInputs = function (scene) {
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 }
 
+//actualiza el cronómetro
 updateTimer = function () {
     if (!levelEnded) {
         levelTime++;
     }
 }
 
+//inicia el cronometro al principio de cada nivel
 createTimer = function (scene) {
     levelTime = 0;
     levelEnded = false;
@@ -243,7 +249,8 @@ endLevel = function (scene, player) {
 
 }
 
-createAnimationEvents = function (player,scene) {
+//Crea los eventos necesarios para cuando termina una animación
+createAnimationEvents = function (player) {
     player.on('animationcomplete', function () {
         if (player.anims.currentAnim.key === 'dashDown'+player.type) {
             player.dashId = 0;
@@ -292,6 +299,8 @@ createAnimationEvents = function (player,scene) {
         }
     });
 }
+
+//Actualiza las animaciones de los personajes según su situación
 updateAnimation = function (player) {
     if (!player.combat) {
         if (!player.throwRight && !player.throwLeft) {
@@ -376,30 +385,39 @@ updateAnimation = function (player) {
     }
 }
 
+//Pasa a la pantalla de recompensa si algun jugador  llega a la meta
+checkEndLevel = function (scene){
+    if (currentLevel === 1) {
+        if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
+            endLevel(scene, player1);
+        } else if ((player2.x >= 3000) && (player2.y <= 300) && !levelEnded) {
+            endLevel(scene, player2);
+        }
+    }
+    if (currentLevel === 2) {
+        if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400) && !levelEnded) {
+            endLevel(scene, player1);
+        } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400) && !levelEnded) {
+            endLevel(scene, player2);
+        }
+    }
+    if (currentLevel === 3) {
+        if ((player1.x <= -2750) && (player1.y <= 600) && !levelEnded) {
+            endLevel(scene, player1);
+        } else if ((player2.x <= 800) && (player2.y <= 600) && !levelEnded) {
+            endLevel(scene, player2);
+        }
+    }
+}
 
-updateControls = function (scene, player, adversary) {
+//Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
+updateControls = function (player) {
+    
+    if (player.body.velocity.y > 1000) {
+        player.setVelocityY(950);
+    }
+    
     if (!player.combat) {
-        if (currentLevel === 1) {
-            if ((player1.x >= -550) && (player1.y <= 300) && !levelEnded) {
-                endLevel(scene, player1);
-            } else if ((player2.x >= 3000) && (player2.y <= 300) && !levelEnded) {
-                endLevel(scene, player2);
-            }
-        }
-        if (currentLevel === 2) {
-            if ((player1.x >= -1800) && (player1.x <= -1600) && (player1.y <= 400) && !levelEnded) {
-                endLevel(scene, player1);
-            } else if ((player2.x >= 1750) && (player2.x <= 1950) && (player2.y <= 400) && !levelEnded) {
-                endLevel(scene, player2);
-            }
-        }
-        if (currentLevel === 3) {
-            if ((player1.x <= -2750) && (player1.y <= 600) && !levelEnded) {
-                endLevel(scene, player1);
-            } else if ((player2.x <= 800) && (player2.y <= 600) && !levelEnded) {
-                endLevel(scene, player2);
-            }
-        }
 
         if (player.keyLeft.isDown) {
             player.leftPulsada = true;
@@ -467,7 +485,7 @@ updateControls = function (scene, player, adversary) {
                 player.contStamine--;
                 player.dashId = 3;
             } else if (player.upPulsada && player.contSalto < 3) {
-                player.setVelocityY(-player.velocidadY - 100);
+                player.setVelocityY(-player.velocidadY - 150);
                 player.upPulsada = false;
                 player.contStamine--;
                 player.dashId = 1;
@@ -478,9 +496,6 @@ updateControls = function (scene, player, adversary) {
                 player.dashId = 5;
             } else {
                 player.setVelocityX(0);
-                if (player.getVelocityY < 0 && player.upPulsada) {
-                    player.setVelocityY(0);
-                }
             }
         } else {
             if (player.leftPulsada && player.upPulsada) {
@@ -553,7 +568,7 @@ updateControls = function (scene, player, adversary) {
         } else {
             player.flipX = true;
         }
-    } else {
+    } else {//Si el jugador está en combate, le detiene y baja al suelo
         player.setVelocityX(0);
         player.setVelocityY(player.velocidadY);
     }

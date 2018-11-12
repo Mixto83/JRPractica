@@ -50,7 +50,6 @@ public class Player {
 		this.ratatosk = 0;
 		this.tir = false;
 		this.heimdall = false;
-		
 	}
 	
 	//Getters & Setters
@@ -168,7 +167,5 @@ public class Player {
 	public void setHeimdall(boolean heimdall) {
 		this.heimdall = heimdall;
 	}
-	
-
 
 }

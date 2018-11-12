@@ -5,6 +5,8 @@ var music;
 var textBox;
 var randomX = 0;
 var randomY = 0;
+
+//Crea el fondo de la escena indicada, que irá haciendo scroll a medida que pasa el tiempo
 createBackground = function(scene, x, y, velocity, idCutscene){
     //Imagen de fondo desplazandose a la derecha
     background = scene.physics.add.image(x,y,'fondo'+idCutscene);
@@ -12,13 +14,14 @@ createBackground = function(scene, x, y, velocity, idCutscene){
     background.setVelocityX(-velocity);
 }
 
+//Genera una posición aleatoria para una partícula
 doRandom = function(){
     randomX = Phaser.Math.Between(0,1080);
-    randomY = Phaser.Math.Between(1100,20000);
-
-    
+    randomY = Phaser.Math.Between(1100,20000);    
 }
-createParticles = function(scene, x, y, velocity, idCutscene){
+
+//Crea las párticulas en posiciones aleatorias, que se irán desplazando
+createParticles = function(scene, idCutscene){
     particles = [];
     for (var i = 0; i < 100; i++){
             doRandom();
@@ -29,6 +32,7 @@ createParticles = function(scene, x, y, velocity, idCutscene){
     }
 }
 
+//Reproduce la música de la escena indicada
 createMusic = function(scene,idCutscene){
     music = scene.sound.add(idCutscene+'Music');
     if (idCutscene === 'ending2'){
@@ -40,6 +44,8 @@ createMusic = function(scene,idCutscene){
     music.play();
 }
 
+//Crea la caja de texto con la conversación. Le asigna la spritesheet correspondiente y crea la animación, que
+//se irá reproduciendo a lo largo de la secuencia
 createTextBox = function(scene, x, y, nFrames, fRate, idCutscene){
     var config = {
         key: 'texto'+idCutscene,
@@ -55,6 +61,14 @@ createTextBox = function(scene, x, y, nFrames, fRate, idCutscene){
     textBox.anims.play('texto'+idCutscene);
 }
 
+//Para la escena actual y pasa a la escena indicada
+function nextScene(scene, destination){
+    stopCinematics();
+    scene.scene.start(destination);
+    scene.scene.stop();
+}
+
+//Para la música y el movimiento del fondo y partículas de la escena
 stopCinematics = function(){
     music.stop();
     background.setVelocityX(0);

@@ -2,22 +2,11 @@ var preloadScene = new Phaser.Scene('preload');
 
 preloadScene.active = true;
 
-var fondoPreload;
-var loadingImg;
-var loadText;
 
 preloadScene.preload = function () {
     
-    fondoPreload =  this.add.image(960,540, 'fondoRecompensa');
-    loadText = this.add.text(660, 740, 'Pulsa F11 y disfruta del juego en pantalla completa', {font: "30px Fantasy", fill: "#000"});
-    loadingImg = this.add.sprite(960,540,'loadingIcon');
-    this.anims.create({
-        key: 'load',
-        frames: this.anims.generateFrameNames('loadingIcon', { prefix: 'Cargando instancia 1', start: 0, end: 7, zeroPad: 4 }),
-        frameRate: 3,
-        repeat: -1
-    });
-    loadingImg.anims.play('load',true);
+    //crea la animacion de cargando
+    loadingAnimation(preloadScene);
 
     //assets plataforms
     this.load.tilemapCSV('map1', 'assets/platforms/Nivel1.csv');
