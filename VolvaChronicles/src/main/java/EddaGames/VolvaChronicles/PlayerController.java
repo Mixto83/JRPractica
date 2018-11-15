@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PlayerController {
-	
+
 	private List<Player> players = new ArrayList<>();
-	
-	//metodos para el control de jugadores
+
+	// metodos para el control de jugadores
 	@RequestMapping(value = "/players", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> addPlayer(@RequestBody Player a) {
 		players.add(a);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/players", method = RequestMethod.GET)
-	public int getNumPlayers () {
+	public int getNumPlayers() {
 		return players.size();
 	}
-	
-	//metodos que recogen la info de los jugadores
+
+	// metodos que recogen la info de los jugadores
 	@RequestMapping(value = "/players/{id}", method = RequestMethod.GET)
 	public Player getPlayer(@PathVariable int id) {
 		return players.get(id);
 	}
-	
-	//metodos que modifican la info de los jugadores
+
+	// metodos que modifican la info de los jugadores
 	@RequestMapping(value = "/players/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Player> updatePlayer(@PathVariable int id,@RequestBody Player a) {
-		players.set(id,a);
+	public ResponseEntity<Player> updatePlayer(@PathVariable int id, @RequestBody Player a) {
+		players.set(id, a);
 		return new ResponseEntity<>(a, HttpStatus.OK);
 	}
 }

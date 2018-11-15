@@ -52,8 +52,96 @@ function createMenuButtons(scene) {
 
         //Boton "Online"
         botonOnline = scene.add.sprite(960, 800, 'botonOnline').setInteractive();
-        botonLocal.on('pointerdown', function (pointer) {
-            //Se implementara mas tarde
+        botonOnline.on('pointerdown', function (pointer) {
+        
+        	var defaultJson = {
+        		"estado" : 0,
+				"downPulsada" : false,
+				"downToque" : false,
+				"upPulsada" : false,
+				"upToque" : false,
+				"leftPulsada" : false,
+				"rightPulsada" : false,
+				"dashPulsada" : false,
+				"velocidadX" : 0,
+				"velocidadY" : 0,
+				"posX" : 0,
+				"posY" : 0,
+				"contStamine" : 100,
+				"contSalto" : 0,
+				"throwRight" : false,
+				"throwLeft" : false,
+				"ratatosk" : 0,
+				"tir" : false,
+				"heimdall" : false
+        	};      	
+        	
+        	 $.ajax({
+        	        method: "GET",
+        	        url: 'http://localhost:8080/players',
+        	        processData: false,
+        	        headers: {
+        	            "Content-Type": "application/json"
+        	        }
+        	        
+        	 }).done(function (players) {
+        	    
+        	        console.log("Numero actual de jugadores: " + JSON.stringify(players));
+        	        
+        	        //Jugador 1
+        	        if (players === 0){
+
+        	        	$.ajax({
+        	        	        method: "POST",
+        	        	        url: 'http://localhost:8080/players',
+        	        	        data : JSON.stringify(defaultJson),
+        	        	        processData: false,
+        	        	        headers: {
+        	        	            "Content-Type": "application/json"
+        	        	        }
+        	        	    }).done(function (player) {
+        	        	        console.log("Player created: " + JSON.stringify(defaultJson));
+        	        	})
+        	        	
+        	        	console.log("Jugador 1 introducido");
+        	        	
+        	        	/*
+        	        	//El jugador 1 pasa a la Sala de Espera (salaEspera se implementará posteriormente)
+        	        	music.stop();
+            			scene.sound.play('menuConfirm');
+            			scene.time.delayedCall(2000, function () {
+                			scene.scene.start('salaEspera); //En el update de salaEspera, pasar a escena intro cuando (players === 2), hacer GET
+                			scene.scene.stop();
+            			}, [], scene);
+            			*/
+        	        	
+        	        //Jugador 2
+        	        } else if (players === 1){
+        	        
+        	        	$.ajax({
+        	        	        method: "POST",
+        	        	        url: 'http://localhost:8080/players',
+        	        	        data : JSON.stringify(defaultJson),
+        	        	        processData: false,
+        	        	        headers: {
+        	        	            "Content-Type": "application/json"
+        	        	        }
+        	        	}).done(function (player) {
+        	        	        console.log("Player created: " + JSON.stringify(defaultJson));
+        	        	})
+
+        	        	console.log("Jugador 2 introducido");
+        	        	
+        	        	//Cuando los 2 jugadores entran al servidor, comienza el juego
+        	        	music.stop();
+            			scene.sound.play('menuConfirm');
+            			scene.time.delayedCall(2000, function () {
+                			scene.scene.start('intro');
+                			scene.scene.stop();
+            			}, [], scene);
+        	        
+        	        }
+        	    })
         });
 }
 
