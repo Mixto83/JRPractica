@@ -1,3 +1,41 @@
+getNumberOfPlayers = function(){
+	$.ajax({
+        method: "GET",
+        url: 'http://localhost:8080/players',
+        processData: false,
+        headers: {
+            "Content-Type": "application/json"
+        }
+        
+ }).done(function (players){
+	 console.log("Numero actual de jugadores: " + JSON.stringify(players));
+	 if (players === 0){
+		 createPlayerInServer();
+	 } else if (players === 1){
+		 createPlayerInServer();
+	 } else {
+		 deletePlayerInfo(0);
+		 deletePlayerInfo(1);
+	 }
+	 
+ })
+}
+
+createPlayerInServer = function(id){
+	isOnline = true;
+	idJugador = id;//Coge 0 cuando no hay nadie o 1 cuando hay otro
+	$.ajax({
+	        method: "POST",
+	        url: 'http://localhost:8080/players',
+	        processData: false,
+	        headers: {
+	            "Content-Type": "application/json"
+	        }
+	    }).done(function (status) {
+	        console.log("Jugador 1 introducido");  
+	    })
+}
+
 getPlayerInfo = function (id){
 	 $.ajax({
 	        method: "GET",
@@ -32,13 +70,15 @@ updatePlayerFromServer = function (player,info){
 	player.contSalto = info.contSalto;
 	player.throwRight = info.throwRight;
 	player.throwLeft = info.throwLeft;
+	player.facingRight = info.facingRight;
+	player.dashId = info.dashId;
 	player.ratatosk = info.ratatosk;
 	player.tir = info.tir;
 	player.heimdall = info.heimdall;	
 }
 
-insertPlayer = function (player, playerId){
-	playerInfo = {
+insertPlayer = function (player, id){
+	var playerInfo = {
     		"estado" : player.estado,
 			"downPulsada" : player.downPulsada,
 			"downToque" : player.downToque,
@@ -55,6 +95,8 @@ insertPlayer = function (player, playerId){
 			"contSalto" : player.contSalto,
 			"throwRight" : player.throwRight,
 			"throwLeft" : player.throwLeft,
+			"facingRight" : player.facingRight,
+			"dashId" : player.dashId,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
 			"heimdall" : player.heimdall
@@ -62,7 +104,7 @@ insertPlayer = function (player, playerId){
 	
 	$.ajax({
         method: 'PUT',
-        url: 'http://localhost:8080/players/' + playerId,
+        url: 'http://localhost:8080/players/' + id,
         data: JSON.stringify(playerInfo),
         processData: false,
         headers: {
@@ -74,7 +116,7 @@ insertPlayer = function (player, playerId){
 }
 
 
-modifyPlayerInfo = function (player, playerId){
+modifyPlayerInfo = function (player, id){
 	player.estado++;
 	playerInfo = {
     		"estado" : player.estado,
@@ -93,6 +135,8 @@ modifyPlayerInfo = function (player, playerId){
 			"contSalto" : player.contSalto,
 			"throwRight" : player.throwRight,
 			"throwLeft" : player.throwLeft,
+			"facingRight" : player.facingRight,
+			"dashId" : player.dashId,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
 			"heimdall" : player.heimdall
@@ -100,7 +144,7 @@ modifyPlayerInfo = function (player, playerId){
 	
 	$.ajax({
         method: 'PUT',
-        url: 'http://localhost:8080/players/' + playerId,
+        url: 'http://localhost:8080/players/' + id,
         data: JSON.stringify(playerInfo),
         processData: false,
         headers: {
@@ -109,4 +153,13 @@ modifyPlayerInfo = function (player, playerId){
     }).done(function (playerInfo) {
         //console.log("Updated player")
     })
+}
+
+deletePlayerList = function(){
+	 $.ajax({
+	        method: 'DELETE',
+	        url: 'http://localhost:8080/players'
+	    }).done(function (player) {
+	        console.log("Deleted players ");
+	    })
 }

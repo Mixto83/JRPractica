@@ -12,7 +12,7 @@ public class Player {
 	private boolean leftPulsada;
 	private boolean rightPulsada;
 	private boolean dashPulsada;
-
+	
 	// propiedades
 	private float velocidadX;
 	private float velocidadY;
@@ -22,7 +22,9 @@ public class Player {
 	private int contSalto;
 	private boolean throwRight;
 	private boolean throwLeft;
-
+	private boolean facingRight;
+	private int dashId;
+	
 	// Powerups
 	private int ratatosk;
 	private boolean tir;
@@ -47,6 +49,8 @@ public class Player {
 		this.contSalto = 0;
 		this.throwRight = false;
 		this.throwLeft = false;
+		this.facingRight = true;
+		this.dashId = 0;
 		this.ratatosk = 0;
 		this.tir = false;
 		this.heimdall = false;
@@ -203,6 +207,22 @@ public class Player {
 
 	public void setHeimdall(boolean heimdall) {
 		this.heimdall = heimdall;
+	}
+
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
+	}
+
+	public int getDashId() {
+		return dashId;
+	}
+
+	public void setDashId(int dashId) {
+		this.dashId = dashId;
 	}
 
 }

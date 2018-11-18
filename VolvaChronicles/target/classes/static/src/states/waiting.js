@@ -16,8 +16,7 @@ waitingScene.create = function() {
 		font : "50px Fantasy",
 		fill : "#000"
 	});
-	textWait
-			.setText([ 'Eres el jugador 1 y manejaras al Aguila. \nEsperando al jugador 2...' ]);
+	textWait.setText([ 'Eres el jugador 1 y manejaras al Aguila. \nEsperando al jugador 2...' ]);
 }
 
 waitingScene.update = function() {
@@ -32,7 +31,9 @@ waitingScene.update = function() {
 		console.log("Numero actual de jugadores: " + JSON.stringify(players));
 		// Jugador 1
 		if (players === 2) {
+			music.stop();
 			waitingScene.scene.start('intro');
+			waitingScene.scene.stop();		
 		}
 	});
 }

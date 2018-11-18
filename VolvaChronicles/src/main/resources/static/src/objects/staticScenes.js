@@ -69,51 +69,24 @@ function createMenuButtons(scene) {
         	        
         	        //Jugador 1
         	        if (players === 0){
-        	        	idJugador = 0;
-        	        	$.ajax({
-        	        	        method: "POST",
-        	        	        url: 'http://localhost:8080/players',
-        	        	        processData: false,
-        	        	        headers: {
-        	        	            "Content-Type": "application/json"
-        	        	        }
-        	        	    }).done(function (status) {
-        	        	        console.log("Jugador 1 introducido");
-        	        	})
-        	        	
-        	        	scene.scene.start('waiting');
-        	        	/*
-        	        	//El jugador 1 pasa a la Sala de Espera (salaEspera se implementará posteriormente)
+        	        	createPlayerInServer(0);
         	        	music.stop();
-            			scene.sound.play('menuConfirm');
-            			scene.time.delayedCall(2000, function () {
-                			scene.scene.start('salaEspera); //En el update de salaEspera, pasar a escena intro cuando (players === 2), hacer GET
-                			scene.scene.stop();
-            			}, [], scene);
-            			*/
-        	        	
-        	        //Jugador 2
+        				scene.sound.play('menuConfirm');
+        				scene.time.delayedCall(2000, function () {
+        					scene.scene.start('waiting');
+        	    			scene.scene.stop();
+        				}, [], scene);   
         	        } else if (players === 1){
-        	        	idJugador = 1;
-        	        	$.ajax({
-        	        	        method: "POST",
-        	        	        url: 'http://localhost:8080/players',
-        	        	        processData: false,
-        	        	        headers: {
-        	        	            "Content-Type": "application/json"
-        	        	        }
-        	        	}).done(function (status) {
-        	        	        console.log("Jugador 2 introducido");
-        	        	})
-        	        	
-        	        	//Cuando los 2 jugadores entran al servidor, comienza el juego
+        	        	createPlayerInServer(1);
         	        	music.stop();
             			scene.sound.play('menuConfirm');
             			scene.time.delayedCall(2000, function () {
                 			scene.scene.start('intro');
                 			scene.scene.stop();
             			}, [], scene);
-        	        
+        	        } else if (players > 1){
+        	        	//De momento esta llamada hace cosas raras, pendiente de solucionar
+        	        	//deletePlayerList();
         	        }
         	    })
         });

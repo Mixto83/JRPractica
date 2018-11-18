@@ -28,6 +28,7 @@ restartFunc = function(){
     levelEnded = false;
     heimdall = false;
     levelTime = 0;
+    deletePlayerList();
     creditsScene.scene.start('menu');
     creditsScene.scene.stop();
 }

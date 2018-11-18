@@ -214,6 +214,7 @@ createInputs = function (scene) {
     player1.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     player1.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     player1.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+    
     //inputs player 2 (flechas + numpad0)
     player2.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
     player2.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -424,7 +425,6 @@ updateControls = function (player) {
     }
     
     if (!player.combat) {
-
         if (player.keyLeft.isDown) {
             player.leftPulsada = true;
             player.facingRight = false;
