@@ -53,29 +53,7 @@ function createMenuButtons(scene) {
 
         //Boton "Online"
         botonOnline = scene.add.sprite(960, 800, 'botonOnline').setInteractive();
-        botonOnline.on('pointerdown', function (pointer) {
-        
-        	var playerInfo = {
-        		"estado" : 0,
-				"downPulsada" : 0,
-				"downToque" : false,
-				"upPulsada" : false,
-				"upToque" : false,
-				"leftPulsada" : false,
-				"rightPulsada" : false,
-				"dashPulsada" : false,
-				"velocidadX" : 0,
-				"velocidadY" : 0,
-				"posX" : 0,
-				"posY" : 0,
-				"contStamine" : 100,
-				"contSalto" : 0,
-				"throwRight" : false,
-				"throwLeft" : false,
-				"ratatosk" : 0,
-				"tir" : false,
-				"heimdall" : false
-        	};      	
+        botonOnline.on('pointerdown', function (pointer) {    	
         	
         	 $.ajax({
         	        method: "GET",
@@ -95,16 +73,14 @@ function createMenuButtons(scene) {
         	        	$.ajax({
         	        	        method: "POST",
         	        	        url: 'http://localhost:8080/players',
-        	        	        data : JSON.stringify(playerInfo),
         	        	        processData: false,
         	        	        headers: {
         	        	            "Content-Type": "application/json"
         	        	        }
-        	        	    }).done(function (player) {
-        	        	        console.log("Player created: " + JSON.stringify(playerInfo));
+        	        	    }).done(function (status) {
+        	        	        console.log("Jugador 1 introducido");
         	        	})
         	        	
-        	        	console.log("Jugador 1 introducido");
         	        	scene.scene.start('waiting');
         	        	/*
         	        	//El jugador 1 pasa a la Sala de Espera (salaEspera se implementará posteriormente)
@@ -122,16 +98,13 @@ function createMenuButtons(scene) {
         	        	$.ajax({
         	        	        method: "POST",
         	        	        url: 'http://localhost:8080/players',
-        	        	        data : JSON.stringify(playerInfo),
         	        	        processData: false,
         	        	        headers: {
         	        	            "Content-Type": "application/json"
         	        	        }
-        	        	}).done(function (player) {
-        	        	        console.log("Player created: " + JSON.stringify(playerInfo));
+        	        	}).done(function (status) {
+        	        	        console.log("Jugador 2 introducido");
         	        	})
-
-        	        	console.log("Jugador 2 introducido");
         	        	
         	        	//Cuando los 2 jugadores entran al servidor, comienza el juego
         	        	music.stop();

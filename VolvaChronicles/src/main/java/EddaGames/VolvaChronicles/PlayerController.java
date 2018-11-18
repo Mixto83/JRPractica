@@ -16,13 +16,13 @@ public class PlayerController {
 
 	private List<Player> players = new ArrayList<>();
 
-	// metodos para el control de jugadores
 	@RequestMapping(value = "/players", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> addPlayer(@RequestBody Player a) {
+	public ResponseEntity<Boolean> addPlayer() {
+		Player a = new Player();
 		players.add(a);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 	}
-
+	
 	@RequestMapping(value = "/players", method = RequestMethod.GET)
 	public int getNumPlayers() {
 		return players.size();
@@ -39,5 +39,12 @@ public class PlayerController {
 	public ResponseEntity<Player> updatePlayer(@PathVariable int id, @RequestBody Player a) {
 		players.set(id, a);
 		return new ResponseEntity<>(a, HttpStatus.OK);
+	}
+	
+	//elimina a todos los jugadores de la lista
+	@RequestMapping(value = "/players", method = RequestMethod.DELETE)
+	public ResponseEntity<Player> clearPlayers() {
+		players.clear();
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
