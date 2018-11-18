@@ -46,4 +46,9 @@ level1Scene.update = function (){
     //Mete los enemigos de cada grupo en un array y actualiza sus animaciones
     updateEnemies(penemies);
     updateEnemies(enemiesp);
+    if (idJugador === 0){
+    	getPlayerInfo(1);
+    } else if (idJugador === 1){
+    	getPlayerInfo(0);
+    }
 }

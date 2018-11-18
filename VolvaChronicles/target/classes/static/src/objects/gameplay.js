@@ -17,6 +17,11 @@ createPlayers = function (scene) {
     player2 = scene.physics.add.sprite(1800, 19584, 'nidhogg');
     addPlayer(scene, player1, 'aguila');
     addPlayer(scene, player2, 'nidhogg');
+    if (idJugador === 0){
+    	insertPlayer(player1, idJugador);
+    } else if (idJugador === 1){
+    	insertPlayer(player2, idJugador);
+    }
 }
 
 //Inicializa las físicas y todas los atributos de los jugadores
@@ -54,7 +59,8 @@ addPlayer = function (scene, player, type) {
     player.leftPulsada = false;
     player.rightPulsada = false;
     player.dashPulsada = false;
-
+    //Atributo para la comunicacion online
+    player.estado = 0;
     //atributos referentes a los powerups
     player.ratatosk = 0;
     player.tir = false;
@@ -446,7 +452,7 @@ updateControls = function (player) {
         } else {
             player.crouch = false;
         }
-
+                
         //Primero comprueba si el jugador esta siendo lanzado hacia alguno de los lados. De no ser asi, comprueba pulsaciones de botones.
         if (player.throwRight) {
             player.setVelocityX(500);
@@ -457,25 +463,25 @@ updateControls = function (player) {
             if (player.leftPulsada && player.upPulsada) {
                 player.setVelocityX(-player.velocidadX - 100);
                 player.setVelocityY(-player.velocidadY - 100);
-                player.upPulsada = false;
+                //player.upPulsada = false;
                 player.contStamine--;
                 player.dashId = 2;
             } else if (player.leftPulsada && player.downPulsada && !player.body.blocked.down) {
                 player.setVelocityX(-player.velocidadX - 100);
                 player.setVelocityY(500);
                 player.contStamine--;
-                player.downPulsada = false;
+                //player.downPulsada = false;
             } else if (player.rightPulsada && player.upPulsada) {
                 player.setVelocityX(player.velocidadX + 100);
                 player.setVelocityY(-player.velocidadY - 100);
-                player.upPulsada = false;
+                //player.upPulsada = false;
                 player.contStamine--;
                 player.dashId = 2;
             } else if (player.rightPulsada && player.downPulsada && !player.body.blocked.down) {
                 player.setVelocityX(player.velocidadX + 100);
                 player.setVelocityY(500);
                 player.contStamine--;
-                player.downPulsada = false;
+                //player.downPulsada = false;
             } else if (player.leftPulsada) {
                 player.setVelocityX(-player.velocidadX - 100);
                 player.contStamine--;
@@ -486,12 +492,12 @@ updateControls = function (player) {
                 player.dashId = 3;
             } else if (player.upPulsada && player.contSalto < 3) {
                 player.setVelocityY(-player.velocidadY - 150);
-                player.upPulsada = false;
+                //player.upPulsada = false;
                 player.contStamine--;
                 player.dashId = 1;
             } else if (player.downPulsada && player.contSalto < 3 && !player.body.blocked.down) {
                 player.setVelocityY(500);
-                player.downPulsada = false;
+                //player.downPulsada = false;
                 player.contStamine--;
                 player.dashId = 5;
             } else {
@@ -501,20 +507,20 @@ updateControls = function (player) {
             if (player.leftPulsada && player.upPulsada) {
                 player.setVelocityX(-player.velocidadX);
                 player.setVelocityY(-player.velocidadY);
-                player.upPulsada = false;
+                //player.upPulsada = false;
             } else if (player.leftPulsada && player.downPulsada && !player.body.blocked.down) {
                 player.setVelocityX(-player.velocidadX);
                 player.setVelocityY(500);
-                player.downPulsada = false;
+                //player.downPulsada = false;
                 player.dashId = 4;
             } else if (player.rightPulsada && player.upPulsada) {
                 player.setVelocityX(player.velocidadX);
                 player.setVelocityY(-player.velocidadY);
-                player.upPulsada = false;
+                //player.upPulsada = false;
             } else if (player.rightPulsada && player.downPulsada && !player.body.blocked.down) {
                 player.setVelocityX(player.velocidadX);
                 player.setVelocityY(500);
-                player.downPulsada = false;
+                //player.downPulsada = false;
                 player.dashId = 4;
             } else if (player.leftPulsada) {
                 if (!player.body.blocked.down) {
@@ -530,10 +536,10 @@ updateControls = function (player) {
                 }
             } else if (player.upPulsada && player.contSalto < 3) {
                 player.setVelocityY(-player.velocidadY);
-                player.upPulsada = false;
+                //player.upPulsada = false;
             } else if (player.downPulsada && !player.body.blocked.down) {
                 player.setVelocityY(500);
-                player.downPulsada = false;
+                //player.downPulsada = false;
                 player.dashId = 5;
             } else {
                 player.setVelocityX(0);
@@ -544,8 +550,18 @@ updateControls = function (player) {
         } else if (player.dashPulsada && player.contStamine > 0) {
             player.dashBool = true;
         }
-
+        
+        if (idJugador === 0){
+        	modifyPlayerInfo(player1,idJugador);
+        } else if (idJugador === 1){
+        	modifyPlayerInfo(player2,idJugador);
+        }
+        
+        
+        
         //control de las teclas
+        player.upPulsada = false;
+        player.downPulsada = false;
         player.leftPulsada = false;
         player.rightPulsada = false;
         player.dashPulsada = false;

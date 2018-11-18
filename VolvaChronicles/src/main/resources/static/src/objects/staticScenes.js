@@ -7,6 +7,7 @@ var fondoMenuSombra;
 var botonLocal;
 var botonOnline;
 var keyZ;
+var idJugador; //Variable que asigna a cada jugador su personaje y con ello sus llamadas
 
 //crea la animación de cargando
 function loadingAnimation(scene) {
@@ -54,9 +55,9 @@ function createMenuButtons(scene) {
         botonOnline = scene.add.sprite(960, 800, 'botonOnline').setInteractive();
         botonOnline.on('pointerdown', function (pointer) {
         
-        	var defaultJson = {
+        	var playerInfo = {
         		"estado" : 0,
-				"downPulsada" : false,
+				"downPulsada" : 0,
 				"downToque" : false,
 				"upPulsada" : false,
 				"upToque" : false,
@@ -90,21 +91,21 @@ function createMenuButtons(scene) {
         	        
         	        //Jugador 1
         	        if (players === 0){
-
+        	        	idJugador = 0;
         	        	$.ajax({
         	        	        method: "POST",
         	        	        url: 'http://localhost:8080/players',
-        	        	        data : JSON.stringify(defaultJson),
+        	        	        data : JSON.stringify(playerInfo),
         	        	        processData: false,
         	        	        headers: {
         	        	            "Content-Type": "application/json"
         	        	        }
         	        	    }).done(function (player) {
-        	        	        console.log("Player created: " + JSON.stringify(defaultJson));
+        	        	        console.log("Player created: " + JSON.stringify(playerInfo));
         	        	})
         	        	
         	        	console.log("Jugador 1 introducido");
-        	        	
+        	        	scene.scene.start('waiting');
         	        	/*
         	        	//El jugador 1 pasa a la Sala de Espera (salaEspera se implementará posteriormente)
         	        	music.stop();
@@ -117,17 +118,17 @@ function createMenuButtons(scene) {
         	        	
         	        //Jugador 2
         	        } else if (players === 1){
-        	        
+        	        	idJugador = 1;
         	        	$.ajax({
         	        	        method: "POST",
         	        	        url: 'http://localhost:8080/players',
-        	        	        data : JSON.stringify(defaultJson),
+        	        	        data : JSON.stringify(playerInfo),
         	        	        processData: false,
         	        	        headers: {
         	        	            "Content-Type": "application/json"
         	        	        }
         	        	}).done(function (player) {
-        	        	        console.log("Player created: " + JSON.stringify(defaultJson));
+        	        	        console.log("Player created: " + JSON.stringify(playerInfo));
         	        	})
 
         	        	console.log("Jugador 2 introducido");

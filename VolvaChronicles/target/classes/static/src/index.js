@@ -9,7 +9,7 @@ let config = {
             debug: false
         }
     },
-    scene: [bootScene, preloadScene, menuScene, introScene, level1Scene,
+    scene: [bootScene, preloadScene, menuScene, waitingScene, introScene, level1Scene,
     level2Scene, level3Scene, rewardScene, ending1Scene, ending2Scene, creditsScene],
     fps: {
         min: 10,
