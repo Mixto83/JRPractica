@@ -55,26 +55,28 @@ getPlayerInfo = function (id){
 }
 
 updatePlayerFromServer = function (player,info){
-	player.estado = info.estado;
-	player.downPulsada = info.downPulsada;
-	player.downToque = info.downToque;
-	player.upPulsada = info.upPulsada
-	player.upToque = info.upToque;
-	player.leftPulsada = info.leftPulsada;
-	player.rightPulsada = info.rightPulsada;
-	player.velocidadX = info.velocidadX;
-	player.velocidadY = info.velocidadY;
-	player.x = info.posX;
-	player.y = info.posY;
-	player.contStamine = info.contStamine;
-	player.contSalto = info.contSalto;
-	player.throwRight = info.throwRight;
-	player.throwLeft = info.throwLeft;
-	player.facingRight = info.facingRight;
-	player.dashId = info.dashId;
-	player.ratatosk = info.ratatosk;
-	player.tir = info.tir;
-	player.heimdall = info.heimdall;	
+	if (player.estado < info.estado){
+		player.estado = info.estado;
+		player.downPulsada = info.downPulsada;
+		player.downToque = info.downToque;
+		player.upPulsada = info.upPulsada
+		player.upToque = info.upToque;
+		player.leftPulsada = info.leftPulsada;
+		player.rightPulsada = info.rightPulsada;
+		player.velocidadX = info.velocidadX;
+		player.velocidadY = info.velocidadY;
+		player.x = info.posX;
+		player.y = info.posY;
+		player.contStamine = info.contStamine;
+		player.contSalto = info.contSalto;
+		player.throwRight = info.throwRight;
+		player.throwLeft = info.throwLeft;
+		player.facingRight = info.facingRight;
+		player.dashId = info.dashId;
+		player.ratatosk = info.ratatosk;
+		player.tir = info.tir;
+		player.heimdall = info.heimdall;	
+	}
 }
 
 insertPlayer = function (player, id){
