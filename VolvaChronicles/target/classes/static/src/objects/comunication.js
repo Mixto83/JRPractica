@@ -56,6 +56,7 @@ getPlayerInfo = function (id){
 
 updatePlayerFromServer = function (player,info){
 	if (player.estado < info.estado){
+        console.log("actualizando");
 		player.estado = info.estado;
 		player.downPulsada = info.downPulsada;
 		player.downToque = info.downToque;
@@ -63,8 +64,8 @@ updatePlayerFromServer = function (player,info){
 		player.upToque = info.upToque;
 		player.leftPulsada = info.leftPulsada;
 		player.rightPulsada = info.rightPulsada;
-		player.velocidadX = info.velocidadX;
-		player.velocidadY = info.velocidadY;
+		player.body.velocity.x = info.velocidadX;
+		player.body.velocity.y = info.velocidadY;
 		player.x = info.posX;
 		player.y = info.posY;
 		player.contStamine = info.contStamine;
@@ -89,8 +90,8 @@ insertPlayer = function (player, id){
 			"leftPulsada" : player.leftPulsada,
 			"rightPulsada" : player.rightPulsada,
 			"dashPulsada" : player.dashPulsada,
-			"velocidadX" : player.velocidadX,
-			"velocidadY" : player.velocidadY,
+			"velocidadX" : player.body.velocity.x,
+			"velocidadY" : player.body.velocity.y,
 			"posX" : player.x,
 			"posY" : player.y,
 			"contStamine" : player.contStamine,
@@ -129,8 +130,8 @@ modifyPlayerInfo = function (player, id){
 			"leftPulsada" : player.leftPulsada,
 			"rightPulsada" : player.rightPulsada,
 			"dashPulsada" : player.dashPulsada,
-			"velocidadX" : player.velocidadX,
-			"velocidadY" : player.velocidadY,
+			"velocidadX" : player.body.velocity.x,
+			"velocidadY" : player.body.velocity.y,
 			"posX" : player.x,
 			"posY" : player.y,
 			"contStamine" : player.contStamine,
