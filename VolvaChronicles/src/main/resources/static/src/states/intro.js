@@ -28,7 +28,7 @@ introScene.create = function (){
 introScene.update = function (){
     //Cuando el fondo llega al final (se termina la secuencia), pasa al nivel 1
     if (anyKeyPressed){
-    	anyKeyPressed = false;
+        anyKeyPressed = false;
         pressedSkip(true, idJugador);
     }
     if (background.x <= 855){
@@ -36,7 +36,7 @@ introScene.update = function (){
         //nextScene(introScene, 'level1');
     }
     getPressedFromOpponent();
-    
+
     if(skip){
         skip = false;
         nextScene(introScene,'level1');

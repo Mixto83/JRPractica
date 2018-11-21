@@ -25,16 +25,16 @@ ending2Scene.update = function (){
     //pasa a los créditos
 	if (background.x <= 855){
         pressedSkip(true, idJugador);
-        //nextScene(ending2Scene, 'credits');
+        //nextScene(ending1Scene, 'credits');
     }
-	
-    if( keyZ.isDown) {
+
+    if(keyZ.isDown) {
         keyZ.isDown = false;
         pressedSkip(true, idJugador);
     }
-       
+
     getPressedFromOpponent();
-    
+
     if(skip){
         skip = false;
         nextScene(ending2Scene,'credits');

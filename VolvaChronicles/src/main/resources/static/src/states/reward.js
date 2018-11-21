@@ -34,9 +34,9 @@ rewardScene.update = function(){
         keyZ.isDown = false;
         pressedSkip(true, idJugador);
     }
-       
+
     getPressedFromOpponent();
-    
+
     if(skip){
         skip = false;
         nextLevel(rewardScene);

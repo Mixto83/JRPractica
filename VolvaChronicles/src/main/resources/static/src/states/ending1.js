@@ -17,6 +17,7 @@ ending1Scene.create = function (){
     createTextBox(ending1Scene,960,990.5,10,0.17,'Ending1');
     //Teclado
     //keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+
 }
 
 ending1Scene.update = function(){
@@ -26,14 +27,14 @@ ending1Scene.update = function(){
         pressedSkip(true, idJugador);
         //nextScene(ending1Scene, 'credits');
     }
-	
-    if( keyZ.isDown) {
+
+    if(keyZ.isDown) {
         keyZ.isDown = false;
         pressedSkip(true, idJugador);
     }
-       
+
     getPressedFromOpponent();
-    
+
     if(skip){
         skip = false;
         nextScene(ending1Scene,'credits');

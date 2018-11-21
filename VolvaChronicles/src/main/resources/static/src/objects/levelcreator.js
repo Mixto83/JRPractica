@@ -3,6 +3,9 @@ var layer;
 
 //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
 createLevel = function (scene, nLevel) {
+    console.log('valor de skip:'+skip);
+    pressedSkip(false, idJugador);
+    skip = false;
     levelEnded = false;
     //Carga los fondos
     scene.add.image(0, 1224, 'background1Nivel1');
@@ -26,7 +29,8 @@ createLevel = function (scene, nLevel) {
     var tileset = map.addTilesetImage('tiles');
     layer = map.createStaticLayer(0, tileset, -3501,0);
     map.setCollisionBetween(0,115);
-    scene.physics.world.setBounds(-3501, 0, 7008, 19578);    
+    scene.physics.world.setBounds(-3501, 0, 7008, 19578); 
+    console.log('valor de skip:'+skip);  
 }
 
 
