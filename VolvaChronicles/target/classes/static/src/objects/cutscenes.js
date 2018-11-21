@@ -5,6 +5,7 @@ var music;
 var textBox;
 var randomX = 0;
 var randomY = 0;
+var skip = false;
 
 //Crea el fondo de la escena indicada, que irá haciendo scroll a medida que pasa el tiempo
 createBackground = function(scene, x, y, velocity, idCutscene){
@@ -76,3 +77,5 @@ stopCinematics = function(){
         particles[i].setVelocityY(0);
     }
 }
+
+

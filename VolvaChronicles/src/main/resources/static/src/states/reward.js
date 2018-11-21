@@ -29,6 +29,16 @@ rewardScene.create = function () {
 }
 
 rewardScene.update = function(){
-    //Si se pulsa Z, pasa al nivel correspondiente
-    nextLevel(rewardScene);
+	
+    if(keyZ.isDown) {
+        keyZ.isDown = false;
+        pressedSkip(true, idJugador);
+    }
+       
+    getPressedFromOpponent();
+    
+    if(skip){
+        skip = false;
+        nextLevel(rewardScene);
+    }
 }

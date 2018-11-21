@@ -166,3 +166,32 @@ deletePlayerList = function(){
 	        console.log("Deleted players ");
 	    })
 }
+
+//Control de sincronizacion
+pressedSkip = function(boolSkip, idP){
+    $.ajax({
+        method: 'PUT',
+        url: 'http://localhost:8080/syncro/' + idP,
+        data: JSON.stringify(boolSkip),
+        processData: false,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(function () {
+        console.log("Ha pulsado " + idP);
+    })
+}
+
+getPressedFromOpponent = function(){
+     $.ajax({
+	        method: "GET",
+	        url: 'http://localhost:8080/syncro/',
+	        processData: false,
+	        headers: {
+	            "Content-Type": "application/json"
+	        }
+	 }).done(function (isSynced) {
+		 skip = isSynced;
+	 })
+    
+}
