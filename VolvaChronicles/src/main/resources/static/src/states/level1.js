@@ -10,6 +10,9 @@ level1Scene.create = function (){
     currentLevel = 1;
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
     createLevel(level1Scene, 1);
+    //Carga las metas 
+    createGoal(level1Scene, -550, 190);
+    createGoal(level1Scene, 3000, 190);
     //crea las animaciones de los 2 personajes jugables
     createAnimationPlayer('aguila', level1Scene);//solo nivel 1
     createAnimationPlayer('nidhogg', level1Scene);//solo nivel 1

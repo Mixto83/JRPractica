@@ -3,7 +3,6 @@ var layer;
 
 //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
 createLevel = function (scene, nLevel) {
-    console.log('valor de skip:'+skip);
     pressedSkip(false, idJugador);
     skip = false;
     levelEnded = false;
@@ -31,6 +30,11 @@ createLevel = function (scene, nLevel) {
     map.setCollisionBetween(0,115);
     scene.physics.world.setBounds(-3501, 0, 7008, 19578); 
     console.log('valor de skip:'+skip);  
+}
+
+//Creacion de la meta
+createGoal = function (scene, x, y) {
+    scene.add.image(x, y, 'meta');
 }
 
 

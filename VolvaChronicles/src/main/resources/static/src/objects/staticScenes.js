@@ -9,6 +9,7 @@ var botonOnline;
 var keyZ;
 var idJugador; // Variable que asigna a cada jugador su personaje y con ello
 				// sus llamadas
+var iconoPersonaje;
 
 // crea la animación de cargando
 function loadingAnimation(scene) {
@@ -100,6 +101,23 @@ function createMenuButtons(scene) {
 					}
 				})
 	});
+}
+
+//Crea el texto de la sala de espera del jugador 1, con una animacion del personaje
+function createWaitingText(scene, type) {
+    var style1 = { font: "50px Fantasy", fill: "#000" };
+    var style2 = { font: "30px Fantasy", fill: "#000" };
+    var text = scene.add.text(700, 400, 'Eres el jugador 1: ¡Águila!', style1);
+    var text2 = scene.add.text(800, 750, 'Esperando al jugador 2...', style2);
+
+    iconoPersonaje = scene.add.sprite(960, 600, 'aguila');
+    scene.anims.create({
+        key: 'runWaiting',
+        frames: scene.anims.generateFrameNames('aguila', { prefix: 'aguila instancia 1', start: 22, end: 40, zeroPad: 4 }),
+        frameRate: 24,
+        repeat: -1
+    });
+    iconoPersonaje.anims.play('runWaiting', true);
 }
 
 // Crea el texto de enhorabuena del ganador, una imagen que representa su

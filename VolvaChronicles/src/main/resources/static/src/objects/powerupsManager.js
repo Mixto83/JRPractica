@@ -150,10 +150,10 @@ function createPowerups(scene, nLevel) {
         var pSkadi2 = scene.physics.add.sprite(-2669, 5587, 'skadi');
         pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
-        var pBragi2 = scene.physics.add.sprite(-1135, 3283, 'bragi');
+        var pBragi2 = scene.physics.add.sprite(-2880, 2688, 'bragi');
         pBragi2.id = 2;
         powerups.add(pBragi2, true);
-        var pCiervo2 = scene.physics.add.sprite(-2880, 2688, 'ciervo');
+        var pCiervo2 = scene.physics.add.sprite(-1135, 3283, 'ciervo');
         pCiervo2.id = 0;
         powerups.add(pCiervo2, true);
         var pHemodr3 = scene.physics.add.sprite(-1637, 2035, 'hemodr');
@@ -198,10 +198,10 @@ function createPowerups(scene, nLevel) {
         var Skadi2p = scene.physics.add.sprite(881, 5587, 'skadi');
         Skadi2p.id = 4;
         powerups.add(Skadi2p, true);
-        var Bragi2p = scene.physics.add.sprite(2415, 3283, 'bragi');
+        var Bragi2p = scene.physics.add.sprite(670, 2688, 'bragi');
         Bragi2p.id = 2;
         powerups.add(Bragi2p, true);
-        var Ciervo2p = scene.physics.add.sprite(670, 2688, 'ciervo');
+        var Ciervo2p = scene.physics.add.sprite(2415, 3283, 'ciervo');
         Ciervo2p.id = 0;
         powerups.add(Ciervo2p, true);
         var Hemodr3p = scene.physics.add.sprite(1913, 2035, 'hemodr');

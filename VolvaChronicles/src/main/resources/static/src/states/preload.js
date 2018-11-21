@@ -69,6 +69,9 @@ preloadScene.preload = function () {
     //sprite arma
     this.load.image('lanza', 'assets/sprites/lanza_horizontal_R.png');
 
+    //sprite meta
+    this.load.image('meta', 'assets/sprites/disenho_meta.png');
+
     //Musica
     //Menu: Rynos Theme Kevin MacLeod (incompetech.com)
     //Reward: Industrious Ferret Kevin MacLeod (incompetech.com)
@@ -97,6 +100,13 @@ preloadScene.preload = function () {
     //Ratatösk Sound: Chillido Ardilla checholio
     //Deer Sound: Mystic Flutter 5 Soughtaftersounds "Copyright © 2011 Varazuvi™ www.varazuvi.com"
     //Portal Sound: Wooden Horn Vendarro
+    //Combat Sound 1: nextmaking
+    //Combat Sound 2: YleArkisto
+    //Combat Sound 3: alonsotm
+    //Combat Sound 4: eardeer
+    //Combat Sound 5: CastIronCarousel
+    //Combat Sound 6: TheBuilder15
+    //Combat Sound 7: Cigaro30
     //Licensed under Creative Commons: By Attribution 3.0
     this.load.audio('combatSound', 'assets/sounds/combatSound.wav');
     this.load.audio('menuConfirm', 'assets/sounds/menuConfirm.mp3');

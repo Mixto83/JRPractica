@@ -16,6 +16,9 @@ level2Scene.create = function (){
     } 
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
     createLevel(level2Scene, 2);
+    //Carga las metas 
+    createGoal(level2Scene, -1725, 280);
+    createGoal(level2Scene, 1825, 280);
     //crea los sprites de los personajes e inicializa todos sus atributos
     createPlayers(level2Scene);
     //crea y coloca todos los powerups del nivel 2 en su sitio y les añade las colisiones
