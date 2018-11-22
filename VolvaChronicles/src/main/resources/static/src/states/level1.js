@@ -31,6 +31,9 @@ level1Scene.create = function (){
     createEnemy(level1Scene, 1);
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level1Scene);
+    //Se actualizan los controles al empezar para evitar conflictos con perdida de paquetes
+    updateControls(player1);
+    updateControls(player2);
 }
 
 level1Scene.update = function (){

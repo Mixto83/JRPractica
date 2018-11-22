@@ -16,7 +16,7 @@ ending1Scene.create = function (){
     //Crea la caja de texto con la conversación
     createTextBox(ending1Scene,960,990.5,10,0.17,'Ending1');
     //Teclado
-    //keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 
 }
 

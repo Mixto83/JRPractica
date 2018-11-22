@@ -17,7 +17,7 @@ ending2Scene.create = function (){
     createTextBox(ending2Scene,960,1000.5,10,0.17,'Ending2');
 
     //Teclado
-    //keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
 ending2Scene.update = function (){

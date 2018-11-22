@@ -12,11 +12,7 @@ waitingScene.create = function() {
 	// Reproduce la musica
 	createMusic(waitingScene, 'reward');
 	// Pone texto en pantalla
-	var textWait = this.add.text(700, 400, '', {
-		font : "50px Fantasy",
-		fill : "#000"
-	});
-	textWait.setText([ 'Eres el jugador 1 y manejaras al Aguila. \nEsperando al jugador 2...' ]);
+	createWaitingText(waitingScene);
 }
 
 waitingScene.update = function() {

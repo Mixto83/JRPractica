@@ -21,6 +21,7 @@ getNumberOfPlayers = function(){
  })
 }
 
+//Creacion del perfil de jugador en el servidor
 createPlayerInServer = function(id){
 	isOnline = true;
 	idJugador = id;//Coge 0 cuando no hay nadie o 1 cuando hay otro
@@ -36,6 +37,7 @@ createPlayerInServer = function(id){
 	    })
 }
 
+//Recogida de datos del servidor
 getPlayerInfo = function (id){
 	 $.ajax({
 	        method: "GET",
@@ -54,6 +56,7 @@ getPlayerInfo = function (id){
 	 })
 }
 
+//Actualizacion del estado interno en el cliente con los datos del servidor
 updatePlayerFromServer = function (player,info){
 	if (player.estado < info.estado){
         console.log("actualizando");
@@ -80,6 +83,7 @@ updatePlayerFromServer = function (player,info){
 	}
 }
 
+//Inicializacion de la informacion de cada jugador
 insertPlayer = function (player, id){
 	var playerInfo = {
     		"estado" : player.estado,
@@ -118,7 +122,7 @@ insertPlayer = function (player, id){
     })
 }
 
-
+//Actualizacion del servidor con la informacion del jugador cambiada
 modifyPlayerInfo = function (player, id){
 	player.estado++;
 	playerInfo = {
@@ -158,6 +162,7 @@ modifyPlayerInfo = function (player, id){
     })
 }
 
+//Borrado de la lista de jugadores
 deletePlayerList = function(){
 	 $.ajax({
 	        method: 'DELETE',
@@ -168,6 +173,7 @@ deletePlayerList = function(){
 }
 
 //Control de sincronizacion
+//Comprueba que un jugador ha pulsado la tecla de skip
 pressedSkip = function(boolSkip, idP){
     $.ajax({
         method: 'PUT',
@@ -182,6 +188,7 @@ pressedSkip = function(boolSkip, idP){
     })
 }
 
+//Comprueba si ambos jugadores han pulsado skip
 getPressedFromOpponent = function(){
      $.ajax({
 	        method: "GET",
