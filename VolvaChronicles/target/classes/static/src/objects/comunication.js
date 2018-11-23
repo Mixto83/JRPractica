@@ -79,7 +79,8 @@ updatePlayerFromServer = function (player,info){
 		player.dashId = info.dashId;
 		player.ratatosk = info.ratatosk;
 		player.tir = info.tir;
-		player.heimdall = info.heimdall;	
+		player.heimdall = info.heimdall;
+		player.reward = info.reward;
 	}
 }
 
@@ -106,7 +107,8 @@ insertPlayer = function (player, id){
 			"dashId" : player.dashId,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
-			"heimdall" : player.heimdall
+			"heimdall" : player.heimdall,
+			"reward" : player.reward
     	};
 	
 	$.ajax({
@@ -146,7 +148,8 @@ modifyPlayerInfo = function (player, id){
 			"dashId" : player.dashId,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
-			"heimdall" : player.heimdall
+			"heimdall" : player.heimdall,
+			"reward" : player.reward
     	};
 	
 	$.ajax({
