@@ -17,17 +17,26 @@ ending2Scene.create = function (){
     createTextBox(ending2Scene,960,1000.5,10,0.17,'Ending2');
 
     //Teclado
-    //keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
 ending2Scene.update = function (){
     //Cuando el fondo llega al final (se termina la secuencia) o se presiona Z,
     //pasa a los créditos
-    if (background.x <= 855){
-        nextScene(ending2Scene, 'credits');
+	if (background.x <= 855){
+        pressedSkip(true, idJugador);
+        //nextScene(ending1Scene, 'credits');
     }
-    if( keyZ.isDown) {
+
+    if(keyZ.isDown) {
         keyZ.isDown = false;
-        nextScene(ending2Scene, 'credits');
-    };
+        pressedSkip(true, idJugador);
+    }
+
+    getPressedFromOpponent();
+
+    if(skip){
+        skip = false;
+        nextScene(ending2Scene,'credits');
+    }
 }

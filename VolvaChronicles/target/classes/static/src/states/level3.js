@@ -16,6 +16,9 @@ level3Scene.create = function (){
     }
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 3
     createLevel(level3Scene, 3);
+    //Carga las metas 
+    createGoal(level3Scene, -2770, 475);
+    createGoal(level3Scene, 780, 475);
     //crea los sprites de los personajes e inicializa todos sus atributos
     createPlayers(level3Scene);
     //crea y coloca todos los powerups del nivel 3 en su sitio y les añade las colisiones
@@ -28,6 +31,9 @@ level3Scene.create = function (){
     createEnemy(level3Scene, 3);
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level3Scene);
+    //Se actualizan los controles antes de empezar para evitar conflictos con perdida de paquetes
+    updateControls(player1);
+    updateControls(player2);
 }
 
 level3Scene.update = function () {

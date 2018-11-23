@@ -16,17 +16,27 @@ ending1Scene.create = function (){
     //Crea la caja de texto con la conversación
     createTextBox(ending1Scene,960,990.5,10,0.17,'Ending1');
     //Teclado
-    //keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+
 }
 
 ending1Scene.update = function(){
     //Cuando el fondo llega al final (se termina la secuencia) o se presiona Z,
     //pasa a los créditos
-    if (background.x <= 855){
-        nextScene(ending1Scene, 'credits');
+	if (background.x <= 855){
+        pressedSkip(true, idJugador);
+        //nextScene(ending1Scene, 'credits');
     }
-    if( keyZ.isDown) {
+
+    if(keyZ.isDown) {
         keyZ.isDown = false;
-        nextScene(ending1Scene, 'credits');
-    };
+        pressedSkip(true, idJugador);
+    }
+
+    getPressedFromOpponent();
+
+    if(skip){
+        skip = false;
+        nextScene(ending1Scene,'credits');
+    }
 }

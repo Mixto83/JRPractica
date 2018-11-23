@@ -21,6 +21,7 @@ getNumberOfPlayers = function(){
  })
 }
 
+//Creacion del perfil de jugador en el servidor
 createPlayerInServer = function(id){
 	isOnline = true;
 	idJugador = id;//Coge 0 cuando no hay nadie o 1 cuando hay otro
@@ -36,6 +37,7 @@ createPlayerInServer = function(id){
 	    })
 }
 
+//Recogida de datos del servidor
 getPlayerInfo = function (id){
 	 $.ajax({
 	        method: "GET",
@@ -54,6 +56,7 @@ getPlayerInfo = function (id){
 	 })
 }
 
+//Actualizacion del estado interno en el cliente con los datos del servidor
 updatePlayerFromServer = function (player,info){
 	if (player.estado < info.estado){
         console.log("actualizando");
@@ -76,10 +79,12 @@ updatePlayerFromServer = function (player,info){
 		player.dashId = info.dashId;
 		player.ratatosk = info.ratatosk;
 		player.tir = info.tir;
-		player.heimdall = info.heimdall;	
+		player.heimdall = info.heimdall;
+		player.reward = info.reward;
 	}
 }
 
+//Inicializacion de la informacion de cada jugador
 insertPlayer = function (player, id){
 	var playerInfo = {
     		"estado" : player.estado,
@@ -102,7 +107,8 @@ insertPlayer = function (player, id){
 			"dashId" : player.dashId,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
-			"heimdall" : player.heimdall
+			"heimdall" : player.heimdall,
+			"reward" : player.reward
     	};
 	
 	$.ajax({
@@ -118,7 +124,7 @@ insertPlayer = function (player, id){
     })
 }
 
-
+//Actualizacion del servidor con la informacion del jugador cambiada
 modifyPlayerInfo = function (player, id){
 	player.estado++;
 	playerInfo = {
@@ -142,7 +148,8 @@ modifyPlayerInfo = function (player, id){
 			"dashId" : player.dashId,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
-			"heimdall" : player.heimdall
+			"heimdall" : player.heimdall,
+			"reward" : player.reward
     	};
 	
 	$.ajax({
@@ -158,6 +165,7 @@ modifyPlayerInfo = function (player, id){
     })
 }
 
+//Borrado de la lista de jugadores
 deletePlayerList = function(){
 	 $.ajax({
 	        method: 'DELETE',
@@ -165,4 +173,35 @@ deletePlayerList = function(){
 	    }).done(function (player) {
 	        console.log("Deleted players ");
 	    })
+}
+
+//Control de sincronizacion
+//Comprueba que un jugador ha pulsado la tecla de skip
+pressedSkip = function(boolSkip, idP){
+    $.ajax({
+        method: 'PUT',
+        url: 'http://localhost:8080/syncro/' + idP,
+        data: JSON.stringify(boolSkip),
+        processData: false,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(function () {
+        console.log("Ha pulsado " + idP);
+    })
+}
+
+//Comprueba si ambos jugadores han pulsado skip
+getPressedFromOpponent = function(){
+     $.ajax({
+	        method: "GET",
+	        url: 'http://localhost:8080/syncro/',
+	        processData: false,
+	        headers: {
+	            "Content-Type": "application/json"
+	        }
+	 }).done(function (isSynced) {
+		 skip = isSynced;
+	 })
+    
 }

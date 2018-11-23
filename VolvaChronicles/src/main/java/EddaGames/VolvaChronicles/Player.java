@@ -29,7 +29,8 @@ public class Player {
 	private int ratatosk;
 	private boolean tir;
 	private boolean heimdall;
-
+	private String reward;
+	
 	// constructor
 	public Player() {
 		super();
@@ -54,6 +55,7 @@ public class Player {
 		this.ratatosk = 0;
 		this.tir = false;
 		this.heimdall = false;
+		this.setReward("");
 	}
 
 	// Getters & Setters
@@ -223,6 +225,14 @@ public class Player {
 
 	public void setDashId(int dashId) {
 		this.dashId = dashId;
+	}
+
+	public String getReward() {
+		return reward;
+	}
+
+	public void setReward(String reward) {
+		this.reward = reward;
 	}
 
 }

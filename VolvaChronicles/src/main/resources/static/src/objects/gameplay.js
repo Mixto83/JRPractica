@@ -69,7 +69,7 @@ addPlayer = function (scene, player, type) {
     player.ratatosk = 0;
     player.tir = false;
     player.heimdall = false;
-
+    player.reward = '';//PRUEBA
     player.throwRight = false;
     player.throwLeft = false;
 

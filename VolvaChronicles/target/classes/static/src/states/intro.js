@@ -2,6 +2,8 @@ var introScene = new Phaser.Scene('intro');
 
 introScene.active = true;
 
+var anyKeyPressed = false;
+
 introScene.preload = function (){
     
 }
@@ -17,13 +19,26 @@ introScene.create = function (){
     createTextBox(introScene,960,1000.5,10,0.17,'Intro');
     //Cuando se pulse cualquier tecla, salta la cutscene
     this.input.keyboard.on('keyup', function(event){
-        nextScene(introScene, 'level1');
+        //nextScene(introScene, 'level1');
+    	anyKeyPressed = true;
+        //pressedSkip(true, idJugador);
     });
 }
 
 introScene.update = function (){
     //Cuando el fondo llega al final (se termina la secuencia), pasa al nivel 1
+    if (anyKeyPressed){
+        anyKeyPressed = false;
+        pressedSkip(true, idJugador);
+    }
     if (background.x <= 855){
-        nextScene(introScene, 'level1');
+        pressedSkip(true, idJugador);
+        //nextScene(introScene, 'level1');
+    }
+    getPressedFromOpponent();
+
+    if(skip){
+        skip = false;
+        nextScene(introScene,'level1');
     }
 }

@@ -4,13 +4,14 @@ var randomNumber;
 var runeName;
 var obtainedRune;
 
-//crea y coloca todos los powerups del nivel 1 en su sitio y les añade las colisiones
+// crea y coloca todos los powerups del nivel 1 en su sitio y les añade las
+// colisiones
 function createPowerups(scene, nLevel) {
     powerups = scene.physics.add.group();
 
-    //Powerups del nivel 1
+    // Powerups del nivel 1
     if (nLevel === 1) {
-        //Powerups del jugador 1
+        // Powerups del jugador 1
         var pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
@@ -30,7 +31,7 @@ function createPowerups(scene, nLevel) {
         pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
 
-        //Powerups del jugador 2
+        // Powerups del jugador 2
 
         var Ciervop = scene.physics.add.sprite(1584, 2208, 'ciervo');
         Ciervop.id = 0;
@@ -50,9 +51,9 @@ function createPowerups(scene, nLevel) {
         var Skadi2p = scene.physics.add.sprite(960, 1152, 'skadi');
         Skadi2p.id = 4;
         powerups.add(Skadi2p, true);
-    }//Nivel 2
+    }// Nivel 2
     else if (nLevel === 2) {
-        //Powerups del jugador 1
+        // Powerups del jugador 1
         var pHemodr = scene.physics.add.sprite(-1669, 16627, 'hemodr');
         pHemodr.id = 5;
         powerups.add(pHemodr, true);
@@ -81,7 +82,7 @@ function createPowerups(scene, nLevel) {
         pRatatosk2.id = 6;
         powerups.add(pRatatosk2, true);
         
-        //Powerups del jugador 2
+        // Powerups del jugador 2
 
         var Hemodrp = scene.physics.add.sprite(1881, 16627, 'hemodr');
         Hemodrp.id = 5;
@@ -111,9 +112,9 @@ function createPowerups(scene, nLevel) {
         Ratatosk2p.id = 6;
         powerups.add(Ratatosk2p, true);
         
-    }//Nivel 3
+    }// Nivel 3
     else if (nLevel === 3) {
-        //Powerups del jugador 1
+        // Powerups del jugador 1
         var pCiervo = scene.physics.add.sprite(-2200, 16915, 'ciervo');
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
@@ -150,17 +151,17 @@ function createPowerups(scene, nLevel) {
         var pSkadi2 = scene.physics.add.sprite(-2669, 5587, 'skadi');
         pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
-        var pBragi2 = scene.physics.add.sprite(-1135, 3283, 'bragi');
+        var pBragi2 = scene.physics.add.sprite(-2880, 2688, 'bragi');
         pBragi2.id = 2;
         powerups.add(pBragi2, true);
-        var pCiervo2 = scene.physics.add.sprite(-2880, 2688, 'ciervo');
+        var pCiervo2 = scene.physics.add.sprite(-1135, 3283, 'ciervo');
         pCiervo2.id = 0;
         powerups.add(pCiervo2, true);
         var pHemodr3 = scene.physics.add.sprite(-1637, 2035, 'hemodr');
         pHemodr3.id = 5;
         powerups.add(pHemodr3, true);
 
-        //Powerups del jugador 2
+        // Powerups del jugador 2
 
         var Ciervop = scene.physics.add.sprite(1350, 16915, 'ciervo');
         Ciervop.id = 0;
@@ -198,10 +199,10 @@ function createPowerups(scene, nLevel) {
         var Skadi2p = scene.physics.add.sprite(881, 5587, 'skadi');
         Skadi2p.id = 4;
         powerups.add(Skadi2p, true);
-        var Bragi2p = scene.physics.add.sprite(2415, 3283, 'bragi');
+        var Bragi2p = scene.physics.add.sprite(670, 2688, 'bragi');
         Bragi2p.id = 2;
         powerups.add(Bragi2p, true);
-        var Ciervo2p = scene.physics.add.sprite(670, 2688, 'ciervo');
+        var Ciervo2p = scene.physics.add.sprite(2415, 3283, 'ciervo');
         Ciervo2p.id = 0;
         powerups.add(Ciervo2p, true);
         var Hemodr3p = scene.physics.add.sprite(1913, 2035, 'hemodr');
@@ -221,7 +222,7 @@ function createPowerups(scene, nLevel) {
     }, null, this);
 }
 
-//Desactiva el powerup obtenido y llama a la función correspondiente
+// Desactiva el powerup obtenido y llama a la función correspondiente
 function powerupsFunc(player, powerups, scene) {
     powerups.disableBody(true, true);
 
@@ -250,7 +251,7 @@ function powerupsFunc(player, powerups, scene) {
     }
 }
 
-//Funciones del PowerUp de Ratatosk
+// Funciones del PowerUp de Ratatosk
 function reverseRatatosk(scene, player, adversary) {
     if (player === player1) {
         adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -294,7 +295,7 @@ function ratatoskFunc(scene, player, adversary) {
 function defaultMaxVelocity(player) {
     player.setMaxVelocity(1100, 1100);
 }
-//Funciones del Power Up de Heimdall
+// Funciones del Power Up de Heimdall
 function throwFunc(scene, player1, player2) {
     if (player1.heimdall === true) {
         adversary = player2;
@@ -305,7 +306,8 @@ function throwFunc(scene, player1, player2) {
     }
     heimdallReturn(player);
     
-    //dependiendo de por donde viniera el golpe se desplaza hacia un lado u otro
+    // dependiendo de por donde viniera el golpe se desplaza hacia un lado u
+	// otro
     scene.sound.play('impactSound');
     if (player.x > adversary.x) {
         adversary.throwLeft = true;
@@ -322,7 +324,8 @@ function stopThrowing(adversary) {
 }
 
 function heimdallReturn(player) {
-    if (player.heimdall === true) { //para que el evento no se active al terminar el tiempo
+    if (player.heimdall === true) { // para que el evento no se active al
+									// terminar el tiempo
         player.x = player.lastX;
         player.y = player.lastY;
         player.heimdall = false;
@@ -356,38 +359,38 @@ function heimdallFunc(scene, player, adversary) {
 
 }
 
-//Funciones del powerup de los ciervos
+// Funciones del powerup de los ciervos
 function ciervosFunc(scene, player, adversary) {
     var nCiervo = Math.floor(Math.random() * 4);
     scene.sound.play('deerSound');
     switch (nCiervo) {
         case 0:
-            //Dainn
+            // Dainn
             player.setMaxVelocity(1100, 5000);
             player.setVelocityY(-4000);
             scene.time.delayedCall(1000, defaultMaxVelocity, [player], null, this);
             break;
         case 1:
-            //Dvalinn
+            // Dvalinn
             player.setMaxVelocity(1100, 5000);
             player.setVelocityY(-4000);
             adversary.setVelocityY(-4000);
             scene.time.delayedCall(1000, defaultMaxVelocity, [player], null, this);
             break;
         case 2:
-            //Duneyrr
+            // Duneyrr
             adversary.throwLeft = true;
             scene.time.delayedCall(2000, stopThrowing, [adversary], null, this);
             break;
         case 3:
-            //Duraþror
+            // Duraþror
             adversary.throwRight = true;
             scene.time.delayedCall(2000, stopThrowing, [adversary], null, this);
             break;
     }
 }
 
-//Runas
+// Runas
 function eventHermodr(scene, player) {
     scene.sound.play('runeObtained');
     player.velocidadX += 100;
@@ -431,32 +434,55 @@ function eventTir(scene,player){
 }
 
 randomReward = function() {
-    randomNumber = Phaser.Math.Between(1,5);
-    if (randomNumber === 1) {
-        runeName = 'hemodr';
-    } else if (randomNumber === 2) {
-        runeName = 'njord';
-    } else if (randomNumber === 3) {
-        runeName = 'skadi';
-    } else if (randomNumber === 4) {
-        runeName = 'tir';
-    } else {
-        runeName = 'bragi';
-    }
+	
+	if(player1.win && idJugador === 0){
+		randomNumber = Phaser.Math.Between(1,5);
+	    if (randomNumber === 1) {
+	        player1.reward = 'hemodr';
+	    } else if (randomNumber === 2) {
+	    	player1.reward = 'njord';
+	    } else if (randomNumber === 3) {
+	    	player1.reward = 'skadi';
+	    } else if (randomNumber === 4) {
+	    	player1.reward = 'tir';
+	    } else {
+	    	player1.reward = 'bragi';
+	    }
+	    modifyPlayerInfo(player1,idJugador);
+	} else if (player2.win && idJugador === 1){
+		randomNumber = Phaser.Math.Between(1,5);
+	    if (randomNumber === 1) {
+	    	player2.reward = 'hemodr';
+	    } else if (randomNumber === 2) {
+	    	player2.reward = 'njord';
+	    } else if (randomNumber === 3) {
+	    	player2.reward = 'skadi';
+	    } else if (randomNumber === 4) {
+	    	player2.reward = 'tir';
+	    } else {
+	    	player2.reward = 'bragi';
+	    }
+	    modifyPlayerInfo(player2,idJugador);
+	} else if (player1.win && idJugador === 1){
+		getPlayerInfo(0);
+	} else if (player2.win && idJugador === 0){
+		getPlayerInfo(1)
+	}
 }
 
-//Escoge un powerup aleatorio para el jugador que recibe según el número aleatorio
-//calculado en la escena de "reward"
+// Escoge un powerup aleatorio para el jugador que recibe según el número
+// aleatorio
+// calculado en la escena de "reward"
 function chooseReward (player){
-    if (randomNumber === 1) {
+    if (player.reward === 'hemodr') {
         player.hermodr = true;
-    } else if (randomNumber === 2) {
+    } else if (player.reward === 'njord') {
         player.njord = true;
-    } else if (randomNumber === 3) {
+    } else if (player.reward === 'skadi') {
         player.skadi = true;
-    } else if (randomNumber === 4) {
+    } else if (player.reward === 'tir') {
         player.tir = true;
-    } else {
+    } else if (player.reward === 'bragi'){
         player.bragi = true;
     }
 }
