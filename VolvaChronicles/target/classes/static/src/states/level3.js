@@ -32,14 +32,31 @@ level3Scene.create = function (){
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level3Scene);
     //Se actualizan los controles antes de empezar para evitar conflictos con perdida de paquetes
-    updateControls(player1);
-    updateControls(player2);
+    if (!isOnline){
+        updateControls(player1);
+        updateControls(player2);
+    }else if (idJugador === 0){
+        updateControls(player1);
+    } else if (idJugador === 1){
+        updateControls(player2);
+    }
+    updateMovement(player1);
+    updateMovement(player2);
 }
 
 level3Scene.update = function () {
+    //Actualiza las variables de los controles de los jugadores locales
+    if (!isOnline){
+        updateControls(player1);
+        updateControls(player2);
+    }else if (idJugador === 0){
+        updateControls(player1);
+    } else if (idJugador === 1){
+        updateControls(player2);
+    }
     //Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
-    updateControls(player1);
-    updateControls(player2);
+    updateMovement(player1);
+    updateMovement(player2);
     //Pasa a la pantalla de recompensa si algun jugador  llega a la meta
     checkEndLevel(level3Scene);
     //Actualiza las animaciones de los personajes según su situación

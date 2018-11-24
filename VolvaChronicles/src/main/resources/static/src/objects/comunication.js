@@ -166,22 +166,42 @@ modifyPlayerInfo = function (player, id){
     })
 }
 
-uploadReward = function (player, id){
+uploadReward = function (player, id){	
 	player.estado++;
 	playerInfo = {
-			"reward" : player.reward
-    	};
-	
+		"estado" : player.estado,
+		"downPulsada" : player.downPulsada,
+		"downToque" : player.downToque,
+		"upPulsada" : player.upPulsada,
+		"upToque" : player.upToque,
+		"leftPulsada" : player.leftPulsada,
+		"rightPulsada" : player.rightPulsada,
+		"dashPulsada" : player.dashPulsada,
+		"velocidadX" : 0,
+		"velocidadY" : 0,
+		"posX" : player.x,
+		"posY" : player.y,
+		"contStamine" : player.contStamine,
+		"contSalto" : player.contSalto,
+		"throwRight" : player.throwRight,
+		"throwLeft" : player.throwLeft,
+		"facingRight" : player.facingRight,
+		"dashId" : player.dashId,
+		"ratatosk" : player.ratatosk,
+		"tir" : player.tir,
+		"heimdall" : player.heimdall,
+		"reward" : player.reward
+	};
 	$.ajax({
         method: 'PUT',
-        url: 'http://localhost:8080/players/' + id,
+        url: 'http://localhost:8080/players/'+ id,
         data: JSON.stringify(playerInfo),
         processData: false,
         headers: {
             "Content-Type": "application/json"
         }
-    }).done(function (playerInfo) {
-        console.log(JSON.stringify(playerInfo));
+    }).done(function () {
+        console.log('reward subida');
     })
 }
 

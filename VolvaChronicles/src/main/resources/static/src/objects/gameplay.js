@@ -17,10 +17,12 @@ createPlayers = function (scene) {
     player2 = scene.physics.add.sprite(1800, 19584, 'nidhogg');
     addPlayer(scene, player1, 'aguila');
     addPlayer(scene, player2, 'nidhogg');
-    if (idJugador === 0) {
-        insertPlayer(player1, idJugador);
-    } else if (idJugador === 1) {
-        insertPlayer(player2, idJugador);
+    if (isOnline) {
+        if (idJugador === 0) {
+            insertPlayer(player1, idJugador);
+        } else if (idJugador === 1) {
+            insertPlayer(player2, idJugador);
+        }
     }
 }
 
@@ -66,10 +68,12 @@ addPlayer = function (scene, player, type) {
     //Atributo para la comunicacion online
     player.estado = 0;
     //atributos referentes a los powerups
+    if (currentLevel===1){
+        player.reward = '';//PRUEBA
+        player.tir = false;
+    }
     player.ratatosk = 0;
-    player.tir = false;
     player.heimdall = false;
-    player.reward = '';//PRUEBA
     player.throwRight = false;
     player.throwLeft = false;
 
@@ -331,6 +335,18 @@ createInputs = function (scene) {
     player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 }
+//para hacer controles genericos en websockets
+/*
+createInputs1P = function (scene, player){
+    //Input Events
+    cursors = scene.input.keyboard.createCursorKeys();
+    //inputs player (WASD+B)
+    player.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    player.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    player.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    player.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    player.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+}*/
 
 //actualiza el cronómetro
 updateTimer = function () {
@@ -427,7 +443,7 @@ updateAnimation = function (player) {
         if (!player.throwRight && !player.throwLeft) {
             if (player.dashId === 0) {
                 if (player.anims.isPlaying) {
-                    if (!player.keyDown.isDown && player.anims.currentAnim.key === 'crouchHold' + player.type) {
+                    if ((!isOnline) && !player.keyDown.isDown && player.anims.currentAnim.key === 'crouchHold' + player.type) {
                         player.anims.stop();
                         player.anims.play('crouchEnd' + player.type, true);
                         player.animEnd = true;
@@ -529,13 +545,7 @@ checkEndLevel = function (scene) {
     }
 }
 
-//Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
 updateControls = function (player) {
-
-    if (player.body.velocity.y > 1000) {
-        player.setVelocityY(950);
-    }
-
     if (!player.combat) {
         if (player.keyLeft.isDown) {
             player.leftPulsada = true;
@@ -564,6 +574,16 @@ updateControls = function (player) {
         } else {
             player.crouch = false;
         }
+    }
+}
+//Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
+updateMovement = function (player) {
+
+    if (player.body.velocity.y > 1000) {
+        player.setVelocityY(950);
+    }
+
+    if (!player.combat) {
 
         //Primero comprueba si el jugador esta siendo lanzado hacia alguno de los lados. De no ser asi, comprueba pulsaciones de botones.
         if (player.throwRight) {
@@ -652,46 +672,56 @@ updateControls = function (player) {
         }
 
         //control teclas
-        if (idJugador === 0) {
-            if (!player1.keyRight.isDown) {
-                player1.rightPulsada = false;
+        if (isOnline) {
+            if (idJugador === 0) {
+                if (!player1.keyRight.isDown) {
+                    player1.rightPulsada = false;
+                }
+                if (!player1.keyLeft.isDown) {
+                    player1.leftPulsada = false;
+                }
+            } else if (idJugador === 1) {
+                if (!player2.keyRight.isDown) {
+                    player2.rightPulsada = false;
+                }
+                if (!player2.keyLeft.isDown) {
+                    player2.leftPulsada = false;
+                }
             }
-            if (!player1.keyLeft.isDown) {
-                player1.leftPulsada = false;
+        } else {
+            if (!player.keyRight.isDown) {
+                player.rightPulsada = false;
             }
-        } else if (idJugador === 1) {
-            if (!player2.keyRight.isDown) {
-                player2.rightPulsada = false;
-            }
-            if (!player2.keyLeft.isDown) {
-                player2.leftPulsada = false;
+            if (!player.keyLeft.isDown) {
+                player.leftPulsada = false;
             }
         }
-        
+
         if (player.leftAnterior != player.leftPulsada) {
             player.leftAnterior = player.leftPulsada;
             player.leftCambioTeclas = true;
         } else {
             player.leftCambioTeclas = false;
         }
-        
+
         if (player.rightAnterior != player.rightPulsada) {
             player.rightAnterior = player.rightPulsada;
             player.rightCambioTeclas = true;
         } else {
             player.rightCambioTeclas = false;
         }
-        
-        //envio información al server
-        if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashPulsada) {
-            console.log("enviado");
-            if (idJugador === 0) {
-                modifyPlayerInfo(player1, idJugador);
-            } else if (idJugador === 1) {
-                modifyPlayerInfo(player2, idJugador);
+
+        if (isOnline) {
+            //envio información al server
+            if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashPulsada) {
+                console.log("enviado");
+                if (idJugador === 0) {
+                    modifyPlayerInfo(player1, idJugador);
+                } else if (idJugador === 1) {
+                    modifyPlayerInfo(player2, idJugador);
+                }
             }
         }
-
         player.upPulsada = false;
         player.downPulsada = false;
         player.dashPulsada = false;
@@ -719,3 +749,5 @@ updateControls = function (player) {
         player.setVelocityY(player.velocidadY);
     }
 }
+
+

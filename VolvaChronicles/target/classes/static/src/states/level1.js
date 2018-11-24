@@ -2,11 +2,11 @@ var level1Scene = new Phaser.Scene('level1');
 
 level1Scene.active = true;
 
-level1Scene.preload = function (){
-    
+level1Scene.preload = function () {
+
 }
 
-level1Scene.create = function (){
+level1Scene.create = function () {
     currentLevel = 1;
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
     createLevel(level1Scene, 1);
@@ -32,14 +32,32 @@ level1Scene.create = function (){
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level1Scene);
     //Se actualizan los controles al empezar para evitar conflictos con perdida de paquetes
-    updateControls(player1);
-    updateControls(player2);
+    if (!isOnline) {
+        updateControls(player1);
+        updateControls(player2);
+    } else if (idJugador === 0) {
+        updateControls(player1);
+    } else if (idJugador === 1) {
+        updateControls(player2);
+    }
+    updateMovement(player1);
+    updateMovement(player2);
+    
 }
 
-level1Scene.update = function (){
+level1Scene.update = function () {
+    //Actualiza las variables de los controles de los jugadores locales
+    if (!isOnline) {
+        updateControls(player1);
+        updateControls(player2);
+    } else if (idJugador === 0) {
+        updateControls(player1);
+    } else if (idJugador === 1) {
+        updateControls(player2);
+    }
     //Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
-    updateControls(player1);
-    updateControls(player2);
+    updateMovement(player1);
+    updateMovement(player2);
     //Pasa a la pantalla de recompensa si algun jugador  llega a la meta
     checkEndLevel(level1Scene);
     //Actualiza las animaciones de los personajes según su situación
@@ -48,13 +66,15 @@ level1Scene.update = function (){
     //Da velocidad a las lanzas de los enemigos
     moveLanzas();
     //Añade efectos a las camaras dependiendo del nivel de estamina de los jugadores
-    updateCameras(player1,player2);
+    updateCameras(player1, player2);
     //Mete los enemigos de cada grupo en un array y actualiza sus animaciones
     updateEnemies(penemies);
     updateEnemies(enemiesp);
-    if (idJugador === 0){
-    	getPlayerInfo(1);
-    } else if (idJugador === 1){
-    	getPlayerInfo(0);
+    if (isOnline) {
+        if (idJugador === 0) {
+            getPlayerInfo(1);
+        } else if (idJugador === 1) {
+            getPlayerInfo(0);
+        }
     }
 }
