@@ -35,16 +35,25 @@ rewardScene.create = function () {
 }
 
 rewardScene.update = function(){
-	
+    
+    
     if(keyZ.isDown) {
         keyZ.isDown = false;
-        pressedSkip(true, idJugador);
+        if(isOnline){
+            pressedSkip(true, idJugador);
+        } else {
+            nextLevel(rewardScene);
+        }
     }
 
-    getPressedFromOpponent();
+    if(isOnline){
+        getPressedFromOpponent();
 
-    if(skip){
-        skip = false;
-        nextLevel(rewardScene);
+        if(skip){
+            skip = false;
+            nextLevel(rewardScene);
+        }
     }
+
+    
 }

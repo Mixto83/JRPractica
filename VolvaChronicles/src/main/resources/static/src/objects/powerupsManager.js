@@ -434,7 +434,7 @@ function eventTir(scene,player){
 }
 
 randomReward = function() {
-	
+    	
 	if(player1.win && idJugador === 0){
 		randomNumber = Phaser.Math.Between(1,5);
 	    if (randomNumber === 1) {
