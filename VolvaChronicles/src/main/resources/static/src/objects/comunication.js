@@ -249,7 +249,7 @@ deletePlayerList = function(){
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip
-pressedSkip = function(boolSkip, idP){
+pressedSkip = function(boolSkip, idP, scene){
     $.ajax({
         method: 'PUT',
         url: 'http://localhost:8080/syncro/' + idP,
@@ -259,6 +259,8 @@ pressedSkip = function(boolSkip, idP){
             "Content-Type": "application/json"
         }
     }).done(function () {
+		var skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
+		skipMessage.setGravityY(-1200);
         console.log("Ha pulsado " + idP);
     })
 }
