@@ -28,8 +28,8 @@ introScene.create = function (){
 introScene.update = function (){
     //Cuando el fondo llega al final (se termina la secuencia), pasa al nivel 1
     if (anyKeyPressed){
+        anyKeyPressed = false;
         if (isOnline){
-            anyKeyPressed = false;
             pressedSkip(true, idJugador);
         }else{
             nextScene(introScene,'level1');

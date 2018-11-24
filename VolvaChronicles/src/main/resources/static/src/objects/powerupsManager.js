@@ -81,7 +81,7 @@ function createPowerups(scene, nLevel) {
         var pRatatosk2 = scene.physics.add.sprite(-1856, 2227, 'ratatosk');
         pRatatosk2.id = 6;
         powerups.add(pRatatosk2, true);
-        
+
         // Powerups del jugador 2
 
         var Hemodrp = scene.physics.add.sprite(1881, 16627, 'hemodr');
@@ -111,7 +111,7 @@ function createPowerups(scene, nLevel) {
         var Ratatosk2p = scene.physics.add.sprite(1728, 2227, 'ratatosk');
         Ratatosk2p.id = 6;
         powerups.add(Ratatosk2p, true);
-        
+
     }// Nivel 3
     else if (nLevel === 3) {
         // Powerups del jugador 1
@@ -243,11 +243,11 @@ function powerupsFunc(player, powerups, scene) {
     } else if (powerups.id === 4) {
         eventSkadi(scene, adversary);
     } else if (powerups.id === 5) {
-        eventHermodr(scene,player);
-    } else if (powerups.id === 6){
-        ratatoskFunc(scene,player,adversary);
-    } else if (powerups.id === 7){
-        eventTir(scene,player);
+        eventHermodr(scene, player);
+    } else if (powerups.id === 6) {
+        ratatoskFunc(scene, player, adversary);
+    } else if (powerups.id === 7) {
+        eventTir(scene, player);
     }
 }
 
@@ -305,9 +305,9 @@ function throwFunc(scene, player1, player2) {
         player = player2;
     }
     heimdallReturn(player);
-    
+
     // dependiendo de por donde viniera el golpe se desplaza hacia un lado u
-	// otro
+    // otro
     scene.sound.play('impactSound');
     if (player.x > adversary.x) {
         adversary.throwLeft = true;
@@ -325,7 +325,7 @@ function stopThrowing(adversary) {
 
 function heimdallReturn(player) {
     if (player.heimdall === true) { // para que el evento no se active al
-									// terminar el tiempo
+        // terminar el tiempo
         player.x = player.lastX;
         player.y = player.lastY;
         player.heimdall = false;
@@ -410,7 +410,7 @@ function onHermodrSkadi(adversary) {
 function eventNjord(scene, player) {
     scene.sound.play('runeObtained');
     player.velocidadY += 100;
-    scene.time.delayedCall(5000,onNjord, [player],scene);
+    scene.time.delayedCall(5000, onNjord, [player], scene);
 }
 
 function onNjord(player) {
@@ -421,59 +421,69 @@ function onNjord(player) {
 function eventBragi(scene, player) {
     scene.sound.play('runeObtained');
     player.contStamine += 100;
-    scene.time.delayedCall(5000,onBragi, [player], scene);
+    scene.time.delayedCall(5000, onBragi, [player], scene);
 }
 
 function onBragi(player) {
     player.contStamine = 100;
 }
 
-function eventTir(scene,player){
+function eventTir(scene, player) {
     scene.sound.play('runeObtained');
     player.tir = true;
 }
 
-randomReward = function() {
-    	
-	if(player1.win && idJugador === 0){
-		randomNumber = Phaser.Math.Between(1,5);
-	    if (randomNumber === 1) {
-	        player1.reward = 'hemodr';
-	    } else if (randomNumber === 2) {
-	    	player1.reward = 'njord';
-	    } else if (randomNumber === 3) {
-	    	player1.reward = 'skadi';
-	    } else if (randomNumber === 4) {
-	    	player1.reward = 'tir';
-	    } else {
-	    	player1.reward = 'bragi';
-	    }
-	    uploadReward(player1,idJugador);
-	} else if (player2.win && idJugador === 1){
-		randomNumber = Phaser.Math.Between(1,5);
-	    if (randomNumber === 1) {
-	    	player2.reward = 'hemodr';
-	    } else if (randomNumber === 2) {
-	    	player2.reward = 'njord';
-	    } else if (randomNumber === 3) {
-	    	player2.reward = 'skadi';
-	    } else if (randomNumber === 4) {
-	    	player2.reward = 'tir';
-	    } else {
-	    	player2.reward = 'bragi';
-	    }
-	    uploadReward(player2,idJugador);
-	/*} else if (player1.win && idJugador === 1){
-		getPlayerInfo(0);
-	} else if (player2.win && idJugador === 0){
-		getPlayerInfo(1)*/
-	}
+randomReward = function (scene) {
+
+    if (player1.win) {
+        if (!isOnline || (isOnline && idJugador === 0)) {
+            randomNumber = Phaser.Math.Between(1, 5);
+            if (randomNumber === 1) {
+                player1.reward = 'hemodr';
+            } else if (randomNumber === 2) {
+                player1.reward = 'njord';
+            } else if (randomNumber === 3) {
+                player1.reward = 'skadi';
+            } else if (randomNumber === 4) {
+                player1.reward = 'tir';
+            } else {
+                player1.reward = 'bragi';
+            }
+            createRewardText(scene, 'El Águila', player1);
+            if (isOnline) {
+                uploadReward(player1, idJugador);
+            }
+        } else if (isOnline && idJugador === 1) {
+            scene.time.delayedCall(100, function () {getRewardFromServer(0, scene);}, [], scene);
+        }
+    } else if (player2.win) {
+        if (!isOnline || (isOnline && idJugador === 1)) {
+            randomNumber = Phaser.Math.Between(1, 5);
+            if (randomNumber === 1) {
+                player2.reward = 'hemodr';
+            } else if (randomNumber === 2) {
+                player2.reward = 'njord';
+            } else if (randomNumber === 3) {
+                player2.reward = 'skadi';
+            } else if (randomNumber === 4) {
+                player2.reward = 'tir';
+            } else {
+                player2.reward = 'bragi';
+            }
+            createRewardText(scene, 'Nidhogg', player2);
+            if (isOnline) {
+                uploadReward(player2, idJugador);
+            }
+        } else if (isOnline && idJugador === 0) {
+            scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);
+        }
+    }
 }
 
 // Escoge un powerup aleatorio para el jugador que recibe según el número
 // aleatorio
 // calculado en la escena de "reward"
-function chooseReward (player){
+function chooseReward(player) {
     if (player.reward === 'hemodr') {
         player.hermodr = true;
     } else if (player.reward === 'njord') {
@@ -482,7 +492,7 @@ function chooseReward (player){
         player.skadi = true;
     } else if (player.reward === 'tir') {
         player.tir = true;
-    } else if (player.reward === 'bragi'){
+    } else if (player.reward === 'bragi') {
         player.bragi = true;
     }
 }

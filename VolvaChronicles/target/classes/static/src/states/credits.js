@@ -4,13 +4,15 @@ var creditsImg;
 
 creditsScene.active = true;
 
-creditsScene.preload = function () {}
+creditsScene.preload = function () { }
 
 creditsScene.create = function () {
-    pressedSkip(false, idJugador);
-    skip = false;
+    if (isOnline) {
+        pressedSkip(false, idJugador);
+        skip = false;
+    }
     //Se crea el objeto que guarda el sprite de la imagen de creditos finales
-    creditsImg = this.add.sprite(960,540,'creditosFinales');
+    creditsImg = this.add.sprite(960, 540, 'creditosFinales');
     //Se establece la animacion a realizar
     this.anims.create({
         key: 'ending',
@@ -19,13 +21,13 @@ creditsScene.create = function () {
         repeat: 0
     });
     //La imagen comienza su animacion, suena la musica y a los 42 segundos se llamará a la funcion de restart
-    creditsImg.anims.play('ending',true);
-    createMusic(creditsScene,'menu');
+    creditsImg.anims.play('ending', true);
+    createMusic(creditsScene, 'menu');
     this.time.delayedCall(42000, restartFunc, [], null, this);
 }
 
 //Para la musica y la escena, reinicia variables globales y vuelve al menu
-restartFunc = function(){
+restartFunc = function () {
     music.stop();
     levelEnded = false;
     heimdall = false;

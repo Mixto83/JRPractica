@@ -23,20 +23,29 @@ ending2Scene.create = function (){
 ending2Scene.update = function (){
     //Cuando el fondo llega al final (se termina la secuencia) o se presiona Z,
     //pasa a los créditos
-	if (background.x <= 855){
-        pressedSkip(true, idJugador);
-        //nextScene(ending1Scene, 'credits');
-    }
-
-    if(keyZ.isDown) {
+    if (keyZ.isDown){
         keyZ.isDown = false;
-        pressedSkip(true, idJugador);
+        if (isOnline){
+            pressedSkip(true, idJugador);
+        }else{
+            nextScene(ending2Scene,'credits');
+        }
+        
+    }
+    if (background.x <= 855){
+        if (isOnline){
+            pressedSkip(true, idJugador);
+        }else{
+            nextScene(ending2Scene, 'credits');
+        }
     }
 
-    getPressedFromOpponent();
+    if(isOnline){
+        getPressedFromOpponent();
 
-    if(skip){
-        skip = false;
-        nextScene(ending2Scene,'credits');
+        if(skip){
+            skip = false;
+            nextScene(ending2Scene,'credits');
+        }
     }
 }

@@ -84,8 +84,11 @@ updatePlayerFromServer = function (player,info){
 	}
 }
 
+
+
 //Inicializacion de la informacion de cada jugador
 insertPlayer = function (player, id){
+	player.estado++;
 	var playerInfo = {
     		"estado" : player.estado,
 			"downPulsada" : player.downPulsada,
@@ -203,6 +206,35 @@ uploadReward = function (player, id){
     }).done(function () {
         console.log('reward subida');
     })
+}
+
+getRewardFromServer = function (id, scene){
+	$.ajax({
+		   method: "GET",
+		   url: 'http://localhost:8080/players/' + id,
+		   processData: false,
+		   headers: {
+			   "Content-Type": "application/json"
+		   }
+	}).done(function (playerInfo) {
+		if (id === 0){
+			updateRewardFromServer(player1,playerInfo);
+			createRewardText(scene, 'El Águila', player1);
+		} else if (id === 1){
+			updateRewardFromServer(player2,playerInfo);
+			createRewardText(scene, 'Nidhogg', player2);
+		}
+		//console.log("Info del jugador " + playerId + ": " + JSON.stringify(playerInfo));
+	})
+}
+
+
+updateRewardFromServer = function (player,info){
+	if (player.estado < info.estado){
+        console.log("actualizando reward");
+		player.estado = info.estado;
+		player.reward = info.reward;
+	}
 }
 
 //Borrado de la lista de jugadores
