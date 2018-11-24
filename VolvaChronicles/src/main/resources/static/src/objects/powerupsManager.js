@@ -448,7 +448,7 @@ randomReward = function() {
 	    } else {
 	    	player1.reward = 'bragi';
 	    }
-	    modifyPlayerInfo(player1,idJugador);
+	    uploadReward(player1,idJugador);
 	} else if (player2.win && idJugador === 1){
 		randomNumber = Phaser.Math.Between(1,5);
 	    if (randomNumber === 1) {
@@ -462,11 +462,11 @@ randomReward = function() {
 	    } else {
 	    	player2.reward = 'bragi';
 	    }
-	    modifyPlayerInfo(player2,idJugador);
-	} else if (player1.win && idJugador === 1){
+	    uploadReward(player2,idJugador);
+	/*} else if (player1.win && idJugador === 1){
 		getPlayerInfo(0);
 	} else if (player2.win && idJugador === 0){
-		getPlayerInfo(1)
+		getPlayerInfo(1)*/
 	}
 }
 

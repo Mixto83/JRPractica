@@ -19,8 +19,8 @@ introScene.create = function (){
     createTextBox(introScene,960,1000.5,10,0.17,'Intro');
     //Cuando se pulse cualquier tecla, salta la cutscene
     this.input.keyboard.on('keyup', function(event){
+            anyKeyPressed = true;
         //nextScene(introScene, 'level1');
-    	anyKeyPressed = true;
         //pressedSkip(true, idJugador);
     });
 }
@@ -28,17 +28,29 @@ introScene.create = function (){
 introScene.update = function (){
     //Cuando el fondo llega al final (se termina la secuencia), pasa al nivel 1
     if (anyKeyPressed){
-        anyKeyPressed = false;
-        pressedSkip(true, idJugador);
+        if (isOnline){
+            anyKeyPressed = false;
+            pressedSkip(true, idJugador);
+        }else{
+            nextScene(introScene,'level1');
+        }
+        
     }
     if (background.x <= 855){
-        pressedSkip(true, idJugador);
-        //nextScene(introScene, 'level1');
+        if (isOnline){
+            pressedSkip(true, idJugador);
+        }else{
+            nextScene(introScene, 'level1');
+        }
     }
-    getPressedFromOpponent();
 
-    if(skip){
-        skip = false;
-        nextScene(introScene,'level1');
+    if(isOnline){
+        getPressedFromOpponent();
+
+        if(skip){
+            skip = false;
+            nextScene(introScene,'level1');
+        }
     }
+    
 }

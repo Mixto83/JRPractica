@@ -124,6 +124,7 @@ insertPlayer = function (player, id){
     })
 }
 
+
 //Actualizacion del servidor con la informacion del jugador cambiada
 modifyPlayerInfo = function (player, id){
 	player.estado++;
@@ -162,6 +163,25 @@ modifyPlayerInfo = function (player, id){
         }
     }).done(function (playerInfo) {
         //console.log("Updated player")
+    })
+}
+
+uploadReward = function (player, id){
+	player.estado++;
+	playerInfo = {
+			"reward" : player.reward
+    	};
+	
+	$.ajax({
+        method: 'PUT',
+        url: 'http://localhost:8080/players/' + id,
+        data: JSON.stringify(playerInfo),
+        processData: false,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(function (playerInfo) {
+        console.log(JSON.stringify(playerInfo));
     })
 }
 

@@ -22,9 +22,15 @@ rewardScene.create = function () {
     //Crea el texto de enhorabuena del ganador, una imagen que representa su
     //recompensa e instrucciones para pasar al siguiente nivel
     if (player1.win) {
-        createRewardText(rewardScene, 'El Águila');
+        if(idJugador === 1){
+            getPlayerInfo(0);
+        }
+        createRewardText(rewardScene, 'El Águila', player1);
     } else {
-        createRewardText(rewardScene, 'Nidhogg');
+        if(idJugador === 0){
+            getPlayerInfo(1);
+        }
+        createRewardText(rewardScene, 'Nidhogg', player2);
     }
 }
 

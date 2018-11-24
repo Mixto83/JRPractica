@@ -2,6 +2,8 @@ var menuScene = new Phaser.Scene('menu');
 
 menuScene.active = true;
 
+var isOnline;
+
 menuScene.preload = function () {
 
 }
