@@ -2,7 +2,7 @@ var menuScene = new Phaser.Scene('menu');
 
 menuScene.active = true;
 
-var isOnline;
+var isOnline;//Variable que permite al juego distinguir entre local y online
 
 menuScene.preload = function () {
 

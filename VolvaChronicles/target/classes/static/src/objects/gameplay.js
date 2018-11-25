@@ -17,6 +17,7 @@ createPlayers = function (scene) {
     player2 = scene.physics.add.sprite(1800, 19584, 'nidhogg');
     addPlayer(scene, player1, 'aguila');
     addPlayer(scene, player2, 'nidhogg');
+    //Inicializa al jugador en el servidor
     if (isOnline) {
         if (idJugador === 0) {
             insertPlayer(player1, idJugador);
@@ -71,7 +72,7 @@ addPlayer = function (scene, player, type) {
     player.estado = 0;
     //atributos referentes a los powerups
     if (currentLevel === 1) {
-        player.reward = '';//PRUEBA
+        player.reward = '';
         player.tir = false;
     }
     player.ratatosk = 0;
@@ -81,7 +82,7 @@ addPlayer = function (scene, player, type) {
 
     player.combat = false;
 
-    player.ratatoskBool = false; //Esta variable es solo de debug  
+    player.ratatoskBool = false;
 
     createAnimationEvents(player);
 }
@@ -547,6 +548,7 @@ checkEndLevel = function (scene) {
     }
 }
 
+//Actualiza las variables de los controles
 updateControls = function (player) {
     if (!player.combat) {
         if (player.keyLeft.isDown) {
@@ -581,12 +583,12 @@ updateControls = function (player) {
 //Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
 updateMovement = function (player) {
 
+    //Limita la velocidad en y para evitar problemas de colision
     if (player.body.velocity.y > 1000) {
         player.setVelocityY(950);
     }
 
     if (!player.combat) {
-
         //Primero comprueba si el jugador esta siendo lanzado hacia alguno de los lados. De no ser asi, comprueba pulsaciones de botones.
         if (player.throwRight) {
             player.setVelocityX(500);
@@ -675,7 +677,7 @@ updateMovement = function (player) {
         if (!player.dashPulsada && player.contStamine < 100) {
             player.contStamine++;
         }
-        //control teclas
+        //Controla las pulsaciones a los lados
         if (isOnline) {
             if (idJugador === 0) {
                 if (!player1.keyRight.isDown) {
@@ -714,7 +716,7 @@ updateMovement = function (player) {
         } else {
             player.rightCambioTeclas = false;
         }
-        //dash
+        //Controla las pulsaciones de dash
         if (isOnline) {
             if (idJugador === 0) {
                 if (!player1.keyDash.isDown) {
@@ -737,10 +739,11 @@ updateMovement = function (player) {
         } else {
             player.dashCambioTeclas = false;
         }
+
+
         if (isOnline) {
-            //envio información al server
+            //Envio de la informacion al servidor cuando se produce un cambio de estado interno del personaje controlable
             if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {
-                console.log("enviado");
                 if (idJugador === 0) {
                     modifyPlayerInfo(player1, idJugador);
                 } else if (idJugador === 1) {
@@ -748,9 +751,9 @@ updateMovement = function (player) {
                 }
             }
         }
+        //Reinicio de variables
         player.upPulsada = false;
         player.downPulsada = false;
-        //player.dashPulsada = false;
         if (!player.keyUp.isDown) {
             player.upToque = false;
         }

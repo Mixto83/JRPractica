@@ -7,14 +7,12 @@ var fondoMenuSombra;
 var botonLocal;
 var botonOnline;
 var keyZ;
-var idJugador; // Variable que asigna a cada jugador su personaje y con ello
-// sus llamadas
+var idJugador; //Variable que asigna a cada ventana su personaje y con ello sus llamadas
 var iconoPersonaje;
 
-// crea la animación de cargando
+// crea la animacion de cargando
 function loadingAnimation(scene) {
-	// crea fondo, texto con explicacion de pantalla completa e imagen de
-	// "cargando..."
+	// crea fondo, texto con explicacion de pantalla completa e imagen de "cargando..."
 	staticBackground = scene.add.image(960, 540, 'fondoRecompensa');
 	loadText = scene.add.text(660, 740,
 		'Pulsa F11 y disfruta del juego en pantalla completa', {
@@ -54,6 +52,7 @@ function createMenuButtons(scene) {
 
 	// Boton "Local"
 	botonLocal = scene.add.sprite(960, 650, 'botonLocal').setInteractive();
+
 	botonLocal.on('pointerdown', function (pointer) {
 		isOnline = false;
 		music.stop();
@@ -71,33 +70,9 @@ function createMenuButtons(scene) {
 		music.stop();
 		scene.sound.play('menuConfirm');
 		scene.time.delayedCall(2000, function () {
+			//Llama al servidor para comprobar el numero de jugadores y crearlos
 			isOnline = true;
-			$.ajax({
-				method: "GET",
-				url: 'http://localhost:8080/players',
-				processData: false,
-				headers: {
-					"Content-Type": "application/json"
-				}
-
-			}).done(
-				function (players) {
-
-					console.log("Numero actual de jugadores: "
-						+ JSON.stringify(players));
-
-					// Jugador 1
-					if (players === 0) {
-						createPlayerInServer(0);
-						scene.scene.start('waiting');
-						scene.scene.stop();
-
-					} else if (players === 1) {
-						createPlayerInServer(1);
-						scene.scene.start('intro');
-						scene.scene.stop();
-					}
-				})
+			getNumberOfPlayers(scene);
 		}, [], scene);
 	});
 
@@ -120,8 +95,7 @@ function createWaitingText(scene, type) {
 	iconoPersonaje.anims.play('runWaiting', true);
 }
 
-// Crea el texto de enhorabuena del ganador, una imagen que representa su
-// recompensa e instrucciones para pasar al siguiente nivel
+// Crea el texto de enhorabuena del ganador, una imagen que representa su recompensa e instrucciones para pasar al siguiente nivel
 function createRewardText(scene, type, player) {
 	var style1 = {
 		font: "50px Fantasy",
@@ -143,7 +117,7 @@ function createRewardInput(scene) {
 	keyZ = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
-// Si se pulsa Z, pasa al nivel correspondiente
+// Pasa al nivel correspondiente
 function nextLevel(scene) {
 	if (currentLevel === 1) {
 		music.stop();

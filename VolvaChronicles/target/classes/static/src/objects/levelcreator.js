@@ -3,6 +3,7 @@ var layer;
 
 //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
 createLevel = function (scene, nLevel) {
+    //Si es online, reinicia la variable que salta las escenas
     if (isOnline) {
         pressedSkip(false, idJugador, scene);
         skip = false;
@@ -32,7 +33,6 @@ createLevel = function (scene, nLevel) {
     layer = map.createStaticLayer(0, tileset, -3501, 0);
     map.setCollisionBetween(0, 115);
     scene.physics.world.setBounds(-3501, 0, 7008, 19578);
-    console.log('valor de skip:' + skip);
 }
 
 //Creacion de la meta

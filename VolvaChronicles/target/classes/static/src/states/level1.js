@@ -31,17 +31,6 @@ level1Scene.create = function () {
     createEnemy(level1Scene, 1);
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level1Scene);
-    //Se actualizan los controles al empezar para evitar conflictos con perdida de paquetes
-    if (!isOnline) {
-        updateControls(player1);
-        updateControls(player2);
-    } else if (idJugador === 0) {
-        updateControls(player1);
-    } else if (idJugador === 1) {
-        updateControls(player2);
-    }
-    updateMovement(player1);
-    updateMovement(player2);
 }
 
 level1Scene.update = function () {
@@ -69,6 +58,7 @@ level1Scene.update = function () {
     //Mete los enemigos de cada grupo en un array y actualiza sus animaciones
     updateEnemies(penemies);
     updateEnemies(enemiesp);
+    //Jugando online, pide al servidor la informacion del oponente
     if (isOnline) {
         if (idJugador === 0) {
             getPlayerInfo(1);

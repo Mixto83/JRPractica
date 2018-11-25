@@ -7,8 +7,9 @@ creditsScene.active = true;
 creditsScene.preload = function () { }
 
 creditsScene.create = function () {
+    //Si es online, reinicia la variable que salta las escenas
     if (isOnline) {
-        pressedSkip(false, idJugador);
+        pressedSkip(false, idJugador, creditsScene);
         skip = false;
     }
     //Se crea el objeto que guarda el sprite de la imagen de creditos finales
@@ -32,7 +33,10 @@ restartFunc = function () {
     levelEnded = false;
     heimdall = false;
     levelTime = 0;
-    deletePlayerList();
+    if (isOnline){
+        //borra los jugadores del servidor
+        deletePlayerList();
+    }
     creditsScene.scene.start('menu');
     creditsScene.scene.stop();
 }

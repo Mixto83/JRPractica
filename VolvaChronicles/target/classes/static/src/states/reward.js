@@ -16,25 +16,24 @@ rewardScene.create = function () {
     //Imagen de fondo
     createStaticBackground(rewardScene,'Recompensa');
 
-    //Crea un número aleatorio para decidir la recompensa del ganador
+    //Decide la recompensa del ganador
     randomReward(rewardScene);
 }
 
 rewardScene.update = function(){
-    
-    
     if(keyZ.isDown) {
         keyZ.isDown = false;
-        if(isOnline){
+        if(isOnline){//Manda la informacion al servidor
             pressedSkip(true, idJugador, rewardScene);
-        } else {
+        } else {//Pasa de escena
             nextLevel(rewardScene);
         }
     }
 
     if(isOnline){
+        //Pide la informacion al servidor
         getPressedFromOpponent();
-
+        //Salta de escena si han pulsado ambos
         if(skip){
             skip = false;
             nextLevel(rewardScene);

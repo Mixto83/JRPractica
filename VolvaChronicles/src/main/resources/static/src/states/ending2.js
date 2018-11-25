@@ -15,36 +15,33 @@ ending2Scene.create = function (){
     createMusic(ending2Scene,'ending2');
     //Crea la caja de texto con la conversación
     createTextBox(ending2Scene,960,1000.5,10,0.17,'Ending2');
-
-    //Teclado
+    //Inicializa la variable de control de teclado
     keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
 }
 
 ending2Scene.update = function (){
-    //Cuando el fondo llega al final (se termina la secuencia) o se presiona Z,
-    //pasa a los créditos
     if (keyZ.isDown){
         keyZ.isDown = false;
-        if (isOnline){
+        if (isOnline){//Manda la informacion al servidor
             pressedSkip(true, idJugador, ending2Scene);
-        }else{
+        }else{//Salta a los creditos
             nextScene(ending2Scene,'credits');
         }
-        
     }
+    //Cuando el fondo llega al final (se termina la secuencia)
     if (background.x <= 855){
-        if (isOnline){
+        if (isOnline){//Manda la informacion al servidor
             background.setVelocityX(0);
             pressedSkip(true, idJugador, ending2Scene);
-        }else{
+        }else{//Salta a los creditos
             nextScene(ending2Scene, 'credits');
         }
     }
 
     if(isOnline){
+        //Pide la informacion al servidor
         getPressedFromOpponent();
-
-        if(skip){
+        if(skip){//Salta de escena si han pulsado ambos
             skip = false;
             nextScene(ending2Scene,'credits');
         }

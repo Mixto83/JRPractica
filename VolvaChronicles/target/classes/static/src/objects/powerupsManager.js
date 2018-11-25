@@ -1,8 +1,6 @@
 var powerups;
 var heimdall = false;
 var randomNumber;
-var runeName;
-var obtainedRune;
 
 // crea y coloca todos los powerups del nivel 1 en su sitio y les añade las
 // colisiones
@@ -318,14 +316,15 @@ function throwFunc(scene, player1, player2) {
     scene.time.delayedCall(5000, stopThrowing, [adversary], null, this);
 }
 
+//Detiene el lanzamiento del adversario
 function stopThrowing(adversary) {
     adversary.throwRight = false;
     adversary.throwLeft = false;
 }
 
+//Devuelve al jugador a su pantalla
 function heimdallReturn(player) {
-    if (player.heimdall === true) { // para que el evento no se active al
-        // terminar el tiempo
+    if (player.heimdall === true) {
         player.x = player.lastX;
         player.y = player.lastY;
         player.heimdall = false;
@@ -433,8 +432,10 @@ function eventTir(scene, player) {
     player.tir = true;
 }
 
+//Si el jugador que ha ganado es el jugador local, calcula una recompensa aleatoria y la sube al servidor
+//Si el jugador que ha ganado es el contrincante, descarga la informacion de la recompensa aleatoria
+//Si se esta jugando offline, se calcula la recompensa
 randomReward = function (scene) {
-
     if (player1.win) {
         if (!isOnline || (isOnline && idJugador === 0)) {
             randomNumber = Phaser.Math.Between(1, 5);
@@ -454,6 +455,7 @@ randomReward = function (scene) {
                 uploadReward(player1, idJugador);
             }
         } else if (isOnline && idJugador === 1) {
+            uploadReward(player2, idJugador);
             scene.time.delayedCall(100, function () {getRewardFromServer(0, scene);}, [], scene);
         }
     } else if (player2.win) {
@@ -475,14 +477,13 @@ randomReward = function (scene) {
                 uploadReward(player2, idJugador);
             }
         } else if (isOnline && idJugador === 0) {
+            uploadReward(player1, idJugador);
             scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);
         }
     }
 }
 
-// Escoge un powerup aleatorio para el jugador que recibe según el número
-// aleatorio
-// calculado en la escena de "reward"
+// Escoge un powerup para el jugador en funcion del número aleatorio calculado en randomReward
 function chooseReward(player) {
     if (player.reward === 'hemodr') {
         player.hermodr = true;

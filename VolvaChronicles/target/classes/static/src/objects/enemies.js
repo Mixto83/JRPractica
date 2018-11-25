@@ -271,7 +271,7 @@ function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene,
     enemy.lanza.posX = posX;
     enemy.lanza.posY = posY + 0;
     enemy.lanza.combat = false;
-    //meter aqui nido de ifs para controlar la posicion de las hitbox de las lanzas
+    //Ajusta la hitbox según el ángulo
     if (angle === 0){
         enemy.lanza.setSize(20, 20).setOffset(159, 0);
     } else if (angle === 180){

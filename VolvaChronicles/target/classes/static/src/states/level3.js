@@ -31,14 +31,6 @@ level3Scene.create = function (){
     createEnemy(level3Scene, 3);
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level3Scene);
-    //Se actualizan los controles antes de empezar para evitar conflictos con perdida de paquetes
-    if (isOnline) {
-        if (idJugador === 0) {
-            getPlayerInfo(1);
-        } else if (idJugador === 1) {
-            getPlayerInfo(0);
-        }
-    }
 }
 
 level3Scene.update = function () {
@@ -66,7 +58,7 @@ level3Scene.update = function () {
     //Mete los enemigos de cada grupo en un array y actualiza sus animaciones
     updateEnemies(penemies);
     updateEnemies(enemiesp);
-    
+    //Jugando online, pide al servidor la informacion del oponente
     if (isOnline) {
         if (idJugador === 0) {
             getPlayerInfo(1);
