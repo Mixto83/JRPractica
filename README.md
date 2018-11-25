@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**2.2**
+**3.0**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 
@@ -51,22 +51,24 @@ v2.1 - Diagrama de transición de escenas, inserción de imágenes _ingame_ y co
 
 v2.2 - Descripción de las escenas e inserción de varias imágenes.
 
+v3.0 - Descripción del comportamiento del juego con APIREST, inserción del diagrama de la APIREST, actualización de capturas de pantalla y del diagrama de transición de escenas.
+
 ## MECANICA DEL JUEGO
 ### CAMARA
 La cámara es de vista lateral, alejada lo suficiente de los personajes para poder ver parte del escenario y permitir a maniobrar al jugador. Aún así, esta cámara sigue al personaje que controla el jugador, desplazándose lateralmente hasta alcanzar uno de los bordes del escenario.
 ### CONTROLES
 El jugador controlará los movimientos, así como el salto y sus direcciones, mediante las habituales teclas W, A, S y D. Además, con la tecla B activará la habilidad del dash.
 
-En la implementación en modo local, el segundo jugador usará las flechas de dirección y la tecla 0 del numpad.
+En la implementación en modo local y de manera provisional en el modo online, el segundo jugador usará las flechas de dirección y la tecla 0 del numpad.
 ### PUNTUACION
-No se establecerá un sistema de puntuación. Solo existen los estados en el que un jugador pierde y otro gana en cada uno de los distintos niveles.
+No se establecerá un sistema de puntuación. Solo existen los estados en el que un jugador pierde y otro gana en cada uno de los distintos niveles. Sí se guardará el tiempo que ha tardado en terminarse el nivel.
 ### SISTEMA DE GUARDADO
 El juego no cuenta con ningún sistema de guardado, ya que está pensado para partidas rápidas entre dos jugadores, que puedan resolverse entre 8 y 12 minutos, dependiendo de la habilidad de estos.
 
 ## ESTADOS DEL JUEGO Y PANTALLAS
 Se adjunta el diagrama de secuencia de escenas:
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/DiagramaEscenas.png "Diagrama de Escenas")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Diagrama_Escenas.png "Diagrama de Escenas")
 
 **Boot y Preload**: Escenas iniciales por las que solo se pasa cuando arranca el juego. Se cargan los assets mientras se le indica al jugador que debe esperar y se le sugiere poner el juego en pantalla completa.
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/LoadingScene.png "Pantalla de carga")
@@ -74,16 +76,19 @@ Se adjunta el diagrama de secuencia de escenas:
 **Menu**: Pantalla inicial, donde se muestra el logo tanto del juego como del estudio. Al pulsar cualquier botón, se hace un fundido a negro y aparecen los botones de "Local" y "Online".
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/MenuSceneButtons.png "Pantalla de menú")
 
-**Intro**: Escena introductoria que sirve para presentar la historia a los jugadores. Se puede omitir pulsando cualquier botón. Las partículas que adornan la escena se generan en posiciones aleatorias en cada pasada.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/IntroScene.png "Pantalla de Intro")
+**Waiting**: Pantalla de espera, a la que solo accede el primer jugador que inicia una partida en el modo Online. Se le explica que va a manejar al águila y que está esperando a que entre el segundo jugador.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/waiting.png "Pantalla de espera")
+
+**Intro**: Escena introductoria que sirve para presentar la historia a los jugadores. Se puede omitir pulsando cualquier botón. Las partículas que adornan la escena se generan en posiciones aleatorias en cada pasada. En caso de jugar Online, no se omite la escena hasta que ambos jugadores hayan pulsado para saltarla, mostrándose un aviso en caso de haber pulsado.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/avisoIntro.png "Pantalla de Intro")
 
 **Niveles 1, 2, 3**: Las diferentes escenas donde se desarrolla el gameplay. Se va aumentando la dificultad y el número de enemigos y objetos progresivamente. En el apartado _Progreso del juego_ se explican en profundidad.
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel3Scene.png "Pantalla del Nivel 3")
 
-**Reward**: Al terminar los niveles 1 y 2, el juego se dirige a la escena de recompensa, donde se anuncia el ganador, el tiempo que ha tardado en completar el nivel y el power-up que obtiene como recompensa. Se sale de esta escena pulsando la tecla Z.
+**Reward**: Al terminar los niveles 1 y 2, el juego se dirige a la escena de recompensa, donde se anuncia el ganador, el tiempo que ha tardado en completar el nivel y el power-up que obtiene como recompensa. Se sale de esta escena pulsando la tecla Z (tendrán que pulsarla ambos jugadores en la partida Online)
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/RewardScene.png "Pantalla de Reward")
 
-**Ending 1 y 2**: Cinemáticas finales del juego, en función del ganador. Se pueden omitir pulsando la tecla Z. Las partículas se generan aleatoriamente, como en la Intro.
+**Ending 1 y 2**: Cinemáticas finales del juego, en función del ganador. Se pueden omitir pulsando la tecla Z (tendrán que pulsarla ambos jugadores en la partida Online). Las partículas se generan aleatoriamente, como en la Intro.
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Ending1Scene.png "Pantalla de Ending 1")
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Ending2Scene.png "Pantalla de Ending 2")
 
@@ -215,11 +220,22 @@ VÖLVA: Adelante, gran Odín. Luchad por la vida… aunque sea demasiado tarde.
 
 
 ## INTERFAZ
-La estamina se ve reflejada oscureciéndose la pantalla (de azul en la del águila, de rojo en la de Nidhögg) cuando queda poca cantidad, restableciendo su estado normal cuando se recupera dicha estamina, presentando así una interfaz diegética para no distraer al jugador de los elementos _ingame_
+La estamina se ve reflejada oscureciéndose la pantalla (de azul en la del águila, de rojo en la de Nidhögg) cuando queda poca cantidad, restableciendo su estado normal cuando se recupera dicha estamina, presentando así una interfaz diegética para no distraer al jugador de los elementos _ingame_.
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/estamina.png "Interfaz diegética")
 
 ## CARACTERISTICAS ONLINE
+### IMPLEMENTACION DEL MULTIJUGADOR CON APIREST
+Se ha decidido que el servidor recoja la información de los jugadores relativa a posición, velocidad, control de teclas pulsadas, estamina, salto y control de los parámetros de los que depende la animación. 
+
+Esta información relativa a cada uno de los jugadores se envía al servidor cada vez que se ha pulsado una tecla (arriba, abajo o _dash_) o se ha pulsado/soltado derecha o izquierda, así como cuando se comience un nivel. Se descarga esta información en cada frame, aunque gracias a una variable de estado (que incrementa en cada subida de información al servidor) se controla que esta se escriba en las propiedades del jugador, así como también se evitan problemas de pérdida de paquetes.
+
+Los jugadores activos (es decir, el jugador 1 en la pantalla 1 y el jugador 2 en la pantalla 2) serán los que envíen información al servidor, mientras que los pasivos (jugador 1 en la pantalla 2 y jugador 2 en la pantalla 1) se encargarán de recoger esta información y calcular sus movimientos y animaciones gracias a ello, reflejando el mismo movimiento que se está produciendo en la pantalla inicial.
+
+Al terminar una partida, cuando se produce el reseteo del juego, se borra la lista de jugadores del servidor, permitiendo iniciar una nueva partida.
+
+En adición al control de los jugadores, también se sube información referente a la pulsación de teclas en las pantallas de cutscenes y reward, con el objetivo de que no se salte a las siguientes pantallas hasta que ambos jugadores hayan decidido hacerlo.
+
 ### COMUNICACION ENTRE JUGADORES
 Al ser un juego dinámico, en el que no hay un instante en el que distraerse, se ha optado por no implementar un chat, sino de utilizar un sistema de expresiones. Este sistema sería similar al visto en juegos como Super Smash Bros, donde un jugador pulsa una tecla específica y su personaje ejecuta una animación en la que se burla del otro, pero en este caso, además de burlas, habría otras expresiones como saludar o intimidar. De esta forma, los jugadores pueden comunicarse de forma muy breve, pero sin perder tiempo ni distraerse de la jugabilidad.
 ### MATCHMAKING
@@ -285,6 +301,15 @@ En cuanto a los escenarios, estos se han representado buscando ejemplificar Yggd
 
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/arbol_calidad_baja.jpg "Background: Yggdrasil")
 
+## INSTRUCCIONES DE USO
+Para comenzar una partida utilizando APIREST, se deberán seguir los siguientes pasos:
+1.	Abrir Spring Tool Suite o Eclipse con su extensión para STS
+2.	Abrir carpeta VolvaChronicles con la opción File -> Open Projects from File System
+3.	Seleccionar en src/main/java el archivo App.java y escoger “Run As Java Application”, para iniciar el servidor APIREST.
+4.	Escribir en la URL del navegador de preferencia localhost:8080
+5.	Al iniciar el menú, pulsar en el botón Local para jugar offline o en el botón Online para jugar online.
+6.	En caso de jugar Online, se llevará al jugador a la pantalla de espera hasta que otro jugador (desde otra ventana o desde otro PC conectado a la misma IP) pulse en el botón Online e inicie la partida.
+
 ## POSIBLES AMPLIACIONES
 Gracias a lo inmenso que es el universo desarrollado en la Mitología Nórdica y a la propia naturaleza del videojuego como plataformas, este puede verse ampliado de muchas formas diferentes.
 
@@ -306,11 +331,17 @@ Alternativa para la interfaz diegética: se puede reflejar la estamina restante 
 Finalmente, y como idea prioritaria a implementar, de cara a mejorar la rejugabilidad del título los niveles podrían no estar dispuestos siempre de la misma forma, sino diviéndolos en tramos y que algunos de estos tramos presenten una disposición de plataformas y power-ups diferente en cada iteración del juego. No se trata de aleatorizar los elementos del escenario, sino de tener varios módulos distintos para un mismo tramo del nivel y que en cada iteración de un nivel se escoja uno aleatoriamente, haciendo que no todas las partidas sean iguales y alargando la vida útil del juego para el usuario.
 
 ## BUGS CONOCIDOS
-A veces la interfaz de la estamina opaca toda la pantalla por una causa desconocida. La solución a esto es dejar de usar el _dash_ y usarlo de nuevo moviéndose de lado a lado, dejando que se recargue la estamina y volviéndola a gastar.
+### BUGS RESUELTOS
+Anteriormente la interfaz de la estamina opacaba toda la pantalla. Esto ya se ha balanceado y el efecto es mucho más suave y momentáneo.
 
-En el nivel 3 hay un foso en el que, si el personaje cae, es imposible salir. En la próxima versión del juego se solucionará el tilemap aumentando un poco la altura del fondo.
+En el nivel 3 había un foso en el que, si el personaje caía, resultaba imposible salir. Se ha modificado el tilemap de manera que se pueda salir de ahí.
 
+### BUGS PRESENTES
 En algunas ocasiones, si un objeto coge excesiva velocidad, atraviesa alguna pared o suelo. Este efecto se ha paliado controlando la velocidad máxima, pero aún se manifiesta ocasionalmente.
+
+Por errores de comunicación no resueltos, el power up de los ciervos no funciona correctamente en la ventana que recibe la información del servidor.
+
+La animación de los efectos de dash se muestra de manera intermitente en la ventana que recibe la información del servidor.
 
 ## MIEMBROS DEL EQUIPO
 Mario Aceituno Cordero – Arte, Programación, Cinemáticas, Diseño de personajes - m.aceituno.2016@alumnos.urjc.es
