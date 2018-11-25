@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**3.0**
+**3.1**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 
@@ -52,6 +52,8 @@ v2.1 - Diagrama de transición de escenas, inserción de imágenes _ingame_ y co
 v2.2 - Descripción de las escenas e inserción de varias imágenes.
 
 v3.0 - Descripción del comportamiento del juego con APIREST, inserción del diagrama de la APIREST, actualización de capturas de pantalla y del diagrama de transición de escenas.
+
+v3.1 - Actualización en la sala de reporte de errores.
 
 ## MECANICA DEL JUEGO
 ### CAMARA
@@ -340,12 +342,14 @@ Anteriormente la interfaz de la estamina opacaba toda la pantalla. Esto ya se ha
 
 En el nivel 3 había un foso en el que, si el personaje caía, resultaba imposible salir. Se ha modificado el tilemap de manera que se pueda salir de ahí.
 
+La animación de los efectos de _dash_ se mostraba de manera intermitente en la ventana que recibe la información del servidor. Se resolvió subiendo una variable que controlaba la pulsación del _dash_
+
 ### BUGS PRESENTES
 En algunas ocasiones, si un objeto coge excesiva velocidad, atraviesa alguna pared o suelo. Este efecto se ha paliado controlando la velocidad máxima, pero aún se manifiesta ocasionalmente.
 
 Por errores de comunicación no resueltos, el power up de los ciervos no funciona correctamente en la ventana que recibe la información del servidor.
 
-La animación de los efectos de dash se muestra de manera intermitente en la ventana que recibe la información del servidor.
+Al reiniciar el juego, tanto en local como en online, en ocasiones el jugador que ha ganado spawnea desplazándose a un lado. No estropea la jugabilidad debido a que se arregla comenzando a jugar normalmente, pero se está estudiando cómo resolverlo.
 
 ## MIEMBROS DEL EQUIPO
 Mario Aceituno Cordero – Arte, Programación, Cinemáticas, Diseño de personajes - m.aceituno.2016@alumnos.urjc.es
