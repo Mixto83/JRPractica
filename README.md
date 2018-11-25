@@ -118,15 +118,15 @@ En adición a las mecánicas de los propios personajes, a lo largo de los nivele
 ### RUNAS
 Rocas místicas repartidas por el escenario. Se distinguen por símbolos, que representan a diferentes dioses de la mitología nórdica, presentando hasta 5 tipos diferentes:
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Hemodr.png "Runa de Hemodr")**Runa de Hermodr**: Aumenta la velocidad del jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Runa_Hemodr.png "Runa de Hemodr")**Runa de Hermodr**: Aumenta la velocidad del jugador que la obtiene.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Njord.png "Runa de Njord")**Runa de Njord**: Permite saltar más alto al jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Runa_Njord.png "Runa de Njord")**Runa de Njord**: Permite saltar más alto al jugador que la obtiene.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Skadi.png "Runa de Skadi")**Runa de Skadi**: Ralentiza al oponente del jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Runa_Skadi.png "Runa de Skadi")**Runa de Skadi**: Ralentiza al oponente del jugador que la obtiene.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Tir.png "Runa de Tir")**Runa de Tir**: Proporciona un escudo de invulnerabilidad para evitar el próximo ataque del jugador oponente.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Runa_Tir.png "Runa de Tir")**Runa de Tir**: Proporciona un escudo de invulnerabilidad para evitar el próximo ataque del jugador oponente.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/V%C3%B6lva%20Chronicle/assets/sprites/Runa_Bragi.png "Runa de Bragi")**Runa de Bragi**: Incrementa la estamina del jugador que la obtiene.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Runa_Bragi.png "Runa de Bragi")**Runa de Bragi**: Incrementa la estamina del jugador que la obtiene.
 
 
 ### AYUDANTES
