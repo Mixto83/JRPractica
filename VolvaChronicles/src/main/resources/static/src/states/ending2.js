@@ -34,6 +34,7 @@ ending2Scene.update = function (){
     }
     if (background.x <= 855){
         if (isOnline){
+            background.setVelocityX(0);
             pressedSkip(true, idJugador, ending2Scene);
         }else{
             nextScene(ending2Scene, 'credits');

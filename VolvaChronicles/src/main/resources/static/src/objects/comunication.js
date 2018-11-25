@@ -50,7 +50,6 @@ getPlayerInfo = function (id){
 		 } else if (id === 1){
 			 updatePlayerFromServer(player2,playerInfo);
 		 }
-		 //console.log("Info del jugador " + playerId + ": " + JSON.stringify(playerInfo));
 	 })
 }
 
@@ -65,6 +64,7 @@ updatePlayerFromServer = function (player,info){
 		player.upToque = info.upToque;
 		player.leftPulsada = info.leftPulsada;
 		player.rightPulsada = info.rightPulsada;
+		player.dashPulsada = info.dashPulsada
 		player.body.velocity.x = info.velocidadX;
 		player.body.velocity.y = info.velocidadY;
 		player.x = info.posX;
@@ -75,6 +75,7 @@ updatePlayerFromServer = function (player,info){
 		player.throwLeft = info.throwLeft;
 		player.facingRight = info.facingRight;
 		player.dashId = info.dashId;
+		player.dashBool = info.dashBool;
 		player.ratatosk = info.ratatosk;
 		player.tir = info.tir;
 		player.heimdall = info.heimdall;
@@ -106,6 +107,7 @@ insertPlayer = function (player, id){
 			"throwLeft" : player.throwLeft,
 			"facingRight" : player.facingRight,
 			"dashId" : player.dashId,
+			"dashBool" : player.dashBool,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
 			"heimdall" : player.heimdall,
@@ -148,12 +150,12 @@ modifyPlayerInfo = function (player, id){
 			"throwLeft" : player.throwLeft,
 			"facingRight" : player.facingRight,
 			"dashId" : player.dashId,
+			"dashBool" : player.dashBool,
 			"ratatosk" : player.ratatosk,
 			"tir" : player.tir,
 			"heimdall" : player.heimdall,
 			"reward" : player.reward
     	};
-	
 	$.ajax({
         method: 'PUT',
         url: 'http://localhost:8080/players/' + id,
@@ -187,6 +189,7 @@ uploadReward = function (player, id){
 		"throwLeft" : false,
 		"facingRight" : true,
 		"dashId" : 0,
+		"dashBool" : false,
 		"ratatosk" : 0,
 		"tir" : false,
 		"heimdall" : false,

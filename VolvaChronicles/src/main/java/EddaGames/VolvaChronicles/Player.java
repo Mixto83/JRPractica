@@ -24,6 +24,7 @@ public class Player {
 	private boolean throwLeft;
 	private boolean facingRight;
 	private int dashId;
+	private boolean dashBool;
 	
 	// Powerups
 	private int ratatosk;
@@ -52,6 +53,7 @@ public class Player {
 		this.throwLeft = false;
 		this.facingRight = true;
 		this.dashId = 0;
+		this.dashBool = false;
 		this.ratatosk = 0;
 		this.tir = false;
 		this.heimdall = false;
@@ -233,6 +235,14 @@ public class Player {
 
 	public void setReward(String reward) {
 		this.reward = reward;
+	}
+
+	public boolean isDashBool() {
+		return dashBool;
+	}
+
+	public void setDashBool(boolean dashBool) {
+		this.dashBool = dashBool;
 	}
 
 }

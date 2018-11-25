@@ -38,6 +38,7 @@ introScene.update = function (){
     }
     if (background.x <= 855){
         if (isOnline){
+            background.setVelocityX(0);
             pressedSkip(true, idJugador, introScene);
         }else{
             nextScene(introScene, 'level1');

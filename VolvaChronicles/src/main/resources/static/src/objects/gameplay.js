@@ -62,13 +62,15 @@ addPlayer = function (scene, player, type) {
     player.rightPulsada = false;
     player.leftAnterior = false;
     player.rightAnterior = false;
-    player.dashPulsada = false;
     player.leftCambioTeclas = false;
     player.rightCambioTeclas = false;
+    player.dashPulsada = false;
+    player.dashAnterior = false;
+    player.dashCambioTeclas = false;
     //Atributo para la comunicacion online
     player.estado = 0;
     //atributos referentes a los powerups
-    if (currentLevel===1){
+    if (currentLevel === 1) {
         player.reward = '';//PRUEBA
         player.tir = false;
     }
@@ -670,7 +672,9 @@ updateMovement = function (player) {
         } else if (player.dashPulsada && player.contStamine > 0) {
             player.dashBool = true;
         }
-
+        if (!player.dashPulsada && player.contStamine < 100) {
+            player.contStamine++;
+        }
         //control teclas
         if (isOnline) {
             if (idJugador === 0) {
@@ -710,10 +714,32 @@ updateMovement = function (player) {
         } else {
             player.rightCambioTeclas = false;
         }
+        //dash
+        if (isOnline) {
+            if (idJugador === 0) {
+                if (!player1.keyDash.isDown) {
+                    player1.dashPulsada = false;
+                }
+            } else if (idJugador === 1) {
+                if (!player2.keyDash.isDown) {
+                    player2.dashPulsada = false;
+                }
+            }
+        } else {
+            if (!player.keyDash.isDown) {
+                player.dashPulsada = false;
+            }
+        }
 
+        if (player.dashAnterior != player.dashPulsada) {
+            player.dashAnterior = player.dashPulsada;
+            player.dashCambioTeclas = true;
+        } else {
+            player.dashCambioTeclas = false;
+        }
         if (isOnline) {
             //envio información al server
-            if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashPulsada) {
+            if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {
                 console.log("enviado");
                 if (idJugador === 0) {
                     modifyPlayerInfo(player1, idJugador);
@@ -724,15 +750,12 @@ updateMovement = function (player) {
         }
         player.upPulsada = false;
         player.downPulsada = false;
-        player.dashPulsada = false;
+        //player.dashPulsada = false;
         if (!player.keyUp.isDown) {
             player.upToque = false;
         }
         if (!player.keyDown.isDown) {
             player.downToque = false;
-        }
-        if (!player.keyDash.isDown && player.contStamine < 100) {
-            player.contStamine++;
         }
         if (player.body.blocked.down) {
             player.contSalto = 0;

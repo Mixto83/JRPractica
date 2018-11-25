@@ -42,7 +42,6 @@ level1Scene.create = function () {
     }
     updateMovement(player1);
     updateMovement(player2);
-    
 }
 
 level1Scene.update = function () {

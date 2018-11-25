@@ -38,7 +38,7 @@ createMusic = function(scene,idCutscene){
     music = scene.sound.add(idCutscene+'Music');
     if (idCutscene === 'ending2'){
         music.setVolume(0.2);
-    } else{
+    } else {
         music.setVolume(0.4);
     }
     music.setLoop(true);
