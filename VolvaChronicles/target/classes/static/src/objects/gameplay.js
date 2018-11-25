@@ -737,9 +737,6 @@ updateMovement = function (player) {
         } else {
             player.dashCambioTeclas = false;
         }
-
-
-
         if (isOnline) {
             //envio información al server
             if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {

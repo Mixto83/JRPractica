@@ -272,7 +272,19 @@ function addEnemy(enemy, enemygroup, lanzagroup, posX, posY, angle, type, scene,
     enemy.lanza.posY = posY + 0;
     enemy.lanza.combat = false;
     //meter aqui nido de ifs para controlar la posicion de las hitbox de las lanzas
-    enemy.lanza.setSize(20, 20).setOffset(159, 0);
+    if (angle === 0){
+        enemy.lanza.setSize(20, 20).setOffset(159, 0);
+    } else if (angle === 180){
+        enemy.lanza.setSize(20, 20).setOffset(0, 0);
+    } else if (angle === 45){
+        enemy.lanza.setSize(20, 20).setOffset(90, 90);
+    }else if (angle === 135){
+        enemy.lanza.setSize(20, 20).setOffset(0, 90);
+    }else if (angle === 225){
+        enemy.lanza.setSize(20, 20).setOffset(159, 0);
+    }else if (angle === 315){
+        enemy.lanza.setSize(20, 20).setOffset(90, 0);
+    }
     enemy.lanza.angle = angle;
     enemy.type = type;
     enemy.anims.play('throw'+type,true);

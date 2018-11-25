@@ -8,7 +8,7 @@ creditsScene.preload = function () { }
 
 creditsScene.create = function () {
     if (isOnline) {
-        pressedSkip(false, idJugador);
+        pressedSkip(false, idJugador, creditsScene);
         skip = false;
     }
     //Se crea el objeto que guarda el sprite de la imagen de creditos finales

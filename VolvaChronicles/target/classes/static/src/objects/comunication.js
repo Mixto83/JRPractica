@@ -1,3 +1,4 @@
+
 getNumberOfPlayers = function(){
 	$.ajax({
         method: "GET",
