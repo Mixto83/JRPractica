@@ -32,16 +32,13 @@ level3Scene.create = function (){
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level3Scene);
     //Se actualizan los controles antes de empezar para evitar conflictos con perdida de paquetes
-    if (!isOnline){
-        updateControls(player1);
-        updateControls(player2);
-    }else if (idJugador === 0){
-        updateControls(player1);
-    } else if (idJugador === 1){
-        updateControls(player2);
+    if (isOnline) {
+        if (idJugador === 0) {
+            getPlayerInfo(1);
+        } else if (idJugador === 1) {
+            getPlayerInfo(0);
+        }
     }
-    updateMovement(player1);
-    updateMovement(player2);
 }
 
 level3Scene.update = function () {
@@ -70,9 +67,11 @@ level3Scene.update = function () {
     updateEnemies(penemies);
     updateEnemies(enemiesp);
     
-    if (idJugador === 0){
-    	getPlayerInfo(1);
-    } else if (idJugador === 1){
-    	getPlayerInfo(0);
+    if (isOnline) {
+        if (idJugador === 0) {
+            getPlayerInfo(1);
+        } else if (idJugador === 1) {
+            getPlayerInfo(0);
+        }
     }
 }

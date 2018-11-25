@@ -2,24 +2,24 @@ var level2Scene = new Phaser.Scene('level2');
 
 level2Scene.active = true;
 
-level2Scene.preload = function (){
-    
+level2Scene.preload = function () {
+
 }
 
-level2Scene.create = function (){
+level2Scene.create = function () {
     currentLevel = 2;
     //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
     if (player1.win) {
         chooseReward(player1);
     } else {
         chooseReward(player2);
-    } 
+    }
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
     createLevel(level2Scene, 2);
     //Carga las metas 
     createGoal(level2Scene, -1725, 280);
     createGoal(level2Scene, 1825, 280);
-    //crea los sprites de los personajes e inicializa todos sus atributos
+    //crea los sprites de los personajes e inicializa todos sus atributos    
     createPlayers(level2Scene);
     //crea y coloca todos los powerups del nivel 2 en su sitio y les añade las colisiones
     createPowerups(level2Scene, 2);
@@ -32,26 +32,23 @@ level2Scene.create = function (){
     //crea cronómetro que medirá el tiempo que tardan en completar el nivel
     createTimer(level2Scene);
     //Se actualizan los controles antes de empezar para evitar conflictos con perdida de paquetes
-    if (!isOnline){
-        updateControls(player1);
-        updateControls(player2);
-    }else if (idJugador === 0){
-        updateControls(player1);
-    } else if (idJugador === 1){
-        updateControls(player2);
-    }
-    updateMovement(player1);
-    updateMovement(player2);
+    /*if (isOnline) {
+        if (idJugador === 0) {
+            getPlayerInfo(1);
+        } else if (idJugador === 1) {
+            getPlayerInfo(0);
+        }
+    }*/
 }
 
 level2Scene.update = function () {
     //Actualiza las variables de los controles de los jugadores locales
-    if (!isOnline){
+    if (!isOnline) {
         updateControls(player1);
         updateControls(player2);
-    }else if (idJugador === 0){
+    } else if (idJugador === 0) {
         updateControls(player1);
-    } else if (idJugador === 1){
+    } else if (idJugador === 1) {
         updateControls(player2);
     }
     //Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
@@ -65,14 +62,16 @@ level2Scene.update = function () {
     //Da velocidad a las lanzas de los enemigos
     moveLanzas();
     //Añade efectos a las camaras dependiendo del nivel de estamina de los jugadores
-    updateCameras(player1,player2);
+    updateCameras(player1, player2);
     //Mete los enemigos de cada grupo en un array y actualiza sus animaciones
     updateEnemies(penemies);
     updateEnemies(enemiesp);
-    
-    if (idJugador === 0){
-    	getPlayerInfo(1);
-    } else if (idJugador === 1){
-    	getPlayerInfo(0);
+
+    if (isOnline) {
+        if (idJugador === 0) {
+            getPlayerInfo(1);
+        } else if (idJugador === 1) {
+            getPlayerInfo(0);
+        }
     }
 }

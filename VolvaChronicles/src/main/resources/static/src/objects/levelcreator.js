@@ -4,7 +4,7 @@ var layer;
 //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
 createLevel = function (scene, nLevel) {
     if (isOnline) {
-        pressedSkip(false, idJugador);
+        pressedSkip(false, idJugador, scene);
         skip = false;
     }
 

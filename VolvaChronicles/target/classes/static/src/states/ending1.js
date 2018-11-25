@@ -25,7 +25,7 @@ ending1Scene.update = function(){
     if (keyZ.isDown){
         keyZ.isDown = false;
         if (isOnline){
-            pressedSkip(true, idJugador);
+            pressedSkip(true, idJugador, ending1Scene);
         }else{
             nextScene(ending1Scene,'credits');
         }
@@ -33,7 +33,7 @@ ending1Scene.update = function(){
     }
     if (background.x <= 855){
         if (isOnline){
-            pressedSkip(true, idJugador);
+            pressedSkip(true, idJugador, ending1Scene);
         }else{
             nextScene(ending1Scene, 'credits');
         }

@@ -30,7 +30,7 @@ introScene.update = function (){
     if (anyKeyPressed){
         anyKeyPressed = false;
         if (isOnline){
-            pressedSkip(true, idJugador);
+            pressedSkip(true, idJugador, introScene);
         }else{
             nextScene(introScene,'level1');
         }
@@ -38,7 +38,7 @@ introScene.update = function (){
     }
     if (background.x <= 855){
         if (isOnline){
-            pressedSkip(true, idJugador);
+            pressedSkip(true, idJugador, introScene);
         }else{
             nextScene(introScene, 'level1');
         }

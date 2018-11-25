@@ -26,7 +26,7 @@ rewardScene.update = function(){
     if(keyZ.isDown) {
         keyZ.isDown = false;
         if(isOnline){
-            pressedSkip(true, idJugador);
+            pressedSkip(true, idJugador, rewardScene);
         } else {
             nextLevel(rewardScene);
         }

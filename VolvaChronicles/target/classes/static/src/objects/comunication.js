@@ -17,13 +17,11 @@ getNumberOfPlayers = function(){
 		 deletePlayerInfo(0);
 		 deletePlayerInfo(1);
 	 }
-	 
  })
 }
 
 //Creacion del perfil de jugador en el servidor
 createPlayerInServer = function(id){
-	isOnline = true;
 	idJugador = id;//Coge 0 cuando no hay nadie o 1 cuando hay otro
 	$.ajax({
 	        method: "POST",
@@ -169,30 +167,29 @@ modifyPlayerInfo = function (player, id){
     })
 }
 
-uploadReward = function (player, id){	
-	player.estado++;
+uploadReward = function (player, id){
 	playerInfo = {
-		"estado" : player.estado,
-		"downPulsada" : player.downPulsada,
-		"downToque" : player.downToque,
-		"upPulsada" : player.upPulsada,
-		"upToque" : player.upToque,
-		"leftPulsada" : player.leftPulsada,
-		"rightPulsada" : player.rightPulsada,
-		"dashPulsada" : player.dashPulsada,
+		"estado" : 0,
+		"downPulsada" : false,
+		"downToque" : false,
+		"upPulsada" : false,
+		"upToque" : false,
+		"leftPulsada" : false,
+		"rightPulsada" : false,
+		"dashPulsada" : false,
 		"velocidadX" : 0,
 		"velocidadY" : 0,
-		"posX" : player.x,
-		"posY" : player.y,
-		"contStamine" : player.contStamine,
-		"contSalto" : player.contSalto,
-		"throwRight" : player.throwRight,
-		"throwLeft" : player.throwLeft,
-		"facingRight" : player.facingRight,
-		"dashId" : player.dashId,
-		"ratatosk" : player.ratatosk,
-		"tir" : player.tir,
-		"heimdall" : player.heimdall,
+		"posX" : 0,
+		"posY" : 0,
+		"contStamine" : 100,
+		"contSalto" : 0,
+		"throwRight" : false,
+		"throwLeft" : false,
+		"facingRight" : true,
+		"dashId" : 0,
+		"ratatosk" : 0,
+		"tir" : false,
+		"heimdall" : false,
 		"reward" : player.reward
 	};
 	$.ajax({
@@ -230,11 +227,9 @@ getRewardFromServer = function (id, scene){
 
 
 updateRewardFromServer = function (player,info){
-	if (player.estado < info.estado){
         console.log("actualizando reward");
-		player.estado = info.estado;
+		player.estado = 0;
 		player.reward = info.reward;
-	}
 }
 
 //Borrado de la lista de jugadores
@@ -249,7 +244,7 @@ deletePlayerList = function(){
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip
-pressedSkip = function(boolSkip, idP){
+pressedSkip = function(boolSkip, idP, scene){
     $.ajax({
         method: 'PUT',
         url: 'http://localhost:8080/syncro/' + idP,
@@ -259,6 +254,8 @@ pressedSkip = function(boolSkip, idP){
             "Content-Type": "application/json"
         }
     }).done(function () {
+		var skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
+		skipMessage.setGravityY(-1200);
         console.log("Ha pulsado " + idP);
     })
 }

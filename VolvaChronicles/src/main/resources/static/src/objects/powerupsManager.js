@@ -361,6 +361,20 @@ function heimdallFunc(scene, player, adversary) {
 
 // Funciones del powerup de los ciervos
 function ciervosFunc(scene, player, adversary) {
+    //en proceso para sincronizarlo en online
+    /*if (!isOnline){
+        var nCiervo = Math.floor(Math.random() * 4);
+    } else {
+        if(player === player1 &&idJugador === 0){
+            //calcula localmente y subir la info
+        }else if(player===player1 && idJugador ===1){
+            //se baja la info
+        }else if(player === player2 &&idJugador === 1){
+            //calcula localmente y subir la info
+        }else if(player===player2 && idJugador ===0){
+            //se baja la info
+        }
+    }*/
     var nCiervo = Math.floor(Math.random() * 4);
     scene.sound.play('deerSound');
     switch (nCiervo) {
