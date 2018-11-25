@@ -71,10 +71,10 @@ Se adjunta el diagrama de secuencia de escenas:
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Diagrama_Escenas.png "Diagrama de Escenas")
 
 **Boot y Preload**: Escenas iniciales por las que solo se pasa cuando arranca el juego. Se cargan los assets mientras se le indica al jugador que debe esperar y se le sugiere poner el juego en pantalla completa.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/LoadingScene.png "Pantalla de carga")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/LoadingScene.png "Pantalla de carga")
 
 **Menu**: Pantalla inicial, donde se muestra el logo tanto del juego como del estudio. Al pulsar cualquier botón, se hace un fundido a negro y aparecen los botones de "Local" y "Online".
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/MenuSceneButtons.png "Pantalla de menú")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/MenuSceneButtons.png "Pantalla de menú")
 
 **Waiting**: Pantalla de espera, a la que solo accede el primer jugador que inicia una partida en el modo Online. Se le explica que va a manejar al águila y que está esperando a que entre el segundo jugador.
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/waiting.png "Pantalla de espera")
@@ -83,17 +83,17 @@ Se adjunta el diagrama de secuencia de escenas:
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/avisoIntro.png "Pantalla de Intro")
 
 **Niveles 1, 2, 3**: Las diferentes escenas donde se desarrolla el gameplay. Se va aumentando la dificultad y el número de enemigos y objetos progresivamente. En el apartado _Progreso del juego_ se explican en profundidad.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel3Scene.png "Pantalla del Nivel 3")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel3Scene.png "Pantalla del Nivel 3")
 
 **Reward**: Al terminar los niveles 1 y 2, el juego se dirige a la escena de recompensa, donde se anuncia el ganador, el tiempo que ha tardado en completar el nivel y el power-up que obtiene como recompensa. Se sale de esta escena pulsando la tecla Z (tendrán que pulsarla ambos jugadores en la partida Online)
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/RewardScene.png "Pantalla de Reward")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/RewardScene.png "Pantalla de Reward")
 
 **Ending 1 y 2**: Cinemáticas finales del juego, en función del ganador. Se pueden omitir pulsando la tecla Z (tendrán que pulsarla ambos jugadores en la partida Online). Las partículas se generan aleatoriamente, como en la Intro.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Ending1Scene.png "Pantalla de Ending 1")
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Ending2Scene.png "Pantalla de Ending 2")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Ending1Scene.png "Pantalla de Ending 1")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Ending2Scene.png "Pantalla de Ending 2")
 
 **Credits**: Escena de créditos. Cuando estos terminan, se reinicia el juego y se vuelve a la pantalla de menú.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/CreditsScene.png "Pantalla de Créditos")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/CreditsScene.png "Pantalla de Créditos")
 
 ## PERSONAJES
 ### PERSONAJES CONTROLABLES
@@ -146,21 +146,21 @@ Al comenzar la partida, a cada jugador se le asigna uno de los dos personajes co
 
 Las imágenes que se muestran a continuación son imágenes _ingame_ del desarrollo de una partida, mostrando además elementos como el _dash_ o cómo funciona el power-up de Heimdall.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/dash.png)
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/dash.png)
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/invasion.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/invasion.png )
 
 ### NIVEL 1
 Servirá a modo de introducción para que los jugadores se familiaricen poco a poco con las mecánicas. Ambas pantallas comenzarán con una estética similar que se irá diferenciando conforme se alcance mayor altura. La dificultad no será muy exigente, para poder desarrollar una correcta curva de aprendizaje. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel1Scene.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel1Scene.png )
 
 ### NIVEL 2
 Contará con tramos más complicados, una distribución de plataformas que premie el uso y la gestión de los saltos extra y el dash, así como varias bifurcaciones con dificultad diferente y con varias runas y asistentes distribuidos en diferentes zonas. En este nivel las diferencias estéticas serán mucho más notables: el jugador 1 se está acercando a la copa, por lo que la luz, los colores cálidos y suaves y un acabado más limpio estarán presentes, mientras que el jugador 2 se encontrará con un entorno más sucio y oscuro, debido al descenso hacia las raíces del árbol. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel2Scene.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel2Scene.png )
 
 ### NIVEL 3
 Aumentará la complejidad de las plataformas y presentará bifurcaciones donde pueda no haber salida, obligando a retroceder lo más rápido posible y premiando tanto al jugador experimentado que conoce los caminos como al jugador habilidoso que domine los controles lo suficiente como para recortar tiempo en estos retrocesos. Estéticamente se continuará lo presentado en el nivel anterior, encontrándose el jugador 1 con colores propios de la naturaleza y la vida, mientras que el jugador 2 estará en una zona oscura y en presencia de raíces muertas y mucha suciedad. Al finalizar el nivel, el jugador que haya llegado antes será el ganador definitivo de la partida y se reproducirá el final correspondiente a su personaje, independientemente del resultado de los dos niveles anteriores.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Nivel3Scene.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel3Scene.png )
 
 ## GUION
 El guion se ha redactado para las escenas de introducción y de los dos finales.
@@ -222,7 +222,7 @@ VÖLVA: Adelante, gran Odín. Luchad por la vida… aunque sea demasiado tarde.
 ## INTERFAZ
 La estamina se ve reflejada oscureciéndose la pantalla (de azul en la del águila, de rojo en la de Nidhögg) cuando queda poca cantidad, restableciendo su estado normal cuando se recupera dicha estamina, presentando así una interfaz diegética para no distraer al jugador de los elementos _ingame_.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/estamina.png "Interfaz diegética")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/estamina.png "Interfaz diegética")
 
 ## CARACTERISTICAS ONLINE
 ### IMPLEMENTACION DEL MULTIJUGADOR CON APIREST
@@ -235,6 +235,9 @@ Los jugadores activos (es decir, el jugador 1 en la pantalla 1 y el jugador 2 en
 Al terminar una partida, cuando se produce el reseteo del juego, se borra la lista de jugadores del servidor, permitiendo iniciar una nueva partida.
 
 En adición al control de los jugadores, también se sube información referente a la pulsación de teclas en las pantallas de cutscenes y reward, con el objetivo de que no se salte a las siguientes pantallas hasta que ambos jugadores hayan decidido hacerlo.
+
+
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Untitled%20Diagram.png "Diagrama UML de la APIREST")
 
 ### COMUNICACION ENTRE JUGADORES
 Al ser un juego dinámico, en el que no hay un instante en el que distraerse, se ha optado por no implementar un chat, sino de utilizar un sistema de expresiones. Este sistema sería similar al visto en juegos como Super Smash Bros, donde un jugador pulsa una tecla específica y su personaje ejecuta una animación en la que se burla del otro, pero en este caso, además de burlas, habría otras expresiones como saludar o intimidar. De esta forma, los jugadores pueden comunicarse de forma muy breve, pero sin perder tiempo ni distraerse de la jugabilidad.
@@ -258,6 +261,7 @@ Black Vortex – Kevin Macleod (Incompetech.com)
 Curse of the Scarab – Kevin Macleod (Incompetech.com)
 
 Undaunted – Kevin Macleod (Incompetech.com)
+
  
 Eternal Terminarl – Kevin Macleod (Incompetech.com)
 
@@ -302,7 +306,7 @@ En cuanto a los escenarios, estos se han representado buscando ejemplificar Yggd
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/arbol_calidad_baja.jpg "Background: Yggdrasil")
 
 ## INSTRUCCIONES DE USO
-Para comenzar una partida utilizando APIREST, se deberán seguir los siguientes pasos:
+Para comenzar una partida al juego, se deberán seguir los siguientes pasos:
 1.	Abrir Spring Tool Suite o Eclipse con su extensión para STS
 2.	Abrir carpeta VolvaChronicles con la opción File -> Open Projects from File System
 3.	Seleccionar en src/main/java el archivo App.java y escoger “Run As Java Application”, para iniciar el servidor APIREST.
