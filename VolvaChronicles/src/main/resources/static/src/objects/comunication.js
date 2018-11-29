@@ -1,49 +1,114 @@
-//Pide al servidor el numero de jugadores y opera en base a ello
-getNumberOfPlayers = function (scene) {
-	$.ajax({
-		method: "GET",
-		url: 'http://localhost:8080/players',
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
+var metodo = "";
+var idPrueba = -1;
+var idOponente = -1;
+var numPlayersInServer = -1;
 
-	}).done(function (players) {
-		//Si estamos en waitingScene, cuando haya 2 jugadores salta a la intro
-		if (scene === waitingScene) {
-			if (players === 2) {
-				music.stop();
-				scene.scene.start('intro');
-				scene.scene.stop();
-			}
-			//Si estamos en el menu, si no hay jugador, salta a waiting, y si hay 1 esperando, salta a intro
-		} else if (scene === menuScene) {
-			if (players === 0) {
-				createPlayerInServer(0);
-				scene.scene.start('waiting');
-				scene.scene.stop();
-			} else if (players === 1) {
-				createPlayerInServer(1);
-				scene.scene.start('intro');
-				scene.scene.stop();
+//Pide al servidor el numero de jugadores
+getNumberOfPlayers = function (scene){
+	console.log("Busqueda de numero de jugadores llamada");
+	
+	$(document).ready(function(){
+		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		
+		//Envio de informacion
+		connection.onopen = function(){
+			metodo = "getNumPlayers";
+			var object = { "metodo" : metodo,
+							"id": idPrueba,
+							"idOpponent": idOponente}
+		    connection.send(JSON.stringify(object));
+		}
+		
+		//En caso de error
+		connection.onerror = function(e) {
+			  console.log("WS error: " + e);
+		}
+		
+		//Gestion de informacion recibida
+		connection.onmessage = function(msg){
+			var mes = JSON.parse(msg.data);
+			numPlayersInServer = mes.size;
+			console.log("Numero de jugadores: " + numPlayersInServer);
+			if(scene === menuScene){
+				if (numPlayersInServer % 2 === 0){
+					createPlayerInServer();//Jugador Par
+					scene.scene.start('waiting');
+					scene.scene.stop();
+				} else if (numPlayersInServer % 2 !== 0){
+					createPlayerInServer();//Jugador Impar
+					matchOpponent();
+					scene.time.delayedCall(2000, function () {
+						scene.scene.start('intro');
+						scene.scene.stop();
+					})				
+				}
 			}
 		}
 	})
 }
 
-//Creacion del perfil de jugador en el servidor
-createPlayerInServer = function (id) {
-	idJugador = id;//Coge 0 cuando no hay nadie o 1 cuando hay otro
-	$.ajax({
-		method: "POST",
-		url: 'http://localhost:8080/players',
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
+//Mete al jugador al servidor
+createPlayerInServer = function () {
+	console.log("Insercion de jugador llamada");
+	
+	$(document).ready(function(){
+		//Envio de informacion
+		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		connection.onopen = function(){
+			metodo = "addPlayer";
+			var object = { "metodo" : metodo,
+							"id": idPrueba,
+							"idOpponent": idOponente}
+		    connection.send(JSON.stringify(object));
 		}
-	}).done(function (status) { })
+		
+		//En caso de error
+		connection.onerror = function(e) {
+			  console.log("WS error: " + e);
+		}
+		
+		//Gestion de informacion recibida
+		connection.onmessage = function(msg){
+			var mes2 = JSON.parse(msg.data);
+			console.log("Todo el JSON: " + msg.data);
+			idPrueba = mes2.id;
+			console.log("Jugador Creado, Id: " + idPrueba);			
+		}
+	})
 }
 
+//Emparejamiento
+matchOpponent = function(){
+	$(document).ready(function(){
+		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		//Envio de informacion
+		connection.onopen = function(){
+			metodo = "getIdFromOpponent";
+			var object = { "metodo" : metodo,
+						"id": idPrueba,
+						"idOpponent": idOponente}
+			connection.send(JSON.stringify(object));
+		}
+		//En caso de error
+		connection.onerror = function(e) {
+			  console.log("WS error: " + e);
+		}
+		
+		//Gestion de informacion recibida
+		connection.onmessage = function(msg){
+			var mes = JSON.parse(msg.data);
+			idOponente = mes.idOpponent;
+			if (idOponente !== -1){
+				//console.log("Todo el JSON: " + msg.data);
+				console.log("Tu oponente es: " + idOponente);
+			}
+						
+		}
+	})
+}
+
+
+//APIREST
 //Recogida de datos del servidor
 getPlayerInfo = function (id) {
 	$.ajax({
@@ -63,6 +128,7 @@ getPlayerInfo = function (id) {
 	})
 }
 
+//ESTA NO CAMBIA
 //Actualizacion del estado interno del oponente en el cliente con los datos del servidor
 updatePlayerFromServer = function (player, info) {
 	//Solo actualiza los datos del jugador cuando la informacion recogida tiene cambios
@@ -94,7 +160,7 @@ updatePlayerFromServer = function (player, info) {
 }
 
 
-
+//REDUNDANTE, ES IGUAL QUE MODIFYPLAYERINFO
 //Inicializacion de la informacion del jugador
 insertPlayer = function (player, id) {
 	player.estado++;

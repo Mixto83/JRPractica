@@ -22,6 +22,7 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 		String metodo = node.get("metodo").asText();//nuevo
 		//boolean sync = node.get("sync").asBoolean();//nuevo
 		int id = node.get("id").asInt(); //nuevo
+		int idOpponent = node.get("idOpponent").asInt(); //nuevo
 		
 		ObjectNode responseNode = mapper.createObjectNode(); //nodo de respuesta
 		
@@ -42,9 +43,14 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 			session.sendMessage(new TextMessage(responseNode.toString()));
 			break;
 			
-		case "getOpponent":
-			Player player = list.getOpponent(id);//Hay que plantearlo de otra forma
+		case "getIdFromOpponent":
+			idOpponent = list.getIdFromOpponent(id);
+			responseNode.put("idOpponent", idOpponent);
+			session.sendMessage(new TextMessage(responseNode.toString()));
+			break;
 			
+		case "getOpponent":
+			Player player = list.getOpponent(idOpponent);
 			responseNode.put("id", player.getId());
 			responseNode.put("sync", player.isSync());
 			responseNode.put("estado", player.getEstado());
@@ -75,6 +81,7 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 		case "updatePlayer":
 			list.updatePlayer(id, node);
 			break;
+			
 		case "clearPlayers":
 			list.clearPlayers();
 			break;
