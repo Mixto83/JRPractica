@@ -1,6 +1,12 @@
 package EddaGames.VolvaChronicles;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class Player {
+	//id jugador
+	private int id;
+	private boolean sync;
+
 	// control estado, control de concurrencia
 	private int estado;
 
@@ -35,6 +41,8 @@ public class Player {
 	// constructor
 	public Player() {
 		super();
+		this.id = 0;
+		this.sync = false;
 		this.estado = 0;
 		this.downPulsada = false;
 		this.downToque = false;
@@ -59,8 +67,52 @@ public class Player {
 		this.heimdall = false;
 		this.setReward("");
 	}
+	
+	public Player (JsonNode node) {
+		this.id = node.get("id").asInt();
+		this.sync = node.get("sync").asBoolean();
+		this.estado = node.get("estado").asInt();
+		this.downPulsada = node.get("downPulsada").asBoolean();
+		this.downToque = node.get("downToque").asBoolean();
+		this.upPulsada = node.get("upPulsada").asBoolean();
+		this.upToque = node.get("upToque").asBoolean();
+		this.leftPulsada = node.get("leftPulsada").asBoolean();
+		this.rightPulsada = node.get("rightPulsada").asBoolean();
+		this.dashPulsada = node.get("dashPulsada").asBoolean();
+		this.velocidadX = node.get("velocidadX").asInt();
+		this.velocidadY = node.get("velocidadY").asInt();
+		this.posX = node.get("posX").asInt();
+		this.posY = node.get("posY").asInt();
+		this.contStamine = node.get("contStamine").asInt();
+		this.contSalto = node.get("contSalto").asInt();
+		this.throwRight = node.get("throwRight").asBoolean();
+		this.throwLeft = node.get("throwLeft").asBoolean();
+		this.facingRight = node.get("facingRight").asBoolean();
+		this.dashId = node.get("dashId").asInt();
+		this.dashBool = node.get("dashBool").asBoolean();
+		this.ratatosk = node.get("ratatosk").asInt();
+		this.tir = node.get("tir").asBoolean();
+		this.heimdall = node.get("heimdall").asBoolean();
+		this.reward = node.get("reward").asText();
+	}
 
 	// Getters & Setters
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public boolean isSync() {
+		return sync;
+	}
+
+	public void setSync(boolean sync) {
+		this.sync = sync;
+	}
+	
 	public int getEstado() {
 		return estado;
 	}
