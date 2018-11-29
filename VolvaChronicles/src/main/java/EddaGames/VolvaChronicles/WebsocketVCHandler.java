@@ -42,8 +42,8 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 			session.sendMessage(new TextMessage(responseNode.toString()));
 			break;
 			
-		case "getPlayer": //cambiar por getOponent
-			Player player = list.getPlayer(id);
+		case "getOpponent":
+			Player player = list.getOpponent(id);//Hay que plantearlo de otra forma
 			
 			responseNode.put("id", player.getId());
 			responseNode.put("sync", player.isSync());
@@ -79,8 +79,8 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 			list.clearPlayers();
 			break;
 
-		case "isSyncOponent":
-			boolean isReady = list.getPlayer(id).isSync();
+		case "isSyncOpponent":
+			boolean isReady = list.getOpponent(id).isSync();
 			
 			responseNode.put("isReady", isReady);
 			session.sendMessage(new TextMessage(responseNode.toString()));

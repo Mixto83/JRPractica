@@ -20,10 +20,10 @@ public class Player {
 	private boolean dashPulsada;
 	
 	// propiedades
-	private float velocidadX;
-	private float velocidadY;
-	private float posX;
-	private float posY;
+	private double velocidadX;
+	private double velocidadY;
+	private double posX;
+	private double posY;
 	private int contStamine;
 	private int contSalto;
 	private boolean throwRight;
@@ -79,10 +79,10 @@ public class Player {
 		this.leftPulsada = node.get("leftPulsada").asBoolean();
 		this.rightPulsada = node.get("rightPulsada").asBoolean();
 		this.dashPulsada = node.get("dashPulsada").asBoolean();
-		this.velocidadX = node.get("velocidadX").asInt();
-		this.velocidadY = node.get("velocidadY").asInt();
-		this.posX = node.get("posX").asInt();
-		this.posY = node.get("posY").asInt();
+		this.velocidadX = node.get("velocidadX").asDouble();
+		this.velocidadY = node.get("velocidadY").asDouble();
+		this.posX = node.get("posX").asDouble();
+		this.posY = node.get("posY").asDouble();
 		this.contStamine = node.get("contStamine").asInt();
 		this.contSalto = node.get("contSalto").asInt();
 		this.throwRight = node.get("throwRight").asBoolean();
@@ -177,35 +177,35 @@ public class Player {
 		this.dashPulsada = dashPulsada;
 	}
 
-	public float getVelocidadX() {
+	public double getVelocidadX() {
 		return velocidadX;
 	}
 
-	public void setVelocidadX(float velocidadX) {
+	public void setVelocidadX(double velocidadX) {
 		this.velocidadX = velocidadX;
 	}
 
-	public float getVelocidadY() {
+	public double getVelocidadY() {
 		return velocidadY;
 	}
 
-	public void setVelocidadY(float velocidadY) {
+	public void setVelocidadY(double velocidadY) {
 		this.velocidadY = velocidadY;
 	}
 
-	public float getPosX() {
+	public double getPosX() {
 		return posX;
 	}
 
-	public void setPosX(float posX) {
+	public void setPosX(double posX) {
 		this.posX = posX;
 	}
 
-	public float getPosY() {
+	public double getPosY() {
 		return posY;
 	}
 
-	public void setPosY(float posY) {
+	public void setPosY(double posY) {
 		this.posY = posY;
 	}
 

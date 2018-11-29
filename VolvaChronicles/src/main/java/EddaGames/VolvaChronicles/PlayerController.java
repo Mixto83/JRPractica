@@ -12,7 +12,7 @@ public class PlayerController {
 	public int addPlayer() {
 		Player a = new Player();
 		int nRandom = (int) (Math.random() * 1000); //si hay 999 jugadores al ultimo jugador costara darle una id
-		while (getIndice(nRandom) >= 0) {
+		while (getIndice(nRandom) >= 0) {//Si el id esta en la lista, volvemos a calcular id aleatorio
 			nRandom = (int) (Math.random() * 1000);
 		}
 		a.setId(nRandom);
@@ -25,7 +25,7 @@ public class PlayerController {
 	}
 
 	// metodos que recogen la info del jugador con el que se te ha emparejado
-	public Player getPlayer(int id) {
+	public Player getOpponent(int id) {
 		int matchmaking;
 		int indicePlayer = getIndice(id);
 		
