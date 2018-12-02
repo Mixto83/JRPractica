@@ -12,7 +12,11 @@ preloadScene.preload = function () {
     this.load.tilemapCSV('map1', 'assets/platforms/Nivel1.csv');
     this.load.tilemapCSV('map2', 'assets/platforms/Nivel2.csv');
     this.load.tilemapCSV('map3', 'assets/platforms/Nivel3.csv');
+    this.load.tilemapCSV('map1_veg1', 'assets/platforms/Nivel1_Vegetacion1.csv');
+    this.load.tilemapCSV('map2_veg1', 'assets/platforms/Nivel2_Vegetacion1.csv');
+    this.load.tilemapCSV('map3_veg1', 'assets/platforms/Nivel3_Vegetacion1.csv');
     this.load.image('tiles', 'assets/platforms/tiles/Tiles.png');
+    this.load.image('vegetacion', 'assets/platforms/tiles/vegetacion.png');
     
     //Backgrounds
     this.load.image('background1Nivel1', 'assets/Backgrounds/Background_1_Nivel1.jpg');

@@ -28,9 +28,12 @@ createLevel = function (scene, nLevel) {
 
     //Creacion del mapa dependiendo del nivel
     map = scene.make.tilemap({ key: 'map' + nLevel, tileWidth: 48, tileHeight: 48 });
+    veg1 = scene.make.tilemap({ key: 'map' + nLevel + '_veg1', tileWidth: 48, tileHeight: 48 });
 
     var tileset = map.addTilesetImage('tiles');
+    var vegset = veg1.addTilesetImage('vegetacion');
     layer = map.createStaticLayer(0, tileset, -3501, 0);
+    layer1 = veg1.createStaticLayer(0, vegset, -3501, 0);
     map.setCollisionBetween(0, 115);
     scene.physics.world.setBounds(-3501, 0, 7008, 19578);
 }
