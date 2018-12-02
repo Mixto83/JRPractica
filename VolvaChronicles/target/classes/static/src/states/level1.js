@@ -16,7 +16,7 @@ level1Scene.create = function () {
     connectionLevel.onerror = function(e) {
         console.log("WS error: " + e);
     }*/
-    /**/if (isOnline && idJugador === 1) {
+    /**/if (isOnline) {
         console.log("Al if he entrado.");
         wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
 
@@ -27,10 +27,14 @@ level1Scene.create = function () {
 
         //Gestion de informacion recibida
         wsLevel.onmessage = function (msg) {
-            console.log("Es el player 1:");
+            if(idJugador === 0){//Si eres el aguila
+                console.log("Es el player 2:");
+                updatePlayerFromServer(player2, JSON.parse(msg.data));
+            } else if (idJugador === 1){//Si eres el dragon
+                console.log("Es el player 1:");
+                updatePlayerFromServer(player1, JSON.parse(msg.data));
+            }
             console.log(msg.data);
-            updatePlayerFromServer(player1, JSON.parse(msg.data));
-            //wsLevel.close();
         }
     }
     currentLevel = 1;
@@ -85,8 +89,7 @@ level1Scene.update = function () {
     updateEnemies(penemies);
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
-    if (isOnline && idJugador === 1){//lo del id es una prueba!
-        console.log("If importante accedido");
+    if (isOnline && idJugador === 1)  {
         metodo = "getOpponent";
         jsonLevel = {
             "metodo": metodo,
@@ -96,6 +99,5 @@ level1Scene.update = function () {
         if(wsLevel.readyState === wsLevel.OPEN){
             wsLevel.send(JSON.stringify(jsonLevel));
         }
-        
     }
 }
