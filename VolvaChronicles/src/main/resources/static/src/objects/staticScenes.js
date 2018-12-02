@@ -73,15 +73,6 @@ function createMenuButtons(scene) {
 			//Llama al servidor para comprobar el numero de jugadores y crearlos
 			isOnline = true;
 			getNumberOfPlayers(scene);
-			/*if (numPlayersInServer % 2 === 0){
-				createPlayerInServer();//Jugador Par
-				scene.scene.start('waiting');
-				scene.scene.stop();
-			} else if (numPlayersInServer % 2 !== 0){
-				createPlayerInServer();//Jugador Impar
-				scene.scene.start('intro');
-				scene.scene.stop();
-			}*/
 		}, [], scene);
 	});
 

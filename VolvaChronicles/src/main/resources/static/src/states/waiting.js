@@ -18,19 +18,13 @@ waitingScene.create = function() {
 
 waitingScene.update = function() {
 	//cuando haya 2 jugadores salta a la intro
-	/*getNumberOfPlayers();
-	if (numPlayersInServer % 2 === 0) {
-		music.stop();
-		scene.scene.start('intro');
-		scene.scene.stop();
-	}*/
+	//Esto hay que cambiarlo
 	iteraciones++;
 	if(idOponente === -1 && iteraciones % 100 === 0){
 		matchOpponent();
 	} else if (idOponente !== -1){
-		console.log("oye que se ha hecho el else");
-		/**/music.stop();
-		waitingScene.scene.start('intro');
+		music.stop();
+		waitingScene.scene.start('level1');
 		waitingScene.scene.stop();
 	}
 	

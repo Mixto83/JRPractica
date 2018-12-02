@@ -2,11 +2,37 @@ var level1Scene = new Phaser.Scene('level1');
 
 level1Scene.active = true;
 
+var wsLevel;
+var jsonLevel;
+var ultimoEstadoDescargado = -1;
+var wsCreado = false;
+
 level1Scene.preload = function () {
 
 }
 
 level1Scene.create = function () {
+    /*connectionLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+    connectionLevel.onerror = function(e) {
+        console.log("WS error: " + e);
+    }*/
+    /**/if (isOnline && idJugador === 1) {
+        console.log("Al if he entrado.");
+        wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+
+        //En caso de error
+        wsLevel.onerror = function (e) {
+            console.log("WS error: " + e);
+        }
+
+        //Gestion de informacion recibida
+        wsLevel.onmessage = function (msg) {
+            console.log("Es el player 1:");
+            console.log(msg.data);
+            updatePlayerFromServer(player1, JSON.parse(msg.data));
+            //wsLevel.close();
+        }
+    }
     currentLevel = 1;
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
     createLevel(level1Scene, 1);
@@ -59,11 +85,17 @@ level1Scene.update = function () {
     updateEnemies(penemies);
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
-    if (isOnline) {
-        if (idJugador === 0) {
-            getPlayerInfo(1);
-        } else if (idJugador === 1) {
-            getPlayerInfo(0);
+    if (isOnline && idJugador === 1){//lo del id es una prueba!
+        console.log("If importante accedido");
+        metodo = "getOpponent";
+        jsonLevel = {
+            "metodo": metodo,
+            "id": idJugadorEnServer,
+            "idOpponent": idOponente
         }
+        if(wsLevel.readyState === wsLevel.OPEN){
+            wsLevel.send(JSON.stringify(jsonLevel));
+        }
+        
     }
 }

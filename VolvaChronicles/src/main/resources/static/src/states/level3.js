@@ -38,9 +38,9 @@ level3Scene.update = function () {
     if (!isOnline){
         updateControls(player1);
         updateControls(player2);
-    }else if (idJugador === 0){
+    }else if (idJugador === 0) {
         updateControls(player1);
-    } else if (idJugador === 1){
+    } else if (idJugador === 1) {
         updateControls(player2);
     }
     //Actualiza la velocidad y posicion de los personajes segun las teclas pulsadas
@@ -60,10 +60,5 @@ level3Scene.update = function () {
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
     if (isOnline) {
-        if (idJugador === 0) {
-            getPlayerInfo(1);
-        } else if (idJugador === 1) {
-            getPlayerInfo(0);
-        }
     }
 }

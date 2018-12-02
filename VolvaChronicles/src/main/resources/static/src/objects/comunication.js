@@ -1,7 +1,8 @@
 var metodo = "";
-var idPrueba = -1;
+var idJugadorEnServer = -1;
 var idOponente = -1;
 var numPlayersInServer = -1;
+
 
 //Pide al servidor el numero de jugadores
 getNumberOfPlayers = function (scene){
@@ -14,7 +15,7 @@ getNumberOfPlayers = function (scene){
 		connection.onopen = function(){
 			metodo = "getNumPlayers";
 			var object = { "metodo" : metodo,
-							"id": idPrueba,
+							"id": idJugadorEnServer,
 							"idOpponent": idOponente}
 		    connection.send(JSON.stringify(object));
 		}
@@ -32,13 +33,15 @@ getNumberOfPlayers = function (scene){
 			if(scene === menuScene){
 				if (numPlayersInServer % 2 === 0){
 					createPlayerInServer();//Jugador Par
+					idJugador = 0; //Localmente, el cliente sabe que eres el J1.
 					scene.scene.start('waiting');
 					scene.scene.stop();
 				} else if (numPlayersInServer % 2 !== 0){
 					createPlayerInServer();//Jugador Impar
 					matchOpponent();
+					idJugador = 1; //Localmente, el cliente sabe que eres el J2.
 					scene.time.delayedCall(2000, function () {
-						scene.scene.start('intro');
+						scene.scene.start('level1');
 						scene.scene.stop();
 					})				
 				}
@@ -57,7 +60,7 @@ createPlayerInServer = function () {
 		connection.onopen = function(){
 			metodo = "addPlayer";
 			var object = { "metodo" : metodo,
-							"id": idPrueba,
+							"id": idJugadorEnServer,
 							"idOpponent": idOponente}
 		    connection.send(JSON.stringify(object));
 		}
@@ -71,8 +74,8 @@ createPlayerInServer = function () {
 		connection.onmessage = function(msg){
 			var mes2 = JSON.parse(msg.data);
 			console.log("Todo el JSON: " + msg.data);
-			idPrueba = mes2.id;
-			console.log("Jugador Creado, Id: " + idPrueba);			
+			idJugadorEnServer = mes2.id;
+			console.log("Jugador Creado, Id: " + idJugadorEnServer);			
 		}
 	})
 }
@@ -85,7 +88,7 @@ matchOpponent = function(){
 		connection.onopen = function(){
 			metodo = "getIdFromOpponent";
 			var object = { "metodo" : metodo,
-						"id": idPrueba,
+						"id": idJugadorEnServer,
 						"idOpponent": idOponente}
 			connection.send(JSON.stringify(object));
 		}

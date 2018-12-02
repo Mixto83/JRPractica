@@ -32,7 +32,7 @@ public class PlayerController {
 		int indicePlayer = getIndice(id);
 		
 		if (indicePlayer == -1) {
-			System.out.println("Id no encontrado");
+			System.out.println("Id no encontrado (getIdFromOpponent)");
 			return -1;
 		} else if (indicePlayer % 2 == 0) {
 			matchmaking = indicePlayer + 1;
@@ -50,20 +50,15 @@ public class PlayerController {
 
 	// metodos que recogen la info del jugador con el que se te ha emparejado
 	public Player getOpponent(int idOponente) {
-		return players.get(idOponente);
-		/*int matchmaking;
-		int indicePlayer = getIndice(id);//indicePlayer es el indice del jugador en la lista (su posicion real en la lista)
-		
-		if (indicePlayer == -1) {
-			System.out.println("Id no encontrado");
-			return null;
-		}else if (indicePlayer % 2 == 0) {
-			matchmaking = indicePlayer + 1;
-		}else{
-			matchmaking = indicePlayer - 1; 
-		}
-		return players.get(matchmaking);*/	
-	}
+        //return players.get(idOponente);
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getId() == idOponente) {
+                return players.get(i);
+            }
+        } 
+        System.out.println("Id no encontrado (getOpponent)");
+        return null;
+    }
 
 	// metodos que modifican la info de los jugadores
 	public void updatePlayer(int id, JsonNode node) {
@@ -73,7 +68,7 @@ public class PlayerController {
 				players.set(i,a);
 			}
 		} 
-		System.out.println("Id no encontrado");
+		System.out.println("Id no encontrado (updatePlayer)");
 	}
 	
 	//elimina a todos los jugadores de la lista
@@ -87,7 +82,7 @@ public class PlayerController {
 				return i;
 			}
 		}
-		System.out.println("Id no encontrado");
+		System.out.println("Id no encontrado (getIndice)");
 		return -1;
 	}
 }

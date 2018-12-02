@@ -452,11 +452,14 @@ randomReward = function (scene) {
             }
             createRewardText(scene, 'El Águila', player1);
             if (isOnline) {
-                uploadReward(player1, idJugador);
+                //Sube la info de la recompensa que ha ganado el jugador 1
+                //uploadReward(player1, idJugador);
             }
         } else if (isOnline && idJugador === 1) {
-            uploadReward(player2, idJugador);
-            scene.time.delayedCall(100, function () {getRewardFromServer(0, scene);}, [], scene);
+            //Sube la info reseteada del jugador 2
+            //uploadReward(player2, idJugador);
+            //Resetea la info del jugador 1
+            //scene.time.delayedCall(100, function () {getRewardFromServer(0, scene);}, [], scene);
         }
     } else if (player2.win) {
         if (!isOnline || (isOnline && idJugador === 1)) {
@@ -474,11 +477,12 @@ randomReward = function (scene) {
             }
             createRewardText(scene, 'Nidhogg', player2);
             if (isOnline) {
-                uploadReward(player2, idJugador);
+                //Sube la recompensa del jugador2
+                //uploadReward(player2, idJugador);
             }
         } else if (isOnline && idJugador === 0) {
-            uploadReward(player1, idJugador);
-            scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);
+            //uploadReward(player1, idJugador);
+            //scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);
         }
     }
 }

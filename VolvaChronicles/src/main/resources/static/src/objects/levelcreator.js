@@ -5,7 +5,7 @@ var layer;
 createLevel = function (scene, nLevel) {
     //Si es online, reinicia la variable que salta las escenas
     if (isOnline) {
-        pressedSkip(false, idJugador, scene);
+        //pressedSkip(false, idJugador, scene);
         skip = false;
     }
 

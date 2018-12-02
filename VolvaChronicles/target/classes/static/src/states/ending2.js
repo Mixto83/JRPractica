@@ -40,7 +40,7 @@ ending2Scene.update = function (){
 
     if(isOnline){
         //Pide la informacion al servidor
-        getPressedFromOpponent();
+        
         if(skip){//Salta de escena si han pulsado ambos
             skip = false;
             nextScene(ending2Scene,'credits');

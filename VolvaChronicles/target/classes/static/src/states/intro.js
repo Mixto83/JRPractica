@@ -45,7 +45,7 @@ introScene.update = function () {
 
     if (isOnline) {
         //Pide la informacion al servidor
-        getPressedFromOpponent();
+        
         //Salta de escena si han pulsado ambos
         if (skip) {
             skip = false;

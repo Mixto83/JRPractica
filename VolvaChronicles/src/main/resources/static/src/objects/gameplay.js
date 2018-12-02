@@ -11,6 +11,10 @@ var levelTime = 0;
 var currentLevel = 0;
 var levelEnded = false;
 
+//Conexion websocket
+var wsGameplay;
+
+
 //crea los sprites de los jugadores y los inicializa
 createPlayers = function (scene) {
     player1 = scene.physics.add.sprite(-1750, 19584, 'aguila');
@@ -20,9 +24,55 @@ createPlayers = function (scene) {
     //Inicializa al jugador en el servidor
     if (isOnline) {
         if (idJugador === 0) {
-            insertPlayer(player1, idJugador);
+            console.log("Al if he entrado.");
+            metodo = "updatePlayer";
+            player1.estado++;
+            var infoCambiada = { "metodo" : metodo,
+                            "id": idJugadorEnServer,
+                            "idOpponent": idOponente,
+                            "sync": false,
+                            "estado": player1.estado,
+                            "downPulsada": player1.downPulsada,
+                            "downToque": player1.downToque,
+                            "upPulsada": player1.upPulsada,
+                            "upToque": player1.upToque,
+                            "leftPulsada": player1.leftPulsada,
+                            "rightPulsada": player1.rightPulsada,
+                            "dashPulsada": player1.dashPulsada,
+                            "velocidadX": player1.body.velocity.x,
+                            "velocidadY": player1.body.velocity.y,
+                            "posX": player1.x,
+                            "posY": player1.y,
+                            "contStamine": player1.contStamine,
+                            "contSalto": player1.contSalto,
+                            "throwRight": player1.throwRight,
+                            "throwLeft": player1.throwLeft,
+                            "facingRight": player1.facingRight,
+                            "dashId": player1.dashId,
+                            "dashBool": player1.dashBool,
+                            "ratatosk": player1.ratatosk,
+                            "tir": player1.tir,
+                            "heimdall": player1.heimdall,
+                            "reward": player1.reward
+                        };
+            wsGameplay = new WebSocket('ws://127.0.0.1:8080/vc');
+            //En caso de error
+            wsGameplay.onerror = function(e) {
+                console.log("WS error: " + e);
+          }
+
+            wsGameplay.onopen = function(){
+                console.log("He enviado la info");
+                wsGameplay.send(JSON.stringify(infoCambiada));
+            }
+            
+            //Gestion de informacion recibida
+            wsGameplay.onmessage = function(msg){
+                console.log(msg.data);		
+            }
+            //insertPlayer(player1, idJugador);
         } else if (idJugador === 1) {
-            insertPlayer(player2, idJugador);
+            //insertPlayer(player2, idJugador);
         }
     }
 }
@@ -745,9 +795,49 @@ updateMovement = function (player) {
             //Envio de la informacion al servidor cuando se produce un cambio de estado interno del personaje controlable
             if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {
                 if (idJugador === 0) {
-                    modifyPlayerInfo(player1, idJugador);
+                    metodo = "updatePlayer";
+                    player.estado++;
+                    infoCambiada = { "metodo" : metodo,
+                                    "id": idJugadorEnServer,
+                                    "idOpponent": idOponente,
+                                    "sync": false,
+                                    "estado": player.estado,
+                                    "downPulsada": player.downPulsada,
+                                    "downToque": player.downToque,
+                                    "upPulsada": player.upPulsada,
+                                    "upToque": player.upToque,
+                                    "leftPulsada": player.leftPulsada,
+                                    "rightPulsada": player.rightPulsada,
+                                    "dashPulsada": player.dashPulsada,
+                                    "velocidadX": player.body.velocity.x,
+                                    "velocidadY": player.body.velocity.y,
+                                    "posX": player.x,
+                                    "posY": player.y,
+                                    "contStamine": player.contStamine,
+                                    "contSalto": player.contSalto,
+                                    "throwRight": player.throwRight,
+                                    "throwLeft": player.throwLeft,
+                                    "facingRight": player.facingRight,
+                                    "dashId": player.dashId,
+                                    "dashBool": player.dashBool,
+                                    "ratatosk": player.ratatosk,
+                                    "tir": player.tir,
+                                    "heimdall": player.heimdall,
+                                    "reward": player.reward
+                                };
+                    wsGameplay = new WebSocket('ws://127.0.0.1:8080/vc');
+                    //En caso de error
+                    wsGameplay.onerror = function(e) {
+                        console.log("WS error: " + e);
+                    }
+
+                    wsGameplay.onopen = function(){
+                        console.log("He enviado la info");
+                        wsGameplay.send(JSON.stringify(infoCambiada));
+                    }
+                    //modifyPlayerInfo(player1, idJugador);
                 } else if (idJugador === 1) {
-                    modifyPlayerInfo(player2, idJugador);
+                    //modifyPlayerInfo(player2, idJugador);
                 }
             }
         }
