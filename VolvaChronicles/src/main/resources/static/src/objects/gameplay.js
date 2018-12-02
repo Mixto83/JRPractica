@@ -844,40 +844,73 @@ updateMovement = function (player) {
             if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {
                 if (idJugador === 0) {
                     metodo = "updatePlayer";
-                    player.estado++;
+                    player1.estado++;
                     infoCambiada = {
                         "metodo": metodo,
                         "id": idJugadorEnServer,
                         "idOpponent": idOponente,
                         "sync": false,
-                        "estado": player.estado,
-                        "downPulsada": player.downPulsada,
-                        "downToque": player.downToque,
-                        "upPulsada": player.upPulsada,
-                        "upToque": player.upToque,
-                        "leftPulsada": player.leftPulsada,
-                        "rightPulsada": player.rightPulsada,
-                        "dashPulsada": player.dashPulsada,
-                        "velocidadX": player.body.velocity.x,
-                        "velocidadY": player.body.velocity.y,
-                        "posX": player.x,
-                        "posY": player.y,
-                        "contStamine": player.contStamine,
-                        "contSalto": player.contSalto,
-                        "throwRight": player.throwRight,
-                        "throwLeft": player.throwLeft,
-                        "facingRight": player.facingRight,
-                        "dashId": player.dashId,
-                        "dashBool": player.dashBool,
-                        "ratatosk": player.ratatosk,
-                        "tir": player.tir,
-                        "heimdall": player.heimdall,
-                        "reward": player.reward
+                        "estado": player1.estado,
+                        "downPulsada": player1.downPulsada,
+                        "downToque": player1.downToque,
+                        "upPulsada": player1.upPulsada,
+                        "upToque": player1.upToque,
+                        "leftPulsada": player1.leftPulsada,
+                        "rightPulsada": player1.rightPulsada,
+                        "dashPulsada": player1.dashPulsada,
+                        "velocidadX": player1.body.velocity.x,
+                        "velocidadY": player1.body.velocity.y,
+                        "posX": player1.x,
+                        "posY": player1.y,
+                        "contStamine": player1.contStamine,
+                        "contSalto": player1.contSalto,
+                        "throwRight": player1.throwRight,
+                        "throwLeft": player1.throwLeft,
+                        "facingRight": player1.facingRight,
+                        "dashId": player1.dashId,
+                        "dashBool": player1.dashBool,
+                        "ratatosk": player1.ratatosk,
+                        "tir": player1.tir,
+                        "heimdall": player1.heimdall,
+                        "reward": player1.reward
                     };
                     console.log("He enviado la info");
                     wsGameplay.send(JSON.stringify(infoCambiada));
                     //modifyPlayerInfo(player1, idJugador);
                 } else if (idJugador === 1) {
+                    metodo = "updatePlayer";
+                    player2.estado++;
+                    infoCambiada = {
+                        "metodo": metodo,
+                        "id": idJugadorEnServer,
+                        "idOpponent": idOponente,
+                        "sync": false,
+                        "estado": player2.estado,
+                        "downPulsada": player2.downPulsada,
+                        "downToque": player2.downToque,
+                        "upPulsada": player2.upPulsada,
+                        "upToque": player2.upToque,
+                        "leftPulsada": player2.leftPulsada,
+                        "rightPulsada": player2.rightPulsada,
+                        "dashPulsada": player2.dashPulsada,
+                        "velocidadX": player2.body.velocity.x,
+                        "velocidadY": player2.body.velocity.y,
+                        "posX": player2.x,
+                        "posY": player2.y,
+                        "contStamine": player2.contStamine,
+                        "contSalto": player2.contSalto,
+                        "throwRight": player2.throwRight,
+                        "throwLeft": player2.throwLeft,
+                        "facingRight": player2.facingRight,
+                        "dashId": player2.dashId,
+                        "dashBool": player2.dashBool,
+                        "ratatosk": player2.ratatosk,
+                        "tir": player2.tir,
+                        "heimdall": player2.heimdall,
+                        "reward": player2.reward
+                    };
+                    console.log("He enviado la info");
+                    wsGameplay.send(JSON.stringify(infoCambiada));
                     //modifyPlayerInfo(player2, idJugador);
                 }
             }

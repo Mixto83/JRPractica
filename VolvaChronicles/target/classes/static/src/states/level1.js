@@ -27,10 +27,10 @@ level1Scene.create = function () {
 
         //Gestion de informacion recibida
         wsLevel.onmessage = function (msg) {
-            if(idJugador === 0){//Si eres el aguila
+            if (idJugador === 0) {//Si eres el aguila
                 console.log("Es el player 2:");
                 updatePlayerFromServer(player2, JSON.parse(msg.data));
-            } else if (idJugador === 1){//Si eres el dragon
+            } else if (idJugador === 1) {//Si eres el dragon
                 console.log("Es el player 1:");
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
@@ -89,14 +89,14 @@ level1Scene.update = function () {
     updateEnemies(penemies);
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
-    if (isOnline && idJugador === 1)  {
+    if (isOnline) {
         metodo = "getOpponent";
         jsonLevel = {
             "metodo": metodo,
             "id": idJugadorEnServer,
             "idOpponent": idOponente
         }
-        if(wsLevel.readyState === wsLevel.OPEN){
+        if (wsLevel.readyState === wsLevel.OPEN) {
             wsLevel.send(JSON.stringify(jsonLevel));
         }
     }
