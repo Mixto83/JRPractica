@@ -7,30 +7,48 @@ level2Scene.preload = function () {
 }
 
 level2Scene.create = function () {
-    currentLevel = 2;
-    //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
-    if (player1.win) {
-        chooseReward(player1);
-    } else {
-        chooseReward(player2);
+    if (isOnline) {
+        wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+
+        //En caso de error
+        wsLevel.onerror = function (e) {
+            console.log("WS error: " + e);
+        }
+
+        //Gestion de informacion recibida
+        wsLevel.onmessage = function (msg) {
+            if (idJugador === 0) {//Si eres el aguila
+                updatePlayerFromServer(player2, JSON.parse(msg.data));
+            } else if (idJugador === 1) {//Si eres el dragon
+                updatePlayerFromServer(player1, JSON.parse(msg.data));
+            }
+        }
+
+        currentLevel = 2;
+        //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
+        if (player1.win) {
+            chooseReward(player1);
+        } else {
+            chooseReward(player2);
+        }
+        //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
+        createLevel(level2Scene, 2);
+        //Carga las metas 
+        createGoal(level2Scene, -1725, 280);
+        createGoal(level2Scene, 1825, 280);
+        //crea los sprites de los personajes e inicializa todos sus atributos    
+        createPlayers(level2Scene);
+        //crea y coloca todos los powerups del nivel 2 en su sitio y les añade las colisiones
+        createPowerups(level2Scene, 2);
+        //Guarda los inputs de control de los jugadores en atributos
+        createInputs(level2Scene);
+        //inicia las cámaras y las asocia a cada jugador
+        createCameras(level2Scene);
+        //crea los enemigos y lanzas del nivel 2, los coloca en su sitio y les añade colisiones
+        createEnemy(level2Scene, 2);
+        //crea cronómetro que medirá el tiempo que tardan en completar el nivel
+        createTimer(level2Scene);
     }
-    //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
-    createLevel(level2Scene, 2);
-    //Carga las metas 
-    createGoal(level2Scene, -1725, 280);
-    createGoal(level2Scene, 1825, 280);
-    //crea los sprites de los personajes e inicializa todos sus atributos    
-    createPlayers(level2Scene);
-    //crea y coloca todos los powerups del nivel 2 en su sitio y les añade las colisiones
-    createPowerups(level2Scene, 2);
-    //Guarda los inputs de control de los jugadores en atributos
-    createInputs(level2Scene);
-    //inicia las cámaras y las asocia a cada jugador
-    createCameras(level2Scene);
-    //crea los enemigos y lanzas del nivel 2, los coloca en su sitio y les añade colisiones
-    createEnemy(level2Scene, 2);
-    //crea cronómetro que medirá el tiempo que tardan en completar el nivel
-    createTimer(level2Scene);
 }
 
 level2Scene.update = function () {
@@ -60,5 +78,6 @@ level2Scene.update = function () {
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
     if (isOnline) {
+        getPlayerInfo(wsLevel, jsonLevel);
     }
 }

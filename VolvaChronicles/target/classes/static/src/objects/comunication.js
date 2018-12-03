@@ -41,7 +41,7 @@ getNumberOfPlayers = function (scene){
 					matchOpponent();
 					idJugador = 1; //Localmente, el cliente sabe que eres el J2.
 					scene.time.delayedCall(2000, function () {
-						scene.scene.start('level1');
+						scene.scene.start('intro');
 						scene.scene.stop();
 					})				
 				}
@@ -111,27 +111,19 @@ matchOpponent = function(){
 }
 
 
-//APIREST
 //Recogida de datos del servidor
-getPlayerInfo = function (id) {
-	$.ajax({
-		method: "GET",
-		url: 'http://localhost:8080/players/' + id,
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function (playerInfo) {
-		//Cuando se han recogido los datos, se actualiza el jugador
-		if (id === 0) {
-			updatePlayerFromServer(player1, playerInfo);
-		} else if (id === 1) {
-			updatePlayerFromServer(player2, playerInfo);
-		}
-	})
+getPlayerInfo = function (ws,jsonUp) {
+	metodo = "getOpponent";
+	jsonUp = {
+		"metodo": metodo,
+		"id": idJugadorEnServer,
+		"idOpponent": idOponente
+	}
+	if (ws.readyState === ws.OPEN) {
+		ws.send(JSON.stringify(jsonUp));
+	}
 }
 
-//ESTA NO CAMBIA
 //Actualizacion del estado interno del oponente en el cliente con los datos del servidor
 updatePlayerFromServer = function (player, info) {
 	//Solo actualiza los datos del jugador cuando la informacion recogida tiene cambios
@@ -163,52 +155,15 @@ updatePlayerFromServer = function (player, info) {
 }
 
 
-//REDUNDANTE, ES IGUAL QUE MODIFYPLAYERINFO
-//Inicializacion de la informacion del jugador
-insertPlayer = function (player, id) {
-	player.estado++;
-	var playerInfo = {
-		"estado": player.estado,
-		"downPulsada": player.downPulsada,
-		"downToque": player.downToque,
-		"upPulsada": player.upPulsada,
-		"upToque": player.upToque,
-		"leftPulsada": player.leftPulsada,
-		"rightPulsada": player.rightPulsada,
-		"dashPulsada": player.dashPulsada,
-		"velocidadX": player.body.velocity.x,
-		"velocidadY": player.body.velocity.y,
-		"posX": player.x,
-		"posY": player.y,
-		"contStamine": player.contStamine,
-		"contSalto": player.contSalto,
-		"throwRight": player.throwRight,
-		"throwLeft": player.throwLeft,
-		"facingRight": player.facingRight,
-		"dashId": player.dashId,
-		"dashBool": player.dashBool,
-		"ratatosk": player.ratatosk,
-		"tir": player.tir,
-		"heimdall": player.heimdall,
-		"reward": player.reward
-	};
-
-	$.ajax({
-		method: 'PUT',
-		url: 'http://localhost:8080/players/' + id,
-		data: JSON.stringify(playerInfo),
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function (playerInfo) { })
-}
-
-
 //Actualizacion del servidor con la informacion del jugador cambiada
-modifyPlayerInfo = function (player, id) {
+modifyPlayerInfo = function (player) {
+	metodo = "updatePlayer";
 	player.estado++;
-	playerInfo = {
+	infoCambiada = {
+		"metodo": metodo,
+		"id": idJugadorEnServer,
+		"idOpponent": idOponente,
+		"sync": false,
 		"estado": player.estado,
 		"downPulsada": player.downPulsada,
 		"downToque": player.downToque,
@@ -233,15 +188,6 @@ modifyPlayerInfo = function (player, id) {
 		"heimdall": player.heimdall,
 		"reward": player.reward
 	};
-	$.ajax({
-		method: 'PUT',
-		url: 'http://localhost:8080/players/' + id,
-		data: JSON.stringify(playerInfo),
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function (playerInfo) { })
 }
 
 //Sube la informacion de la recompensa y resetea el resto

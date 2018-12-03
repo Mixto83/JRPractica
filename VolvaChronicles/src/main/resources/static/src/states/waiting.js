@@ -24,7 +24,7 @@ waitingScene.update = function() {
 		matchOpponent();
 	} else if (idOponente !== -1){
 		music.stop();
-		waitingScene.scene.start('level1');
+		waitingScene.scene.start('intro');
 		waitingScene.scene.stop();
 	}
 	

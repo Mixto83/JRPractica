@@ -13,7 +13,7 @@ var levelEnded = false;
 
 //Conexion websocket
 var wsGameplay;
-
+var infoCambiada;
 
 //crea los sprites de los jugadores y los inicializa
 createPlayers = function (scene) {
@@ -21,41 +21,11 @@ createPlayers = function (scene) {
     player2 = scene.physics.add.sprite(1800, 19584, 'nidhogg');
     addPlayer(scene, player1, 'aguila');
     addPlayer(scene, player2, 'nidhogg');
+
     //Inicializa al jugador en el servidor
     if (isOnline) {
         if (idJugador === 0) {
-            console.log("Al if he entrado.");
-            metodo = "updatePlayer";
-            player1.estado++;
-            var infoCambiada = {
-                "metodo": metodo,
-                "id": idJugadorEnServer,
-                "idOpponent": idOponente,
-                "sync": false,
-                "estado": player1.estado,
-                "downPulsada": player1.downPulsada,
-                "downToque": player1.downToque,
-                "upPulsada": player1.upPulsada,
-                "upToque": player1.upToque,
-                "leftPulsada": player1.leftPulsada,
-                "rightPulsada": player1.rightPulsada,
-                "dashPulsada": player1.dashPulsada,
-                "velocidadX": player1.body.velocity.x,
-                "velocidadY": player1.body.velocity.y,
-                "posX": player1.x,
-                "posY": player1.y,
-                "contStamine": player1.contStamine,
-                "contSalto": player1.contSalto,
-                "throwRight": player1.throwRight,
-                "throwLeft": player1.throwLeft,
-                "facingRight": player1.facingRight,
-                "dashId": player1.dashId,
-                "dashBool": player1.dashBool,
-                "ratatosk": player1.ratatosk,
-                "tir": player1.tir,
-                "heimdall": player1.heimdall,
-                "reward": player1.reward
-            };
+            modifyPlayerInfo(player1);
             wsGameplay = new WebSocket('ws://127.0.0.1:8080/vc');
             //En caso de error
             wsGameplay.onerror = function (e) {
@@ -71,40 +41,8 @@ createPlayers = function (scene) {
             wsGameplay.onmessage = function (msg) {
                 console.log(msg.data);
             }
-            //insertPlayer(player1, idJugador);
         } else if (idJugador === 1) {
-            console.log("Al if he entrado.");
-            metodo = "updatePlayer";
-            player2.estado++;
-            var infoCambiada = {
-                "metodo": metodo,
-                "id": idJugadorEnServer,
-                "idOpponent": idOponente,
-                "sync": false,
-                "estado": player2.estado,
-                "downPulsada": player2.downPulsada,
-                "downToque": player2.downToque,
-                "upPulsada": player2.upPulsada,
-                "upToque": player2.upToque,
-                "leftPulsada": player2.leftPulsada,
-                "rightPulsada": player2.rightPulsada,
-                "dashPulsada": player2.dashPulsada,
-                "velocidadX": player2.body.velocity.x,
-                "velocidadY": player2.body.velocity.y,
-                "posX": player2.x,
-                "posY": player2.y,
-                "contStamine": player2.contStamine,
-                "contSalto": player2.contSalto,
-                "throwRight": player2.throwRight,
-                "throwLeft": player2.throwLeft,
-                "facingRight": player2.facingRight,
-                "dashId": player2.dashId,
-                "dashBool": player2.dashBool,
-                "ratatosk": player2.ratatosk,
-                "tir": player2.tir,
-                "heimdall": player2.heimdall,
-                "reward": player2.reward
-            };
+            modifyPlayerInfo(player2);
             wsGameplay = new WebSocket('ws://127.0.0.1:8080/vc');
             //En caso de error
             wsGameplay.onerror = function (e) {
@@ -120,7 +58,6 @@ createPlayers = function (scene) {
             wsGameplay.onmessage = function (msg) {
                 console.log(msg.data);
             }
-            //insertPlayer(player2, idJugador);
         }
     }
 }
@@ -843,75 +780,11 @@ updateMovement = function (player) {
             //Envio de la informacion al servidor cuando se produce un cambio de estado interno del personaje controlable
             if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {
                 if (idJugador === 0) {
-                    metodo = "updatePlayer";
-                    player1.estado++;
-                    infoCambiada = {
-                        "metodo": metodo,
-                        "id": idJugadorEnServer,
-                        "idOpponent": idOponente,
-                        "sync": false,
-                        "estado": player1.estado,
-                        "downPulsada": player1.downPulsada,
-                        "downToque": player1.downToque,
-                        "upPulsada": player1.upPulsada,
-                        "upToque": player1.upToque,
-                        "leftPulsada": player1.leftPulsada,
-                        "rightPulsada": player1.rightPulsada,
-                        "dashPulsada": player1.dashPulsada,
-                        "velocidadX": player1.body.velocity.x,
-                        "velocidadY": player1.body.velocity.y,
-                        "posX": player1.x,
-                        "posY": player1.y,
-                        "contStamine": player1.contStamine,
-                        "contSalto": player1.contSalto,
-                        "throwRight": player1.throwRight,
-                        "throwLeft": player1.throwLeft,
-                        "facingRight": player1.facingRight,
-                        "dashId": player1.dashId,
-                        "dashBool": player1.dashBool,
-                        "ratatosk": player1.ratatosk,
-                        "tir": player1.tir,
-                        "heimdall": player1.heimdall,
-                        "reward": player1.reward
-                    };
-                    console.log("He enviado la info");
+                    modifyPlayerInfo(player1);
                     wsGameplay.send(JSON.stringify(infoCambiada));
-                    //modifyPlayerInfo(player1, idJugador);
                 } else if (idJugador === 1) {
-                    metodo = "updatePlayer";
-                    player2.estado++;
-                    infoCambiada = {
-                        "metodo": metodo,
-                        "id": idJugadorEnServer,
-                        "idOpponent": idOponente,
-                        "sync": false,
-                        "estado": player2.estado,
-                        "downPulsada": player2.downPulsada,
-                        "downToque": player2.downToque,
-                        "upPulsada": player2.upPulsada,
-                        "upToque": player2.upToque,
-                        "leftPulsada": player2.leftPulsada,
-                        "rightPulsada": player2.rightPulsada,
-                        "dashPulsada": player2.dashPulsada,
-                        "velocidadX": player2.body.velocity.x,
-                        "velocidadY": player2.body.velocity.y,
-                        "posX": player2.x,
-                        "posY": player2.y,
-                        "contStamine": player2.contStamine,
-                        "contSalto": player2.contSalto,
-                        "throwRight": player2.throwRight,
-                        "throwLeft": player2.throwLeft,
-                        "facingRight": player2.facingRight,
-                        "dashId": player2.dashId,
-                        "dashBool": player2.dashBool,
-                        "ratatosk": player2.ratatosk,
-                        "tir": player2.tir,
-                        "heimdall": player2.heimdall,
-                        "reward": player2.reward
-                    };
-                    console.log("He enviado la info");
+                    modifyPlayerInfo(player2);
                     wsGameplay.send(JSON.stringify(infoCambiada));
-                    //modifyPlayerInfo(player2, idJugador);
                 }
             }
         }

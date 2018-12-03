@@ -4,20 +4,13 @@ level1Scene.active = true;
 
 var wsLevel;
 var jsonLevel;
-var ultimoEstadoDescargado = -1;
-var wsCreado = false;
 
 level1Scene.preload = function () {
 
 }
 
 level1Scene.create = function () {
-    /*connectionLevel = new WebSocket('ws://127.0.0.1:8080/vc');
-    connectionLevel.onerror = function(e) {
-        console.log("WS error: " + e);
-    }*/
-    /**/if (isOnline) {
-        console.log("Al if he entrado.");
+    if (isOnline) {
         wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
 
         //En caso de error
@@ -28,13 +21,10 @@ level1Scene.create = function () {
         //Gestion de informacion recibida
         wsLevel.onmessage = function (msg) {
             if (idJugador === 0) {//Si eres el aguila
-                console.log("Es el player 2:");
                 updatePlayerFromServer(player2, JSON.parse(msg.data));
             } else if (idJugador === 1) {//Si eres el dragon
-                console.log("Es el player 1:");
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
-            console.log(msg.data);
         }
     }
     currentLevel = 1;
@@ -90,14 +80,6 @@ level1Scene.update = function () {
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
     if (isOnline) {
-        metodo = "getOpponent";
-        jsonLevel = {
-            "metodo": metodo,
-            "id": idJugadorEnServer,
-            "idOpponent": idOponente
-        }
-        if (wsLevel.readyState === wsLevel.OPEN) {
-            wsLevel.send(JSON.stringify(jsonLevel));
-        }
+        getPlayerInfo(wsLevel,jsonLevel);
     }
 }

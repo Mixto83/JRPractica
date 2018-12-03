@@ -84,9 +84,9 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 		case "clearPlayers":
 			list.clearPlayers();
 			break;
-
+			
 		case "isSyncOpponent":
-			boolean isReady = list.getOpponent(id).isSync();
+			boolean isReady = list.getOpponent(idOpponent).isSync();
 			
 			responseNode.put("isReady", isReady);
 			session.sendMessage(new TextMessage(responseNode.toString()));
