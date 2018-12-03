@@ -17,7 +17,7 @@ introScene.preload = function () {
 
 introScene.create = function () {
     if (isOnline) {
-        wsSkip = new WebSocket('ws://127.0.0.1:8080/vc');
+        wsSkip = new WebSocket(ipConfig);
 
         //En caso de error
         wsSkip.onerror = function (e) {

@@ -2,6 +2,7 @@ var metodo = "";
 var idJugadorEnServer = -1;
 var idOponente = -1;
 var numPlayersInServer = -1;
+var ipConfig = 'ws://192.168.1.93:8080/vc';
 
 
 //Pide al servidor el numero de jugadores
@@ -9,7 +10,7 @@ getNumberOfPlayers = function (scene){
 	console.log("Busqueda de numero de jugadores llamada");
 	
 	$(document).ready(function(){
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		
 		//Envio de informacion
 		connection.onopen = function(){
@@ -56,7 +57,7 @@ createPlayerInServer = function () {
 	
 	$(document).ready(function(){
 		//Envio de informacion
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		connection.onopen = function(){
 			metodo = "addPlayer";
 			var object = { "metodo" : metodo,
@@ -83,7 +84,7 @@ createPlayerInServer = function () {
 //Emparejamiento
 matchOpponent = function(){
 	$(document).ready(function(){
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		//Envio de informacion
 		connection.onopen = function(){
 			metodo = "getIdFromOpponent";
@@ -135,7 +136,7 @@ updatePlayerFromServer = function (player, info) {
 		player.upToque = info.upToque;
 		player.leftPulsada = info.leftPulsada;
 		player.rightPulsada = info.rightPulsada;
-		player.dashPulsada = info.dashPulsada
+		player.dashPulsada = info.dashPulsada;
 		player.body.velocity.x = info.velocidadX;
 		player.body.velocity.y = info.velocidadY;
 		player.x = info.posX;

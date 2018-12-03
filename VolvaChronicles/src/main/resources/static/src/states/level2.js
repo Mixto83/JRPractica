@@ -8,7 +8,7 @@ level2Scene.preload = function () {
 
 level2Scene.create = function () {
     if (isOnline) {
-        wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+        wsLevel = new WebSocket(ipConfig);
 
         //En caso de error
         wsLevel.onerror = function (e) {

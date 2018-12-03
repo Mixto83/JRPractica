@@ -2,6 +2,7 @@ var metodo = "";
 var idJugadorEnServer = -1;
 var idOponente = -1;
 var numPlayersInServer = -1;
+var ipConfig = 'ws://192.168.1.93:8080/vc';
 
 
 //Pide al servidor el numero de jugadores
@@ -9,7 +10,7 @@ getNumberOfPlayers = function (scene){
 	console.log("Busqueda de numero de jugadores llamada");
 	
 	$(document).ready(function(){
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		
 		//Envio de informacion
 		connection.onopen = function(){
@@ -56,7 +57,7 @@ createPlayerInServer = function () {
 	
 	$(document).ready(function(){
 		//Envio de informacion
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		connection.onopen = function(){
 			metodo = "addPlayer";
 			var object = { "metodo" : metodo,
@@ -83,7 +84,7 @@ createPlayerInServer = function () {
 //Emparejamiento
 matchOpponent = function(){
 	$(document).ready(function(){
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		//Envio de informacion
 		connection.onopen = function(){
 			metodo = "getIdFromOpponent";
@@ -135,7 +136,7 @@ updatePlayerFromServer = function (player, info) {
 		player.upToque = info.upToque;
 		player.leftPulsada = info.leftPulsada;
 		player.rightPulsada = info.rightPulsada;
-		player.dashPulsada = info.dashPulsada
+		player.dashPulsada = info.dashPulsada;
 		player.body.velocity.x = info.velocidadX;
 		player.body.velocity.y = info.velocidadY;
 		player.x = info.posX;
@@ -191,45 +192,11 @@ modifyPlayerInfo = function (player) {
 }
 
 //Sube la informacion de la recompensa y resetea el resto
-uploadReward = function (player, id) {
-	playerInfo = {
-		"estado": 0,
-		"downPulsada": false,
-		"downToque": false,
-		"upPulsada": false,
-		"upToque": false,
-		"leftPulsada": false,
-		"rightPulsada": false,
-		"dashPulsada": false,
-		"velocidadX": 0,
-		"velocidadY": 0,
-		"posX": 0,
-		"posY": 0,
-		"contStamine": 100,
-		"contSalto": 0,
-		"throwRight": false,
-		"throwLeft": false,
-		"facingRight": true,
-		"dashId": 0,
-		"dashBool": false,
-		"ratatosk": 0,
-		"tir": false,
-		"heimdall": false,
-		"reward": player.reward
-	};
-	$.ajax({
-		method: 'PUT',
-		url: 'http://localhost:8080/players/' + id,
-		data: JSON.stringify(playerInfo),
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function () { })
-}
+uploadReward = function (player, id) {}
+
 //Recoge la informacion de la recompensa
 getRewardFromServer = function (id, scene) {
-	$.ajax({
+	/*$.ajax({
 		method: "GET",
 		url: 'http://localhost:8080/players/' + id,
 		processData: false,
@@ -245,7 +212,7 @@ getRewardFromServer = function (id, scene) {
 			updateRewardFromServer(player2, playerInfo);
 			createRewardText(scene, 'Nidhogg', player2);
 		}
-	})
+	})*/
 }
 
 //Recoge la informacion de la recompensa
@@ -255,45 +222,11 @@ updateRewardFromServer = function (player, info) {
 }
 
 //Borrado de la lista de jugadores
-deletePlayerList = function () {
-	$.ajax({
-		method: 'DELETE',
-		url: 'http://localhost:8080/players'
-	}).done(function (player) { })
-}
+deletePlayerList = function () {}
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip
-pressedSkip = function (boolSkip, idP, scene) {
-	$.ajax({
-		method: 'PUT',
-		url: 'http://localhost:8080/syncro/' + idP,
-		data: JSON.stringify(boolSkip),
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function () {
-		//Manda un mensaje de espera
-		if (boolSkip) {
-			var skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
-			skipMessage.setGravityY(-1200);
-		}
-	})
-}
+pressedSkip = function (boolSkip, idP, scene) {}
 
 //Comprueba si ambos jugadores han pulsado skip
-getPressedFromOpponent = function () {
-	$.ajax({
-		method: "GET",
-		url: 'http://localhost:8080/syncro/',
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function (isSynced) {
-		//Recoge la informacion
-		skip = isSynced;
-	})
-
-}
+getPressedFromOpponent = function () {}

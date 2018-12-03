@@ -26,7 +26,7 @@ createPlayers = function (scene) {
     if (isOnline) {
         if (idJugador === 0) {
             modifyPlayerInfo(player1);
-            wsGameplay = new WebSocket('ws://127.0.0.1:8080/vc');
+            wsGameplay = new WebSocket(ipConfig);
             //En caso de error
             wsGameplay.onerror = function (e) {
                 console.log("WS error: " + e);
@@ -43,7 +43,7 @@ createPlayers = function (scene) {
             }
         } else if (idJugador === 1) {
             modifyPlayerInfo(player2);
-            wsGameplay = new WebSocket('ws://127.0.0.1:8080/vc');
+            wsGameplay = new WebSocket(ipConfig);
             //En caso de error
             wsGameplay.onerror = function (e) {
                 console.log("WS error: " + e);

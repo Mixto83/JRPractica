@@ -88,7 +88,39 @@ ending2Scene.update = function (){
     if (background.x <= 855) {
         if (isOnline) {//Manda la informacion al servidor
             background.setVelocityX(0);
-            //AQUI HAY QUE HACER LLAMADA AL SERVIDOR!!!!
+            imReady = true;
+            jsonSync = {
+                "metodo": metodo,
+                "id": idJugadorEnServer,
+                "idOpponent": idOponente,
+                "sync": imReady,
+                "estado": 0,
+                "downPulsada": false,
+                "downToque": false,
+                "upPulsada": false,
+                "upToque": false,
+                "leftPulsada": false,
+                "rightPulsada": false,
+                "dashPulsada": false,
+                "velocidadX": 0.0,
+                "velocidadY": 0.0,
+                "posX": 0.0,
+                "posY": 0.0,
+                "contStamine": 0,
+                "contSalto": 0,
+                "throwRight": false,
+                "throwLeft": false,
+                "facingRight": true,
+                "dashId": -1,
+                "dashBool": false,
+                "ratatosk": -1,
+                "tir": false,
+                "heimdall": false,
+                "reward": ""
+            };
+            if (wsSkip.readyState === wsSkip.OPEN) {
+                wsSkip.send(JSON.stringify(jsonSync));
+            }
         } else {//Salta al nivel 1
             nextScene(ending2Scene, 'credits');
         }
@@ -98,7 +130,7 @@ ending2Scene.update = function (){
         //Ambas a false y salta de escena
         imReady = false;
         isOpReady = false;
-        wsSkip.close();
+        //wsSkip.close();
         nextScene(ending2Scene, 'credits');
     }
 }
