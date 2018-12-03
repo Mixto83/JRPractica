@@ -2,7 +2,7 @@ var metodo = "";
 var idJugadorEnServer = -1;
 var idOponente = -1;
 var numPlayersInServer = -1;
-var ipConfig = 'ws://192.168.1.93:8080/vc';
+var ipConfig = 'ws://127.0.0.1:8080/vc';
 
 
 //Pide al servidor el numero de jugadores

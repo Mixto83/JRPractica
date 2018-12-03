@@ -23,14 +23,14 @@ level2Scene.create = function () {
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
         }
-
+    }
         currentLevel = 2;
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
-        if (player1.win) {
+        /*if (player1.win) {
             chooseReward(player1);
         } else {
             chooseReward(player2);
-        }
+        }*/
         //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
         createLevel(level2Scene, 2);
         //Carga las metas 
@@ -48,7 +48,6 @@ level2Scene.create = function () {
         createEnemy(level2Scene, 2);
         //crea cronómetro que medirá el tiempo que tardan en completar el nivel
         createTimer(level2Scene);
-    }
 }
 
 level2Scene.update = function () {

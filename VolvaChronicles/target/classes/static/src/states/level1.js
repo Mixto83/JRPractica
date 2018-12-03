@@ -26,6 +26,7 @@ level1Scene.create = function () {
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
         }
+        
     }
     currentLevel = 1;
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
