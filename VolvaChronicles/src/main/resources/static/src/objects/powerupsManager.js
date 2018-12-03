@@ -488,16 +488,17 @@ randomReward = function (scene) {
 }
 
 // Escoge un powerup para el jugador en funcion del número aleatorio calculado en randomReward
-function chooseReward(player) {
+function chooseReward(scene, player) {
     if (player.reward === 'hemodr') {
-        player.hermodr = true;
+        eventHermodr(scene, player);
     } else if (player.reward === 'njord') {
-        player.njord = true;
+        eventNjord(scene, player);
     } else if (player.reward === 'skadi') {
-        player.skadi = true;
+        eventSkadi(scene, adversary);
     } else if (player.reward === 'tir') {
         player.tir = true;
     } else if (player.reward === 'bragi') {
-        player.bragi = true;
+        eventBragi(scene, player);
     }
+    player.reward = " ";
 }
