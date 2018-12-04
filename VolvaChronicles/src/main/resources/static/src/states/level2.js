@@ -7,6 +7,7 @@ level2Scene.preload = function () {
 }
 
 level2Scene.create = function () {
+    currentLevel = 2;
     if (isOnline) {
         wsLevel = new WebSocket(ipConfig);
 
@@ -19,13 +20,12 @@ level2Scene.create = function () {
         wsLevel.onmessage = function (msg) {
             if (idJugador === 0) {//Si eres el aguila
                 updatePlayerFromServer(player2, JSON.parse(msg.data));
-                console.log("dragon actualizado");
             } else if (idJugador === 1) {//Si eres el dragon
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
         }
     }
-        currentLevel = 2;
+       
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
         if (player1.win) {
             chooseReward(level2Scene, player1);

@@ -7,7 +7,6 @@ var rewardRune = "";
 
 //Pide al servidor el numero de jugadores
 getNumberOfPlayers = function (scene){
-	console.log("Busqueda de numero de jugadores llamada");
 	
 	$(document).ready(function(){
 		var connection = new WebSocket(ipConfig);
@@ -30,7 +29,7 @@ getNumberOfPlayers = function (scene){
 		connection.onmessage = function(msg){
 			var mes = JSON.parse(msg.data);
 			numPlayersInServer = mes.size;
-			console.log("Numero de jugadores: " + numPlayersInServer);
+			//console.log("Numero de jugadores: " + numPlayersInServer);
 			if(scene === menuScene){
 				if (numPlayersInServer % 2 === 0){
 					createPlayerInServer();//Jugador Par
@@ -53,8 +52,7 @@ getNumberOfPlayers = function (scene){
 
 //Mete al jugador al servidor
 createPlayerInServer = function () {
-	console.log("Insercion de jugador llamada");
-	
+
 	$(document).ready(function(){
 		//Envio de informacion
 		var connection = new WebSocket(ipConfig);
@@ -74,9 +72,8 @@ createPlayerInServer = function () {
 		//Gestion de informacion recibida
 		connection.onmessage = function(msg){
 			var mes2 = JSON.parse(msg.data);
-			console.log("Todo el JSON: " + msg.data);
 			idJugadorEnServer = mes2.id;
-			console.log("Jugador Creado, Id: " + idJugadorEnServer);			
+			//console.log("Jugador Creado, Id: " + idJugadorEnServer);			
 		}
 	})
 }
@@ -103,8 +100,7 @@ matchOpponent = function(){
 			var mes = JSON.parse(msg.data);
 			idOponente = mes.idOpponent;
 			if (idOponente !== -1){
-				//console.log("Todo el JSON: " + msg.data);
-				console.log("Tu oponente es: " + idOponente);
+				//console.log("Tu oponente es: " + idOponente);
 			}
 						
 		}

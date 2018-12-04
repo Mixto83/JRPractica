@@ -9,6 +9,7 @@ level1Scene.preload = function () {
 }
 
 level1Scene.create = function () {
+    currentLevel = 1;
     if (isOnline) {
         wsLevel = new WebSocket(ipConfig);
 
@@ -27,7 +28,7 @@ level1Scene.create = function () {
         }
         
     }
-    currentLevel = 1;
+    
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
     createLevel(level1Scene, 1);
     //Carga las metas 

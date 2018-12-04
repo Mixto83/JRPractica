@@ -7,6 +7,19 @@ ending2Scene.preload = function (){
 }
 
 ending2Scene.create = function (){
+    if (isOnline) {
+        wsSkip = new WebSocket('ws://127.0.0.1:8080/vc');
+        //En caso de error
+        wsSkip.onerror = function (e) {
+            console.log("WS error: " + e);
+        }
+
+        //Gestion de informacion recibida
+        wsSkip.onmessage = function (msg) {
+            auxJson = JSON.parse(msg.data);
+            isOpReady = auxJson.isReady;
+        }
+    }
     //Crea el fondo, que irá haciendo scroll a medida que pasa el tiempo
     createBackground(ending2Scene,1045,540,3,'Ending2');
     //Crea las párticulas en posiciones aleatorias, que se irán desplazando

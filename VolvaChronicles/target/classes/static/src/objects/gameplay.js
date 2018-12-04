@@ -33,14 +33,9 @@ createPlayers = function (scene) {
             }
 
             wsGameplay.onopen = function () {
-                console.log("He enviado la info");
                 wsGameplay.send(JSON.stringify(infoCambiada));
             }
 
-            //Gestion de informacion recibida
-            wsGameplay.onmessage = function (msg) {
-                console.log(msg.data);
-            }
         } else if (idJugador === 1) {
             modifyPlayerInfo(player2);
             wsGameplay = new WebSocket(ipConfig);
@@ -50,13 +45,7 @@ createPlayers = function (scene) {
             }
 
             wsGameplay.onopen = function () {
-                console.log("He enviado la info");
                 wsGameplay.send(JSON.stringify(infoCambiada));
-            }
-
-            //Gestion de informacion recibida
-            wsGameplay.onmessage = function (msg) {
-                console.log(msg.data);
             }
         }
     }
@@ -106,9 +95,7 @@ addPlayer = function (scene, player, type) {
     //Atributo para la comunicacion online
     player.estado = 0;
     //atributos referentes a los powerups
-    //if (currentLevel === 1) {
-        player.tir = false;
-    //}
+    player.tir = false;
     player.ratatosk = 0;
     player.heimdall = false;
     player.throwRight = false;
@@ -788,7 +775,6 @@ updateMovement = function (player) {
                 } else if (idJugador === 1) {
                     modifyPlayerInfo(player2);
                     wsGameplay.send(JSON.stringify(infoCambiada));
-                    console.log("jugador2 va");
                 }
             }
         }

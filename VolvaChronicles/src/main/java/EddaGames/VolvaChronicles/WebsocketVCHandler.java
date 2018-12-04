@@ -113,7 +113,6 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 			
 			case "getReward":
 				String rew = list.getOpponent(idOpponent).getReward();
-				System.out.println("Me han pedido el reward y es " + rew);
 				responseNode.put("reward", rew);
 				session.sendMessage(new TextMessage(responseNode.toString()));
 				break;

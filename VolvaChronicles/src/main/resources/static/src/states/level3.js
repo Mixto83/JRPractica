@@ -7,6 +7,7 @@ level3Scene.preload = function () {
 }
 
 level3Scene.create = function () {
+    currentLevel = 3;
     if (isOnline) {
         wsLevel = new WebSocket(ipConfig);
 
@@ -24,7 +25,7 @@ level3Scene.create = function () {
             }
         }
     }
-        currentLevel = 3;
+        
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
         if (level3Scene,player1.win) {
             chooseReward(level3Scene,player1);

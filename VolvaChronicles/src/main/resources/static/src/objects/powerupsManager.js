@@ -486,19 +486,20 @@ randomReward = function (scene) {
                 };
                 if (wsReward.readyState === wsReward.OPEN) {
                     wsReward.send(JSON.stringify(jsonReward));
-                    console.log("Reward subida");
                 }
                 //uploadReward(player1, idJugador);
             }
         } else if (isOnline && idJugador === 1) {
             metodo = "getReward";
-            jsonReward = {"metodo": metodo,
-                            "id": idJugadorEnServer,
-                            "idOpponent": idOponente,
+            jsonReward = {
+                "metodo": metodo,
+                "id": idJugadorEnServer,
+                "idOpponent": idOponente,
             }
             if (wsReward.readyState === wsReward.OPEN) {
-                wsReward.send(JSON.stringify(jsonReward));
-                console.log("Peticion hecha");
+                scene.time.delayedCall(100, function () {
+                    wsReward.send(JSON.stringify(jsonReward));
+                });
             }
             //uploadReward(player2, idJugador);
             //Resetea la info del jugador 1
@@ -552,20 +553,21 @@ randomReward = function (scene) {
                     "reward": rewardRune
                 };
                 if (wsReward.readyState === wsReward.OPEN) {
-                    console.log("Reward subida");
                     wsReward.send(JSON.stringify(jsonReward));
                 }
                 //uploadReward(player2, idJugador);
             }
         } else if (isOnline && idJugador === 0) {
             metodo = "getReward";
-            jsonReward = {"metodo": metodo,
-                            "id": idJugadorEnServer,
-                            "idOpponent": idOponente,
+            jsonReward = {
+                "metodo": metodo,
+                "id": idJugadorEnServer,
+                "idOpponent": idOponente,
             }
             if (wsReward.readyState === wsReward.OPEN) {
-                console.log("Peticion hecha");
-                wsReward.send(JSON.stringify(jsonReward));
+                scene.time.delayedCall(100, function () {
+                    wsReward.send(JSON.stringify(jsonReward));
+                });
             }
             //uploadReward(player1, idJugador);
             //scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);

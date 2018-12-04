@@ -16,7 +16,6 @@ ending1Scene.create = function () {
 
         //Gestion de informacion recibida
         wsSkip.onmessage = function (msg) {
-            console.log(msg.data);
             auxJson = JSON.parse(msg.data);
             isOpReady = auxJson.isReady;
         }

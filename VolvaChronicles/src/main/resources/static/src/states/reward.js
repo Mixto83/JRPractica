@@ -19,15 +19,12 @@ rewardScene.create = function () {
 
         //Gestion de informacion recibida
         wsReward.onmessage = function (msg) {
-            console.log("ONMSG funciona");
             if (idJugador === 0 && player2.win) {
-                console.log("Ha ganado Nidhogg");
-                rewardRune = JSON.parse(msg.data).reward;
-                createRewardText(rewardScene, 'Nidhogg');
+                    rewardRune = JSON.parse(msg.data).reward;
+                    createRewardText(rewardScene, 'Nidhogg');
             } else if (idJugador === 1 && player1.win) {
-                console.log("Ha ganado el Aguila");
-                rewardRune = JSON.parse(msg.data).reward;
-                createRewardText(rewardScene, 'El Águila');
+                    rewardRune = JSON.parse(msg.data).reward;
+                    createRewardText(rewardScene, 'El Águila');
             }
         }
     }
@@ -41,9 +38,14 @@ rewardScene.create = function () {
 
     //Imagen de fondo
     createStaticBackground(rewardScene, 'Recompensa');
+    if (isOnline) {
+        wsReward.onopen = function () {
+            randomReward(rewardScene);
+        }
+    } else {
+        randomReward(rewardScene);
+    }
 
-    //Decide la recompensa del ganador
-    randomReward(rewardScene);
 }
 
 rewardScene.update = function () {
@@ -119,6 +121,4 @@ rewardScene.update = function () {
         //wsSkip.close();
         nextLevel(rewardScene);
     }
-
-    console.log("La recompensa es:" + rewardRune);
 }
