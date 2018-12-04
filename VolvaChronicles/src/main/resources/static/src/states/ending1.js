@@ -7,6 +7,7 @@ ending1Scene.preload = function () {
 }
 
 ending1Scene.create = function () {
+    isOpReady = false;
     if (isOnline) {
         wsSkip = new WebSocket('ws://127.0.0.1:8080/vc');
         //En caso de error
@@ -61,5 +62,10 @@ ending1Scene.update = function () {
 
     if (isOnline && isOpReady && imReady) {
         skipScene(ending1Scene, 'credits');
+    }
+    if (isOpReady && !caja2Creada){
+        caja2Creada = true;
+        skipMessage2 = ending1Scene.physics.add.image(960, 60, 'skipCutscene2');
+        skipMessage2.setGravityY(-1200);
     }
 }

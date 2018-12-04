@@ -9,6 +9,7 @@ rewardScene.preload = function () {
 }
 
 rewardScene.create = function () {
+    isOpReady = false;
     if (isOnline) {
         wsReward = new WebSocket(ipConfig);
 
@@ -103,7 +104,7 @@ rewardScene.update = function () {
             }
 
             //Crea la caja de comentario
-            if (!cajaCreada) {
+            if (!cajaCreada && !caja2Creada) {
                 cajaCreada = true;
                 skipMessage = rewardScene.physics.add.image(960, 60, 'skipCutscene1');
                 skipMessage.setGravityY(-1200);
@@ -118,7 +119,15 @@ rewardScene.update = function () {
         imReady = false;
         isOpReady = false;
         cajaCreada = false;
+        caja2Creada = false;
         //wsSkip.close();
         nextLevel(rewardScene);
+    }
+    //Reservado para luego
+    if (isOpReady && !caja2Creada){
+        console.log("isOpReady:"+isOpReady+" caja2Creada:"+caja2Creada);
+        caja2Creada = true;
+        skipMessage2 = rewardScene.physics.add.image(960, 60, 'skipCutscene2');
+        skipMessage2.setGravityY(-1200);
     }
 }

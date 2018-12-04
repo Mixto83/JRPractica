@@ -65,15 +65,16 @@ function createMenuButtons(scene) {
 
 	// Boton "Online"
 	botonOnline = scene.add.sprite(960, 800, 'botonOnline').setInteractive();
-
 	botonOnline.on('pointerdown', function (pointer) {
-		music.stop();
-		scene.sound.play('menuConfirm');
-		scene.time.delayedCall(2000, function () {
-			//Llama al servidor para comprobar el numero de jugadores y crearlos
+		if (!isOnline) {
 			isOnline = true;
-			getNumberOfPlayers(scene);
-		}, [], scene);
+			music.stop();
+			scene.sound.play('menuConfirm');
+			scene.time.delayedCall(2000, function () {
+				//Llama al servidor para comprobar el numero de jugadores y crearlos
+				getNumberOfPlayers(scene);
+			}, [], scene);
+		}
 	});
 
 }

@@ -10,12 +10,15 @@ var jsonSkip;
 var jsonSync;
 var auxJson;
 var cajaCreada = false;
+var caja2Creada = false;
 var skipMessage;
+var skipMessage2;
 introScene.preload = function () {
 
 }
 
 introScene.create = function () {
+    isOpReady = false;
     if (isOnline) {
         wsSkip = new WebSocket(ipConfig);
 
@@ -77,11 +80,9 @@ introScene.update = function () {
     }
 
     //Reservado para luego
-    /*if (isOpReady && !cajaOpCreada){
-        cajaCreada = true;
-        var skipMessage = scene.physics.add.image(960, 60, 'skipCutscene2');
-        skipMessage.setGravityY(-1200);
-    }*/
+    if (isOpReady && !caja2Creada){
+        caja2Creada = true;
+        skipMessage2 = introScene.physics.add.image(960, 60, 'skipCutscene2');
+        skipMessage2.setGravityY(-1200);
+    }
 }
-
-

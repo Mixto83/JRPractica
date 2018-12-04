@@ -42,7 +42,13 @@ level1Scene.create = function () {
     //crea y coloca todos los powerups del nivel 1 en su sitio y les añade las colisiones
     createPowerups(level1Scene, 1);
     //Guarda los inputs de control de los jugadores en atributos
-    createInputs(level1Scene);
+    if(!isOnline){
+        createInputs(level1Scene, player1, player2);
+    } else if (idJugador === 0){
+        createInputs(level1Scene, player1, player2);
+    }else if(idJugador ===1){
+        createInputs(level1Scene, player2, player1);
+    }
     //inicia las cámaras y las asocia a cada jugador
     createCameras(level1Scene);
     //crea las animaciones de los 2 tipos de enemigos

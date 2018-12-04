@@ -342,35 +342,23 @@ createAnimationPlayer = function (key, scene) {
     });
 }
 //Guarda los inputs de control de los jugadores en atributos
-createInputs = function (scene) {
+createInputs = function (scene, player, opponent) {
     //Input Events
     cursors = scene.input.keyboard.createCursorKeys();
     //inputs player 1 (WASD+B)
-    player1.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    player1.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    player1.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    player1.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    player1.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-
-    //inputs player 2 (flechas + numpad0)
-    player2.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-    player2.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-    player2.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-    player2.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-    player2.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
-}
-//para hacer controles genericos en websockets
-/*
-createInputs1P = function (scene, player){
-    //Input Events
-    cursors = scene.input.keyboard.createCursorKeys();
-    //inputs player (WASD+B)
     player.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     player.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     player.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     player.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     player.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-}*/
+
+    //inputs player 2 (flechas + numpad0)
+    opponent.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    opponent.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    opponent.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    opponent.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    opponent.keyDash = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+}
 
 //actualiza el cronómetro
 updateTimer = function () {
@@ -398,11 +386,6 @@ endLevel = function (scene, player) {
     music.stop();
     player.win = true;
 
-    /*if (currentLevel === 1) {
-        scene.scene.start('level2');
-    } else if (currentLevel === 2) {
-        scene.scene.start('level3');
-    }*/
     if (currentLevel === 1 || currentLevel === 2) {
         scene.scene.start('reward');
     } else if (currentLevel === 3 && player === player1) {

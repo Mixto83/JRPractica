@@ -258,7 +258,7 @@ pressedSkip = function (scene) {
 	}
 	
 	//Crea la caja de comentario
-	if (!cajaCreada) {
+	if (!cajaCreada && !caja2Creada) {
 		cajaCreada = true;
 		skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
 		skipMessage.setGravityY(-1200);

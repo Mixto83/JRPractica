@@ -83,6 +83,7 @@ skipScene = function (scene, destination) {
     imReady = false;
     isOpReady = false;
     cajaCreada = false;
+    caja2Creada = false;
     //wsSkip.close();
     nextScene(scene, destination);
 }
