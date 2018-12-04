@@ -27,7 +27,7 @@ level3Scene.create = function () {
         currentLevel = 3;
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
         if (level3Scene,player1.win) {
-            chooseReward(player1);
+            chooseReward(level3Scene,player1);
         } else {
             chooseReward(level3Scene,player2);
         }

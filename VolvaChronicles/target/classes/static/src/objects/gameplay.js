@@ -107,7 +107,6 @@ addPlayer = function (scene, player, type) {
     player.estado = 0;
     //atributos referentes a los powerups
     //if (currentLevel === 1) {
-        player.reward = '';
         player.tir = false;
     //}
     player.ratatosk = 0;

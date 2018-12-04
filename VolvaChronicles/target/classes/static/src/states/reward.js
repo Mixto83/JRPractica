@@ -2,11 +2,37 @@ var rewardScene = new Phaser.Scene('reward');
 
 rewardScene.active = true;
 
+var wsReward;
+
 rewardScene.preload = function () {
 
 }
 
 rewardScene.create = function () {
+    if (isOnline) {
+        wsReward = new WebSocket(ipConfig);
+
+        //En caso de error
+        wsReward.onerror = function (e) {
+            console.log("WS error: " + e);
+        }
+
+        //Gestion de informacion recibida
+        wsReward.onmessage = function (msg) {
+            console.log("ONMSG funciona");
+            if (idJugador === 0 && player2.win) {
+                console.log("Ha ganado Nidhogg");
+                rewardRune = JSON.parse(msg.data).reward;
+                createRewardText(rewardScene, 'Nidhogg');
+            } else if (idJugador === 1 && player1.win) {
+                console.log("Ha ganado el Aguila");
+                rewardRune = JSON.parse(msg.data).reward;
+                createRewardText(rewardScene, 'El Águila');
+            }
+        }
+    }
+
+
     //crea y reproduce la música de la escena
     createMusic(rewardScene, 'reward');
 
@@ -68,7 +94,7 @@ rewardScene.update = function () {
                 "ratatosk": -1,
                 "tir": false,
                 "heimdall": false,
-                "reward": ""
+                "reward": rewardRune
             };
             if (wsSkip.readyState === wsSkip.OPEN) {
                 wsSkip.send(JSON.stringify(jsonSync));
@@ -93,4 +119,6 @@ rewardScene.update = function () {
         //wsSkip.close();
         nextLevel(rewardScene);
     }
+
+    console.log("La recompensa es:" + rewardRune);
 }

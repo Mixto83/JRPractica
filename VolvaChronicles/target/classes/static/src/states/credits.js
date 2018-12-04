@@ -7,11 +7,6 @@ creditsScene.active = true;
 creditsScene.preload = function () { }
 
 creditsScene.create = function () {
-    //Si es online, reinicia la variable que salta las escenas
-    if (isOnline) {
-        pressedSkip(false, idJugador, creditsScene);
-        skip = false;
-    }
     //Se crea el objeto que guarda el sprite de la imagen de creditos finales
     creditsImg = this.add.sprite(960, 540, 'creditosFinales');
     //Se establece la animacion a realizar

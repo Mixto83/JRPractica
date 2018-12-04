@@ -110,7 +110,13 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 				responseNode.put("isReady", isReady);
 				session.sendMessage(new TextMessage(responseNode.toString()));
 				break;
-
+			
+			case "getReward":
+				String rew = list.getOpponent(idOpponent).getReward();
+				System.out.println("Me han pedido el reward y es " + rew);
+				responseNode.put("reward", rew);
+				session.sendMessage(new TextMessage(responseNode.toString()));
+				break;
 			default:
 				System.out.println("Método incorrecto");
 				break;

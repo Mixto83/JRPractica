@@ -4,7 +4,6 @@ level1Scene.active = true;
 
 var wsLevel;
 var jsonLevel;
-
 level1Scene.preload = function () {
 
 }

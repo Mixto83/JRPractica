@@ -3,7 +3,7 @@ var idJugadorEnServer = -1;
 var idOponente = -1;
 var numPlayersInServer = -1;
 var ipConfig = 'ws://127.0.0.1:8080/vc';
-
+var rewardRune = "";
 
 //Pide al servidor el numero de jugadores
 getNumberOfPlayers = function (scene){
@@ -151,7 +151,6 @@ updatePlayerFromServer = function (player, info) {
 		player.ratatosk = info.ratatosk;
 		player.tir = info.tir;
 		player.heimdall = info.heimdall;
-		player.reward = info.reward;
 	}
 }
 
@@ -187,7 +186,7 @@ modifyPlayerInfo = function (player) {
 		"ratatosk": player.ratatosk,
 		"tir": player.tir,
 		"heimdall": player.heimdall,
-		"reward": player.reward
+		"reward": rewardRune
 	};
 }
 
@@ -217,8 +216,8 @@ getRewardFromServer = function (id, scene) {
 
 //Recoge la informacion de la recompensa
 updateRewardFromServer = function (player, info) {
-	player.estado = 0;
-	player.reward = info.reward;
+	//player.estado = 0;
+	rewardRune = info.reward;
 }
 
 //Borrado de la lista de jugadores
@@ -226,7 +225,59 @@ deletePlayerList = function () {}
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip
-pressedSkip = function (boolSkip, idP, scene) {}
+pressedSkip = function (scene) {
+	metodo = "updatePlayer";
+	imReady = true;
+	jsonSync = {
+		"metodo": metodo,
+		"id": idJugadorEnServer,
+		"idOpponent": idOponente,
+		"sync": imReady,
+		"estado": 0,
+		"downPulsada": false,
+		"downToque": false,
+		"upPulsada": false,
+		"upToque": false,
+		"leftPulsada": false,
+		"rightPulsada": false,
+		"dashPulsada": false,
+		"velocidadX": 0.0,
+		"velocidadY": 0.0,
+		"posX": 0.0,
+		"posY": 0.0,
+		"contStamine": 0,
+		"contSalto": 0,
+		"throwRight": false,
+		"throwLeft": false,
+		"facingRight": true,
+		"dashId": -1,
+		"dashBool": false,
+		"ratatosk": -1,
+		"tir": false,
+		"heimdall": false,
+		"reward": rewardRune
+	};
+	if (wsSkip.readyState === wsSkip.OPEN) {
+		wsSkip.send(JSON.stringify(jsonSync));
+	}
+	
+	//Crea la caja de comentario
+	if (!cajaCreada) {
+		cajaCreada = true;
+		skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
+		skipMessage.setGravityY(-1200);
+	}
+}
 
-//Comprueba si ambos jugadores han pulsado skip
-getPressedFromOpponent = function () {}
+//Comprueba si el oponente ha pulsado skip
+getPressedFromOpponent = function () {
+	metodo = "isSyncOpponent";
+	jsonSkip = {
+		"metodo": metodo,
+		"id": idJugadorEnServer,
+		"idOpponent": idOponente,
+	}
+	if (wsSkip.readyState === wsSkip.OPEN) {
+		wsSkip.send(JSON.stringify(jsonSkip));
+	}
+}

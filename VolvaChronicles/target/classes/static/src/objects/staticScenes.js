@@ -96,7 +96,7 @@ function createWaitingText(scene, type) {
 }
 
 // Crea el texto de enhorabuena del ganador, una imagen que representa su recompensa e instrucciones para pasar al siguiente nivel
-function createRewardText(scene, type, player) {
+function createRewardText(scene, type) {
 	var style1 = {
 		font: "50px Fantasy",
 		fill: "#000"
@@ -108,8 +108,8 @@ function createRewardText(scene, type, player) {
 	var text = scene.add.text(700, 400, '', style1);
 	var text2 = scene.add.text(800, 800, 'Pulse Z para continuar', style2);
 	text.setText(['Ganador: ¡' + type + '!',
-	'' + type + ' consigue: ' + player.reward, 'Tiempo: ' + levelTime,]);
-	obtainedRune = rewardScene.add.image(960, 700, player.reward);
+	'' + type + ' consigue: ' + rewardRune, 'Tiempo: ' + levelTime,]);
+	obtainedRune = rewardScene.add.image(960, 700, rewardRune);
 }
 
 // Input para saltar la pantalla de Reward (Z)
