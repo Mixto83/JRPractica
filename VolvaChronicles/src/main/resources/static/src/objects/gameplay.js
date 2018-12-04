@@ -412,15 +412,14 @@ endLevel = function (scene, player) {
     music.stop();
     player.win = true;
 
-    if (currentLevel === 1) {
+    /*if (currentLevel === 1) {
         scene.scene.start('level2');
     } else if (currentLevel === 2) {
         scene.scene.start('level3');
-    }
-    /*
+    }*/
     if (currentLevel === 1 || currentLevel === 2) {
         scene.scene.start('reward');
-    }*/ else if (currentLevel === 3 && player === player1) {
+    } else if (currentLevel === 3 && player === player1) {
         scene.scene.start('ending1');
     } else if (currentLevel === 3 && player === player2) {
         scene.scene.start('ending2');
@@ -790,6 +789,7 @@ updateMovement = function (player) {
                 } else if (idJugador === 1) {
                     modifyPlayerInfo(player2);
                     wsGameplay.send(JSON.stringify(infoCambiada));
+                    console.log("jugador2 va");
                 }
             }
         }

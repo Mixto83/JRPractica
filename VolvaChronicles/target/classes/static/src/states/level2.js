@@ -19,6 +19,7 @@ level2Scene.create = function () {
         wsLevel.onmessage = function (msg) {
             if (idJugador === 0) {//Si eres el aguila
                 updatePlayerFromServer(player2, JSON.parse(msg.data));
+                console.log("dragon actualizado");
             } else if (idJugador === 1) {//Si eres el dragon
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
@@ -26,11 +27,11 @@ level2Scene.create = function () {
     }
         currentLevel = 2;
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
-        /*if (player1.win) {
-            chooseReward(player1);
+        if (player1.win) {
+            chooseReward(level2Scene, player1);
         } else {
-            chooseReward(player2);
-        }*/
+            chooseReward(level2Scene, player2);
+        }
         //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
         createLevel(level2Scene, 2);
         //Carga las metas 

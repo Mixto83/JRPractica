@@ -26,11 +26,11 @@ level3Scene.create = function () {
     }
         currentLevel = 3;
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
-        /*if (player1.win) {
+        if (level3Scene,player1.win) {
             chooseReward(player1);
         } else {
-            chooseReward(player2);
-        }*/
+            chooseReward(level3Scene,player2);
+        }
         //Carga todas las imagenes de fondo, el tileset y la música del nivel 3
         createLevel(level3Scene, 3);
         //Carga las metas 

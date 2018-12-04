@@ -62,6 +62,7 @@ introScene.update = function () {
     }
     //Si se pulsa una tecla
     if (anyKeyPressed) {
+        anyKeyPressed = false;
         //Si estamos jugando online
         if (isOnline) {
             metodo = "updatePlayer";
@@ -98,7 +99,6 @@ introScene.update = function () {
             if (wsSkip.readyState === wsSkip.OPEN) {
                 wsSkip.send(JSON.stringify(jsonSync));
             }
-            anyKeyPressed = false;
             
             //Crea la caja de comentario
             if (!cajaCreada) {
@@ -156,7 +156,8 @@ introScene.update = function () {
     if (isOnline && isOpReady && imReady) {
         //Ambas a false y salta de escena
         imReady = false;
-        isOpReady = false;   
+        isOpReady = false;
+        cajaCreada = false;
         //wsSkip.close();
         nextScene(introScene, 'level1');
     }

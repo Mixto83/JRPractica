@@ -35,6 +35,7 @@ ending2Scene.update = function (){
     }
     //Si se pulsa una tecla
     if (keyZ.isDown) {
+        keyZ.isDown = false;
         //Si estamos jugando online
         if (isOnline) {
             metodo = "updatePlayer";
@@ -71,12 +72,11 @@ ending2Scene.update = function (){
             if (wsSkip.readyState === wsSkip.OPEN) {
                 wsSkip.send(JSON.stringify(jsonSync));
             }
-            keyZ.isDown = false;
             
             //Crea la caja de comentario
             if (!cajaCreada) {
                 cajaCreada = true;
-                var skipMessage = ending2Scene.physics.add.image(960, 60, 'skipCutscene1');
+                skipMessage = ending2Scene.physics.add.image(960, 60, 'skipCutscene1');
                 skipMessage.setGravityY(-1200);
             }
         } else {//Si no jugamos Online
@@ -130,6 +130,7 @@ ending2Scene.update = function (){
         //Ambas a false y salta de escena
         imReady = false;
         isOpReady = false;
+        cajaCreada = false;
         //wsSkip.close();
         nextScene(ending2Scene, 'credits');
     }
