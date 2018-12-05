@@ -7,8 +7,9 @@ level3Scene.preload = function () {
 }
 
 level3Scene.create = function () {
+    currentLevel = 3;
     if (isOnline) {
-        wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+        wsLevel = new WebSocket(ipConfig);
 
         //En caso de error
         wsLevel.onerror = function (e) {
@@ -23,13 +24,13 @@ level3Scene.create = function () {
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
         }
-
-        currentLevel = 3;
+    }
+        
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
-        if (player1.win) {
-            chooseReward(player1);
+        if (level3Scene,player1.win) {
+            chooseReward(level3Scene,player1);
         } else {
-            chooseReward(player2);
+            chooseReward(level3Scene,player2);
         }
         //Carga todas las imagenes de fondo, el tileset y la música del nivel 3
         createLevel(level3Scene, 3);
@@ -48,7 +49,6 @@ level3Scene.create = function () {
         createEnemy(level3Scene, 3);
         //crea cronómetro que medirá el tiempo que tardan en completar el nivel
         createTimer(level3Scene);
-    }
 }
 
 level3Scene.update = function () {

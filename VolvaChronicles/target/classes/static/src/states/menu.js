@@ -9,6 +9,7 @@ menuScene.preload = function () {
 }
 
 menuScene.create = function () {
+    isOnline = false;
     //Muestra el fondo
     createStaticBackground(menuScene, 'Menu');
     //Muestra los logos del juego y el estudio

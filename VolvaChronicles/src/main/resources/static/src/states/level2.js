@@ -7,8 +7,9 @@ level2Scene.preload = function () {
 }
 
 level2Scene.create = function () {
+    currentLevel = 2;
     if (isOnline) {
-        wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+        wsLevel = new WebSocket(ipConfig);
 
         //En caso de error
         wsLevel.onerror = function (e) {
@@ -23,13 +24,13 @@ level2Scene.create = function () {
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
         }
-
-        currentLevel = 2;
+    }
+       
         //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
         if (player1.win) {
-            chooseReward(player1);
+            chooseReward(level2Scene, player1);
         } else {
-            chooseReward(player2);
+            chooseReward(level2Scene, player2);
         }
         //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
         createLevel(level2Scene, 2);
@@ -48,7 +49,6 @@ level2Scene.create = function () {
         createEnemy(level2Scene, 2);
         //crea cronómetro que medirá el tiempo que tardan en completar el nivel
         createTimer(level2Scene);
-    }
 }
 
 level2Scene.update = function () {

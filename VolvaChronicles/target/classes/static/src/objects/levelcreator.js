@@ -3,11 +3,6 @@ var layer;
 
 //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
 createLevel = function (scene, nLevel) {
-    //Si es online, reinicia la variable que salta las escenas
-    if (isOnline) {
-        //pressedSkip(false, idJugador, scene);
-        skip = false;
-    }
 
     levelEnded = false;
     //Carga los fondos

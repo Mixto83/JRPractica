@@ -78,4 +78,14 @@ stopCinematics = function () {
     }
 }
 
+skipScene = function (scene, destination) {
+    //Ambas a false y salta de escena
+    imReady = false;
+    isOpReady = false;
+    cajaCreada = false;
+    caja2Creada = false;
+    //wsSkip.close();
+    nextScene(scene, destination);
+}
+
 

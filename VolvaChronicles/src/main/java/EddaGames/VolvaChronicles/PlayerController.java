@@ -56,7 +56,7 @@ public class PlayerController {
                 return players.get(i);
             }
         } 
-        System.out.println("Id no encontrado (getOpponent)");
+        System.out.println("Id del oponenete no encontrado (getOpponent)");
         return null;
     }
 
@@ -68,7 +68,6 @@ public class PlayerController {
 				players.set(i,a);
 			}
 		} 
-		System.out.println("Id no encontrado (updatePlayer)");
 	}
 	
 	//elimina a todos los jugadores de la lista
@@ -82,7 +81,7 @@ public class PlayerController {
 				return i;
 			}
 		}
-		System.out.println("Id no encontrado (getIndice)");
+		System.out.println("Indice no encontrado (getIndice)");
 		return -1;
 	}
 }

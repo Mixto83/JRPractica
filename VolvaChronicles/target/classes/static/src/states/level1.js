@@ -4,14 +4,14 @@ level1Scene.active = true;
 
 var wsLevel;
 var jsonLevel;
-
 level1Scene.preload = function () {
 
 }
 
 level1Scene.create = function () {
+    currentLevel = 1;
     if (isOnline) {
-        wsLevel = new WebSocket('ws://127.0.0.1:8080/vc');
+        wsLevel = new WebSocket(ipConfig);
 
         //En caso de error
         wsLevel.onerror = function (e) {
@@ -26,8 +26,9 @@ level1Scene.create = function () {
                 updatePlayerFromServer(player1, JSON.parse(msg.data));
             }
         }
+        
     }
-    currentLevel = 1;
+    
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
     createLevel(level1Scene, 1);
     //Carga las metas 
@@ -41,7 +42,13 @@ level1Scene.create = function () {
     //crea y coloca todos los powerups del nivel 1 en su sitio y les añade las colisiones
     createPowerups(level1Scene, 1);
     //Guarda los inputs de control de los jugadores en atributos
-    createInputs(level1Scene);
+    if(!isOnline){
+        createInputs(level1Scene, player1, player2);
+    } else if (idJugador === 0){
+        createInputs(level1Scene, player1, player2);
+    }else if(idJugador ===1){
+        createInputs(level1Scene, player2, player1);
+    }
     //inicia las cámaras y las asocia a cada jugador
     createCameras(level1Scene);
     //crea las animaciones de los 2 tipos de enemigos

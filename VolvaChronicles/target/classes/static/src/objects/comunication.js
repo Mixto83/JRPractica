@@ -2,14 +2,14 @@ var metodo = "";
 var idJugadorEnServer = -1;
 var idOponente = -1;
 var numPlayersInServer = -1;
-
+var ipConfig = 'ws://127.0.0.1:8080/vc';
+var rewardRune = "";
 
 //Pide al servidor el numero de jugadores
 getNumberOfPlayers = function (scene){
-	console.log("Busqueda de numero de jugadores llamada");
 	
 	$(document).ready(function(){
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		
 		//Envio de informacion
 		connection.onopen = function(){
@@ -29,7 +29,7 @@ getNumberOfPlayers = function (scene){
 		connection.onmessage = function(msg){
 			var mes = JSON.parse(msg.data);
 			numPlayersInServer = mes.size;
-			console.log("Numero de jugadores: " + numPlayersInServer);
+			//console.log("Numero de jugadores: " + numPlayersInServer);
 			if(scene === menuScene){
 				if (numPlayersInServer % 2 === 0){
 					createPlayerInServer();//Jugador Par
@@ -52,11 +52,10 @@ getNumberOfPlayers = function (scene){
 
 //Mete al jugador al servidor
 createPlayerInServer = function () {
-	console.log("Insercion de jugador llamada");
-	
+
 	$(document).ready(function(){
 		//Envio de informacion
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		connection.onopen = function(){
 			metodo = "addPlayer";
 			var object = { "metodo" : metodo,
@@ -73,9 +72,8 @@ createPlayerInServer = function () {
 		//Gestion de informacion recibida
 		connection.onmessage = function(msg){
 			var mes2 = JSON.parse(msg.data);
-			console.log("Todo el JSON: " + msg.data);
 			idJugadorEnServer = mes2.id;
-			console.log("Jugador Creado, Id: " + idJugadorEnServer);			
+			//console.log("Jugador Creado, Id: " + idJugadorEnServer);			
 		}
 	})
 }
@@ -83,7 +81,7 @@ createPlayerInServer = function () {
 //Emparejamiento
 matchOpponent = function(){
 	$(document).ready(function(){
-		var connection = new WebSocket('ws://127.0.0.1:8080/vc');
+		var connection = new WebSocket(ipConfig);
 		//Envio de informacion
 		connection.onopen = function(){
 			metodo = "getIdFromOpponent";
@@ -102,8 +100,7 @@ matchOpponent = function(){
 			var mes = JSON.parse(msg.data);
 			idOponente = mes.idOpponent;
 			if (idOponente !== -1){
-				//console.log("Todo el JSON: " + msg.data);
-				console.log("Tu oponente es: " + idOponente);
+				//console.log("Tu oponente es: " + idOponente);
 			}
 						
 		}
@@ -135,7 +132,7 @@ updatePlayerFromServer = function (player, info) {
 		player.upToque = info.upToque;
 		player.leftPulsada = info.leftPulsada;
 		player.rightPulsada = info.rightPulsada;
-		player.dashPulsada = info.dashPulsada
+		player.dashPulsada = info.dashPulsada;
 		player.body.velocity.x = info.velocidadX;
 		player.body.velocity.y = info.velocidadY;
 		player.x = info.posX;
@@ -150,7 +147,6 @@ updatePlayerFromServer = function (player, info) {
 		player.ratatosk = info.ratatosk;
 		player.tir = info.tir;
 		player.heimdall = info.heimdall;
-		player.reward = info.reward;
 	}
 }
 
@@ -186,50 +182,16 @@ modifyPlayerInfo = function (player) {
 		"ratatosk": player.ratatosk,
 		"tir": player.tir,
 		"heimdall": player.heimdall,
-		"reward": player.reward
+		"reward": rewardRune
 	};
 }
 
 //Sube la informacion de la recompensa y resetea el resto
-uploadReward = function (player, id) {
-	playerInfo = {
-		"estado": 0,
-		"downPulsada": false,
-		"downToque": false,
-		"upPulsada": false,
-		"upToque": false,
-		"leftPulsada": false,
-		"rightPulsada": false,
-		"dashPulsada": false,
-		"velocidadX": 0,
-		"velocidadY": 0,
-		"posX": 0,
-		"posY": 0,
-		"contStamine": 100,
-		"contSalto": 0,
-		"throwRight": false,
-		"throwLeft": false,
-		"facingRight": true,
-		"dashId": 0,
-		"dashBool": false,
-		"ratatosk": 0,
-		"tir": false,
-		"heimdall": false,
-		"reward": player.reward
-	};
-	$.ajax({
-		method: 'PUT',
-		url: 'http://localhost:8080/players/' + id,
-		data: JSON.stringify(playerInfo),
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function () { })
-}
+uploadReward = function (player, id) {}
+
 //Recoge la informacion de la recompensa
 getRewardFromServer = function (id, scene) {
-	$.ajax({
+	/*$.ajax({
 		method: "GET",
 		url: 'http://localhost:8080/players/' + id,
 		processData: false,
@@ -245,55 +207,73 @@ getRewardFromServer = function (id, scene) {
 			updateRewardFromServer(player2, playerInfo);
 			createRewardText(scene, 'Nidhogg', player2);
 		}
-	})
+	})*/
 }
 
 //Recoge la informacion de la recompensa
 updateRewardFromServer = function (player, info) {
-	player.estado = 0;
-	player.reward = info.reward;
+	//player.estado = 0;
+	rewardRune = info.reward;
 }
 
 //Borrado de la lista de jugadores
-deletePlayerList = function () {
-	$.ajax({
-		method: 'DELETE',
-		url: 'http://localhost:8080/players'
-	}).done(function (player) { })
-}
+deletePlayerList = function () {}
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip
-pressedSkip = function (boolSkip, idP, scene) {
-	$.ajax({
-		method: 'PUT',
-		url: 'http://localhost:8080/syncro/' + idP,
-		data: JSON.stringify(boolSkip),
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function () {
-		//Manda un mensaje de espera
-		if (boolSkip) {
-			var skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
-			skipMessage.setGravityY(-1200);
-		}
-	})
+pressedSkip = function (scene) {
+	metodo = "updatePlayer";
+	imReady = true;
+	jsonSync = {
+		"metodo": metodo,
+		"id": idJugadorEnServer,
+		"idOpponent": idOponente,
+		"sync": imReady,
+		"estado": 0,
+		"downPulsada": false,
+		"downToque": false,
+		"upPulsada": false,
+		"upToque": false,
+		"leftPulsada": false,
+		"rightPulsada": false,
+		"dashPulsada": false,
+		"velocidadX": 0.0,
+		"velocidadY": 0.0,
+		"posX": 0.0,
+		"posY": 0.0,
+		"contStamine": 0,
+		"contSalto": 0,
+		"throwRight": false,
+		"throwLeft": false,
+		"facingRight": true,
+		"dashId": -1,
+		"dashBool": false,
+		"ratatosk": -1,
+		"tir": false,
+		"heimdall": false,
+		"reward": rewardRune
+	};
+	if (wsSkip.readyState === wsSkip.OPEN) {
+		wsSkip.send(JSON.stringify(jsonSync));
+	}
+	
+	//Crea la caja de comentario
+	if (!cajaCreada && !caja2Creada) {
+		cajaCreada = true;
+		skipMessage = scene.physics.add.image(960, 60, 'skipCutscene1');
+		skipMessage.setGravityY(-1200);
+	}
 }
 
-//Comprueba si ambos jugadores han pulsado skip
+//Comprueba si el oponente ha pulsado skip
 getPressedFromOpponent = function () {
-	$.ajax({
-		method: "GET",
-		url: 'http://localhost:8080/syncro/',
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function (isSynced) {
-		//Recoge la informacion
-		skip = isSynced;
-	})
-
+	metodo = "isSyncOpponent";
+	jsonSkip = {
+		"metodo": metodo,
+		"id": idJugadorEnServer,
+		"idOpponent": idOponente,
+	}
+	if (wsSkip.readyState === wsSkip.OPEN) {
+		wsSkip.send(JSON.stringify(jsonSkip));
+	}
 }

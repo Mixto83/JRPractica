@@ -65,15 +65,16 @@ function createMenuButtons(scene) {
 
 	// Boton "Online"
 	botonOnline = scene.add.sprite(960, 800, 'botonOnline').setInteractive();
-
 	botonOnline.on('pointerdown', function (pointer) {
-		music.stop();
-		scene.sound.play('menuConfirm');
-		scene.time.delayedCall(2000, function () {
-			//Llama al servidor para comprobar el numero de jugadores y crearlos
+		if (!isOnline) {
 			isOnline = true;
-			getNumberOfPlayers(scene);
-		}, [], scene);
+			music.stop();
+			scene.sound.play('menuConfirm');
+			scene.time.delayedCall(2000, function () {
+				//Llama al servidor para comprobar el numero de jugadores y crearlos
+				getNumberOfPlayers(scene);
+			}, [], scene);
+		}
 	});
 
 }
@@ -96,7 +97,7 @@ function createWaitingText(scene, type) {
 }
 
 // Crea el texto de enhorabuena del ganador, una imagen que representa su recompensa e instrucciones para pasar al siguiente nivel
-function createRewardText(scene, type, player) {
+function createRewardText(scene, type) {
 	var style1 = {
 		font: "50px Fantasy",
 		fill: "#000"
@@ -108,8 +109,8 @@ function createRewardText(scene, type, player) {
 	var text = scene.add.text(700, 400, '', style1);
 	var text2 = scene.add.text(800, 800, 'Pulse Z para continuar', style2);
 	text.setText(['Ganador: ¡' + type + '!',
-	'' + type + ' consigue: ' + player.reward, 'Tiempo: ' + levelTime,]);
-	obtainedRune = rewardScene.add.image(960, 700, player.reward);
+	'' + type + ' consigue: ' + rewardRune, 'Tiempo: ' + levelTime,]);
+	obtainedRune = rewardScene.add.image(960, 700, rewardRune);
 }
 
 // Input para saltar la pantalla de Reward (Z)

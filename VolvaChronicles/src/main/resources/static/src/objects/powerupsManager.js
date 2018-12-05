@@ -1,6 +1,7 @@
 var powerups;
 var heimdall = false;
 var randomNumber;
+var jsonReward;
 
 // crea y coloca todos los powerups del nivel 1 en su sitio y les añade las
 // colisiones
@@ -440,23 +441,66 @@ randomReward = function (scene) {
         if (!isOnline || (isOnline && idJugador === 0)) {
             randomNumber = Phaser.Math.Between(1, 5);
             if (randomNumber === 1) {
-                player1.reward = 'hemodr';
+                rewardRune = 'hemodr';
             } else if (randomNumber === 2) {
-                player1.reward = 'njord';
+                rewardRune = 'njord';
             } else if (randomNumber === 3) {
-                player1.reward = 'skadi';
+                rewardRune = 'skadi';
             } else if (randomNumber === 4) {
-                player1.reward = 'tir';
+                rewardRune = 'tir';
             } else {
-                player1.reward = 'bragi';
+                rewardRune = 'bragi';
             }
             createRewardText(scene, 'El Águila', player1);
             if (isOnline) {
                 //Sube la info de la recompensa que ha ganado el jugador 1
+                metodo = "updatePlayer";
+                jsonReward = {
+                    "metodo": metodo,
+                    "id": idJugadorEnServer,
+                    "idOpponent": idOponente,
+                    "sync": imReady,
+                    "estado": 0,
+                    "downPulsada": false,
+                    "downToque": false,
+                    "upPulsada": false,
+                    "upToque": false,
+                    "leftPulsada": false,
+                    "rightPulsada": false,
+                    "dashPulsada": false,
+                    "velocidadX": 0.0,
+                    "velocidadY": 0.0,
+                    "posX": 0.0,
+                    "posY": 0.0,
+                    "contStamine": 0,
+                    "contSalto": 0,
+                    "throwRight": false,
+                    "throwLeft": false,
+                    "facingRight": true,
+                    "dashId": -1,
+                    "dashBool": false,
+                    "ratatosk": -1,
+                    "tir": false,
+                    "heimdall": false,
+                    "reward": rewardRune
+                };
+                if (wsReward.readyState === wsReward.OPEN) {
+                    wsReward.send(JSON.stringify(jsonReward));
+                }
                 //uploadReward(player1, idJugador);
             }
         } else if (isOnline && idJugador === 1) {
-            //Sube la info reseteada del jugador 2
+            metodo = "getReward";
+            jsonReward = {
+                "metodo": metodo,
+                "id": idJugadorEnServer,
+                "idOpponent": idOponente,
+            }
+            if (wsReward.readyState === wsReward.OPEN) {
+                scene.time.delayedCall(100, function () {
+                    wsReward.send(JSON.stringify(jsonReward));
+                });
+            }
             //uploadReward(player2, idJugador);
             //Resetea la info del jugador 1
             //scene.time.delayedCall(100, function () {getRewardFromServer(0, scene);}, [], scene);
@@ -465,22 +509,66 @@ randomReward = function (scene) {
         if (!isOnline || (isOnline && idJugador === 1)) {
             randomNumber = Phaser.Math.Between(1, 5);
             if (randomNumber === 1) {
-                player2.reward = 'hemodr';
+                rewardRune = 'hemodr';
             } else if (randomNumber === 2) {
-                player2.reward = 'njord';
+                rewardRune = 'njord';
             } else if (randomNumber === 3) {
-                player2.reward = 'skadi';
+                rewardRune = 'skadi';
             } else if (randomNumber === 4) {
-                player2.reward = 'tir';
+                rewardRune = 'tir';
             } else {
-                player2.reward = 'bragi';
+                rewardRune = 'bragi';
             }
             createRewardText(scene, 'Nidhogg', player2);
             if (isOnline) {
                 //Sube la recompensa del jugador2
+                metodo = "updatePlayer";
+                jsonReward = {
+                    "metodo": metodo,
+                    "id": idJugadorEnServer,
+                    "idOpponent": idOponente,
+                    "sync": imReady,
+                    "estado": 0,
+                    "downPulsada": false,
+                    "downToque": false,
+                    "upPulsada": false,
+                    "upToque": false,
+                    "leftPulsada": false,
+                    "rightPulsada": false,
+                    "dashPulsada": false,
+                    "velocidadX": 0.0,
+                    "velocidadY": 0.0,
+                    "posX": 0.0,
+                    "posY": 0.0,
+                    "contStamine": 0,
+                    "contSalto": 0,
+                    "throwRight": false,
+                    "throwLeft": false,
+                    "facingRight": true,
+                    "dashId": -1,
+                    "dashBool": false,
+                    "ratatosk": -1,
+                    "tir": false,
+                    "heimdall": false,
+                    "reward": rewardRune
+                };
+                if (wsReward.readyState === wsReward.OPEN) {
+                    wsReward.send(JSON.stringify(jsonReward));
+                }
                 //uploadReward(player2, idJugador);
             }
         } else if (isOnline && idJugador === 0) {
+            metodo = "getReward";
+            jsonReward = {
+                "metodo": metodo,
+                "id": idJugadorEnServer,
+                "idOpponent": idOponente,
+            }
+            if (wsReward.readyState === wsReward.OPEN) {
+                scene.time.delayedCall(100, function () {
+                    wsReward.send(JSON.stringify(jsonReward));
+                });
+            }
             //uploadReward(player1, idJugador);
             //scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);
         }
@@ -488,16 +576,17 @@ randomReward = function (scene) {
 }
 
 // Escoge un powerup para el jugador en funcion del número aleatorio calculado en randomReward
-function chooseReward(player) {
-    if (player.reward === 'hemodr') {
-        player.hermodr = true;
-    } else if (player.reward === 'njord') {
-        player.njord = true;
-    } else if (player.reward === 'skadi') {
-        player.skadi = true;
-    } else if (player.reward === 'tir') {
+function chooseReward(scene, player) {
+    if (rewardRune === 'hemodr') {
+        eventHermodr(scene, player);
+    } else if (rewardRune === 'njord') {
+        eventNjord(scene, player);
+    } else if (rewardRune === 'skadi') {
+        eventSkadi(scene, adversary);
+    } else if (rewardRune === 'tir') {
         player.tir = true;
-    } else if (player.reward === 'bragi') {
-        player.bragi = true;
+    } else if (rewardRune === 'bragi') {
+        eventBragi(scene, player);
     }
+    rewardRune = "";
 }
