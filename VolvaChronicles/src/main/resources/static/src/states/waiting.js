@@ -28,7 +28,9 @@ waitingScene.update = function () {
 			"id": idJugadorEnServer,
 			"idOpponent": idOponente
 		}
-		connection.send(JSON.stringify(object));
+		if(wsMatch.readyState === wsMatch.OPEN) {
+			wsMatch.send(JSON.stringify(object));
+		}
 	} else if (idOponente !== -1) {
 		music.stop();
 		waitingScene.scene.start('intro');

@@ -4,112 +4,108 @@ var idOponente = -1;
 var numPlayersInServer = -1;
 var ipConfig = 'ws://127.0.0.1:8080/vc';
 var rewardRune = "";
+var wsMatch;
 
 //Pide al servidor el numero de jugadores
-getNumberOfPlayers = function (scene){
-	
-	$(document).ready(function(){
-		var connection = new WebSocket(ipConfig);
-		
-		//Envio de informacion
-		connection.onopen = function(){
-			metodo = "getNumPlayers";
-			var object = { "metodo" : metodo,
-							"id": idJugadorEnServer,
-							"idOpponent": idOponente}
-		    connection.send(JSON.stringify(object));
+getNumberOfPlayers = function (scene) {
+
+	var connection = new WebSocket(ipConfig);
+
+	//Envio de informacion
+	connection.onopen = function () {
+		metodo = "getNumPlayers";
+		var object = {
+			"metodo": metodo,
+			"id": idJugadorEnServer,
+			"idOpponent": idOponente
 		}
-		
-		//En caso de error
-		connection.onerror = function(e) {
-			  console.log("WS error: " + e);
-		}
-		
-		//Gestion de informacion recibida
-		connection.onmessage = function(msg){
-			var mes = JSON.parse(msg.data);
-			numPlayersInServer = mes.size;
-			//console.log("Numero de jugadores: " + numPlayersInServer);
-			if(scene === menuScene){
-				if (numPlayersInServer % 2 === 0){
-					createPlayerInServer();//Jugador Par
-					idJugador = 0; //Localmente, el cliente sabe que eres el J1.
-					scene.scene.start('waiting');
+		connection.send(JSON.stringify(object));
+	}
+
+	//En caso de error
+	connection.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	connection.onmessage = function (msg) {
+		var mes = JSON.parse(msg.data);
+		numPlayersInServer = mes.size;
+		//console.log("Numero de jugadores: " + numPlayersInServer);
+		if (scene === menuScene) {
+			if (numPlayersInServer % 2 === 0) {
+				createPlayerInServer();//Jugador Par
+				idJugador = 0; //Localmente, el cliente sabe que eres el J1.
+				scene.scene.start('waiting');
+				scene.scene.stop();
+			} else if (numPlayersInServer % 2 !== 0) {
+				createPlayerInServer();//Jugador Impar
+				matchOpponent();
+				idJugador = 1; //Localmente, el cliente sabe que eres el J2.
+				scene.time.delayedCall(2000, function () {
+					scene.scene.start('intro');
 					scene.scene.stop();
-				} else if (numPlayersInServer % 2 !== 0){
-					createPlayerInServer();//Jugador Impar
-					matchOpponent();
-					idJugador = 1; //Localmente, el cliente sabe que eres el J2.
-					scene.time.delayedCall(2000, function () {
-						scene.scene.start('intro');
-						scene.scene.stop();
-					})				
-				}
+				})
 			}
 		}
-	})
+	}
 }
 
 //Mete al jugador al servidor
 createPlayerInServer = function () {
+	//Envio de informacion
+	var connection = new WebSocket(ipConfig);
+	connection.onopen = function () {
+		metodo = "addPlayer";
+		var object = {
+			"metodo": metodo,
+			"id": idJugadorEnServer,
+			"idOpponent": idOponente
+		}
+		connection.send(JSON.stringify(object));
+	}
 
-	$(document).ready(function(){
-		//Envio de informacion
-		var connection = new WebSocket(ipConfig);
-		connection.onopen = function(){
-			metodo = "addPlayer";
-			var object = { "metodo" : metodo,
-							"id": idJugadorEnServer,
-							"idOpponent": idOponente}
-		    connection.send(JSON.stringify(object));
-		}
-		
-		//En caso de error
-		connection.onerror = function(e) {
-			  console.log("WS error: " + e);
-		}
-		
-		//Gestion de informacion recibida
-		connection.onmessage = function(msg){
-			var mes2 = JSON.parse(msg.data);
-			idJugadorEnServer = mes2.id;
-			//console.log("Jugador Creado, Id: " + idJugadorEnServer);			
-		}
-	})
+	//En caso de error
+	connection.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	connection.onmessage = function (msg) {
+		var mes2 = JSON.parse(msg.data);
+		idJugadorEnServer = mes2.id;
+		//console.log("Jugador Creado, Id: " + idJugadorEnServer);			
+	}
 }
 
 //Emparejamiento
-matchOpponent = function(){
-	$(document).ready(function(){
-		var connection = new WebSocket(ipConfig);
-		//Envio de informacion
-		connection.onopen = function(){
-			metodo = "getIdFromOpponent";
-			var object = { "metodo" : metodo,
-						"id": idJugadorEnServer,
-						"idOpponent": idOponente}
-			connection.send(JSON.stringify(object));
+matchOpponent = function () {
+	wsMatch = new WebSocket(ipConfig);
+	//Envio de informacion
+	wsMatch.onopen = function () {
+		metodo = "getIdFromOpponent";
+		var object = {
+			"metodo": metodo,
+			"id": idJugadorEnServer,
+			"idOpponent": idOponente
 		}
-		//En caso de error
-		connection.onerror = function(e) {
-			  console.log("WS error: " + e);
-		}
-		
-		//Gestion de informacion recibida
-		connection.onmessage = function(msg){
-			var mes = JSON.parse(msg.data);
-			idOponente = mes.idOpponent;
-			if (idOponente !== -1){
-				//console.log("Tu oponente es: " + idOponente);
-			}
-						
-		}
-	})
+		wsMatch.send(JSON.stringify(object));
+	}
+	//En caso de error
+	wsMatch.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	wsMatch.onmessage = function (msg) {
+		var mes = JSON.parse(msg.data);
+		idOponente = mes.idOpponent;
+	}
 }
 
 
 //Recogida de datos del servidor
-getPlayerInfo = function (ws,jsonUp) {
+getPlayerInfo = function (ws, jsonUp) {
 	metodo = "getOpponent";
 	jsonUp = {
 		"metodo": metodo,
@@ -187,7 +183,7 @@ modifyPlayerInfo = function (player) {
 }
 
 //Sube la informacion de la recompensa y resetea el resto
-uploadReward = function (player, id) {}
+uploadReward = function (player, id) { }
 
 //Recoge la informacion de la recompensa
 getRewardFromServer = function (id, scene) {
@@ -217,7 +213,7 @@ updateRewardFromServer = function (player, info) {
 }
 
 //Borrado de la lista de jugadores
-deletePlayerList = function () {}
+deletePlayerList = function () { }
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip
@@ -256,7 +252,7 @@ pressedSkip = function (scene) {
 	if (wsSkip.readyState === wsSkip.OPEN) {
 		wsSkip.send(JSON.stringify(jsonSync));
 	}
-	
+
 	//Crea la caja de comentario
 	if (!cajaCreada && !caja2Creada) {
 		cajaCreada = true;
