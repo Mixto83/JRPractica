@@ -334,7 +334,7 @@ createAnimationPlayer = function (key, scene) {
         frames: scene.anims.generateFrameNames(key, {
             prefix: key + ' instancia 1',
             start: 292,
-            end: 468,
+            end: 401,
             zeroPad: 4
         }),
         frameRate: 24,
