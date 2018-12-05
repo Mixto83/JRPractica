@@ -8,7 +8,6 @@ var rewardRune = "";
 //Pide al servidor el numero de jugadores
 getNumberOfPlayers = function (scene){
 	
-	$(document).ready(function(){
 		var connection = new WebSocket(ipConfig);
 		
 		//Envio de informacion
@@ -47,7 +46,6 @@ getNumberOfPlayers = function (scene){
 				}
 			}
 		}
-	})
 }
 
 //Mete al jugador al servidor
@@ -80,7 +78,6 @@ createPlayerInServer = function () {
 
 //Emparejamiento
 matchOpponent = function(){
-	$(document).ready(function(){
 		var connection = new WebSocket(ipConfig);
 		//Envio de informacion
 		connection.onopen = function(){
@@ -98,13 +95,8 @@ matchOpponent = function(){
 		//Gestion de informacion recibida
 		connection.onmessage = function(msg){
 			var mes = JSON.parse(msg.data);
-			idOponente = mes.idOpponent;
-			if (idOponente !== -1){
-				//console.log("Tu oponente es: " + idOponente);
-			}
-						
+			idOponente = mes.idOpponent;						
 		}
-	})
 }
 
 

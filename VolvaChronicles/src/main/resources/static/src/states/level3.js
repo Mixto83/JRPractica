@@ -42,7 +42,13 @@ level3Scene.create = function () {
         //crea y coloca todos los powerups del nivel 3 en su sitio y les añade las colisiones
         createPowerups(level3Scene, 3);
         //Guarda los inputs de control de los jugadores en atributos
-        createInputs(level3Scene);
+        if(!isOnline){
+            createInputs(level3Scene, player1, player2);
+        } else if (idJugador === 0){
+            createInputs(level3Scene, player1, player2);
+        }else if(idJugador ===1){
+            createInputs(level3Scene, player2, player1);
+        }
         //inicia las cámaras y las asocia a cada jugador
         createCameras(level3Scene);
         //crea los enemigos y lanzas del nivel 3, los coloca en su sitio y les añade colisiones
