@@ -10,203 +10,384 @@ function createPowerups(scene, nLevel) {
 
     // Powerups del nivel 1
     if (nLevel === 1) {
+
         // Powerups del jugador 1
-        var pCiervo = scene.physics.add.sprite(-1968, 2208, 'ciervo');
+
+        var pCiervo = scene.physics.add.sprite(-2050, 2208, 'ciervo');
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
+
         var pHeimdall = scene.physics.add.sprite(-1200, 2500, 'heimdall');
         pHeimdall.id = 1;
         powerups.add(pHeimdall, true);
-        var pBragi = scene.physics.add.sprite(-3120, 10752, 'bragi');
+
+        var pBragi = scene.physics.add.sprite(-3120, 10751, 'bragi');
         pBragi.id = 2;
         powerups.add(pBragi, true);
+
         var pNjord = scene.physics.add.sprite(-768, 8256, 'njord');
         pNjord.id = 3;
         powerups.add(pNjord, true);
+
         var pSkadi = scene.physics.add.sprite(-3168, 5760, 'skadi');
         pSkadi.id = 4;
         powerups.add(pSkadi, true);
+
         var pSkadi2 = scene.physics.add.sprite(-2592, 1152, 'skadi');
         pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
 
+        var pHemodr = scene.physics.add.sprite(-419, 16223, 'hemodr');
+        pHemodr.id = 5;
+        powerups.add(pHemodr, true);
+
+        var pNjord2 = scene.physics.add.sprite(-1204, 13823, 'njord');
+        pNjord2.id = 3;
+        powerups.add(pNjord2, true);
+
+        var pBragi2 = scene.physics.add.sprite(-2326, 4127, 'bragi');
+        pBragi2.id = 2;
+        powerups.add(pBragi2, true);
+
         // Powerups del jugador 2
 
-        var Ciervop = scene.physics.add.sprite(1584, 2208, 'ciervo');
+        var Ciervop = scene.physics.add.sprite(1502, 2208, 'ciervo');
         Ciervop.id = 0;
         powerups.add(Ciervop, true);
+
         var Heimdallp = scene.physics.add.sprite(2352, 2500, 'heimdall');
         Heimdallp.id = 1;
         powerups.add(Heimdallp, true);
-        var Bragip = scene.physics.add.sprite(432, 10752, 'bragi');
+
+        var Bragip = scene.physics.add.sprite(432, 10751, 'bragi');
         Bragip.id = 2;
         powerups.add(Bragip, true);
+
         var Njordp = scene.physics.add.sprite(2784, 8256, 'njord');
         Njordp.id = 3;
         powerups.add(Njordp, true);
+
         var Skadip = scene.physics.add.sprite(384, 5760, 'skadi');
         Skadip.id = 4;
         powerups.add(Skadip, true);
+
         var Skadi2p = scene.physics.add.sprite(960, 1152, 'skadi');
         Skadi2p.id = 4;
         powerups.add(Skadi2p, true);
+
+        var Hemodrp = scene.physics.add.sprite(3133, 16223, 'hemodr');
+        Hemodrp.id = 5;
+        powerups.add(Hemodrp, true);
+
+        var Njord2p = scene.physics.add.sprite(2348, 13823, 'njord');
+        Njord2p.id = 3;
+        powerups.add(Njord2p, true);
+
+        var Bragi2p = scene.physics.add.sprite(1226, 4127, 'bragi');
+        Bragi2p.id = 2;
+        powerups.add(Bragi2p, true);
+
     }// Nivel 2
     else if (nLevel === 2) {
+
         // Powerups del jugador 1
-        var pHemodr = scene.physics.add.sprite(-1669, 16627, 'hemodr');
+
+        var pHemodr = scene.physics.add.sprite(-1669, 16607, 'hemodr');
         pHemodr.id = 5;
         powerups.add(pHemodr, true);
-        var pSkadi = scene.physics.add.sprite(-2880, 16032, 'skadi');
+
+        var pSkadi = scene.physics.add.sprite(-2880, 16022, 'skadi');
         pSkadi.id = 4;
         powerups.add(pSkadi, true);
-        var pNjord = scene.physics.add.sprite(-768, 14400, 'njord');
+
+        var pNjord = scene.physics.add.sprite(-768, 14390, 'njord');
         pNjord.id = 3;
         powerups.add(pNjord, true);
-        var pBragi = scene.physics.add.sprite(-3072, 12864, 'bragi');
+
+        var pBragi = scene.physics.add.sprite(-3072, 12854, 'bragi');
         pBragi.id = 2;
         powerups.add(pBragi, true);
-        var pRatatosk = scene.physics.add.sprite(-1809, 10867, 'ratatosk');
+
+        var pRatatosk = scene.physics.add.sprite(-1809, 10857, 'ratatosk');
         pRatatosk.id = 6;
         powerups.add(pRatatosk, true);
-        var pHeimdall = scene.physics.add.sprite(-520, 6547, 'heimdall');
+
+        var pHeimdall = scene.physics.add.sprite(-520, 6537, 'heimdall');
         pHeimdall.id = 1;
         powerups.add(pHeimdall, true);
-        var pTir = scene.physics.add.sprite(-3072, 6163, 'tir');
+
+        var pTir = scene.physics.add.sprite(-3072, 6153, 'tir');
         pTir.id = 7;
         powerups.add(pTir, true);
-        var pTir2 = scene.physics.add.sprite(-1856, 2707, 'tir');
+
+        var pTir2 = scene.physics.add.sprite(-1856, 2697, 'tir');
         pTir2.id = 7;
         powerups.add(pTir2, true);
-        var pRatatosk2 = scene.physics.add.sprite(-1856, 2227, 'ratatosk');
+
+        var pRatatosk2 = scene.physics.add.sprite(-1856, 2217, 'ratatosk');
         pRatatosk2.id = 6;
         powerups.add(pRatatosk2, true);
+        
+        var pNjord2 = scene.physics.add.sprite(-3145, 19471, 'njord');
+        pNjord2.id = 3;
+        powerups.add(pNjord2, true);
+
+        var pTir3 = scene.physics.add.sprite(-1787, 11125, 'tir');
+        pTir3.id = 7;
+        powerups.add(pTir3, true);
+
+        var pBragi2 = scene.physics.add.sprite(-1089, 7381, 'bragi');
+        pBragi2.id = 2;
+        powerups.add(pBragi2, true);
+
+        var pNjord3 = scene.physics.add.sprite(-2983, 4021, 'njord');
+        pNjord3.id = 3;
+        powerups.add(pNjord3, true);
 
         // Powerups del jugador 2
 
-        var Hemodrp = scene.physics.add.sprite(1881, 16627, 'hemodr');
+        var Hemodrp = scene.physics.add.sprite(1881, 16607, 'hemodr');
         Hemodrp.id = 5;
         powerups.add(Hemodrp, true);
-        var Skadip = scene.physics.add.sprite(670, 16032, 'skadi');
+
+        var Skadip = scene.physics.add.sprite(670, 16022, 'skadi');
         Skadip.id = 4;
         powerups.add(Skadip, true);
-        var Njordp = scene.physics.add.sprite(2784, 14400, 'njord');
+
+        var Njordp = scene.physics.add.sprite(2784, 14390, 'njord');
         Njordp.id = 3;
         powerups.add(Njordp, true);
-        var Bragip = scene.physics.add.sprite(480, 12864, 'bragi');
+
+        var Bragip = scene.physics.add.sprite(480, 12854, 'bragi');
         Bragip.id = 2;
         powerups.add(Bragip, true);
-        var Ratatoskp = scene.physics.add.sprite(1728, 10867, 'ratatosk');
+
+        var Ratatoskp = scene.physics.add.sprite(1728, 10857, 'ratatosk');
         Ratatoskp.id = 6;
         powerups.add(Ratatoskp, true);
-        var Heimdallp = scene.physics.add.sprite(3072, 6547, 'heimdall');
+
+        var Heimdallp = scene.physics.add.sprite(3072, 6537, 'heimdall');
         Heimdallp.id = 1;
         powerups.add(Heimdallp, true);
-        var Tirp = scene.physics.add.sprite(480, 6163, 'tir');
+
+        var Tirp = scene.physics.add.sprite(480, 6123, 'tir');
         Tirp.id = 7;
         powerups.add(Tirp, true);
-        var Tir2p = scene.physics.add.sprite(1728, 2707, 'tir');
+
+        var Tir2p = scene.physics.add.sprite(1728, 2697, 'tir');
         Tir2p.id = 7;
         powerups.add(Tir2p, true);
-        var Ratatosk2p = scene.physics.add.sprite(1728, 2227, 'ratatosk');
+
+        var Ratatosk2p = scene.physics.add.sprite(1728, 2217, 'ratatosk');
         Ratatosk2p.id = 6;
         powerups.add(Ratatosk2p, true);
+        
+        var Njord2p = scene.physics.add.sprite(407, 19471, 'njord');
+        Njord2p.id = 3;
+        powerups.add(Njord2p, true);
+
+        var Tir3p = scene.physics.add.sprite(1745, 11125, 'tir');
+        Tir3p.id = 7;
+        powerups.add(Tir3p, true);
+
+        var Bragi2p = scene.physics.add.sprite(2463, 7381, 'bragi');
+        Bragi2p.id = 2;
+        powerups.add(Bragi2p, true);
+
+        var Njord3p = scene.physics.add.sprite(569, 4021, 'njord');
+        Njord3p.id = 3;
+        powerups.add(Njord3p, true);
 
     }// Nivel 3
     else if (nLevel === 3) {
+
         // Powerups del jugador 1
-        var pCiervo = scene.physics.add.sprite(-2200, 16915, 'ciervo');
+
+        var pCiervo = scene.physics.add.sprite(-2200, 16905, 'ciervo');
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
-        var pHemodr = scene.physics.add.sprite(-384, 16608, 'hemodr');
+
+        var pHemodr = scene.physics.add.sprite(-384, 16598, 'hemodr');
         pHemodr.id = 5;
         powerups.add(pHemodr, true);
-        var pSkadi = scene.physics.add.sprite(-3015, 16243, 'skadi');
+
+        var pSkadi = scene.physics.add.sprite(-3015, 16233, 'skadi');
         pSkadi.id = 4;
         powerups.add(pSkadi, true);
-        var pRatatosk = scene.physics.add.sprite(-1540, 15283, 'ratatosk');
+
+        var pRatatosk = scene.physics.add.sprite(-1540, 15273, 'ratatosk');
         pRatatosk.id = 6;
         powerups.add(pRatatosk, true);
-        var pHeimdall = scene.physics.add.sprite(-480, 12864, 'heimdall');
+
+        var pHeimdall = scene.physics.add.sprite(-480, 12854, 'heimdall');
         pHeimdall.id = 1;
         powerups.add(pHeimdall, true);
-        var pTir = scene.physics.add.sprite(-3072, 12576, 'tir');
+
+        var pTir = scene.physics.add.sprite(-3072, 12556, 'tir');
         pTir.id = 7;
         powerups.add(pTir, true);
-        var pNjord = scene.physics.add.sprite(-364, 12307, 'njord');
+
+        var pNjord = scene.physics.add.sprite(-364, 12297, 'njord');
         pNjord.id = 3;
         powerups.add(pNjord, true);
-        var pBragi = scene.physics.add.sprite(-1549, 10483, 'bragi');
+
+        var pBragi = scene.physics.add.sprite(-1445, 10473, 'bragi');
         pBragi.id = 2;
         powerups.add(pBragi, true);
-        var pHemodr2 = scene.physics.add.sprite(-3068, 8083, 'hemodr');
+
+        var pHemodr2 = scene.physics.add.sprite(-3068, 8073, 'hemodr');
         pHemodr2.id = 5;
         powerups.add(pHemodr2, true);
-        var pRatatosk2 = scene.physics.add.sprite(-3169, 6931, 'ratatosk');
+
+        var pRatatosk2 = scene.physics.add.sprite(-3169, 6921, 'ratatosk');
         pRatatosk2.id = 6;
         powerups.add(pRatatosk2, true);
-        var pNjord2 = scene.physics.add.sprite(-480, 6259, 'njord');
+
+        var pNjord2 = scene.physics.add.sprite(-480, 6249, 'njord');
         pNjord2.id = 3;
         powerups.add(pNjord2, true);
-        var pSkadi2 = scene.physics.add.sprite(-2669, 5587, 'skadi');
+
+        var pSkadi2 = scene.physics.add.sprite(-2121, 5577, 'skadi');
         pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
-        var pBragi2 = scene.physics.add.sprite(-2880, 2688, 'bragi');
+
+        var pBragi2 = scene.physics.add.sprite(-2880, 2678, 'bragi');
         pBragi2.id = 2;
         powerups.add(pBragi2, true);
-        var pCiervo2 = scene.physics.add.sprite(-1135, 3283, 'ciervo');
+
+        var pCiervo2 = scene.physics.add.sprite(-1135, 3273, 'ciervo');
         pCiervo2.id = 0;
         powerups.add(pCiervo2, true);
-        var pHemodr3 = scene.physics.add.sprite(-1637, 2035, 'hemodr');
+
+        var pHemodr3 = scene.physics.add.sprite(-1637, 2025, 'hemodr');
         pHemodr3.id = 5;
         powerups.add(pHemodr3, true);
 
+        var pBragi3 = scene.physics.add.sprite(-3090, 19093, 'bragi');
+        pBragi3.id = 2;
+        powerups.add(pBragi3, true);
+
+        var pNjord3 = scene.physics.add.sprite(-406, 19093, 'njord');
+        pNjord3.id = 3;
+        powerups.add(pNjord3, true);
+
+        var pTir2 = scene.physics.add.sprite(-2780, 18325, 'tir');
+        pTir2.id = 7;
+        powerups.add(pTir2, true);
+
+        var pHemodr4 = scene.physics.add.sprite(-582, 13525, 'hemodr');
+        pHemodr4.id = 5;
+        powerups.add(pHemodr4, true);
+
+        var pSkadi3 = scene.physics.add.sprite(-3178, 12277, 'skadi');
+        pSkadi3.id = 4;
+        powerups.add(pSkadi3, true);
+
+        var pHemodr5 = scene.physics.add.sprite(-1521, 5557, 'hemodr');
+        pHemodr5.id = 5;
+        powerups.add(pHemodr5, true);
+
+        var pNjord4 = scene.physics.add.sprite(-2054, 1717, 'njord');
+        pNjord4.id = 3;
+        powerups.add(pNjord4, true);
+
+        var pBragi4 = scene.physics.add.sprite(-3178, 2581, 'bragi');
+        pBragi4.id = 2;
+        powerups.add(pBragi4, true);
+
         // Powerups del jugador 2
 
-        var Ciervop = scene.physics.add.sprite(1350, 16915, 'ciervo');
+        var Ciervop = scene.physics.add.sprite(1350, 16905, 'ciervo');
         Ciervop.id = 0;
         powerups.add(Ciervop, true);
-        var Hemodrp = scene.physics.add.sprite(3166, 16608, 'hemodr');
+
+        var Hemodrp = scene.physics.add.sprite(3166, 16598, 'hemodr');
         Hemodrp.id = 5;
         powerups.add(Hemodrp, true);
-        var Skadip = scene.physics.add.sprite(535, 16243, 'skadi');
+
+        var Skadip = scene.physics.add.sprite(535, 16233, 'skadi');
         Skadip.id = 4;
         powerups.add(Skadip, true);
-        var Ratatoskp = scene.physics.add.sprite(2010, 15283, 'ratatosk');
+
+        var Ratatoskp = scene.physics.add.sprite(2010, 15273, 'ratatosk');
         Ratatoskp.id = 6;
         powerups.add(Ratatoskp, true);
-        var Heimdallp = scene.physics.add.sprite(3070, 12864, 'heimdall');
+
+        var Heimdallp = scene.physics.add.sprite(3070, 12854, 'heimdall');
         Heimdallp.id = 1;
         powerups.add(Heimdallp, true);
-        var Tirp = scene.physics.add.sprite(478, 12576, 'tir');
+
+        var Tirp = scene.physics.add.sprite(478, 12566, 'tir');
         Tirp.id = 7;
         powerups.add(Tirp, true);
-        var Njordp = scene.physics.add.sprite(3186, 12307, 'njord');
+
+        var Njordp = scene.physics.add.sprite(3186, 12297, 'njord');
         Njordp.id = 3;
         powerups.add(Njordp, true);
-        var Bragip = scene.physics.add.sprite(2001, 10483, 'bragi');
+
+        var Bragip = scene.physics.add.sprite(2107, 10473, 'bragi');
         Bragip.id = 2;
         powerups.add(Bragip, true);
-        var Hemodr2p = scene.physics.add.sprite(484, 8083, 'hemodr');
+
+        var Hemodr2p = scene.physics.add.sprite(484, 8073, 'hemodr');
         Hemodr2p.id = 5;
         powerups.add(Hemodr2p, true);
-        var Ratatosk2p = scene.physics.add.sprite(381, 6931, 'ratatosk');
+
+        var Ratatosk2p = scene.physics.add.sprite(381, 6921, 'ratatosk');
         Ratatosk2p.id = 6;
         powerups.add(Ratatosk2p, true);
-        var Njord2p = scene.physics.add.sprite(3072, 6259, 'njord');
+
+        var Njord2p = scene.physics.add.sprite(3072, 6249, 'njord');
         Njord2p.id = 3;
         powerups.add(Njord2p, true);
-        var Skadi2p = scene.physics.add.sprite(881, 5587, 'skadi');
+
+        var Skadi2p = scene.physics.add.sprite(1431, 5577, 'skadi');
         Skadi2p.id = 4;
         powerups.add(Skadi2p, true);
-        var Bragi2p = scene.physics.add.sprite(670, 2688, 'bragi');
+
+        var Bragi2p = scene.physics.add.sprite(670, 2678, 'bragi');
         Bragi2p.id = 2;
         powerups.add(Bragi2p, true);
-        var Ciervo2p = scene.physics.add.sprite(2415, 3283, 'ciervo');
+
+        var Ciervo2p = scene.physics.add.sprite(2415, 3273, 'ciervo');
         Ciervo2p.id = 0;
         powerups.add(Ciervo2p, true);
-        var Hemodr3p = scene.physics.add.sprite(1913, 2035, 'hemodr');
+
+        var Hemodr3p = scene.physics.add.sprite(1913, 2025, 'hemodr');
         Hemodr3p.id = 5;
         powerups.add(Hemodr3p, true);
+
+        var Bragi3p = scene.physics.add.sprite(462, 19093, 'bragi');
+        Bragi3p.id = 2;
+        powerups.add(Bragi3p, true);
+
+        var Njord3p = scene.physics.add.sprite(3146, 19093, 'njord');
+        Njord3p.id = 3;
+        powerups.add(Njord3p, true);
+
+        var Tir2p = scene.physics.add.sprite(772, 18325, 'tir');
+        Tir2p.id = 7;
+        powerups.add(Tir2p, true);
+
+        var Hemodr4p = scene.physics.add.sprite(2970, 13525, 'hemodr');
+        Hemodr4p.id = 5;
+        powerups.add(Hemodr4p, true);
+
+        var Skadi3p = scene.physics.add.sprite(374, 12277, 'skadi');
+        Skadi3p.id = 4;
+        powerups.add(Skadi3p, true);
+
+        var Hemodr5p = scene.physics.add.sprite(2031, 5557, 'hemodr');
+        Hemodr5p.id = 5;
+        powerups.add(Hemodr5p, true);
+
+        var Njord4p = scene.physics.add.sprite(1498, 1717, 'njord');
+        Njord4p.id = 3;
+        powerups.add(Njord4p, true);
+
+        var Bragi4p = scene.physics.add.sprite(374, 2581, 'bragi');
+        Bragi4p.id = 2;
+        powerups.add(Bragi4p, true);
     }
 
     scene.physics.add.collider(powerups, layer);
