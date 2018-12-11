@@ -14,38 +14,47 @@ function createPowerups(scene, nLevel) {
         // Powerups del jugador 1
 
         var pCiervo = scene.physics.add.sprite(-2050, 2208, 'ciervo');
+        pCiervo.setSize(65, 81).setOffset(67, 119);
         pCiervo.id = 0;
         powerups.add(pCiervo, true);
 
         var pHeimdall = scene.physics.add.sprite(-1200, 2500, 'heimdall');
+        pHeimdall.setSize(65, 81).setOffset(67, 119);
         pHeimdall.id = 1;
         powerups.add(pHeimdall, true);
 
         var pBragi = scene.physics.add.sprite(-3120, 10751, 'bragi');
+        pBragi.setSize(65, 81).setOffset(67, 119);
         pBragi.id = 2;
         powerups.add(pBragi, true);
 
         var pNjord = scene.physics.add.sprite(-768, 8256, 'njord');
+        pNjord.setSize(65, 81).setOffset(67, 119);
         pNjord.id = 3;
         powerups.add(pNjord, true);
 
         var pSkadi = scene.physics.add.sprite(-3168, 5760, 'skadi');
+        pSkadi.setSize(65, 81).setOffset(67, 119);
         pSkadi.id = 4;
         powerups.add(pSkadi, true);
 
         var pSkadi2 = scene.physics.add.sprite(-2592, 1152, 'skadi');
+        pSkadi2.setSize(65, 81).setOffset(67, 119);
         pSkadi2.id = 4;
         powerups.add(pSkadi2, true);
 
         var pHemodr = scene.physics.add.sprite(-419, 16223, 'hemodr');
+        pHemodr.setSize(65, 81).setOffset(67, 119);
         pHemodr.id = 5;
         powerups.add(pHemodr, true);
 
         var pNjord2 = scene.physics.add.sprite(-1204, 13823, 'njord');
+        pNjord2.setSize(65, 81).setOffset(67, 119);
         pNjord2.id = 3;
         powerups.add(pNjord2, true);
 
         var pBragi2 = scene.physics.add.sprite(-2326, 4127, 'bragi');
+        pBragi2.setSize(65, 81).setOffset(67, 119);
         pBragi2.id = 2;
         powerups.add(pBragi2, true);
 
@@ -127,7 +136,7 @@ function createPowerups(scene, nLevel) {
         var pRatatosk2 = scene.physics.add.sprite(-1856, 2217, 'ratatosk');
         pRatatosk2.id = 6;
         powerups.add(pRatatosk2, true);
-        
+
         var pNjord2 = scene.physics.add.sprite(-3145, 19471, 'njord');
         pNjord2.id = 3;
         powerups.add(pNjord2, true);
@@ -181,7 +190,7 @@ function createPowerups(scene, nLevel) {
         var Ratatosk2p = scene.physics.add.sprite(1728, 2217, 'ratatosk');
         Ratatosk2p.id = 6;
         powerups.add(Ratatosk2p, true);
-        
+
         var Njord2p = scene.physics.add.sprite(407, 19471, 'njord');
         Njord2p.id = 3;
         powerups.add(Njord2p, true);
