@@ -20,18 +20,8 @@ introScene.preload = function () {
 introScene.create = function () {
     isOpReady = false;
     if (isOnline) {
-        wsSkip = new WebSocket(ipConfig);
-
-        //En caso de error
-        wsSkip.onerror = function (e) {
-            console.log("WS error: " + e);
-        }
-
-        //Gestion de informacion recibida
-        wsSkip.onmessage = function (msg) {
-            auxJson = JSON.parse(msg.data);
-            isOpReady = auxJson.isReady;
-        }
+        //Crea el websocket para enviar info sobre saltar cutscenes
+       createSkipWS();
     }
     //Crea el fondo, que ira haciendo scroll a medida que pasa el tiempo
     createBackground(introScene, 1045, 540, 3, 'Intro');
@@ -75,14 +65,13 @@ introScene.update = function () {
         }
     }
 
+    //Salta de escena cuando ambos jugadores están listos
     if (isOnline && isOpReady && imReady) {
         skipScene(introScene, 'level1');
     }
 
-    //Reservado para luego
-    if (isOpReady && !caja2Creada){
-        caja2Creada = true;
-        skipMessage2 = introScene.physics.add.image(960, 60, 'skipCutscene2');
-        skipMessage2.setGravityY(-1200);
+    //Si el oponente pulsa alguna tecla, sale un mensaje
+    if (isOnline && isOpReady && !caja2Creada){
+        createOpponentSkipMessage(introScene);
     }
 }

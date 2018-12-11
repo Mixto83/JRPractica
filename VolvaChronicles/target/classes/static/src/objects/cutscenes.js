@@ -88,4 +88,9 @@ skipScene = function (scene, destination) {
     nextScene(scene, destination);
 }
 
-
+//Crea un mensaje de que el oponente ha intentado saltar la cutscene
+createOpponentSkipMessage = function(scene){
+    caja2Creada = true;
+    skipMessage2 = scene.physics.add.image(960, 60, 'skipCutscene2');
+    skipMessage2.setGravityY(-1200);
+}

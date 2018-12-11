@@ -110,7 +110,7 @@ function createRewardText(scene, type) {
 	var text2 = scene.add.text(800, 800, 'Pulse Z para continuar', style2);
 	text.setText(['Ganador: ¡' + type + '!',
 	'' + type + ' consigue: ' + rewardRune, 'Tiempo: ' + levelTime,]);
-	obtainedRune = rewardScene.add.image(960, 700, rewardRune);
+	obtainedRune = rewardScene.add.image(960, 700, rewardRune+'2');
 }
 
 // Input para saltar la pantalla de Reward (Z)

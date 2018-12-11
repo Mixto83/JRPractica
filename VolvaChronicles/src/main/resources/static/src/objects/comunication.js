@@ -103,6 +103,61 @@ matchOpponent = function () {
 	}
 }
 
+//Crea el websocket para enviar info sobre saltar cutscenes
+createSkipWS = function () {
+	wsSkip = new WebSocket(ipConfig);
+
+	//En caso de error
+	wsSkip.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	wsSkip.onmessage = function (msg) {
+		auxJson = JSON.parse(msg.data);
+		isOpReady = auxJson.isReady;
+	}
+}
+
+//Inicia el websocket para el nivel y sus eventos
+createLevelWS = function () {
+	wsLevel = new WebSocket(ipConfig);
+
+	//En caso de error
+	wsLevel.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	wsLevel.onmessage = function (msg) {
+		if (idJugador === 0) {//Si eres el aguila
+			updatePlayerFromServer(player2, JSON.parse(msg.data));
+		} else if (idJugador === 1) {//Si eres el dragon
+			updatePlayerFromServer(player1, JSON.parse(msg.data));
+		}
+	}
+}
+
+//Inicia el websocket para el envío de las recompensas y sus eventos
+createRewardWS = function () {
+	wsReward = new WebSocket(ipConfig);
+
+	//En caso de error
+	wsReward.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	wsReward.onmessage = function (msg) {
+		if (idJugador === 0 && player2.win) {
+			rewardRune = JSON.parse(msg.data).reward;
+			createRewardText(rewardScene, 'Nidhogg');
+		} else if (idJugador === 1 && player1.win) {
+			rewardRune = JSON.parse(msg.data).reward;
+			createRewardText(rewardScene, 'El Águila');
+		}
+	}
+}
 
 //Recogida de datos del servidor
 getPlayerInfo = function (ws, jsonUp) {
@@ -182,38 +237,10 @@ modifyPlayerInfo = function (player) {
 	};
 }
 
-//Sube la informacion de la recompensa y resetea el resto
-uploadReward = function (player, id) { }
-
-//Recoge la informacion de la recompensa
-getRewardFromServer = function (id, scene) {
-	/*$.ajax({
-		method: "GET",
-		url: 'http://localhost:8080/players/' + id,
-		processData: false,
-		headers: {
-			"Content-Type": "application/json"
-		}
-	}).done(function (playerInfo) {
-		//Actualiza la informacion de la recompensa y la muestra por pantalla
-		if (id === 0) {
-			updateRewardFromServer(player1, playerInfo);
-			createRewardText(scene, 'El Águila', player1);
-		} else if (id === 1) {
-			updateRewardFromServer(player2, playerInfo);
-			createRewardText(scene, 'Nidhogg', player2);
-		}
-	})*/
-}
-
 //Recoge la informacion de la recompensa
 updateRewardFromServer = function (player, info) {
-	//player.estado = 0;
 	rewardRune = info.reward;
 }
-
-//Borrado de la lista de jugadores
-deletePlayerList = function () { }
 
 //Control de sincronizacion
 //Comprueba que un jugador ha pulsado la tecla de skip

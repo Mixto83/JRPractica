@@ -11,23 +11,8 @@ rewardScene.preload = function () {
 rewardScene.create = function () {
     isOpReady = false;
     if (isOnline) {
-        wsReward = new WebSocket(ipConfig);
-
-        //En caso de error
-        wsReward.onerror = function (e) {
-            console.log("WS error: " + e);
-        }
-
-        //Gestion de informacion recibida
-        wsReward.onmessage = function (msg) {
-            if (idJugador === 0 && player2.win) {
-                    rewardRune = JSON.parse(msg.data).reward;
-                    createRewardText(rewardScene, 'Nidhogg');
-            } else if (idJugador === 1 && player1.win) {
-                    rewardRune = JSON.parse(msg.data).reward;
-                    createRewardText(rewardScene, 'El Águila');
-            }
-        }
+        //Inicia el websocket para el envío de las recompensas y sus eventos
+        createRewardWS();
     }
 
 
@@ -39,7 +24,9 @@ rewardScene.create = function () {
 
     //Imagen de fondo
     createStaticBackground(rewardScene, 'Recompensa');
-    if (isOnline) {
+
+    //Se calcula la recompensa
+    if (isOnline) {//Online, se realiza cuando el ws esté abierto
         wsReward.onopen = function () {
             randomReward(rewardScene);
         }
@@ -99,6 +86,7 @@ rewardScene.update = function () {
                 "heimdall": false,
                 "reward": rewardRune
             };
+            
             if (wsSkip.readyState === wsSkip.OPEN) {
                 wsSkip.send(JSON.stringify(jsonSync));
             }
@@ -120,14 +108,11 @@ rewardScene.update = function () {
         isOpReady = false;
         cajaCreada = false;
         caja2Creada = false;
-        //wsSkip.close();
         nextLevel(rewardScene);
     }
-    //Reservado para luego
-    if (isOpReady && !caja2Creada){
-        console.log("isOpReady:"+isOpReady+" caja2Creada:"+caja2Creada);
-        caja2Creada = true;
-        skipMessage2 = rewardScene.physics.add.image(960, 60, 'skipCutscene2');
-        skipMessage2.setGravityY(-1200);
+
+    //Si el oponente pulsa alguna tecla, sale un mensaje
+    if (isOnline && isOpReady && !caja2Creada){
+        createOpponentSkipMessage(rewardScene);
     }
 }

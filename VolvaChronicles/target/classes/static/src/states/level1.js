@@ -11,24 +11,10 @@ level1Scene.preload = function () {
 level1Scene.create = function () {
     currentLevel = 1;
     if (isOnline) {
-        wsLevel = new WebSocket(ipConfig);
-
-        //En caso de error
-        wsLevel.onerror = function (e) {
-            console.log("WS error: " + e);
-        }
-
-        //Gestion de informacion recibida
-        wsLevel.onmessage = function (msg) {
-            if (idJugador === 0) {//Si eres el aguila
-                updatePlayerFromServer(player2, JSON.parse(msg.data));
-            } else if (idJugador === 1) {//Si eres el dragon
-                updatePlayerFromServer(player1, JSON.parse(msg.data));
-            }
-        }
-        
+        //Inicia el websocket para el nivel y sus eventos
+        createLevelWS();
     }
-    
+
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 1
     createLevel(level1Scene, 1);
     //Carga las metas 
@@ -42,11 +28,13 @@ level1Scene.create = function () {
     //crea y coloca todos los powerups del nivel 1 en su sitio y les añade las colisiones
     createPowerups(level1Scene, 1);
     //Guarda los inputs de control de los jugadores en atributos
-    if(!isOnline){
+    if (!isOnline) {//En local, P1 se controla con WASD + B y P2 con las flechas + numpad0
         createInputs(level1Scene, player1, player2);
-    } else if (idJugador === 0){
+        //En online, ambos jugadores se controlan con WASD+B, al personaje no jugable se le
+        //asignan las flechas por defecto pero no se actualizan sus inputs
+    } else if (idJugador === 0) {
         createInputs(level1Scene, player1, player2);
-    }else if(idJugador ===1){
+    } else if (idJugador === 1) {
         createInputs(level1Scene, player2, player1);
     }
     //inicia las cámaras y las asocia a cada jugador
@@ -87,6 +75,6 @@ level1Scene.update = function () {
     updateEnemies(enemiesp);
     //Jugando online, pide al servidor la informacion del oponente
     if (isOnline) {
-        getPlayerInfo(wsLevel,jsonLevel);
+        getPlayerInfo(wsLevel, jsonLevel);
     }
 }

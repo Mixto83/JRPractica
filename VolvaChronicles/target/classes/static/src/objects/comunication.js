@@ -103,6 +103,39 @@ matchOpponent = function () {
 	}
 }
 
+//Crea el websocket para enviar info sobre saltar cutscenes
+createSkipWS = function () {
+	wsSkip = new WebSocket(ipConfig);
+
+	//En caso de error
+	wsSkip.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	wsSkip.onmessage = function (msg) {
+		auxJson = JSON.parse(msg.data);
+		isOpReady = auxJson.isReady;
+	}
+}
+
+createLevelWS = function () {
+	wsLevel = new WebSocket(ipConfig);
+
+	//En caso de error
+	wsLevel.onerror = function (e) {
+		console.log("WS error: " + e);
+	}
+
+	//Gestion de informacion recibida
+	wsLevel.onmessage = function (msg) {
+		if (idJugador === 0) {//Si eres el aguila
+			updatePlayerFromServer(player2, JSON.parse(msg.data));
+		} else if (idJugador === 1) {//Si eres el dragon
+			updatePlayerFromServer(player1, JSON.parse(msg.data));
+		}
+	}
+}
 
 //Recogida de datos del servidor
 getPlayerInfo = function (ws, jsonUp) {

@@ -120,14 +120,11 @@ rewardScene.update = function () {
         isOpReady = false;
         cajaCreada = false;
         caja2Creada = false;
-        //wsSkip.close();
         nextLevel(rewardScene);
     }
-    //Reservado para luego
-    if (isOpReady && !caja2Creada){
-        console.log("isOpReady:"+isOpReady+" caja2Creada:"+caja2Creada);
-        caja2Creada = true;
-        skipMessage2 = rewardScene.physics.add.image(960, 60, 'skipCutscene2');
-        skipMessage2.setGravityY(-1200);
+    
+    //Si el oponente pulsa alguna tecla, sale un mensaje
+    if (isOnline && isOpReady && !caja2Creada){
+        createOpponentSkipMessage(rewardScene);
     }
 }

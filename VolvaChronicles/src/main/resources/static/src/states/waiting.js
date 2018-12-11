@@ -19,8 +19,7 @@ waitingScene.create = function () {
 }
 
 waitingScene.update = function () {
-	//cuando haya 2 jugadores salta a la intro
-	//Esto hay que cambiarlo
+	//Si no encuentra oponente, sigue buscando
 	if (idOponente === -1) {
 		metodo = "getIdFromOpponent";
 		var object = {
@@ -31,6 +30,7 @@ waitingScene.update = function () {
 		if(wsMatch.readyState === wsMatch.OPEN) {
 			wsMatch.send(JSON.stringify(object));
 		}
+	//Cuando recibe el id del oponente, salta a la intro
 	} else if (idOponente !== -1) {
 		music.stop();
 		waitingScene.scene.start('intro');

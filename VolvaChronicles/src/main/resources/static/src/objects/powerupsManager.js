@@ -525,7 +525,7 @@ function heimdallFunc(scene, player, adversary) {
         player.heimdall = true;
         player.lastY = player.y;
         player.lastX = player.x;
-        player.y = adversary.y + 500;
+        player.y = adversary.y - 500;
         player.x = adversary.x;
         if (player === player1) {
             camera1.setBounds(0, 0, 7008, 19578);
@@ -668,7 +668,6 @@ randomReward = function (scene) {
                 if (wsReward.readyState === wsReward.OPEN) {
                     wsReward.send(JSON.stringify(jsonReward));
                 }
-                //uploadReward(player1, idJugador);
             }
         } else if (isOnline && idJugador === 1) {
             metodo = "getReward";
@@ -682,9 +681,6 @@ randomReward = function (scene) {
                     wsReward.send(JSON.stringify(jsonReward));
                 });
             }
-            //uploadReward(player2, idJugador);
-            //Resetea la info del jugador 1
-            //scene.time.delayedCall(100, function () {getRewardFromServer(0, scene);}, [], scene);
         }
     } else if (player2.win) {
         if (!isOnline || (isOnline && idJugador === 1)) {
@@ -750,8 +746,6 @@ randomReward = function (scene) {
                     wsReward.send(JSON.stringify(jsonReward));
                 });
             }
-            //uploadReward(player1, idJugador);
-            //scene.time.delayedCall(100, function () {getRewardFromServer(1, scene);}, [], scene);
         }
     }
 }

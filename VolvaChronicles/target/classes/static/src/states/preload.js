@@ -71,6 +71,12 @@ preloadScene.preload = function () {
     this.load.image('njord', 'assets/sprites/Runa_Njord.png');
     this.load.image('skadi', 'assets/sprites/Runa_Skadi.png');
     this.load.image('tir', 'assets/sprites/Runa_Tir.png');
+    //sprites rewards
+    this.load.image('bragi2', 'assets/sprites/Runa_BragiV2.png');
+    this.load.image('hemodr2', 'assets/sprites/Runa_HemodrV2.png');
+    this.load.image('njord2', 'assets/sprites/Runa_NjordV2.png');
+    this.load.image('skadi2', 'assets/sprites/Runa_SkadiV2.png');
+    this.load.image('tir2', 'assets/sprites/Runa_TirV2.png');
     
     //sprite arma
     this.load.image('lanza', 'assets/sprites/lanza_horizontal_R.png');

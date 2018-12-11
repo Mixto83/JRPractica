@@ -9,52 +9,41 @@ level3Scene.preload = function () {
 level3Scene.create = function () {
     currentLevel = 3;
     if (isOnline) {
-        wsLevel = new WebSocket(ipConfig);
-
-        //En caso de error
-        wsLevel.onerror = function (e) {
-            console.log("WS error: " + e);
-        }
-
-        //Gestion de informacion recibida
-        wsLevel.onmessage = function (msg) {
-            if (idJugador === 0) {//Si eres el aguila
-                updatePlayerFromServer(player2, JSON.parse(msg.data));
-            } else if (idJugador === 1) {//Si eres el dragon
-                updatePlayerFromServer(player1, JSON.parse(msg.data));
-            }
-        }
+        //Inicia el websocket para el nivel y sus eventos
+        createLevelWS();
     }
-        
-        //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
-        if (level3Scene,player1.win) {
-            chooseReward(level3Scene,player1);
-        } else {
-            chooseReward(level3Scene,player2);
-        }
-        //Carga todas las imagenes de fondo, el tileset y la música del nivel 3
-        createLevel(level3Scene, 3);
-        //Carga las metas 
-        createGoal(level3Scene, -2770, 475);
-        createGoal(level3Scene, 780, 475);
-        //crea los sprites de los personajes e inicializa todos sus atributos
-        createPlayers(level3Scene);
-        //crea y coloca todos los powerups del nivel 3 en su sitio y les añade las colisiones
-        createPowerups(level3Scene, 3);
-        //Guarda los inputs de control de los jugadores en atributos
-        if(!isOnline){
-            createInputs(level3Scene, player1, player2);
-        } else if (idJugador === 0){
-            createInputs(level3Scene, player1, player2);
-        }else if(idJugador ===1){
-            createInputs(level3Scene, player2, player1);
-        }
-        //inicia las cámaras y las asocia a cada jugador
-        createCameras(level3Scene);
-        //crea los enemigos y lanzas del nivel 3, los coloca en su sitio y les añade colisiones
-        createEnemy(level3Scene, 3);
-        //crea cronómetro que medirá el tiempo que tardan en completar el nivel
-        createTimer(level3Scene);
+
+    //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
+    if (level3Scene, player1.win) {
+        chooseReward(level3Scene, player1);
+    } else {
+        chooseReward(level3Scene, player2);
+    }
+    //Carga todas las imagenes de fondo, el tileset y la música del nivel 3
+    createLevel(level3Scene, 3);
+    //Carga las metas 
+    createGoal(level3Scene, -2770, 475);
+    createGoal(level3Scene, 780, 475);
+    //crea los sprites de los personajes e inicializa todos sus atributos
+    createPlayers(level3Scene);
+    //crea y coloca todos los powerups del nivel 3 en su sitio y les añade las colisiones
+    createPowerups(level3Scene, 3);
+    //Guarda los inputs de control de los jugadores en atributos
+    if (!isOnline) {//En local, P1 se controla con WASD + B y P2 con las flechas + numpad0
+        createInputs(level3Scene, player1, player2);
+        //En online, ambos jugadores se controlan con WASD+B, al personaje no jugable se le
+        //asignan las flechas por defecto pero no se actualizan sus inputs
+    } else if (idJugador === 0) {
+        createInputs(level3Scene, player1, player2);
+    } else if (idJugador === 1) {
+        createInputs(level3Scene, player2, player1);
+    }
+    //inicia las cámaras y las asocia a cada jugador
+    createCameras(level3Scene);
+    //crea los enemigos y lanzas del nivel 3, los coloca en su sitio y les añade colisiones
+    createEnemy(level3Scene, 3);
+    //crea cronómetro que medirá el tiempo que tardan en completar el nivel
+    createTimer(level3Scene);
 }
 
 level3Scene.update = function () {
