@@ -31,15 +31,14 @@ public class WebsocketVCHandler extends TextWebSocketHandler {
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		// System.out.println("Message received: " + message.getPayload());
+
 
 		synchronized (sessions) {
 			// nodo de llegada
 			JsonNode node = mapper.readTree(message.getPayload());
-			String metodo = node.get("metodo").asText();// nuevo
-			// boolean sync = node.get("sync").asBoolean();//nuevo
-			int id = node.get("id").asInt(); // nuevo
-			int idOpponent = node.get("idOpponent").asInt(); // nuevo
+			String metodo = node.get("metodo").asText();
+			int id = node.get("id").asInt();
+			int idOpponent = node.get("idOpponent").asInt();
 			ObjectNode responseNode = mapper.createObjectNode(); // nodo de respuesta
 
 			// metodos

@@ -50,7 +50,6 @@ public class PlayerController {
 
 	// metodos que recogen la info del jugador con el que se te ha emparejado
 	public Player getOpponent(int idOponente) {
-        //return players.get(idOponente);
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getId() == idOponente) {
                 return players.get(i);
