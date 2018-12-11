@@ -8,7 +8,7 @@
 ### PLATAFORMA
 **PC**
 ### VERSION DEL DOCUMENTO
-**3.1**
+**4.0**
 ### ENLACES DE INTERES
 [Trello del proyecto](https://trello.com/b/MT0ZZwHT/v%C3%B6lvas-chronicle)
 
@@ -33,6 +33,10 @@ En resumen, las mecánicas del juego buscan que los jugadores tengan varias form
 Implementación mediante los lenguajes de programación Javascript y Java apoyados en el motor Phaser.
 ### PUBLICO
 El juego está dirigido a jugadores competitivos que disfruten de plataformas que exijan habilidad para superar los retos. Además, gracias a su ambientación, puede atraer a un público que tenga interés en la mitología nórdica.
+### VIDEO DE PRESENTACION
+Pulsa en la imagen para ver un vídeo sobre el juego.
+
+[![Völva Chronicles](https://i.ytimg.com/vi/6V4NU5IKqQE/hqdefault.jpg?sqp=-oaymwEjCPYBEIoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBZQaTBDlEnSTN2MwBMm85BzIpTZg)](https://www.youtube.com/watch?v=6V4NU5IKqQE&feature=youtu.be "Presentacion")
 
 ## HISTORIAL DE VERSIONES
 v1.0 - Publicación del documento con ideas iniciales
@@ -55,13 +59,15 @@ v3.0 - Descripción del comportamiento del juego con APIREST, inserción del dia
 
 v3.1 - Actualización en la sala de reporte de errores.
 
+v4.0 - Descripción del comportamiento del juego con websockets, actualización de imágenes y actualización del diagrama de clases del servidor
+
 ## MECANICA DEL JUEGO
 ### CAMARA
 La cámara es de vista lateral, alejada lo suficiente de los personajes para poder ver parte del escenario y permitir a maniobrar al jugador. Aún así, esta cámara sigue al personaje que controla el jugador, desplazándose lateralmente hasta alcanzar uno de los bordes del escenario.
 ### CONTROLES
 El jugador controlará los movimientos, así como el salto y sus direcciones, mediante las habituales teclas W, A, S y D. Además, con la tecla B activará la habilidad del dash.
 
-En la implementación en modo local y de manera provisional en el modo online, el segundo jugador usará las flechas de dirección y la tecla 0 del numpad.
+En la modalidad de juego local, el segundo jugador usará las flechas de dirección y la tecla 0 del _numpad_.
 ### PUNTUACION
 No se establecerá un sistema de puntuación. Solo existen los estados en el que un jugador pierde y otro gana en cada uno de los distintos niveles. Sí se guardará el tiempo que ha tardado en terminarse el nivel.
 ### SISTEMA DE GUARDADO
@@ -85,7 +91,7 @@ Se adjunta el diagrama de secuencia de escenas:
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/avisoIntro.png "Pantalla de Intro")
 
 **Niveles 1, 2, 3**: Las diferentes escenas donde se desarrolla el gameplay. Se va aumentando la dificultad y el número de enemigos y objetos progresivamente. En el apartado _Progreso del juego_ se explican en profundidad.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel3Scene.png "Pantalla del Nivel 3")
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel%202.png "Pantalla del Nivel 2")
 
 **Reward**: Al terminar los niveles 1 y 2, el juego se dirige a la escena de recompensa, donde se anuncia el ganador, el tiempo que ha tardado en completar el nivel y el power-up que obtiene como recompensa. Se sale de esta escena pulsando la tecla Z (tendrán que pulsarla ambos jugadores en la partida Online)
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/RewardScene.png "Pantalla de Reward")
@@ -132,11 +138,11 @@ Rocas místicas repartidas por el escenario. Se distinguen por símbolos, que re
 ### AYUDANTES
 Manifestación de ciertos personajes de la mitología nórdica que aplicarán un efecto más poderoso que el de las runas.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_ratatosk.png "Diseño Ratatösk")**Ratatösk**: la ardilla confundirá a los personajes y permitirá invertir los controles del oponente. La primera vez que un jugador interactúa con esta ardilla, se intercambiarán las teclas _A_ y _D_ del contrario. La segunda vez que ese mismo jugador encuentre a la ardilla, se intercambiarán las teclas _W_ y _S_.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Ratatosk.png "Diseño Ratatösk")**Ratatösk**: la ardilla confundirá a los personajes y permitirá invertir los controles del oponente. La primera vez que un jugador interactúa con esta ardilla, se intercambiarán las teclas _A_ y _D_ del contrario. La segunda vez que ese mismo jugador encuentre a la ardilla, se intercambiarán las teclas _W_ y _S_.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_ciervos.png "Diseño Ciervos")**Los 4 ciervos**: En la Edda poética se menciona a 4 ciervos que habitan en Yggdrasil, cada uno de estos podrá aparecer en el escenario y aplicar un efecto propio. **Dáinn** impulsará al jugador a una gran altura, **Dvalinn** hará lo mismo, pero con los dos jugadores, **Duneyrr** impulsará al adversario hacia la izquierda y **Duraþrór** lo hará hacia la derecha. Estos ciervos serán totalmente indistinguibles a nivel estético, por lo que el jugador no sabrá qué efecto se va a aplicar hasta que interactúe con el, añadiendo factor azar y reforzando el sistema de riesgo-recompensa-castigo.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Ciervos.png "Diseño Ciervos")**Los 4 ciervos**: En la Edda poética se menciona a 4 ciervos que habitan en Yggdrasil, cada uno de estos podrá aparecer en el escenario y aplicar un efecto propio. **Dáinn** impulsará al jugador a una gran altura, **Dvalinn** hará lo mismo, pero con los dos jugadores, **Duneyrr** impulsará al adversario hacia la izquierda y **Duraþrór** lo hará hacia la derecha. Estos ciervos serán totalmente indistinguibles a nivel estético, por lo que el jugador no sabrá qué efecto se va a aplicar hasta que interactúe con el, añadiendo factor azar y reforzando el sistema de riesgo-recompensa-castigo.
 
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Arte/dise%C3%B1o_heimdall.png "Diseño Heimdall")**Heimdall**: En un punto concreto de cada nivel, estará presente este conocido personaje de la mitología nórdica, el guardián de la entrada Asgard. Heimdall otorgará al jugador la capacidad de abrir un portal dimensional que le llevará a la pantalla del oponente, pudiendo interactuar con él. Si el jugador invasor se acerca lo bastante a su oponente, le golpeará (de manera automática y sin necesidad de pulsar ninguna tecla adicional) pudiendo impulsarlo contra las paredes o el suelo, lo cual dejará al rival noqueado unos instantes y permitirá al jugador invasor obtener gran ventaja en la carrera. El teletransporte durará unos cuantos segundos, y pasado ese tiempo (o tras noquear al rival) el jugador volverá a su pantalla. Se refuerza así el sistema de riesgo-recompensa-castigo, ya que en caso de no poder golpear al oponente, el invasor habrá perdido un tiempo considerable sin avanzar por su nivel.
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/VolvaChronicles/src/main/resources/static/assets/sprites/Heimdall.png "Diseño Heimdall")**Heimdall**: En un punto concreto de cada nivel, estará presente este conocido personaje de la mitología nórdica, el guardián de la entrada Asgard. Heimdall otorgará al jugador la capacidad de abrir un portal dimensional que le llevará a la pantalla del oponente, pudiendo interactuar con él. Si el jugador invasor se acerca lo bastante a su oponente, le golpeará (de manera automática y sin necesidad de pulsar ninguna tecla adicional) pudiendo impulsarlo contra las paredes o el suelo, lo cual dejará al rival noqueado unos instantes y permitirá al jugador invasor obtener gran ventaja en la carrera. El teletransporte durará unos cuantos segundos, y pasado ese tiempo (o tras noquear al rival) el jugador volverá a su pantalla. Se refuerza así el sistema de riesgo-recompensa-castigo, ya que en caso de no poder golpear al oponente, el invasor habrá perdido un tiempo considerable sin avanzar por su nivel.
 
 ## ENEMIGOS
 Además de ayudas, a lo largo de los niveles también hay esparcidos enemigos que atacarán al jugador lanzándole objetos arrojadizos como flechas. Si uno de estos objetos impacta sobre el jugador, le hará retroceder y, por tanto, perder tiempo. Pero si el jugador consigue esquivar a estos enemigos y acercarse lo suficiente, tendrá lugar una secuencia de combate, eliminando a los enemigos y obteniendo un beneficio en forma de runa o de ayudante. La dificultad para esquivar a los enemigos y alcanzarlos irá en función de lo poderosa que sea la recompensa por derrotarlos.
@@ -154,15 +160,15 @@ Las imágenes que se muestran a continuación son imágenes _ingame_ del desarro
 
 ### NIVEL 1
 Servirá a modo de introducción para que los jugadores se familiaricen poco a poco con las mecánicas. Ambas pantallas comenzarán con una estética similar que se irá diferenciando conforme se alcance mayor altura. La dificultad no será muy exigente, para poder desarrollar una correcta curva de aprendizaje. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel1Scene.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel%201.png )
 
 ### NIVEL 2
 Contará con tramos más complicados, una distribución de plataformas que premie el uso y la gestión de los saltos extra y el dash, así como varias bifurcaciones con dificultad diferente y con varias runas y asistentes distribuidos en diferentes zonas. En este nivel las diferencias estéticas serán mucho más notables: el jugador 1 se está acercando a la copa, por lo que la luz, los colores cálidos y suaves y un acabado más limpio estarán presentes, mientras que el jugador 2 se encontrará con un entorno más sucio y oscuro, debido al descenso hacia las raíces del árbol. Al finalizar el nivel, el ganador obtendrá una runa cuyo efecto se le aplicará al comienzo del siguiente nivel.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel2Scene.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel%202.png )
 
 ### NIVEL 3
 Aumentará la complejidad de las plataformas y presentará bifurcaciones donde pueda no haber salida, obligando a retroceder lo más rápido posible y premiando tanto al jugador experimentado que conoce los caminos como al jugador habilidoso que domine los controles lo suficiente como para recortar tiempo en estos retrocesos. Estéticamente se continuará lo presentado en el nivel anterior, encontrándose el jugador 1 con colores propios de la naturaleza y la vida, mientras que el jugador 2 estará en una zona oscura y en presencia de raíces muertas y mucha suciedad. Al finalizar el nivel, el jugador que haya llegado antes será el ganador definitivo de la partida y se reproducirá el final correspondiente a su personaje, independientemente del resultado de los dos niveles anteriores.
-![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel3Scene.png )
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/Nivel%203.png )
 
 ## GUION
 El guion se ha redactado para las escenas de introducción y de los dos finales.
@@ -227,7 +233,7 @@ La estamina se ve reflejada oscureciéndose la pantalla (de azul en la del águi
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Screens/estamina.png "Interfaz diegética")
 
 ## CARACTERISTICAS ONLINE
-### IMPLEMENTACION DEL MULTIJUGADOR CON APIREST
+### IMPLEMENTACION DEL MULTIJUGADOR CON APIREST (FASE 3)
 Se ha decidido que el servidor recoja la información de los jugadores relativa a posición, velocidad, control de teclas pulsadas, estamina, salto y control de los parámetros de los que depende la animación. 
 
 Esta información relativa a cada uno de los jugadores se envía al servidor cada vez que se ha pulsado una tecla (arriba, abajo o _dash_) o se ha pulsado/soltado derecha o izquierda, así como cuando se comience un nivel. Se descarga esta información en cada frame, aunque gracias a una variable de estado (que incrementa en cada subida de información al servidor) se controla que esta se escriba en las propiedades del jugador, así como también se evitan problemas de pérdida de paquetes.
@@ -238,11 +244,19 @@ Al terminar una partida, cuando se produce el reseteo del juego, se borra la lis
 
 En adición al control de los jugadores, también se sube información referente a la pulsación de teclas en las pantallas de cutscenes y reward, con el objetivo de que no se salte a las siguientes pantallas hasta que ambos jugadores hayan decidido hacerlo.
 
-
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/Untitled%20Diagram.png "Diagrama UML de la APIREST")
 
+### IMPLEMENTACION DEL MULTIJUGADOR CON WEBSOCKETS (FASE 4)
+Se ha trasladado toda la funcionalidad del multijugador de ApiREST a websockets. Para ello, se ha creado un servidor en el que se encuentra una estructura de datos que guarda la información de todos los jugadores que comiencen una partida, así como los métodos con los que se podrá utilizar esta información. 
+
+Este servidor se maneja mediante el Websocket Handler, que se encarga de recibir las peticiones del cliente y llamar a la operación que toque en cada momento, seleccionada mediante un _switch_ que escogerá el método en función de la variable _metodo_ que le llegue desde el cliente. Estos métodos son: añadir un jugador, enviar al cliente el número de jugadores, enviar al cliente el _id_ del oponente, enviar la información del oponente al cliente, actualizar un jugador en el servidor, enviar información en caso de que el oponente quiera saltar una cutscene y enviar información sobre la recompensa obtenida al jugador que ha perdido el nivel.
+
+Los clientes realizan las peticiones al servidor mediante métodos que inician una conexión websocket y que envían un JSON con la información de el _id_ del cliente que pide la información, el _id_ de su oponente, el método que quiere que sea llamado en el servidor y, en caso de requerirlo (como en el método de actualizar jugador), cualquier otra información como la posición, la velocidad, los inputs realizados...
+
+![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Documentacion/UML_Fase4.png "Diagrama UML de WebSockets")
+
 ### COMUNICACION ENTRE JUGADORES
-Al ser un juego dinámico, en el que no hay un instante en el que distraerse, se ha optado por no implementar un chat, sino de utilizar un sistema de expresiones. Este sistema sería similar al visto en juegos como Super Smash Bros, donde un jugador pulsa una tecla específica y su personaje ejecuta una animación en la que se burla del otro, pero en este caso, además de burlas, habría otras expresiones como saludar o intimidar. De esta forma, los jugadores pueden comunicarse de forma muy breve, pero sin perder tiempo ni distraerse de la jugabilidad.
+Al ser un juego dinámico, en el que no hay un instante en el que distraerse, se ha optado por no implementar un chat, sino de utilizar un sistema de expresiones. Este sistema sería similar al visto en juegos como Super Smash Bros, donde un jugador pulsa una tecla específica y su personaje ejecuta una animación en la que se burla del otro, pero en este caso, además de burlas, habría otras expresiones como saludar o intimidar. De esta forma, los jugadores pueden comunicarse de forma muy breve, pero sin perder tiempo ni distraerse de la jugabilidad. Esto no se ha implementado en la versión actual, ya que no se ha considerado prioritario.
 ### MATCHMAKING
 El juego se encargará de encontrar oponentes con un nivel de habilidad similar. Para ello, se llevará el registro del tiempo que tarda cada jugador en terminar un nivel, y se calculará un tiempo medio en base a las últimas diez partidas. Se emparejará a jugadores con un tiempo medio similar, con un margen de 10 segundos de diferencia, permitiendo así que los jugadores menos habilidosos o poco experimentados tengan una curva de aprendizaje placentera y sin enormes frustraciones, además de tener satisfechos a los jugadores veteranos o que dominen los controles, ya que tendrán que esforzarse para vencer al rival.
 
@@ -308,11 +322,12 @@ En cuanto a los escenarios, estos se han representado buscando ejemplificar Yggd
 ![](https://github.com/AlbaranezJavier/JRPractica/blob/master/Bocetos_en_sucio/arbol_calidad_baja.jpg "Background: Yggdrasil")
 
 ## INSTRUCCIONES DE USO
-Para comenzar una partida al juego, se deberán seguir los siguientes pasos:
+Para comenzar una partida al juego, se deberán seguir los siguientes pasos (en caso de conectarse directamente a un servidor iniciado, omitir hasta el paso 4):
 1.	Abrir Spring Tool Suite o Eclipse con su extensión para STS
 2.	Abrir carpeta VolvaChronicles con la opción File -> Open Projects from File System
-3.	Seleccionar en src/main/java el archivo App.java y escoger “Run As Java Application”, para iniciar el servidor APIREST.
-4.	Escribir en la URL del navegador de preferencia localhost:8080
+(Extra: En caso de querer jugar en varios ordenadores, sustituir la ip por la propia de cada uno en la línea 5 del objeto _comunication.js_)
+3.	Seleccionar en src/main/java el archivo App.java y escoger “Run As Java Application”, para iniciar el servidor.
+4.	Escribir en la URL del navegador de preferencia localhost:8080 (o la ip que haya sido escrita en el paso extra)
 5.	Al iniciar el menú, pulsar en el botón Local para jugar offline o en el botón Online para jugar online.
 6.	En caso de jugar Online, se llevará al jugador a la pantalla de espera hasta que otro jugador (desde otra ventana o desde otro PC conectado a la misma IP) pulse en el botón Online e inicie la partida.
 
@@ -349,7 +364,7 @@ En algunas ocasiones, si un objeto coge excesiva velocidad, atraviesa alguna par
 
 Por errores de comunicación no resueltos, el power up de los ciervos no funciona correctamente en la ventana que recibe la información del servidor.
 
-Al reiniciar el juego, tanto en local como en online, en ocasiones el jugador que ha ganado spawnea desplazándose a un lado. No estropea la jugabilidad debido a que se arregla comenzando a jugar normalmente, pero se está estudiando cómo resolverlo.
+Al reiniciar el juego en local, en ocasiones el jugador que ha ganado spawnea desplazándose a un lado. No estropea la jugabilidad debido a que se arregla comenzando a jugar normalmente, pero se está estudiando cómo resolverlo.
 
 ## MIEMBROS DEL EQUIPO
 Mario Aceituno Cordero – Arte, Programación, Cinemáticas, Diseño de personajes - m.aceituno.2016@alumnos.urjc.es
@@ -363,4 +378,4 @@ Juan Antonio Martín García – Diseño de niveles, Guion, Documentación, Prog
 ## DETALLES DE PRODUCCIÓN
 **Fecha de inicio**: 11/09/2018
 
-**Fecha de finalización** (estimada): 09/12/2018
+**Fecha de finalización**: 11/12/2018
