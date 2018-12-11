@@ -524,10 +524,17 @@ function powerupsFunc(player, powerups, scene) {
 // Funciones del PowerUp de Ratatosk
 function reverseRatatosk(scene, player, adversary) {
     if (player === player1) {
-        adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        if (!isOnline){
+            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+            adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        } else {
+            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+            adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        }
     } else if (player === player2) {
         adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -542,11 +549,21 @@ function ratatoskFunc(scene, player, adversary) {
     if (player === player1) {
         if (player.ratatosk === 0) {
             player.ratatoskBool = true;
-            adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-            adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+            if(!isOnline){
+                adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+                adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+            } else {
+                adversary.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+                adversary.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+            } 
         } else {
-            adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-            adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+            if (!isOnline){
+                adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+                adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+            } else{
+                adversary.keyDown = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+                adversary.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+            }
         }
         player.ratatosk++;
     } else if (player === player2) {
@@ -598,7 +615,7 @@ function stopThrowing(adversary) {
 function heimdallReturn(player) {
     if (player.heimdall === true) {
         player.x = player.lastX;
-        player.y = player.lastY;
+        player.y = player.lastY - 1;
         player.heimdall = false;
         if (player === player2) {
             camera2.setBounds(0, 0, 7008, 19578);
@@ -841,7 +858,7 @@ randomReward = function (scene) {
 }
 
 // Escoge un powerup para el jugador en funcion del número aleatorio calculado en randomReward
-function chooseReward(scene, player) {
+function chooseReward(scene, player, adversary) {
     if (rewardRune === 'hemodr') {
         eventHermodr(scene, player);
     } else if (rewardRune === 'njord') {

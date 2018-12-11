@@ -754,10 +754,14 @@ updateMovement = function (player) {
             if (player.downPulsada || player.upPulsada || player.rightCambioTeclas || player.leftCambioTeclas || player.dashCambioTeclas) {
                 if (idJugador === 0) {
                     modifyPlayerInfo(player1);
+                    if (wsGameplay.readyState === wsGameplay.OPEN) {
                     wsGameplay.send(JSON.stringify(infoCambiada));
+                    }
                 } else if (idJugador === 1) {
                     modifyPlayerInfo(player2);
+                    if (wsGameplay.readyState === wsGameplay.OPEN) {
                     wsGameplay.send(JSON.stringify(infoCambiada));
+                    }
                 }
             }
         }

@@ -15,9 +15,9 @@ level2Scene.create = function () {
 
     //Dependiendo del ganador del nivel anterior, recibe un powerup aleatorio
     if (player1.win) {
-        chooseReward(level2Scene, player1);
+        chooseReward(level2Scene, player1, player2);
     } else {
-        chooseReward(level2Scene, player2);
+        chooseReward(level2Scene, player2, player1);
     }
     //Carga todas las imagenes de fondo, el tileset y la música del nivel 2
     createLevel(level2Scene, 2);

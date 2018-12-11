@@ -27,11 +27,16 @@ restartFunc = function () {
     music.stop();
     levelEnded = false;
     heimdall = false;
-    levelTime = 0;
-    if (isOnline){
-        //borra los jugadores del servidor
-        deletePlayerList();
+    if(isOnline){
+        imReady = false;
+        isOpReady = false;
+        cajaCreada = false;
+        caja2Creada = false;
+        idJugador = -1;
+        idOponente = -1;
+        idJugadorEnServer = -1;
     }
+    levelTime = 0;
     creditsScene.scene.start('menu');
     creditsScene.scene.stop();
 }
